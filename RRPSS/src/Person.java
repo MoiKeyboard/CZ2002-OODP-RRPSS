@@ -1,21 +1,17 @@
 
 public class Person {
-	private String name, gender, contactNum;
+	private String name, gender;
 	
 	public Person() {
 		name = null;
 		gender = "";
-		contactNum = "0";
 	}
 	
-	
-	public Person(String name, String gender, String contactNum) {
+	public Person(String name, String gender) {
 		this.name = name;
 		this.gender = gender;
-		this.contactNum = contactNum;
 		
 	}
-
 
 	public String getName() {
 		return name;
@@ -34,15 +30,5 @@ public class Person {
 
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-
-
-	public String getContactNum() {
-		return contactNum;
-	}
-
-
-	public void setContactNum(String contactNum) {
-		this.contactNum = contactNum;
 	}
 }

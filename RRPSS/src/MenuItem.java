@@ -1,9 +1,54 @@
 
 public class MenuItem {
-	enum foodType{
-		MAINCOURSE, APPETIZER, DESSERT,DRINKS;
+	private String foodType;
+	private String foodName;
+	private String description;
+	private double price;
+	
+	public MenuItem() {
+		foodType = "";
+		this.foodName = "";
+		this.description = "";
+		this.price = 0;
 	}
-	String foodName;
-	String Description;
-	double price;
+	
+	public MenuItem(String foodType, String foodName,String description, double price){
+		this.foodType = foodType;
+		this.foodName = foodName;
+		this.description = description;
+		this.price = price;
+	}
+
+	public String getFoodName() {
+		return foodName;
+	}
+
+	public String getFoodType() {
+		return foodType;
+	}
+
+	public void setFoodType(String foodType) {
+		this.foodType = foodType;
+	}
+
+	public void setFoodName(String foodName) {
+		this.foodName = foodName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
 }

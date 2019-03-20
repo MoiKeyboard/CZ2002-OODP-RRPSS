@@ -1,13 +1,18 @@
 
 public class Customer extends Person {
-	private String loyaltyStatus;
+	private String contactNumber;
 	
 	public Customer() {
-		super(null,"","0");
+		super(null,"");
 	}
 	
 	public Customer(String loyaltyStatus,String name, String gender, String contactNumber) {
-		super(name,gender,contactNumber);
-		this.loyaltyStatus = loyaltyStatus;
+		super(name,gender);
+		this.contactNumber = contactNumber;
 	}
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
 }

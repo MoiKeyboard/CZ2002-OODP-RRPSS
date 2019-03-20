@@ -4,13 +4,13 @@ public class Staff extends Person {
 	String jobTitle;
 	
 	public Staff() {
-		super(null,"","0");
+		super(null,"");
 		this.staffId = 0;
 		this.jobTitle = null;
 	}
 	
 	public Staff(int staffId, String jobTitle, String name, String gender, String contactNum) {
-		super(name,gender,contactNum);
+		super(name,gender);
 		this.staffId = staffId;
 		this.jobTitle = jobTitle;	
 	}

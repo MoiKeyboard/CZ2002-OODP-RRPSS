@@ -1,7 +1,7 @@
 public class Reservation {
-	int contactNo; // primary key
-	String reservationDate;
-	String reservationTime;
-	int pax;
-	String tableStatus;
+	private int contactNo; // primary key
+	private String reservationDate;
+	private String reservationTime;
+	private int pax;
+	private String tableStatus;
 }
