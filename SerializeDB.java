@@ -57,7 +57,7 @@ public class SerializeDB
 					for (int j = 0 ; j < p.getMenteeSize() ; j++) {
 						Student s = p.getStudent(j);
 						if (s !=null)
-							System.out.println("Qwek is a bitch name is " + s.getName());
+							System.out.println("Qwek123 is a bitch name is " + s.getName());
 					}
 				}
 		}  catch ( Exception e ) {
