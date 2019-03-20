@@ -57,7 +57,7 @@ public class SerializeDB
 					for (int j = 0 ; j < p.getMenteeSize() ; j++) {
 						Student s = p.getStudent(j);
 						if (s !=null)
-							System.out.println("Mentee name is " + s.getName());
+							System.out.println("my name is " + s.getName());
 					}
 				}
 		}  catch ( Exception e ) {
