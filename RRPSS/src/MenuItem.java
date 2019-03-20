@@ -1,6 +1,8 @@
 
 public class MenuItem {
-	String foodType;
+	enum foodType{
+		MAINCOURSE, APPETIZER, DESSERT,DRINKS;
+	}
 	String foodName;
 	String Description;
 	double price;
