@@ -16,7 +16,7 @@ public class ReservationMainTestApp {
 	
 	public void run(Scanner sc, ArrayList<MenuItem> menuAl, ArrayList<Staff> staffAl) {
 		int userInput;
-		readFromAllFiles(menuAl);
+		readFromAllFiles(menuAl,staffAl);
 		do {
 			printAppMenu();
 			userInput = getUserInput(sc,menuAl);
@@ -52,13 +52,16 @@ public class ReservationMainTestApp {
 			switch(input) {
 				case 1:
 					createMenuItem(sc,menuAl);
+					printMenuItem(menuAl);
 					break;
 				case 2:
 					updateMenuItem(sc,menuAl);
+					printMenuItem(menuAl);
 					break;
 				case 3:
 					removeMenuItem(sc,menuAl);
-					break;		
+					printMenuItem(menuAl);
+					break;	
 				default:
 					break;
 				
@@ -123,21 +126,36 @@ public class ReservationMainTestApp {
 		
 	}
 	
-	public void readFromAllFiles(ArrayList<MenuItem> menuAl) {
+	public void readFromAllFiles(ArrayList<MenuItem> menuAl, ArrayList<Staff> staffAl) {
 		try {
 			TextDB.readMenuItem("MenuItems.txt", menuAl);
+			TextDB.readStaff("Staff.txt", staffAl);
 			printMenuItem(menuAl);
+			printStaffList(staffAl);
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
 	}
 	
 	public void printMenuItem(ArrayList<MenuItem> menuAl) {
+		System.out.println("Menu Item as follows:");
 		for(MenuItem mi : menuAl) {
 			System.out.println("Category: " + mi.getFoodType());
 			System.out.println("Food Name: " + mi.getFoodName());
 			System.out.println("Description: " + mi.getDescription());
 			System.out.println("Price: " + mi.getPrice());
 		}
+		System.out.println();
+	}
+	
+	public void printStaffList(ArrayList<Staff> staffAl) {
+		System.out.println("Staff list as follows:");
+		for(Staff s : staffAl) {
+			System.out.println("Staff ID: " + s.getStaffId());
+			System.out.println("Job Title: " + s.getJobTitle());
+			System.out.println("Staff Name: " + s.getName());
+			System.out.println("Gender: " + s.getGender());
+		}
+		System.out.println();
 	}
 }

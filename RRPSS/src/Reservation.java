@@ -4,4 +4,63 @@ public class Reservation {
 	private String reservationTime;
 	private int pax;
 	private String tableStatus;
+	
+	public Reservation(){
+		this.contactNo = 0;
+		this.reservationDate = "";
+		this.reservationTime = "";
+		this.pax = 0;
+		this.tableStatus = "";
+	}
+	
+	public Reservation(int contactNo, String reservationDate, String reservationTime,int pax, String tableStatus){
+		this.contactNo = contactNo;
+		this.reservationDate = reservationDate;
+		this.reservationTime = reservationTime;
+		this.pax = pax;
+		this.tableStatus = tableStatus;
+	}
+
+	public int getContactNo() {
+		return contactNo;
+	}
+
+	public void setContactNo(int contactNo) {
+		this.contactNo = contactNo;
+	}
+
+	public String getReservationDate() {
+		return reservationDate;
+	}
+
+	public void setReservationDate(String reservationDate) {
+		this.reservationDate = reservationDate;
+	}
+
+	public String getReservationTime() {
+		return reservationTime;
+	}
+
+	public void setReservationTime(String reservationTime) {
+		this.reservationTime = reservationTime;
+	}
+
+	public int getPax() {
+		return pax;
+	}
+
+	public void setPax(int pax) {
+		this.pax = pax;
+	}
+
+	public String getTableStatus() {
+		return tableStatus;
+	}
+
+	public void setTableStatus(String tableStatus) {
+		this.tableStatus = tableStatus;
+	}
+	
+	
+	
 }

@@ -1,0 +1,2 @@
+MAINCOURSE|Cheese Prata|Indian Cuisine|1.9
+APPETIZER|Baked Oyster|Western|5.8

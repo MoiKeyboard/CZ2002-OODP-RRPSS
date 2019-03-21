@@ -9,7 +9,7 @@ public class Staff extends Person {
 		this.jobTitle = null;
 	}
 	
-	public Staff(int staffId, String jobTitle, String name, String gender, String contactNum) {
+	public Staff(int staffId, String jobTitle, String name, String gender) {
 		super(name,gender);
 		this.staffId = staffId;
 		this.jobTitle = jobTitle;	
