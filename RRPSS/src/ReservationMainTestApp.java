@@ -8,18 +8,19 @@ public class ReservationMainTestApp {
 		ReservationMainTestApp test = new ReservationMainTestApp();
 		ArrayList<MenuItem> menuAL = new ArrayList<MenuItem>();
 		ArrayList<Staff> staffAl = new ArrayList<Staff>();
+		ArrayList<Table> tableAl = new ArrayList<Table>();
 		Scanner sc = new Scanner(System.in);
-		test.run(sc,menuAL, staffAl);
+		test.run(sc,menuAL, staffAl,tableAl);
 		sc.close();
 		
 	}
 	
-	public void run(Scanner sc, ArrayList<MenuItem> menuAl, ArrayList<Staff> staffAl) {
+	public void run(Scanner sc, ArrayList<MenuItem> menuAl, ArrayList<Staff> staffAl, ArrayList<Table> tableAl) {
 		int userInput;
-		readFromAllFiles(menuAl,staffAl);
+		TextDB.readFromAllFiles(menuAl,staffAl,tableAl);
 		do {
 			printAppMenu();
-			userInput = getUserInput(sc,menuAl);
+			userInput = getUserInput(sc,menuAl,tableAl);
 			
 		} while (userInput != 0 );
 		System.out.println("Thanks for using our app!");
@@ -43,25 +44,45 @@ public class ReservationMainTestApp {
 		System.out.println("15.\tPrint sale revenue report by period(e.g day/month)\n0.\tExit the application");
 	}
 	
-	public int getUserInput(Scanner sc,ArrayList<MenuItem> menuAl) {
-		double input2;
+	public int getUserInput(Scanner sc,ArrayList<MenuItem> menuAl, ArrayList<Table> tableAl) {
 		int input = sc.nextInt();
 		sc.nextLine();
 		try {
 			if (input == 0) return input;
 			switch(input) {
 				case 1:
-					createMenuItem(sc,menuAl);
-					printMenuItem(menuAl);
+					MenuItem.createMenuItem(sc,menuAl);
+					MenuItem.printMenuItem(menuAl);
 					break;
 				case 2:
-					updateMenuItem(sc,menuAl);
-					printMenuItem(menuAl);
+					MenuItem.updateMenuItem(sc,menuAl);
+					MenuItem.printMenuItem(menuAl);
 					break;
 				case 3:
-					removeMenuItem(sc,menuAl);
-					printMenuItem(menuAl);
+					MenuItem.removeMenuItem(sc,menuAl);
+					MenuItem.printMenuItem(menuAl);
 					break;	
+				case 6:
+					break;
+				case 7:
+					break;
+				case 8:
+					break;
+				case 9:
+					break;
+				case 10:
+					break;
+				case 11:
+					break;
+				case 12:
+					break;
+				case 13:
+					Table.printTableList(tableAl);
+					break;
+				case 14:
+					break;
+				case 15:
+					break;
 				default:
 					break;
 				
@@ -72,90 +93,4 @@ public class ReservationMainTestApp {
 		return input;
 	}
 	
-	public void createMenuItem(Scanner sc, ArrayList<MenuItem> menuAl) throws Exception {
-		String foodCat, foodName,foodDesc;
-		double foodPrice;
-		System.out.println("Please enter food category");
-		foodCat = sc.nextLine();
-		System.out.println("Please enter food name");
-		foodName = sc.nextLine();
-		System.out.println("Please enter description of food");
-		foodDesc = sc.nextLine();
-		System.out.println("Please enter price");
-		foodPrice = sc.nextDouble();
-		MenuItem i1 = new MenuItem(foodCat,foodName,foodDesc,foodPrice);
-		menuAl.add(i1);
-		TextDB.saveMenuItem("MenuItems.txt", menuAl);
-	}
-	
-	public void updateMenuItem(Scanner sc, ArrayList<MenuItem> menuAl) throws IOException {
-		String searchName;
-		String foodCat, foodName,foodDesc;
-		double foodPrice;
-		System.out.println("Please enter the food item that you want to update");
-		searchName = sc.nextLine();
-		for(MenuItem mi : menuAl) {
-			if(mi.getFoodName().equalsIgnoreCase(searchName)) {
-				menuAl.remove(mi);
-				System.out.println("Please enter the new food category");
-				foodCat = sc.nextLine();
-				System.out.println("Please enter new food name");
-				foodName = sc.nextLine();
-				System.out.println("Please enter new description of food");
-				foodDesc = sc.nextLine();
-				System.out.println("Please enter new price");
-				foodPrice = sc.nextDouble();
-				menuAl.add(new MenuItem(foodCat,foodName,foodDesc,foodPrice));
-				break;
-			}
-		}
-		TextDB.saveMenuItem("MenuItems.txt", menuAl);
-		
-	}
-	
-	public void removeMenuItem(Scanner sc, ArrayList<MenuItem> menuAl) throws IOException {
-		System.out.println("Please enter the food item that you want to remove");
-		String searchName = sc.nextLine();
-		for(MenuItem mi : menuAl) {
-			if(mi.getFoodName().equalsIgnoreCase(searchName)) {
-				menuAl.remove(mi);
-				break;
-			}
-		}
-		TextDB.saveMenuItem("MenuItems.txt", menuAl);
-		
-	}
-	
-	public void readFromAllFiles(ArrayList<MenuItem> menuAl, ArrayList<Staff> staffAl) {
-		try {
-			TextDB.readMenuItem("MenuItems.txt", menuAl);
-			TextDB.readStaff("Staff.txt", staffAl);
-			printMenuItem(menuAl);
-			printStaffList(staffAl);
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-	}
-	
-	public void printMenuItem(ArrayList<MenuItem> menuAl) {
-		System.out.println("Menu Item as follows:");
-		for(MenuItem mi : menuAl) {
-			System.out.println("Category: " + mi.getFoodType());
-			System.out.println("Food Name: " + mi.getFoodName());
-			System.out.println("Description: " + mi.getDescription());
-			System.out.println("Price: " + mi.getPrice());
-		}
-		System.out.println();
-	}
-	
-	public void printStaffList(ArrayList<Staff> staffAl) {
-		System.out.println("Staff list as follows:");
-		for(Staff s : staffAl) {
-			System.out.println("Staff ID: " + s.getStaffId());
-			System.out.println("Job Title: " + s.getJobTitle());
-			System.out.println("Staff Name: " + s.getName());
-			System.out.println("Gender: " + s.getGender());
-		}
-		System.out.println();
-	}
 }

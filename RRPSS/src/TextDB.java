@@ -19,7 +19,6 @@ public class TextDB {
 				String st = (String)stringArray.get(i);
 				// get individual 'fields' of the string separated by SEPARATOR
 				StringTokenizer star = new StringTokenizer(st , SEPARATOR);	// pass in the string to the string tokenizer using delimiter ","
-
 				String  foodType = star.nextToken().trim();	// first token
 				String  foodName = star.nextToken().trim();	// second token
 				String description = star.nextToken().trim(); // third token
@@ -88,6 +87,41 @@ public static void saveStaff(String filename, List staffAl) throws IOException {
 		write(filename,alw);
 }
 
+
+public static void readTable(String filename,ArrayList<Table> tableAl) throws IOException {
+	// read String from text file
+	ArrayList stringArray = (ArrayList)read(filename);
+    for (int i = 0 ; i < stringArray.size() ; i++) {
+			String st = (String)stringArray.get(i);
+			// get individual 'fields' of the string separated by SEPARATOR
+			StringTokenizer star = new StringTokenizer(st , SEPARATOR);	// pass in the string to the string tokenizer using delimiter ","
+			int  tableNo = Integer.parseInt(star.nextToken().trim());	// first token
+			int  seatCap = Integer.parseInt(star.nextToken().trim());// second token
+			boolean tableStatus = Boolean.parseBoolean(star.nextToken());// third token
+			// create Staff object from file data
+			Table table = new Table(tableNo,seatCap,tableStatus);
+			// add to Staff array list
+			tableAl.add(table) ;
+		}
+}
+
+// an example of saving
+public static void saveTable(String filename, List tableAl) throws IOException {
+	List alw = new ArrayList() ;// to store Professors data
+
+    for (int i = 0 ; i < tableAl.size() ; i++) {
+    	Table s1 = (Table)tableAl.get(i);
+			StringBuilder st =  new StringBuilder() ;
+			st.append(s1.getTableNo());
+			st.append(SEPARATOR);
+			st.append(s1.getSeatCap());
+			st.append(SEPARATOR);
+			st.append(s1.isOccupied());
+			alw.add(st.toString()) ;
+		}
+		write(filename,alw);
+}
+
   /** Write fixed content to the given file. */
   public static void write(String fileName, List data) throws IOException  {
     PrintWriter out = new PrintWriter(new FileWriter(fileName));
@@ -102,6 +136,7 @@ public static void saveStaff(String filename, List staffAl) throws IOException {
     }
   }
   
+  /** Delete everything within a file. **/
   public static void deleteEverything(String fileName) throws IOException {
 	  PrintWriter out = new PrintWriter(new FileWriter(fileName));
 	  out.close();
@@ -121,4 +156,17 @@ public static void saveStaff(String filename, List staffAl) throws IOException {
     }
     return data;
   }
+  
+  public static void readFromAllFiles(ArrayList<MenuItem> menuAl, ArrayList<Staff> staffAl,ArrayList<Table> tableAl) {
+		try {
+			TextDB.readMenuItem("MenuItems.txt", menuAl);
+			TextDB.readStaff("Staff.txt", staffAl);
+			TextDB.readTable("Table.txt", tableAl);
+			MenuItem.printMenuItem(menuAl);
+			Staff.printStaffList(staffAl);
+			Table.printTableList(tableAl);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+	}
 }

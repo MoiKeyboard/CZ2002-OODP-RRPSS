@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Staff extends Person {
 	int staffId;
@@ -29,5 +30,16 @@ public class Staff extends Person {
 
 	public void setJobTitle(String jobTitle) {
 		this.jobTitle = jobTitle;
+	}
+	
+	public static void printStaffList(ArrayList<Staff> staffAl) {
+		System.out.println("Staff list as follows:");
+		for(Staff s : staffAl) {
+			System.out.println("Staff ID: " + s.getStaffId());
+			System.out.println("Job Title: " + s.getJobTitle());
+			System.out.println("Staff Name: " + s.getName());
+			System.out.println("Gender: " + s.getGender() + "\n");
+		}
+		System.out.println();
 	}
 }
