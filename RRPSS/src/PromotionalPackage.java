@@ -1,18 +1,32 @@
+import java.util.ArrayList;
 
 public class PromotionalPackage {
 	String promoName;
 	String description;
-	MenuItem[] promoPackageArr;
+	ArrayList<MenuItem> promoPackageArr;
 
-	public PromotionalPackage(String promoName, String description, int promoPackageSize) {
+	public PromotionalPackage() {
+		this.promoName = null;
+		this.description = null;
+		promoPackageArr = null;
+	}
+
+	public PromotionalPackage(String promoName, String description, ArrayList<MenuItem> promoPackageArr) {
 		super();
 		this.promoName = promoName;
 		this.description = description;
-		promoPackageArr = new MenuItem[promoPackageSize];
+		this.promoPackageArr = new ArrayList<MenuItem>();
 	}
 
-	void addMenuItem(String foodName) {
+	void createPromoPackage(String promoName) {
 
 	}
 
+	void updatePromoPackage() {
+
+	}
+
+	void deletePromoPackage() {
+
+	}
 }
