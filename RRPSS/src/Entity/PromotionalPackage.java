@@ -9,14 +9,13 @@ public class PromotionalPackage {
 	public PromotionalPackage() {
 		this.promoName = null;
 		this.description = null;
-		promoPackageArr = null;
+		promoPackageArr = new ArrayList<MenuItem>();
 	}
 
 	public PromotionalPackage(String promoName, String description, ArrayList<MenuItem> promoPackageArr) {
-		super();
 		this.promoName = promoName;
 		this.description = description;
-		this.promoPackageArr = new ArrayList<MenuItem>();
+		this.promoPackageArr = promoPackageArr;
 	}
 
 	void createPromoPackage(String promoName) {
