@@ -71,6 +71,7 @@ public class MenuItemMgr {
 				System.out.println("Please enter new price");
 				foodPrice = sc.nextDouble();
 				menuAl.add(new MenuItem(foodCat, foodName, foodDesc, foodPrice));
+				//will need to update promoPackageAl
 				break;
 			}
 		}
@@ -84,6 +85,7 @@ public class MenuItemMgr {
 		for (MenuItem mi : menuAl) {
 			if (mi.getFoodName().equalsIgnoreCase(searchName)) {
 				menuAl.remove(mi);
+				//call updatePromotionalPackage(mi);
 				break;
 			}
 		}
@@ -121,5 +123,15 @@ public class MenuItemMgr {
 		}
 
 		// save new promo name/desc/menuAL
+	}
+	
+	public void updatePromotionalPackage(){
+	}
+	
+	public void updatePromotionalPackage(MenuItem mi){
+	//overloaded method to remove specific menuitem from all promotionalpackage
+	}
+	
+	public void removePromotionalPackage(){
 	}
 }
