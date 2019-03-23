@@ -2,9 +2,9 @@ package Entity;
 import java.util.ArrayList;
 
 public class PromotionalPackage {
-	String promoName;
-	String description;
-	ArrayList<MenuItem> promoPackageArr;
+	private String promoName;
+	private String description;
+	private ArrayList<MenuItem> promoPackageArr;
 
 	public PromotionalPackage() {
 		this.promoName = null;

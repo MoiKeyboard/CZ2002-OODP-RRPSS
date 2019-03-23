@@ -2,8 +2,8 @@ package Entity;
 import java.util.ArrayList;
 
 public class Staff extends Person {
-	int staffId;
-	String jobTitle;
+	private int staffId;
+	private String jobTitle;
 	
 	public Staff() {
 		super(null,"");
