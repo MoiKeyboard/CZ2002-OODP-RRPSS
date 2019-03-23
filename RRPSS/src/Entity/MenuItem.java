@@ -1,24 +1,19 @@
 package Entity;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import Control.TextDB;
 
 public class MenuItem {
 	private String foodType;
 	private String foodName;
 	private String description;
 	private double price;
-	
+
 	public MenuItem() {
 		foodType = "";
 		this.foodName = "";
 		this.description = "";
 		this.price = 0;
 	}
-	
-	public MenuItem(String foodType, String foodName,String description, double price){
+
+	public MenuItem(String foodType, String foodName, String description, double price) {
 		this.foodType = foodType;
 		this.foodName = foodName;
 		this.description = description;

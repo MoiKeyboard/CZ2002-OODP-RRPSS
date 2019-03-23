@@ -1,4 +1,5 @@
 package Entity;
+
 import java.util.ArrayList;
 
 public class PromotionalPackage {
@@ -18,15 +19,28 @@ public class PromotionalPackage {
 		this.promoPackageArr = promoPackageArr;
 	}
 
-	void createPromoPackage(String promoName) {
-
+	public String getPromoName() {
+		return promoName;
 	}
 
-	void updatePromoPackage() {
-
+	public void setPromoName(String promoName) {
+		this.promoName = promoName;
 	}
 
-	void deletePromoPackage() {
-
+	public String getDescription() {
+		return description;
 	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public ArrayList<MenuItem> getPromoPackageArr() {
+		return promoPackageArr;
+	}
+
+	public void setPromoPackageArr(ArrayList<MenuItem> promoPackageArr) {
+		this.promoPackageArr = promoPackageArr;
+	}
+
 }
