@@ -1,3 +1,5 @@
 MAINCOURSE|Cheese Prata|Indian Cuisine|1.9
 APPETIZER|Baked Oyster|Western|5.8
 DRINKS|Ice Vodka|In Russia, car drives you.|13.8
+DRINKS|WHISKEY|HARD LIQUOUR|15.7
+MAINCOURSE|Seafood Aglio Olio|Italian Cuisine|8.9

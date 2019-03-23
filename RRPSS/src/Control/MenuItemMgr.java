@@ -1,60 +1,28 @@
+package Control;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MenuItem {
-	private String foodType;
-	private String foodName;
-	private String description;
-	private double price;
+import Entity.MenuItem;
+
+public class MenuItemMgr {
+	private ArrayList<MenuItem> menuAl;
+	protected Scanner sc;
 	
-	public MenuItem() {
-		foodType = "";
-		this.foodName = "";
-		this.description = "";
-		this.price = 0;
-	}
-	
-	public MenuItem(String foodType, String foodName,String description, double price){
-		this.foodType = foodType;
-		this.foodName = foodName;
-		this.description = description;
-		this.price = price;
-	}
-
-	public String getFoodName() {
-		return foodName;
-	}
-
-	public String getFoodType() {
-		return foodType;
-	}
-
-	public void setFoodType(String foodType) {
-		this.foodType = foodType;
-	}
-
-	public void setFoodName(String foodName) {
-		this.foodName = foodName;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
+	public MenuItemMgr() {
+		menuAl = new ArrayList<MenuItem>();
+		sc = new Scanner(System.in);
+		try {
+			menuAl = TextDB.readMenuItem("MenuItems.txt");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	public static void printMenuItem(ArrayList<MenuItem> menuAl) {
+	
+	public void printMenuItem() {
 		System.out.println("Menu Item as follows:");
 		for(MenuItem mi : menuAl) {
 			System.out.println("Category: " + mi.getFoodType());
@@ -65,7 +33,7 @@ public class MenuItem {
 		System.out.println();
 	}
 	
-	public static void createMenuItem(Scanner sc, ArrayList<MenuItem> menuAl) throws Exception {
+	public void createMenuItem() throws Exception {
 		String foodCat, foodName,foodDesc;
 		double foodPrice;
 		System.out.println("Please enter food category");
@@ -81,7 +49,7 @@ public class MenuItem {
 		TextDB.saveMenuItem("MenuItems.txt", menuAl);
 	}
 
-	public static void updateMenuItem(Scanner sc, ArrayList<MenuItem> menuAl) throws IOException {
+	public void updateMenuItem() throws IOException {
 		String searchName;
 		String foodCat, foodName,foodDesc;
 		double foodPrice;
@@ -106,7 +74,7 @@ public class MenuItem {
 		
 	}
 	
-	public static void removeMenuItem(Scanner sc, ArrayList<MenuItem> menuAl) throws IOException {
+	public void removeMenuItem() throws IOException {
 		System.out.println("Please enter the food item that you want to remove");
 		String searchName = sc.nextLine();
 		for(MenuItem mi : menuAl) {

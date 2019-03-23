@@ -1,3 +1,4 @@
+package Entity;
 public class Reservation {
 	private int contactNo; // primary key
 	private String reservationDate;

@@ -1,3 +1,4 @@
+package Control;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -7,13 +8,18 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import Entity.MenuItem;
+import Entity.Staff;
+import Entity.Table;
+
 public class TextDB {
 	public static final String SEPARATOR = "|";
 
     // an example of reading
-	public static void readMenuItem(String filename,ArrayList<MenuItem> al) throws IOException {
+	public static ArrayList<MenuItem> readMenuItem(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList)read(filename);
+		ArrayList<MenuItem> menuAl = new ArrayList<MenuItem>();
 
         for (int i = 0 ; i < stringArray.size() ; i++) {
 				String st = (String)stringArray.get(i);
@@ -26,12 +32,13 @@ public class TextDB {
 				// create Professor object from file data
 				MenuItem item = new MenuItem(foodType, foodName ,description,price);
 				// add to Professors list
-				al.add(item) ;
+				menuAl.add(item) ;
 			}
+        return menuAl;
 	}
 
   // an example of saving
-public static void saveMenuItem(String filename, List al) throws IOException {
+public static void saveMenuItem(String filename, ArrayList<MenuItem> al) throws IOException {
 		List alw = new ArrayList() ;// to store Professors data
 
         for (int i = 0 ; i < al.size() ; i++) {
@@ -49,10 +56,10 @@ public static void saveMenuItem(String filename, List al) throws IOException {
 			write(filename,alw);
 	}
 
-public static void readStaff(String filename,ArrayList<Staff> staffAl) throws IOException {
+public static ArrayList<Staff> readStaff(String filename) throws IOException {
 	// read String from text file
 	ArrayList stringArray = (ArrayList)read(filename);
-
+	ArrayList<Staff> staffAl = new ArrayList<Staff> ();
     for (int i = 0 ; i < stringArray.size() ; i++) {
 			String st = (String)stringArray.get(i);
 			// get individual 'fields' of the string separated by SEPARATOR
@@ -66,6 +73,7 @@ public static void readStaff(String filename,ArrayList<Staff> staffAl) throws IO
 			// add to Staff array list
 			staffAl.add(item) ;
 		}
+    return staffAl;
 }
 
 // an example of saving
@@ -88,21 +96,23 @@ public static void saveStaff(String filename, List staffAl) throws IOException {
 }
 
 
-public static void readTable(String filename,ArrayList<Table> tableAl) throws IOException {
+public static ArrayList<Table> readTable(String filename) throws IOException {
 	// read String from text file
 	ArrayList stringArray = (ArrayList)read(filename);
+	ArrayList<Table> tableAl = new ArrayList<Table> ();
     for (int i = 0 ; i < stringArray.size() ; i++) {
 			String st = (String)stringArray.get(i);
 			// get individual 'fields' of the string separated by SEPARATOR
 			StringTokenizer star = new StringTokenizer(st , SEPARATOR);	// pass in the string to the string tokenizer using delimiter ","
 			int  tableNo = Integer.parseInt(star.nextToken().trim());	// first token
 			int  seatCap = Integer.parseInt(star.nextToken().trim());// second token
-			boolean tableStatus = Boolean.parseBoolean(star.nextToken());// third token
+			String tableStatus = star.nextToken().trim();// third token
 			// create Staff object from file data
 			Table table = new Table(tableNo,seatCap,tableStatus);
 			// add to Staff array list
 			tableAl.add(table) ;
 		}
+    return tableAl;
 }
 
 // an example of saving
@@ -116,7 +126,7 @@ public static void saveTable(String filename, List tableAl) throws IOException {
 			st.append(SEPARATOR);
 			st.append(s1.getSeatCap());
 			st.append(SEPARATOR);
-			st.append(s1.isOccupied());
+			st.append(s1.getTableStatus());
 			alw.add(st.toString()) ;
 		}
 		write(filename,alw);
@@ -156,17 +166,4 @@ public static void saveTable(String filename, List tableAl) throws IOException {
     }
     return data;
   }
-  
-  public static void readFromAllFiles(ArrayList<MenuItem> menuAl, ArrayList<Staff> staffAl,ArrayList<Table> tableAl) {
-		try {
-			TextDB.readMenuItem("MenuItems.txt", menuAl);
-			TextDB.readStaff("Staff.txt", staffAl);
-			TextDB.readTable("Table.txt", tableAl);
-			MenuItem.printMenuItem(menuAl);
-			Staff.printStaffList(staffAl);
-			Table.printTableList(tableAl);
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-	}
 }

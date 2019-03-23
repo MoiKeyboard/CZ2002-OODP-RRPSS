@@ -1,3 +1,4 @@
+package Entity;
 
 public class Invoice {
 	private int tableNo;

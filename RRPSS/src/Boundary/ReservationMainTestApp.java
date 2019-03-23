@@ -1,32 +1,34 @@
+package Boundary;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Control.*;
+
 public class ReservationMainTestApp {
 	
 	public static void main(String[] args) {
-		ReservationMainTestApp test = new ReservationMainTestApp();
-		ArrayList<MenuItem> menuAL = new ArrayList<MenuItem>();
-		ArrayList<Staff> staffAl = new ArrayList<Staff>();
-		ArrayList<Table> tableAl = new ArrayList<Table>();
 		Scanner sc = new Scanner(System.in);
-		test.run(sc,menuAL, staffAl,tableAl);
+		ReservationMainTestApp test = new ReservationMainTestApp();
+		MenuItemMgr menuMgr = new MenuItemMgr();
+		TableMgr tableMgr = new TableMgr();
+		test.run(sc, menuMgr,tableMgr);
 		sc.close();
-		
 	}
 	
-	public void run(Scanner sc, ArrayList<MenuItem> menuAl, ArrayList<Staff> staffAl, ArrayList<Table> tableAl) {
+	public static void run(Scanner sc,MenuItemMgr menuMgr, TableMgr tableMgr) {
 		int userInput;
-		TextDB.readFromAllFiles(menuAl,staffAl,tableAl);
+		menuMgr.printMenuItem();
+		tableMgr.printTableList();
 		do {
-			printAppMenu();
-			userInput = getUserInput(sc,menuAl,tableAl);
+			ReservationMainTestApp.printAppMenu();
+			userInput = ReservationMainTestApp.getUserInput(sc, menuMgr, tableMgr);
 			
 		} while (userInput != 0 );
 		System.out.println("Thanks for using our app!");
 	}
 	
-	public void printAppMenu() {
+	public static void printAppMenu() {
 		System.out.println("1.\tCreate menu item");
 		System.out.println("2.\tUpdate menu item");
 		System.out.println("3.\tRemove menu item");
@@ -44,23 +46,23 @@ public class ReservationMainTestApp {
 		System.out.println("15.\tPrint sale revenue report by period(e.g day/month)\n0.\tExit the application");
 	}
 	
-	public int getUserInput(Scanner sc,ArrayList<MenuItem> menuAl, ArrayList<Table> tableAl) {
+	public static int getUserInput(Scanner sc, MenuItemMgr menuMgr, TableMgr tableMgr) {
 		int input = sc.nextInt();
 		sc.nextLine();
 		try {
 			if (input == 0) return input;
 			switch(input) {
 				case 1:
-					MenuItem.createMenuItem(sc,menuAl);
-					MenuItem.printMenuItem(menuAl);
+					menuMgr.createMenuItem();
+					menuMgr.printMenuItem();
 					break;
 				case 2:
-					MenuItem.updateMenuItem(sc,menuAl);
-					MenuItem.printMenuItem(menuAl);
+					menuMgr.updateMenuItem();
+					menuMgr.printMenuItem();
 					break;
 				case 3:
-					MenuItem.removeMenuItem(sc,menuAl);
-					MenuItem.printMenuItem(menuAl);
+					menuMgr.removeMenuItem();
+					menuMgr.printMenuItem();
 					break;	
 				case 6:
 					break;
@@ -77,7 +79,7 @@ public class ReservationMainTestApp {
 				case 12:
 					break;
 				case 13:
-					Table.printTableList(tableAl);
+					tableMgr.printTableList();;
 					break;
 				case 14:
 					break;
