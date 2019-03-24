@@ -4,3 +4,4 @@ DRINKS|Ice Vodka|In Russia, car drives you.|13.8
 DRINKS|WHISKEY|HARD LIQUOUR|15.7
 MAINCOURSE|Seafood Aglio Olio|Italian Cuisine|8.9
 APPETIZER|Escargots|French Cuisine|7.9
+APPETIZER|Smoked Salmon|Italian Cuisine|4.9

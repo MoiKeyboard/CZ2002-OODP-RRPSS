@@ -2,8 +2,8 @@ package Entity;
 import java.util.ArrayList;
 
 public class Staff extends Person {
-	int staffId;
-	String jobTitle;
+	private int staffId;
+	private String jobTitle;
 	
 	public Staff() {
 		super(null);
@@ -33,13 +33,4 @@ public class Staff extends Person {
 		this.jobTitle = jobTitle;
 	}
 	
-	public static void printStaffList(ArrayList<Staff> staffAl) {
-		System.out.println("Staff list as follows:");
-		for(Staff s : staffAl) {
-			System.out.println("Staff ID: " + s.getStaffId());
-			System.out.println("Job Title: " + s.getJobTitle());
-			System.out.println("Staff Name: " + s.getName());
-		}
-		System.out.println();
-	}
 }

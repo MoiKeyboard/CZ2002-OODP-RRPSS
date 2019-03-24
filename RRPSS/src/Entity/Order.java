@@ -1,7 +1,7 @@
 package Entity;
 	
 public class Order {
-	int staffId;
+	private int staffId;
 
 	public void setTableOccupied(int tableNo) {
 //set status to occupied

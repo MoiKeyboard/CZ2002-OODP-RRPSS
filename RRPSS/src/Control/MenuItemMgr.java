@@ -11,20 +11,21 @@ public class MenuItemMgr {
 	private ArrayList<MenuItem> menuAl;
 	private ArrayList<PromotionalPackage> promoPackageAl;
 	protected Scanner sc;
-	
+
 	public MenuItemMgr() {
 		menuAl = new ArrayList<MenuItem>();
 		promoPackageAl = new ArrayList<PromotionalPackage>();
 		sc = new Scanner(System.in);
 		try {
+			// read text file for promotional package
+			// add code here
 			menuAl = TextDB.readMenuItem("MenuItems.txt");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public void printMenuItem() {
 		System.out.println("Menu Item as follows:");
 		for(MenuItem mi : menuAl) {
@@ -32,9 +33,9 @@ public class MenuItemMgr {
 		}
 		System.out.println();
 	}
-	
+
 	public void createMenuItem() throws Exception {
-		String foodCat, foodName,foodDesc;
+		String foodCat, foodName, foodDesc;
 		double foodPrice;
 		System.out.println("Please enter food category");
 		foodCat = sc.nextLine();
@@ -44,19 +45,19 @@ public class MenuItemMgr {
 		foodDesc = sc.nextLine();
 		System.out.println("Please enter price");
 		foodPrice = sc.nextDouble();
-		MenuItem i1 = new MenuItem(foodCat,foodName,foodDesc,foodPrice);
+		MenuItem i1 = new MenuItem(foodCat, foodName, foodDesc, foodPrice);
 		menuAl.add(i1);
 		TextDB.saveMenuItem("MenuItems.txt", menuAl);
 	}
 
 	public void updateMenuItem() throws IOException {
 		String searchName;
-		String foodCat, foodName,foodDesc;
+		String foodCat, foodName, foodDesc;
 		double foodPrice;
 		System.out.println("Please enter the food item that you want to update");
 		searchName = sc.nextLine();
-		for(MenuItem mi : menuAl) {
-			if(mi.getFoodName().equalsIgnoreCase(searchName)) {
+		for (MenuItem mi : menuAl) {
+			if (mi.getFoodName().equalsIgnoreCase(searchName)) {
 				menuAl.remove(mi);
 				System.out.println("Please enter the new food category");
 				foodCat = sc.nextLine();
@@ -66,27 +67,29 @@ public class MenuItemMgr {
 				foodDesc = sc.nextLine();
 				System.out.println("Please enter new price");
 				foodPrice = sc.nextDouble();
-				menuAl.add(new MenuItem(foodCat,foodName,foodDesc,foodPrice));
+				menuAl.add(new MenuItem(foodCat, foodName, foodDesc, foodPrice));
+				//will need to update promoPackageAl
 				break;
 			}
 		}
 		TextDB.saveMenuItem("MenuItems.txt", menuAl);
-		
+
 	}
-	
+
 	public void removeMenuItem() throws IOException {
 		System.out.println("Please enter the food item that you want to remove");
 		String searchName = sc.nextLine();
-		for(MenuItem mi : menuAl) {
-			if(mi.getFoodName().equalsIgnoreCase(searchName)) {
+		for (MenuItem mi : menuAl) {
+			if (mi.getFoodName().equalsIgnoreCase(searchName)) {
 				menuAl.remove(mi);
+				//call updatePromotionalPackage(mi);
 				break;
 			}
 		}
 		TextDB.saveMenuItem("MenuItems.txt", menuAl);
-		
+
 	}
-	
+
 	public void createPromotionalPackage() throws IOException {
 		String promoName;
 		String promoDesc;
@@ -128,4 +131,5 @@ public class MenuItemMgr {
 	
 	public void removePromotionalPackage(){
 	}
+
 }
