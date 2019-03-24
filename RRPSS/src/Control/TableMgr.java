@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Entity.MenuItem;
+import Entity.Reservation;
 import Entity.Table;
 
 public class TableMgr {
@@ -29,6 +30,23 @@ public class TableMgr {
 			System.out.println("Table status: " + s.getTableStatus() + "\n");
 		}
 		System.out.println();
+	}
+	
+	protected ArrayList<Table> getTableAl(){
+		return tableAl;
+	}
+	
+	protected String getTableStatusForReservation(Reservation r) {
+		for (Table tables : tableAl) {
+			if(tables.getTableNo() == r.getTableNo()) {
+				return tables.getTableStatus();
+			}
+		}
+		return null;
+	}
+	
+	protected void modifyTableAl(ArrayList<Table> tableArr) {
+		tableAl = tableArr;
 	}
 	
 }

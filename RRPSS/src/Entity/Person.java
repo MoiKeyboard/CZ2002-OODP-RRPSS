@@ -1,16 +1,13 @@
 package Entity;
 
 public class Person {
-	private String name, gender;
+	private String name;
 	
 	public Person() {
-		name = null;
-		gender = "";
 	}
 	
-	public Person(String name, String gender) {
+	public Person(String name) {
 		this.name = name;
-		this.gender = gender;
 		
 	}
 
@@ -21,15 +18,5 @@ public class Person {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-
-	public String getGender() {
-		return gender;
-	}
-
-
-	public void setGender(String gender) {
-		this.gender = gender;
 	}
 }

@@ -2,13 +2,18 @@ package Control;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.io.FileInputStream;
 import java.util.Scanner;
 import java.util.List;
+import java.util.Locale;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import Entity.Customer;
 import Entity.MenuItem;
+import Entity.Reservation;
 import Entity.Staff;
 import Entity.Table;
 
@@ -67,9 +72,8 @@ public static ArrayList<Staff> readStaff(String filename) throws IOException {
 			int  staffId = Integer.parseInt(star.nextToken().trim());	// first token
 			String  jobTitle = star.nextToken().trim();	// second token
 			String  staffName = star.nextToken().trim();	// third token
-			String  gender = star.nextToken().trim(); // fourth token 
 			// create Staff object from file data
-			Staff item = new Staff(staffId,jobTitle,staffName,gender);
+			Staff item = new Staff(staffId,jobTitle,staffName);
 			// add to Staff array list
 			staffAl.add(item) ;
 		}
@@ -88,8 +92,6 @@ public static void saveStaff(String filename, List staffAl) throws IOException {
 			st.append(s1.getJobTitle());
 			st.append(SEPARATOR);
 			st.append(s1.getName().trim());
-			st.append(SEPARATOR);
-			st.append(s1.getGender().trim());
 			alw.add(st.toString()) ;
 		}
 		write(filename,alw);
@@ -127,6 +129,80 @@ public static void saveTable(String filename, List tableAl) throws IOException {
 			st.append(s1.getSeatCap());
 			st.append(SEPARATOR);
 			st.append(s1.getTableStatus());
+			alw.add(st.toString()) ;
+		}
+		write(filename,alw);
+}
+
+public static ArrayList<Reservation> readReservation(String filename) throws IOException {
+	// read String from text file
+	ArrayList stringArray = (ArrayList)read(filename);
+	ArrayList<Reservation> reservationAl = new ArrayList<Reservation> ();
+    for (int i = 0 ; i < stringArray.size() ; i++) {
+			String st = (String)stringArray.get(i);
+			// get individual 'fields' of the string separated by SEPARATOR
+			StringTokenizer star = new StringTokenizer(st , SEPARATOR);	// pass in the string to the string tokenizer using delimiter ","
+			int  contactNo = Integer.parseInt(star.nextToken().trim());	// first token
+			String reservationDateTime = star.nextToken().trim();// second token
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy kkmm", Locale.ENGLISH);
+			LocalDateTime reservationDT = LocalDateTime.parse(reservationDateTime, formatter);
+			int pax = Integer.parseInt(star.nextToken());
+			int tableNo = Integer.parseInt(star.nextToken());
+			// create Reservation object from file data
+			Reservation reservation = new Reservation(contactNo,reservationDT,pax,tableNo);
+			// add to Reservation array list
+			reservationAl.add(reservation) ;
+		}
+    return reservationAl;
+}
+
+// an example of saving
+public static void saveReservations(String filename, List reservationAl, List tableAl, List custAl) throws IOException {
+	List alw = new ArrayList() ;// to store Professors data
+    for (int i = 0 ; i < reservationAl.size() ; i++) {
+    	Reservation s1 = (Reservation)reservationAl.get(i);
+			StringBuilder st =  new StringBuilder() ;
+			st.append(s1.getContactNo());
+			st.append(SEPARATOR);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy kkmm");
+			st.append(s1.getReservationDate().format(formatter));
+			st.append(SEPARATOR);
+			st.append(s1.getPax());
+			st.append(SEPARATOR);
+			st.append(s1.getTableNo());
+			alw.add(st.toString()) ;
+		}
+    	TextDB.saveTable("Table.txt", tableAl);
+    	TextDB.saveCustomer("Customer.txt", custAl);
+		write(filename,alw);
+}
+public static ArrayList<Customer> readCustomer(String filename) throws IOException {
+	// read String from text file
+	ArrayList stringArray = (ArrayList)read(filename);
+	ArrayList<Customer> customerAl = new ArrayList<Customer> ();
+    for (int i = 0 ; i < stringArray.size() ; i++) {
+			String st = (String)stringArray.get(i);
+			// get individual 'fields' of the string separated by SEPARATOR
+			StringTokenizer star = new StringTokenizer(st , SEPARATOR);	// pass in the string to the string tokenizer using delimiter ","
+			String custName = star.nextToken().trim();	// first token
+			int contactNo = Integer.parseInt(star.nextToken());// )//second token
+			// create Customer object from file data
+			Customer customer = new Customer(custName,contactNo);
+			// add to Customer array list
+			customerAl.add(customer) ;
+		}
+    return customerAl;
+}
+
+// an example of saving
+public static void saveCustomer(String filename, List custAl) throws IOException {
+	List alw = new ArrayList() ;// to store Professors data
+    for (int i = 0 ; i < custAl.size() ; i++) {
+    	Customer s1 = (Customer)custAl.get(i);
+			StringBuilder st =  new StringBuilder() ;
+			st.append(s1.getName());
+			st.append(SEPARATOR);
+			st.append(s1.getContactNumber());
 			alw.add(st.toString()) ;
 		}
 		write(filename,alw);

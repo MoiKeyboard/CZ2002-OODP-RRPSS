@@ -1,19 +1,25 @@
 package Entity;
 
 public class Customer extends Person {
-	private String contactNumber;
+	private int contactNumber;
 
 	public Customer() {
-		super(null, "");
+		super(null);
 	}
 
-	public Customer(String name, String gender, String contactNumber) {
-		super(name, gender);
+	public Customer(String name, int contactNumber) {
+		super(name);
 		this.contactNumber = contactNumber;
 	}
 
-	public String getContactNumber() {
+	public int getContactNumber() {
 		return contactNumber;
 	}
-
+	
+	@Override
+	public String toString() {
+		String custDetails = null;
+		custDetails = "Customer Name: " + super.getName() + "\nCustomer contact number: " + getContactNumber() +"\n";
+		return custDetails;
+	}
 }

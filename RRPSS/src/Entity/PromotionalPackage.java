@@ -1,33 +1,46 @@
 package Entity;
+
 import java.util.ArrayList;
 
 public class PromotionalPackage {
-	String promoName;
-	String description;
-	ArrayList<MenuItem> promoPackageArr;
+	private String promoName;
+	private String description;
+	private ArrayList<MenuItem> promoPackageArr;
 
 	public PromotionalPackage() {
 		this.promoName = null;
 		this.description = null;
-		promoPackageArr = null;
+		promoPackageArr = new ArrayList<MenuItem>();
 	}
 
 	public PromotionalPackage(String promoName, String description, ArrayList<MenuItem> promoPackageArr) {
-		super();
 		this.promoName = promoName;
 		this.description = description;
-		this.promoPackageArr = new ArrayList<MenuItem>();
+		this.promoPackageArr = promoPackageArr;
 	}
 
-	void createPromoPackage(String promoName) {
-
+	public String getPromoName() {
+		return promoName;
 	}
 
-	void updatePromoPackage() {
-
+	public void setPromoName(String promoName) {
+		this.promoName = promoName;
 	}
 
-	void deletePromoPackage() {
-
+	public String getDescription() {
+		return description;
 	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public ArrayList<MenuItem> getPromoPackageArr() {
+		return promoPackageArr;
+	}
+
+	public void setPromoPackageArr(ArrayList<MenuItem> promoPackageArr) {
+		this.promoPackageArr = promoPackageArr;
+	}
+
 }

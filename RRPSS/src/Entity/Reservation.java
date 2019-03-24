@@ -1,48 +1,49 @@
 package Entity;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 public class Reservation {
 	private int contactNo; // primary key
-	private String reservationDate;
-	private String reservationTime;
-	private int pax;
-	private String tableStatus;
+	private LocalDateTime reservationDateTime;
+	private int pax,tableNo;
 	
 	public Reservation(){
 		this.contactNo = 0;
-		this.reservationDate = "";
-		this.reservationTime = "";
+		this.reservationDateTime = null;
 		this.pax = 0;
-		this.tableStatus = "";
+		this.tableNo = tableNo;
 	}
 	
-	public Reservation(int contactNo, String reservationDate, String reservationTime,int pax, String tableStatus){
+	public Reservation(int contactNo, LocalDateTime reservationDateTime,int pax, int tableNo){
 		this.contactNo = contactNo;
-		this.reservationDate = reservationDate;
-		this.reservationTime = reservationTime;
+		this.reservationDateTime = reservationDateTime;
 		this.pax = pax;
-		this.tableStatus = tableStatus;
+		this.tableNo = tableNo;
 	}
 
 	public int getContactNo() {
 		return contactNo;
 	}
 
-	public String getReservationDate() {
-		return reservationDate;
-	}
-
-	public String getReservationTime() {
-		return reservationTime;
+	public LocalDateTime getReservationDate() {
+		return reservationDateTime;
 	}
 
 	public int getPax() {
 		return pax;
 	}
 
-	public String getTableStatus() {
-		return tableStatus;
+	public int getTableNo() {
+		return tableNo;
 	}
 
-	public static void reserveTable() {
-		
+	@Override
+	public String toString() {
+		String reservationDetails = null;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy kkmm", Locale.ENGLISH);
+		reservationDetails =  "Reservation Date/Time: " + getReservationDate().format(formatter) + "\nPax: " + getPax();
+		return reservationDetails;
 	}
 }

@@ -11,18 +11,20 @@ public class ReservationMainTestApp {
 		Scanner sc = new Scanner(System.in);
 		ReservationMainTestApp test = new ReservationMainTestApp();
 		MenuItemMgr menuMgr = new MenuItemMgr();
+		ReservationMgr reservationMgr = new ReservationMgr();
 		TableMgr tableMgr = new TableMgr();
-		test.run(sc, menuMgr,tableMgr);
+		test.run(sc, menuMgr,tableMgr,reservationMgr);
 		sc.close();
 	}
 	
-	public static void run(Scanner sc,MenuItemMgr menuMgr, TableMgr tableMgr) {
+	public static void run(Scanner sc,MenuItemMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr) {
 		int userInput;
 		menuMgr.printMenuItem();
 		tableMgr.printTableList();
+		reservationMgr.printReservation();
 		do {
 			ReservationMainTestApp.printAppMenu();
-			userInput = ReservationMainTestApp.getUserInput(sc, menuMgr, tableMgr);
+			userInput = ReservationMainTestApp.getUserInput(sc, menuMgr, tableMgr,reservationMgr);
 			
 		} while (userInput != 0 );
 		System.out.println("Thanks for using our app!");
@@ -40,13 +42,14 @@ public class ReservationMainTestApp {
 		System.out.println("9.\tAdd order item/s to/from order");
 		System.out.println("10.\tRemove order item/s	to/from order");
 		System.out.println("11.\tCreate reservation booking");
-		System.out.println("12.\tCheck/Remove reservation booking");
-		System.out.println("13.\tCheck table availability");
-		System.out.println("14.\tPrint bill invoice");
-		System.out.println("15.\tPrint sale revenue report by period(e.g day/month)\n0.\tExit the application");
+		System.out.println("12.\tCheck reservation booking");
+		System.out.println("13.\tRemove reservation booking");
+		System.out.println("14.\tCheck table availability");
+		System.out.println("15.\tPrint bill invoice");
+		System.out.println("16.\tPrint sale revenue report by period(e.g day/month)\n0.\tExit the application");
 	}
 	
-	public static int getUserInput(Scanner sc, MenuItemMgr menuMgr, TableMgr tableMgr) {
+	public static int getUserInput(Scanner sc, MenuItemMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr) {
 		int input = sc.nextInt();
 		sc.nextLine();
 		try {
@@ -75,17 +78,25 @@ public class ReservationMainTestApp {
 				case 10:
 					break;
 				case 11:
+					reservationMgr.createReservation();
+					reservationMgr.printReservation();
 					break;
 				case 12:
+					reservationMgr.checkReservation();
 					break;
 				case 13:
-					tableMgr.printTableList();;
+					reservationMgr.removeReservation();
+					reservationMgr.printReservation();
 					break;
 				case 14:
+					tableMgr.printTableList();
 					break;
 				case 15:
 					break;
+				case 16:
+					break;
 				default:
+					System.out.println("Invalid input! Please choose option 0-16");
 					break;
 				
 			}

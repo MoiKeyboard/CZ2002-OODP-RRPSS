@@ -6,13 +6,13 @@ public class Staff extends Person {
 	String jobTitle;
 	
 	public Staff() {
-		super(null,"");
+		super(null);
 		this.staffId = 0;
 		this.jobTitle = null;
 	}
 	
-	public Staff(int staffId, String jobTitle, String name, String gender) {
-		super(name,gender);
+	public Staff(int staffId, String jobTitle, String name) {
+		super(name);
 		this.staffId = staffId;
 		this.jobTitle = jobTitle;	
 	}
@@ -39,7 +39,6 @@ public class Staff extends Person {
 			System.out.println("Staff ID: " + s.getStaffId());
 			System.out.println("Job Title: " + s.getJobTitle());
 			System.out.println("Staff Name: " + s.getName());
-			System.out.println("Gender: " + s.getGender() + "\n");
 		}
 		System.out.println();
 	}

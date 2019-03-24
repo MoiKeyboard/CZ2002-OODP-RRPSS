@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Entity.MenuItem;
+import Entity.PromotionalPackage;
 
 public class MenuItemMgr {
 	private ArrayList<MenuItem> menuAl;
+	private ArrayList<PromotionalPackage> promoPackageAl;
 	protected Scanner sc;
 	
 	public MenuItemMgr() {
 		menuAl = new ArrayList<MenuItem>();
+		promoPackageAl = new ArrayList<PromotionalPackage>();
 		sc = new Scanner(System.in);
 		try {
 			menuAl = TextDB.readMenuItem("MenuItems.txt");
@@ -25,10 +28,7 @@ public class MenuItemMgr {
 	public void printMenuItem() {
 		System.out.println("Menu Item as follows:");
 		for(MenuItem mi : menuAl) {
-			System.out.println("Category: " + mi.getFoodType());
-			System.out.println("Food Name: " + mi.getFoodName());
-			System.out.println("Description: " + mi.getDescription());
-			System.out.println("Price: " + mi.getPrice() + "\n");
+			System.out.println(mi.toString());
 		}
 		System.out.println();
 	}
@@ -85,5 +85,47 @@ public class MenuItemMgr {
 		}
 		TextDB.saveMenuItem("MenuItems.txt", menuAl);
 		
+	}
+	
+	public void createPromotionalPackage() throws IOException {
+		String promoName;
+		String promoDesc;
+		boolean found;
+		ArrayList<MenuItem> promoPackageItems = new ArrayList<MenuItem>();
+
+		System.out.println("Please enter new promotional package name");
+		promoName = sc.nextLine();
+		System.out.println("Please enter description for " + promoName);
+		promoDesc = sc.nextLine();
+		System.out.println("Please enter food name to add to " + promoName + " (enter 0 to finish adding)");
+		while (sc.nextLine() != "0") {
+			found = false;
+			for (MenuItem mi : menuAl) {
+				if (mi.getFoodName().equalsIgnoreCase(sc.nextLine())) {
+					found = true;
+					promoPackageItems.add(mi);
+				}
+			}
+			if (!found)
+				System.out.println("Menu item not found. Please try again");
+		}
+		if (promoPackageItems.isEmpty()) {
+			System.out.println("New promotional package not added (no menu items selected)");
+		} else {
+			PromotionalPackage p1 = new PromotionalPackage(promoName, promoDesc, promoPackageItems);
+			promoPackageAl.add(p1);
+		}
+
+		// save new promo name/desc/menuAL
+	}
+	
+	public void updatePromotionalPackage(){
+	}
+	
+	public void updatePromotionalPackage(MenuItem mi){
+	//overloaded method to remove specific menuitem from all promotionalpackage
+	}
+	
+	public void removePromotionalPackage(){
 	}
 }

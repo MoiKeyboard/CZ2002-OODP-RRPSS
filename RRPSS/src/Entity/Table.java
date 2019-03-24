@@ -5,11 +5,9 @@ public class Table {
 	private int tableNo;
 	private int seatCap;
 	private String tableStatus;
-	//private ArrayList<Reservation> reservationAl;
-	//private ArrayList<Table> tableAl;
 
 	public Table() {
-		this.tableNo = 9999;
+		this.tableNo = 0;
 		this.seatCap = 0;
 		this.tableStatus = null;
 	}
@@ -30,5 +28,9 @@ public class Table {
 
 	public String getTableStatus() {
 		return tableStatus;
+	}
+	
+	public void setTableStatus(String status) {
+		tableStatus = status;
 	}
 }
