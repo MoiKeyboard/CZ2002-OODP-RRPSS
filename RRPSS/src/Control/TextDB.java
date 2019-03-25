@@ -13,6 +13,7 @@ import java.util.StringTokenizer;
 
 import Entity.Customer;
 import Entity.MenuItem;
+import Entity.Order;
 import Entity.Reservation;
 import Entity.Staff;
 import Entity.Table;
@@ -206,6 +207,28 @@ public static void saveCustomer(String filename, List custAl) throws IOException
 			alw.add(st.toString()) ;
 		}
 		write(filename,alw);
+}
+
+public static ArrayList<Order> readOrder(String filename) throws IOException {
+	// read String from text file
+	ArrayList stringArray = (ArrayList)read(filename);
+	ArrayList<Order> orderAl = new ArrayList<Order> ();
+    for (int i = 0 ; i < stringArray.size() ; i++) {
+			String st = (String)stringArray.get(i);
+			// get individual 'fields' of the string separated by SEPARATOR
+			StringTokenizer star = new StringTokenizer(st , SEPARATOR);	// pass in the string to the string tokenizer using delimiter ","
+			int orderNo = Integer.parseInt(star.nextToken());	// first token
+			int staffId = Integer.parseInt(star.nextToken());	// second token
+			int tableNo = Integer.parseInt(star.nextToken());	// third token
+			String orderItem = star.nextToken().trim();	// fourth token
+			int itemQuantity = Integer.parseInt(star.nextToken()); // fifth token
+			double itemPrice = Double.parseDouble(star.nextToken()); // sixth token
+			// create Order object from file data
+			Order order = new Order(orderNo, staffId, tableNo, orderItem, itemQuantity, itemPrice);
+			// add to Customer array list
+			orderAl.add(order);
+		}
+    return orderAl;
 }
 
   /** Write fixed content to the given file. */

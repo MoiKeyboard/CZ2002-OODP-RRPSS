@@ -13,18 +13,19 @@ public class ReservationMainTestApp {
 		MenuItemMgr menuMgr = new MenuItemMgr();
 		ReservationMgr reservationMgr = new ReservationMgr();
 		TableMgr tableMgr = new TableMgr();
-		test.run(sc, menuMgr,tableMgr,reservationMgr);
+		OrderMgr orderMgr = new OrderMgr();
+		test.run(sc, menuMgr,tableMgr,reservationMgr, orderMgr);
 		sc.close();
 	}
 	
-	public static void run(Scanner sc,MenuItemMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr) {
+	public static void run(Scanner sc,MenuItemMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr) {
 		int userInput;
 		menuMgr.printMenuItem();
 		tableMgr.printTableList();
 		reservationMgr.printReservation();
 		do {
 			ReservationMainTestApp.printAppMenu();
-			userInput = ReservationMainTestApp.getUserInput(sc, menuMgr, tableMgr,reservationMgr);
+			userInput = ReservationMainTestApp.getUserInput(sc, menuMgr, tableMgr,reservationMgr, orderMgr);
 			
 		} while (userInput != 0 );
 		System.out.println("Thanks for using our app!");
@@ -49,7 +50,7 @@ public class ReservationMainTestApp {
 		System.out.println("16.\tPrint sale revenue report by period(e.g day/month)\n0.\tExit the application");
 	}
 	
-	public static int getUserInput(Scanner sc, MenuItemMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr) {
+	public static int getUserInput(Scanner sc, MenuItemMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr) {
 		int input = sc.nextInt();
 		sc.nextLine();
 		try {
@@ -72,6 +73,7 @@ public class ReservationMainTestApp {
 				case 7:
 					break;
 				case 8:
+					orderMgr.viewOrder();
 					break;
 				case 9:
 					break;
