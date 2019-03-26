@@ -35,11 +35,28 @@ public class MenuItem {
 	public double getPrice() {
 		return price;
 	}
-	
+
+	public void setFoodType(String foodType) {
+		this.foodType = foodType;
+	}
+
+	public void setFoodName(String foodName) {
+		this.foodName = foodName;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
 		String menuItemDetails = null;
-		menuItemDetails = "Category: " + getFoodType() + "\nFood Name: " + getFoodName() + "\nDescription: " + getDescription() + "\nPrice: " + getPrice() + "\n";
+		menuItemDetails = "Category: " + getFoodType() + "\nFood Name: " + getFoodName() + "\nDescription: "
+				+ getDescription() + "\nPrice: " + getPrice() + "\n";
 		return menuItemDetails;
 	}
 }

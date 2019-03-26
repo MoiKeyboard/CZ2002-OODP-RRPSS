@@ -17,9 +17,8 @@ public class MenuItemMgr {
 		promoPackageAl = new ArrayList<PromotionalPackage>();
 		sc = new Scanner(System.in);
 		try {
-			// read text file for promotional package
-			// add code here
 			menuAl = TextDB.readMenuItem("MenuItems.txt");
+			promoPackageAl = TextDB.readPromoPackageItem("PromoPackages.txt");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -28,7 +27,7 @@ public class MenuItemMgr {
 
 	public void printMenuItem() {
 		System.out.println("Menu Item as follows:");
-		for(MenuItem mi : menuAl) {
+		for (MenuItem mi : menuAl) {
 			System.out.println(mi.toString());
 		}
 		System.out.println();
@@ -52,28 +51,56 @@ public class MenuItemMgr {
 
 	public void updateMenuItem() throws IOException {
 		String searchName;
-		String foodCat, foodName, foodDesc;
-		double foodPrice;
-		System.out.println("Please enter the food item that you want to update");
+		int choice;
+		boolean found = false;
+		MenuItem old;
+		System.out.println("Please enter the name of the food item that you want to update");
 		searchName = sc.nextLine();
+
 		for (MenuItem mi : menuAl) {
 			if (mi.getFoodName().equalsIgnoreCase(searchName)) {
-				menuAl.remove(mi);
-				System.out.println("Please enter the new food category");
-				foodCat = sc.nextLine();
-				System.out.println("Please enter new food name");
-				foodName = sc.nextLine();
-				System.out.println("Please enter new description of food");
-				foodDesc = sc.nextLine();
-				System.out.println("Please enter new price");
-				foodPrice = sc.nextDouble();
-				menuAl.add(new MenuItem(foodCat, foodName, foodDesc, foodPrice));
-				//will need to update promoPackageAl
+				old = mi;
+				found = true;
+				do {
+					System.out.println("Food category: " + mi.getFoodType());
+					System.out.println("Food name: " + mi.getFoodName());
+					System.out.println("Description: " + mi.getDescription());
+					System.out.println("Price: " + mi.getPrice());
+					System.out.println("1) Update food category");
+					System.out.println("2) Update food name");
+					System.out.println("3) Update description");
+					System.out.println("4) Update price");
+					System.out.println("5) Exit");
+					choice = sc.nextInt();
+					switch (choice) {
+					case 1:
+						System.out.println("Enter updated food category");
+						mi.setFoodType(sc.nextLine());
+						break;
+					case 2:
+						System.out.println("Enter updated food name");
+						mi.setFoodName(sc.nextLine());
+						break;
+					case 3:
+						System.out.println("Enter updated description");
+						mi.setDescription(sc.nextLine());
+						break;
+					case 4:
+						System.out.println("Enter updated price");
+						mi.setPrice(sc.nextDouble());
+						break;
+					case 5:
+						break;
+					default:
+						System.out.println("Invalid input try again");
+					}
+				} while (sc.nextLine() != "5");
 				break;
 			}
 		}
+		if (!found)
+			System.out.println("Item " + searchName + " not found");
 		TextDB.saveMenuItem("MenuItems.txt", menuAl);
-
 	}
 
 	public void removeMenuItem() throws IOException {
@@ -82,7 +109,7 @@ public class MenuItemMgr {
 		for (MenuItem mi : menuAl) {
 			if (mi.getFoodName().equalsIgnoreCase(searchName)) {
 				menuAl.remove(mi);
-				//call updatePromotionalPackage(mi);
+				// call updatePromotionalPackage(mi);
 				break;
 			}
 		}
@@ -118,18 +145,101 @@ public class MenuItemMgr {
 			PromotionalPackage p1 = new PromotionalPackage(promoName, promoDesc, promoPackageItems);
 			promoPackageAl.add(p1);
 		}
+		// overloaded save file
+		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
 
-		// save new promo name/desc/menuAL
-	}
-	
-	public void updatePromotionalPackage(){
-	}
-	
-	public void updatePromotionalPackage(MenuItem mi){
-	//overloaded method to remove specific menuitem from all promotionalpackage
-	}
-	
-	public void removePromotionalPackage(){
 	}
 
+	public void updatePromotionalPackage() {
+		int choice;
+		String searchName;
+		String searchFood;
+		boolean found = false;
+		System.out.println("Please enter the name of the promotional package that you want to update");
+		searchName = sc.nextLine();
+
+		for (PromotionalPackage pp : promoPackageAl) {
+			if (pp.getPromoName().equalsIgnoreCase(searchName)) {
+				found = true;
+				do {
+					System.out.println("Name: " + pp.getPromoName());
+					System.out.println("Description: " + pp.getDescription());
+					System.out.println("List of items in promotional Package");
+					for (MenuItem mi : pp.getMenuItemArr()) {
+						System.out.println(mi.getFoodName());
+					}
+					System.out.println("1) Update promotional package name");
+					System.out.println("2) Update promotional package description");
+					System.out.println("3) Add items to promotional package");
+					System.out.println("4) Remove items from promotional package");
+					System.out.println("5) Exit");
+					choice = sc.nextInt();
+					switch (choice) {
+					case 1:
+						System.out.println("Enter updated promotional package name");
+						pp.setPromoName(sc.nextLine());
+						break;
+					case 2:
+						System.out.println("Enter updated promotional package description");
+						pp.setDescription(sc.nextLine());
+						break;
+					case 3:
+						System.out.println("Enter food name to add to promotional package");
+						found = false;
+						for (MenuItem mi2 : menuAl) {
+							if (mi2.getFoodName().equalsIgnoreCase(sc.nextLine())) {
+								found = true;
+								pp.getMenuItemArr().add(mi2);
+							}
+						}
+						if (!found)
+							System.out.println("Menu item not found. Please try again");
+						break;
+					case 4:
+						System.out.println("Enter food name to remove from promotional package");
+						found = false;
+						searchFood = sc.nextLine();
+						for (MenuItem mi : pp.getMenuItemArr()) {
+							if (searchName == mi.getFoodName()) {
+								pp.getMenuItemArr().remove(mi);
+								System.out.println("Remove success");
+							}
+						}
+						if (!found)
+							System.out.println("Menu item not found, Please try again");
+						break;
+					case 5:
+						break;
+					default:
+						System.out.println("Invalid input try again");
+					}
+				} while (sc.nextLine() != "5");
+				break;
+			}
+		}
+		if (!found)
+			System.out.println("Promotional Package " + searchName + " not found");
+	}
+
+	public void updatePromotionalPackage(MenuItem oldMi, MenuItem newMi) {
+		ArrayList<MenuItem> miArr;
+		for (PromotionalPackage pp : promoPackageAl) {
+			miArr = pp.getMenuItemArr();
+			for (MenuItem mi : miArr) {
+				if (mi.equals(oldMi))
+					mi = newMi;
+			}
+		}
+	}
+
+	public void removePromotionalPackage() {
+	}
+
+//	public PromotionalPackage getObject(ArrayList<PromotionalPackage> al, String promoName) {
+//		for (PromotionalPackage pp : al) {
+//			if (promoName == pp.getPromoName())
+//				return pp;
+//		}
+//		return null;
+//	}
 }
