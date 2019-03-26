@@ -62,10 +62,7 @@ public class MenuItemMgr {
 				old = mi;
 				found = true;
 				do {
-					System.out.println("Food category: " + mi.getFoodType());
-					System.out.println("Food name: " + mi.getFoodName());
-					System.out.println("Description: " + mi.getDescription());
-					System.out.println("Price: " + mi.getPrice());
+					System.out.println(mi.toString());
 					System.out.println("1) Update food category");
 					System.out.println("2) Update food name");
 					System.out.println("3) Update description");
@@ -94,7 +91,7 @@ public class MenuItemMgr {
 					default:
 						System.out.println("Invalid input try again");
 					}
-				} while (sc.nextLine() != "5");
+				} while (choice != 5);
 				break;
 			}
 		}
