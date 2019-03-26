@@ -94,7 +94,8 @@ public class MenuItemMgr {
 					default:
 						System.out.println("Invalid input try again");
 					}
-				} while (sc.nextLine() != "5");
+				} while (choice != 5);
+				this.updatePromotionalPackage(old, mi);
 				break;
 			}
 		}
@@ -109,7 +110,7 @@ public class MenuItemMgr {
 		for (MenuItem mi : menuAl) {
 			if (mi.getFoodName().equalsIgnoreCase(searchName)) {
 				menuAl.remove(mi);
-				// call updatePromotionalPackage(mi);
+				this.updatePromotionalPackage(mi);
 				break;
 			}
 		}
@@ -150,7 +151,7 @@ public class MenuItemMgr {
 
 	}
 
-	public void updatePromotionalPackage() {
+	public void updatePromotionalPackage() throws IOException {
 		int choice;
 		String searchName;
 		String searchFood;
@@ -213,15 +214,16 @@ public class MenuItemMgr {
 					default:
 						System.out.println("Invalid input try again");
 					}
-				} while (sc.nextLine() != "5");
+				} while (choice != 5);
 				break;
 			}
 		}
 		if (!found)
 			System.out.println("Promotional Package " + searchName + " not found");
+		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
 	}
 
-	public void updatePromotionalPackage(MenuItem oldMi, MenuItem newMi) {
+	public void updatePromotionalPackage(MenuItem oldMi, MenuItem newMi) throws IOException {
 		ArrayList<MenuItem> miArr;
 		for (PromotionalPackage pp : promoPackageAl) {
 			miArr = pp.getMenuItemArr();
@@ -230,6 +232,18 @@ public class MenuItemMgr {
 					mi = newMi;
 			}
 		}
+		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
+	}
+
+	private void updatePromotionalPackage(MenuItem mi) throws IOException {
+		for (PromotionalPackage pp : promoPackageAl) {
+			for (MenuItem mi2 : pp.getMenuItemArr()) {
+				if (mi.equals(mi2)) {
+					pp.getMenuItemArr().remove(mi);
+				}
+			}
+		}
+		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
 	}
 
 	public void removePromotionalPackage() {
@@ -241,5 +255,6 @@ public class MenuItemMgr {
 //				return pp;
 //		}
 //		return null;
+//
 //	}
 }
