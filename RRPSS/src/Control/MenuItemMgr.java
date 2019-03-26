@@ -246,7 +246,17 @@ public class MenuItemMgr {
 		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
 	}
 
-	public void removePromotionalPackage() {
+	public void removePromotionalPackage() throws IOException {
+		System.out.println("Please enter the name of the promotional package that you want to remove");
+		String searchName = sc.nextLine();
+		for (PromotionalPackage pp : promoPackageAl) {
+			if (pp.getPromoName().equalsIgnoreCase(searchName)) {
+				menuAl.remove(pp);
+				break;
+			}
+		}
+		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
+
 	}
 
 //	public PromotionalPackage getObject(ArrayList<PromotionalPackage> al, String promoName) {
