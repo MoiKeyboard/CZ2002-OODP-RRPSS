@@ -33,13 +33,13 @@ public class TextDB {
 			String st = (String) stringArray.get(i);
 			// get individual 'fields' of the string separated by SEPARATOR
 			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
-																		// using delimiter ","
-			String foodType = star.nextToken().trim(); // first token
+																		// using delimiter ",
 			String foodName = star.nextToken().trim(); // second token
 			String description = star.nextToken().trim(); // third token
 			double price = Double.parseDouble(star.nextToken().trim());
+			String category = star.nextToken().trim();
 			// create Professor object from file data
-			Alacarte item = new Alacarte(foodType, foodName, description, price);
+			Alacarte item = new Alacarte(foodName,description,price,category);
 			// add to Professors list
 			menuAl.add(item);
 		}
@@ -53,13 +53,13 @@ public class TextDB {
 		for (int i = 0; i < al.size(); i++) {
 			Alacarte item = (Alacarte) al.get(i);
 			StringBuilder st = new StringBuilder();
-			st.append(item.getFoodType().trim());
-			st.append(SEPARATOR);
-			st.append(item.getFoodName().trim());
+			st.append(item.getName().trim());
 			st.append(SEPARATOR);
 			st.append(item.getDescription().trim());
 			st.append(SEPARATOR);
 			st.append(item.getPrice());
+			st.append(SEPARATOR);
+			st.append(item.getCategory());
 			alw.add(st.toString());
 		}
 		write(filename, alw);
@@ -269,21 +269,42 @@ public class TextDB {
 																		// using delimiter ","
 			String promoName = star.nextToken().trim();
 			String desc = star.nextToken().trim();
+			double promoPrice = Double.parseDouble(star.nextToken());
 			while(star.hasMoreTokens()) {
-				String foodType = star.nextToken().trim();
 				String foodName = star.nextToken().trim();
 				String description = star.nextToken().trim();
 				double price = Double.parseDouble(star.nextToken());
-				Alacarte mi = new Alacarte(foodType, foodName,description,price);
+				String category = star.nextToken().trim();
+				Alacarte mi = new Alacarte(foodName,description,price,category);
 				menuItemAl.add(mi);
 			}
-			PromotionalPackage promoPkg = new PromotionalPackage(promoName,desc,menuItemAl);
+			PromotionalPackage promoPkg = new PromotionalPackage(promoName,desc,promoPrice,menuItemAl);
 		}
 		return promoAl;
 	}
 
-	public static void writePromoPackage(String filename, ArrayList<PromotionalPackage> promoAl) throws IOException {
-
+	public static void savePromoPackage(String filename, ArrayList<PromotionalPackage> promoAl) throws IOException {
+		List alw = new ArrayList();// to store Orders data
+		for (int i = 0; i < promoAl.size(); i++) {
+			PromotionalPackage s1 = (PromotionalPackage) promoAl.get(i);
+			StringBuilder st = new StringBuilder();
+			st.append(s1.getName());
+			st.append(SEPARATOR);
+			st.append(s1.getDescription());
+			st.append(SEPARATOR);
+			st.append(s1.getPrice());
+			st.append(SEPARATOR);
+			for(int i2 = 0;i2 < s1.getMenuItemArr().size();i2++) {
+				st.append(s1.getMenuItemArr().get(i2).getName());	
+				st.append(SEPARATOR);
+				st.append(s1.getMenuItemArr().get(i2).getDescription());	
+				st.append(SEPARATOR);
+				st.append(s1.getMenuItemArr().get(i2).getPrice());	
+				st.append(SEPARATOR);
+			}
+			alw.add(st.toString());
+		}
+		write(filename, alw);
 	}
 
 	/** Write fixed content to the given file. */

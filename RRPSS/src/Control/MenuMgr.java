@@ -150,7 +150,7 @@ public class MenuMgr {
 		PromotionalPackage p1 = new PromotionalPackage(promoName, promoDesc, promoPrice, promoItems);
 		promoPackageAl.add(p1);
 
-		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
+		TextDB.savePromoPackage("PromoPackages.txt", promoPackageAl);
 
 	}
 
@@ -218,7 +218,7 @@ public class MenuMgr {
 				}
 			}
 		}
-		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
+		TextDB.savePromoPackage("PromoPackages.txt", promoPackageAl);
 	}
 
 	public void updatePromotionalPackage(Alacarte oldMi, Alacarte newMi) throws IOException {
@@ -230,7 +230,7 @@ public class MenuMgr {
 					mi = newMi;
 			}
 		}
-		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
+		TextDB.savePromoPackage("PromoPackages.txt", promoPackageAl);
 	}
 
 	// rename
@@ -242,7 +242,7 @@ public class MenuMgr {
 				}
 			}
 		}
-		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
+		TextDB.savePromoPackage("PromoPackages.txt", promoPackageAl);
 	}
 
 	// rename
@@ -256,7 +256,7 @@ public class MenuMgr {
 			promoPackageAl.remove(index);
 			System.out.println("Promotional package removed");
 		}
-		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
+		TextDB.savePromoPackage("PromoPackages.txt", promoPackageAl);
 
 	}
 
