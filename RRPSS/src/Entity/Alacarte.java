@@ -1,6 +1,6 @@
 package Entity;
 
-public class Alacarte {
+public class Alacarte extends MenuItem {
 	private String foodType;
 	private String foodName;
 	private String description;

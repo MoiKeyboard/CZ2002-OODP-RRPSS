@@ -2,7 +2,7 @@ package Entity;
 
 import java.util.ArrayList;
 
-public class PromotionalPackage {
+public class PromotionalPackage extends MenuItem {
 	private String promoName;
 	private String description;
 	private ArrayList<Alacarte> menuItemArr;
@@ -42,12 +42,12 @@ public class PromotionalPackage {
 	public void setMenuItemArr(ArrayList<Alacarte> menuItemArr) {
 		this.menuItemArr = menuItemArr;
 	}
-	
+
 	@Override
 	public String toString() {
 		String promoDetails = null;
 		promoDetails = "Promo Name: " + getPromoName() + "\nDescription: " + getDescription() + "\n";
-		for(Alacarte mi : menuItemArr) {
+		for (Alacarte mi : menuItemArr) {
 			promoDetails += mi.toString();
 		}
 		return promoDetails;
