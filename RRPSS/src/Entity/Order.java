@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Order {
 	private int staffId;
 	private int tableNo;
-	private ArrayList<MenuItem> orderAlaCarteItemAl;
+	private ArrayList<Alacarte> orderAlaCarteItemAl;
 	private ArrayList<PromotionalPackage> orderPromoPackageAl;
 	private int itemQuantity;
 	private int orderNo;
@@ -19,7 +19,7 @@ public class Order {
 		this.itemQuantity = 0;
 		
 	}
-	public Order(int orderNo, int staffId, int tableNo, ArrayList<MenuItem> orderAlaCarteItemAl,ArrayList<PromotionalPackage> orderPromoPackageAl, int itemQuantity) {
+	public Order(int orderNo, int staffId, int tableNo, ArrayList<Alacarte> orderAlaCarteItemAl,ArrayList<PromotionalPackage> orderPromoPackageAl, int itemQuantity) {
 		this.orderNo = orderNo;
 		this.staffId = staffId;
 		this.tableNo = tableNo;
@@ -60,11 +60,11 @@ public class Order {
 		this.itemQuantity = itemQuantity;
 	}
 	
-	public ArrayList<MenuItem> getAlaCarteOrderItem() {
+	public ArrayList<Alacarte> getAlaCarteOrderItem() {
 		return orderAlaCarteItemAl;
 	}
 	
-	public void setOrderAlaCarteItem(MenuItem orderAlaCarteItem) {
+	public void setOrderAlaCarteItem(Alacarte orderAlaCarteItem) {
 		orderAlaCarteItemAl.add(orderAlaCarteItem);
 	}
 

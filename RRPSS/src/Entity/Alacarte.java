@@ -1,19 +1,19 @@
 package Entity;
 
-public class MenuItem {
+public class Alacarte {
 	private String foodType;
 	private String foodName;
 	private String description;
 	private double price;
 
-	public MenuItem() {
+	public Alacarte() {
 		foodType = "";
 		this.foodName = "";
 		this.description = "";
 		this.price = 0;
 	}
 
-	public MenuItem(String foodType, String foodName, String description, double price) {
+	public Alacarte(String foodType, String foodName, String description, double price) {
 		this.foodType = foodType;
 		this.foodName = foodName;
 		this.description = description;

@@ -4,16 +4,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Entity.MenuItem;
+import Entity.Alacarte;
 import Entity.PromotionalPackage;
 
 public class MenuItemMgr {
-	private ArrayList<MenuItem> menuAl;
+	private ArrayList<Alacarte> menuAl;
 	private ArrayList<PromotionalPackage> promoPackageAl;
 	protected Scanner sc;
 
 	public MenuItemMgr() {
-		menuAl = new ArrayList<MenuItem>();
+		menuAl = new ArrayList<Alacarte>();
 		promoPackageAl = new ArrayList<PromotionalPackage>();
 		sc = new Scanner(System.in);
 		try {
@@ -27,7 +27,7 @@ public class MenuItemMgr {
 
 	public void printMenuItem() {
 		System.out.println("Menu Item as follows:");
-		for (MenuItem mi : menuAl) {
+		for (Alacarte mi : menuAl) {
 			System.out.println(mi.toString());
 		}
 		System.out.println();
@@ -48,7 +48,7 @@ public class MenuItemMgr {
 		foodDesc = sc.nextLine();
 		System.out.println("Please enter price");
 		foodPrice = sc.nextDouble();
-		MenuItem i1 = new MenuItem(foodCat, foodName, foodDesc, foodPrice);
+		Alacarte i1 = new Alacarte(foodCat, foodName, foodDesc, foodPrice);
 
 		menuAl.add(i1);
 		TextDB.saveMenuItem("MenuItems.txt", menuAl);
@@ -57,7 +57,7 @@ public class MenuItemMgr {
 	public void updateMenuItem() throws IOException {
 		String searchName;
 		int choice = 0, index;
-		MenuItem oldMI;
+		Alacarte oldMI;
 		System.out.println("Please enter the name of the food item that you want to update");
 		searchName = sc.nextLine();
 
@@ -104,7 +104,7 @@ public class MenuItemMgr {
 
 	public void removeMenuItem() throws IOException {
 		int index;
-		MenuItem oldMI;
+		Alacarte oldMI;
 		System.out.println("Please enter the food item that you want to remove");
 		String searchName = sc.nextLine();
 		index = getMIIndex(menuAl, searchName);
@@ -123,7 +123,7 @@ public class MenuItemMgr {
 		String promoDesc;
 		String foodName;
 		int index;
-		ArrayList<MenuItem> promoItems = new ArrayList<MenuItem>();
+		ArrayList<Alacarte> promoItems = new ArrayList<Alacarte>();
 
 		System.out.println("Please enter new promotional package name");
 		promoName = sc.nextLine();
@@ -185,7 +185,7 @@ public class MenuItemMgr {
 				case 3:
 					System.out.println("Enter food name to add to promotional package");
 					found = false;
-					for (MenuItem mi2 : menuAl) {
+					for (Alacarte mi2 : menuAl) {
 						if (mi2.getFoodName().equalsIgnoreCase(sc.nextLine())) {
 							found = true;
 							pp.getMenuItemArr().add(mi2);
@@ -198,7 +198,7 @@ public class MenuItemMgr {
 					System.out.println("Enter food name to remove from promotional package");
 					found = false;
 					searchFood = sc.nextLine();
-					for (MenuItem mi : pp.getMenuItemArr()) {
+					for (Alacarte mi : pp.getMenuItemArr()) {
 						if (searchName == mi.getFoodName()) {
 							pp.getMenuItemArr().remove(mi);
 							System.out.println("Remove success");
@@ -226,11 +226,11 @@ public class MenuItemMgr {
 		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
 	}
 
-	public void updatePromotionalPackage(MenuItem oldMi, MenuItem newMi) throws IOException {
-		ArrayList<MenuItem> miArr;
+	public void updatePromotionalPackage(Alacarte oldMi, Alacarte newMi) throws IOException {
+		ArrayList<Alacarte> miArr;
 		for (PromotionalPackage pp : promoPackageAl) {
 			miArr = pp.getMenuItemArr();
-			for (MenuItem mi : miArr) {
+			for (Alacarte mi : miArr) {
 				if (mi.equals(oldMi))
 					mi = newMi;
 			}
@@ -239,9 +239,9 @@ public class MenuItemMgr {
 	}
 
 	// rename
-	private void updatePromotionalPackage(MenuItem mi) throws IOException {
+	private void updatePromotionalPackage(Alacarte mi) throws IOException {
 		for (PromotionalPackage pp : promoPackageAl) {
-			for (MenuItem mi2 : pp.getMenuItemArr()) {
+			for (Alacarte mi2 : pp.getMenuItemArr()) {
 				if (mi.equals(mi2)) {
 					pp.getMenuItemArr().remove(mi);
 				}
@@ -264,7 +264,7 @@ public class MenuItemMgr {
 
 	}
 
-	public int getMIIndex(ArrayList<MenuItem> al, String search) {
+	public int getMIIndex(ArrayList<Alacarte> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
 			if (search == al.get(i).getFoodName())
 				return i;

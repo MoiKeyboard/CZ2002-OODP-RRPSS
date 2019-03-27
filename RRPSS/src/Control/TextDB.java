@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import Entity.Customer;
-import Entity.MenuItem;
+import Entity.Alacarte;
 import Entity.Order;
 import Entity.PromotionalPackage;
 import Entity.Reservation;
@@ -24,10 +24,10 @@ public class TextDB {
 	public static final String SEPARATOR = "|";
 
 	// an example of reading
-	public static ArrayList<MenuItem> readMenuItem(String filename) throws IOException {
+	public static ArrayList<Alacarte> readMenuItem(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
-		ArrayList<MenuItem> menuAl = new ArrayList<MenuItem>();
+		ArrayList<Alacarte> menuAl = new ArrayList<Alacarte>();
 
 		for (int i = 0; i < stringArray.size(); i++) {
 			String st = (String) stringArray.get(i);
@@ -39,7 +39,7 @@ public class TextDB {
 			String description = star.nextToken().trim(); // third token
 			double price = Double.parseDouble(star.nextToken().trim());
 			// create Professor object from file data
-			MenuItem item = new MenuItem(foodType, foodName, description, price);
+			Alacarte item = new Alacarte(foodType, foodName, description, price);
 			// add to Professors list
 			menuAl.add(item);
 		}
@@ -47,11 +47,11 @@ public class TextDB {
 	}
 
 	// an example of saving
-	public static void saveMenuItem(String filename, ArrayList<MenuItem> al) throws IOException {
+	public static void saveMenuItem(String filename, ArrayList<Alacarte> al) throws IOException {
 		List alw = new ArrayList();// to store Professors data
 
 		for (int i = 0; i < al.size(); i++) {
-			MenuItem item = (MenuItem) al.get(i);
+			Alacarte item = (Alacarte) al.get(i);
 			StringBuilder st = new StringBuilder();
 			st.append(item.getFoodType().trim());
 			st.append(SEPARATOR);
@@ -261,7 +261,7 @@ public class TextDB {
 	public static ArrayList<PromotionalPackage> readPromoPackageItem(String filename) throws IOException {
 		ArrayList stringArray = (ArrayList) read(filename);
 		ArrayList<PromotionalPackage> promoAl = new ArrayList<PromotionalPackage>();
-		ArrayList<MenuItem> menuItemAl = new ArrayList<MenuItem>();
+		ArrayList<Alacarte> menuItemAl = new ArrayList<Alacarte>();
 		for (int i = 0; i < stringArray.size(); i++) {
 			String st = (String) stringArray.get(i);
 			// get individual 'fields' of the string separated by SEPARATOR
@@ -274,7 +274,7 @@ public class TextDB {
 				String foodName = star.nextToken().trim();
 				String description = star.nextToken().trim();
 				double price = Double.parseDouble(star.nextToken());
-				MenuItem mi = new MenuItem(foodType, foodName,description,price);
+				Alacarte mi = new Alacarte(foodType, foodName,description,price);
 				menuItemAl.add(mi);
 			}
 			PromotionalPackage promoPkg = new PromotionalPackage(promoName,desc,menuItemAl);

@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class PromotionalPackage {
 	private String promoName;
 	private String description;
-	private ArrayList<MenuItem> menuItemArr;
+	private ArrayList<Alacarte> menuItemArr;
 
 	public PromotionalPackage() {
 		this.promoName = null;
 		this.description = null;
-		menuItemArr = new ArrayList<MenuItem>();
+		menuItemArr = new ArrayList<Alacarte>();
 	}
 
-	public PromotionalPackage(String promoName, String description, ArrayList<MenuItem> menuItemsArr) {
+	public PromotionalPackage(String promoName, String description, ArrayList<Alacarte> menuItemsArr) {
 		this.promoName = promoName;
 		this.description = description;
 		this.menuItemArr = menuItemsArr;
@@ -35,11 +35,11 @@ public class PromotionalPackage {
 		this.description = description;
 	}
 
-	public ArrayList<MenuItem> getMenuItemArr() {
+	public ArrayList<Alacarte> getMenuItemArr() {
 		return menuItemArr;
 	}
 
-	public void setMenuItemArr(ArrayList<MenuItem> menuItemArr) {
+	public void setMenuItemArr(ArrayList<Alacarte> menuItemArr) {
 		this.menuItemArr = menuItemArr;
 	}
 	
@@ -47,7 +47,7 @@ public class PromotionalPackage {
 	public String toString() {
 		String promoDetails = null;
 		promoDetails = "Promo Name: " + getPromoName() + "\nDescription: " + getDescription() + "\n";
-		for(MenuItem mi : menuItemArr) {
+		for(Alacarte mi : menuItemArr) {
 			promoDetails += mi.toString();
 		}
 		return promoDetails;
