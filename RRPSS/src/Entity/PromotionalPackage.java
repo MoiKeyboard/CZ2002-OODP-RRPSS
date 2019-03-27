@@ -42,4 +42,14 @@ public class PromotionalPackage {
 	public void setMenuItemArr(ArrayList<MenuItem> menuItemArr) {
 		this.menuItemArr = menuItemArr;
 	}
+	
+	@Override
+	public String toString() {
+		String promoDetails = null;
+		promoDetails = "Promo Name: " + getPromoName() + "\nDescription: " + getDescription() + "\n";
+		for(MenuItem mi : menuItemArr) {
+			promoDetails += mi.toString();
+		}
+		return promoDetails;
+	}
 }

@@ -1,22 +1,43 @@
 package Entity;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 public class Invoice {
 	private int tableNo;
-	private int date;
-	private int time;
+	private LocalDateTime invoiceDT;
 	private double price;
-	
+
 	public Invoice() {
 		this.tableNo = 0;
-		this.date = 0;
-		this.time = 0;
+		this.invoiceDT = null;
 		this.price = 0;
 	}
 	
-	public Invoice(int tableNo, int date, int time) {
+	public Invoice(int tableNo, LocalDateTime invoiceDT) {
 		this.tableNo = tableNo;
-		this.date = date;
-		this.time = time;
-	}
+		this.invoiceDT = invoiceDT;
+	} 
  
+	public int getTableNo() {
+		return tableNo;
+	}
+
+	public LocalDateTime getInvoiceDT() {
+		return invoiceDT;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	@Override
+	public String toString() {
+		String invoiceDetails = null;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy kkmm", Locale.ENGLISH);
+		invoiceDetails =  "Table Number: " + getTableNo() + "\nDate and Time of Invoice" + invoiceDT.format(formatter) + "\nPrice of order" + getPrice() + "\n";
+		return invoiceDetails;
+		
+	}
 }

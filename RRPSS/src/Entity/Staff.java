@@ -33,4 +33,10 @@ public class Staff extends Person {
 		this.jobTitle = jobTitle;
 	}
 	
+	@Override
+	public String toString() {
+		String staffDetails = null;
+		staffDetails = "Staff Name: " + super.getName() + "\nStaff ID: " + getStaffId() + "\nJob Title: " + getJobTitle();
+		return staffDetails;
+	}
 }

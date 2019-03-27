@@ -33,4 +33,11 @@ public class Table {
 	public void setTableStatus(String status) {
 		tableStatus = status;
 	}
+	
+	@Override
+	public String toString() {
+		String tableDetails = null;
+		tableDetails = "Table No: " + getTableNo() + "\nSeat Capacity: " + getSeatCap() + "\nTable status" + getTableStatus() + "\n";
+		return tableDetails;
+	}
 }

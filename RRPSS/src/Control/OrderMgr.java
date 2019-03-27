@@ -30,12 +30,14 @@ public class OrderMgr {
 		tableInput = sc.nextInt();
 		for (Order orderView : orderAl) {
 			if(tableInput == orderView.getTableNo()) {
-				orderNo = orderView.getOrderNo();
+				//System.out.println(tableInput.toString());
+				/*orderNo = orderView.getOrderNo();
 				staffId = orderView.getStaffId();
 				tableNo = orderView.getTableNo();
+				*/
 			}
 		}
-		System.out.println("Order No: " + orderNo);
+		/*System.out.println("Order No: " + orderNo);
 		System.out.println("Table No: " + tableNo);
 		System.out.println("Staff ID: " + staffId);
 		for (Order or : orderAl) {
@@ -44,7 +46,7 @@ public class OrderMgr {
 			}
 		}
 		System.out.println();
-		
+		*/
 	}
 	
 	

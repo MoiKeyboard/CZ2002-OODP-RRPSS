@@ -231,17 +231,54 @@ public class TextDB {
 			int tableNo = Integer.parseInt(star.nextToken()); // third token
 			String orderItem = star.nextToken().trim(); // fourth token
 			int itemQuantity = Integer.parseInt(star.nextToken()); // fifth token
-			double itemPrice = Double.parseDouble(star.nextToken()); // sixth token
 			// create Order object from file data
-			Order order = new Order(orderNo, staffId, tableNo, orderItem, itemQuantity, itemPrice);
+			//Order order = new Order(orderNo, staffId, tableNo, orderItem, itemQuantity);
 			// add to Customer array list
-			orderAl.add(order);
+			//orderAl.add(order);
 		}
 		return orderAl;
 	}
+	
+	public static void saveOrder(String filename, List orderAl) throws IOException {
+		List alw = new ArrayList();// to store Orders data
+		for (int i = 0; i < orderAl.size(); i++) {
+			Order s1 = (Order) orderAl.get(i);
+			StringBuilder st = new StringBuilder();
+			st.append(s1.getOrderNo());
+			st.append(SEPARATOR);
+			st.append(s1.getStaffId());
+			st.append(SEPARATOR);
+			st.append(s1.getTableNo());
+			st.append(SEPARATOR);
+			//st.append(s1.getOrderItem());
+			//st.append(SEPARATOR);
+			st.append(s1.getItemQuantity());
+			alw.add(st.toString());
+		}
+		write(filename, alw);
+	}
 
 	public static ArrayList<PromotionalPackage> readPromoPackageItem(String filename) throws IOException {
+		ArrayList stringArray = (ArrayList) read(filename);
 		ArrayList<PromotionalPackage> promoAl = new ArrayList<PromotionalPackage>();
+		ArrayList<MenuItem> menuItemAl = new ArrayList<MenuItem>();
+		for (int i = 0; i < stringArray.size(); i++) {
+			String st = (String) stringArray.get(i);
+			// get individual 'fields' of the string separated by SEPARATOR
+			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
+																		// using delimiter ","
+			String promoName = star.nextToken().trim();
+			String desc = star.nextToken().trim();
+			while(star.hasMoreTokens()) {
+				String foodType = star.nextToken().trim();
+				String foodName = star.nextToken().trim();
+				String description = star.nextToken().trim();
+				double price = Double.parseDouble(star.nextToken());
+				MenuItem mi = new MenuItem(foodType, foodName,description,price);
+				menuItemAl.add(mi);
+			}
+			PromotionalPackage promoPkg = new PromotionalPackage(promoName,desc,menuItemAl);
+		}
 		return promoAl;
 	}
 

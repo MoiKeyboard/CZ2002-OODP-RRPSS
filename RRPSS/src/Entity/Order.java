@@ -1,100 +1,86 @@
 package Entity;
-	
+
+import java.util.ArrayList;
+
 public class Order {
 	private int staffId;
 	private int tableNo;
-	//private MenuItem menuItem;
-	//private PromotionalPackage promoItem;
-	private String orderItem;
+	private ArrayList<MenuItem> orderAlaCarteItemAl;
+	private ArrayList<PromotionalPackage> orderPromoPackageAl;
 	private int itemQuantity;
-	private double itemPrice;
 	private int orderNo;
 	
 	public Order(){
 		this.orderNo = 0;
 		this.staffId = 0;
 		this.tableNo = 0;
-		this.orderItem = "";
+		this.orderAlaCarteItemAl = null;
+		this.orderPromoPackageAl = null;
 		this.itemQuantity = 0;
-		this.itemPrice = 0;
 		
 	}
-	public Order(int orderNo, int staffId, int tableNo, String orderItem, int itemQuantity, double itemPrice) {
+	public Order(int orderNo, int staffId, int tableNo, ArrayList<MenuItem> orderAlaCarteItemAl,ArrayList<PromotionalPackage> orderPromoPackageAl, int itemQuantity) {
 		this.orderNo = orderNo;
 		this.staffId = staffId;
 		this.tableNo = tableNo;
-		this.orderItem = orderItem;
+		this.orderAlaCarteItemAl =orderAlaCarteItemAl;
+		this.orderPromoPackageAl = orderPromoPackageAl;
 		this.itemQuantity = itemQuantity;
-		this.itemPrice = itemPrice;
 	}
+	
 	public int getOrderNo() {
 		return orderNo;
 	}
+	
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
+	
 	public int getStaffId() {
 		return staffId;
 	}
+	
 	public void setStaffId(int staffId) {
 		this.staffId = staffId;
 	}
+	
 	public int getTableNo() {
 		return tableNo;
 	}
+	
 	public void setTableNo(int tableNo) {
 		this.tableNo = tableNo;
 	}
-	/*public MenuItem getMenuItem() {
-		return menuItem;
-	}
-	public void setMenuItem(MenuItem menuItem) {
-		this.menuItem = menuItem;
-	}
-	public PromotionalPackage getPromoItem() {
-		return promoItem;
-	}
-	public void setPromoItem(PromotionalPackage promoItem) {
-		this.promoItem = promoItem;
-	}*/
+	
 	public int getItemQuantity() {
 		return itemQuantity;
 	}
+	
 	public void setItemQuantity(int itemQuantity) {
 		this.itemQuantity = itemQuantity;
 	}
-	public double getItemPrice() {
-		return itemPrice;
-	}
-	public void setItemPrice(double itemPrice) {
-		this.itemPrice = itemPrice;
+	
+	public ArrayList<MenuItem> getAlaCarteOrderItem() {
+		return orderAlaCarteItemAl;
 	}
 	
-	public String getOrderItem() {
-		return orderItem;
+	public void setOrderAlaCarteItem(MenuItem orderAlaCarteItem) {
+		orderAlaCarteItemAl.add(orderAlaCarteItem);
 	}
-	public void setOrderItem(String orderItem) {
-		this.orderItem = orderItem;
+
+	public ArrayList<PromotionalPackage> getPromoPackage() {
+		return orderPromoPackageAl;
+	}
+	
+	public void setOrderPromoItems(PromotionalPackage orderPromoItem) {
+		orderPromoPackageAl.add(orderPromoItem);
 	}
 	
 	@Override
 	public String toString() {
 		String orderItemDetails = null;
-		orderItemDetails = "Order item: " + getOrderItem() + "\nQuantity: " + getItemQuantity() + "\nPrice: " + getItemPrice() + "\n";
+		//orderItemDetails = "Table No: " + getTableNo() + "\nStaff ID: " + getStaffId() + "\nOrder No: " + getOrderNo() + "Order item: " + getOrderItem() + "\nQuantity: " + getItemQuantity();
 		return orderItemDetails;
 	}
-
-/*
-	public void setTableOccupied(int tableNo) {
-//set status to occupied
-		
-	}
-
-	public void printInvoice(int tableNo) {
-//set table to vacant
-	}*/
 	
-	//public void () {
-		
-	//}
 }
