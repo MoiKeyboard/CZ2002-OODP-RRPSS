@@ -47,7 +47,7 @@ public class MenuMgr {
 		foodDesc = sc.nextLine();
 		System.out.println("Please enter price");
 		foodPrice = sc.nextDouble();
-		Alacarte i1 = new Alacarte(foodCat, foodName, foodDesc, foodPrice);
+		Alacarte i1 = new Alacarte(foodName, foodDesc, foodPrice, foodCat);
 
 		menuAl.add(i1);
 		TextDB.saveMenuItem("MenuItems.txt", menuAl);
@@ -76,11 +76,11 @@ public class MenuMgr {
 				switch (choice) {
 				case 1:
 					System.out.println("Enter updated food category");
-					menuAl.get(index).setFoodType(sc.nextLine());
+					menuAl.get(index).setCategory(sc.nextLine());
 					break;
 				case 2:
 					System.out.println("Enter updated food name");
-					menuAl.get(index).setFoodName(sc.nextLine());
+					menuAl.get(index).setName(sc.nextLine());
 					break;
 				case 3:
 					System.out.println("Enter updated description");
@@ -178,7 +178,7 @@ public class MenuMgr {
 				switch (choice) {
 				case 1:
 					System.out.println("Enter updated promotional package name");
-					promoPackageAl.get(index).setPromoName(sc.nextLine());
+					promoPackageAl.get(index).setName(sc.nextLine());
 					break;
 				case 2:
 					System.out.println("Enter updated promotional package description");
@@ -262,7 +262,7 @@ public class MenuMgr {
 
 	public int getAlacarteIndex(ArrayList<Alacarte> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
-			if (search == al.get(i).getFoodName())
+			if (search == al.get(i).getName())
 				return i;
 		}
 		return -1;
@@ -270,7 +270,7 @@ public class MenuMgr {
 
 	public int getPPIndex(ArrayList<PromotionalPackage> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
-			if (search == al.get(i).getPromoName())
+			if (search == al.get(i).getName())
 				return i;
 		}
 		return -1;

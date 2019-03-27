@@ -1,61 +1,30 @@
 package Entity;
 
 public class Alacarte extends MenuItem {
-	private String foodType;
-	private String foodName;
-	private String description;
-	private double price;
+	private String category;
 
 	public Alacarte() {
-		foodType = "";
-		this.foodName = "";
-		this.description = "";
-		this.price = 0;
+		super();
+		this.category = "";
 	}
 
-	public Alacarte(String foodType, String foodName, String description, double price) {
-		this.foodType = foodType;
-		this.foodName = foodName;
-		this.description = description;
-		this.price = price;
+	public Alacarte(String name, String description, double price, String category) {
+		super();
+		this.category = category;
 	}
 
-	public String getFoodName() {
-		return foodName;
+	public String getCategory() {
+		return category;
 	}
 
-	public String getFoodType() {
-		return foodType;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setFoodType(String foodType) {
-		this.foodType = foodType;
-	}
-
-	public void setFoodName(String foodName) {
-		this.foodName = foodName;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	@Override
 	public String toString() {
 		String menuItemDetails = null;
-		menuItemDetails = "Category: " + getFoodType() + "\nFood Name: " + getFoodName() + "\nDescription: "
+		menuItemDetails = "Category: " + getCategory() + "\nFood Name: " + getName() + "\nDescription: "
 				+ getDescription() + "\nPrice: " + getPrice() + "\n";
 		return menuItemDetails;
 	}
