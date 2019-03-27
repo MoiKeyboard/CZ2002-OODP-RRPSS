@@ -10,7 +10,7 @@ public class ReservationMainTestApp {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		ReservationMainTestApp test = new ReservationMainTestApp();
-		MenuItemMgr menuMgr = new MenuItemMgr();
+		MenuMgr menuMgr = new MenuMgr();
 		ReservationMgr reservationMgr = new ReservationMgr();
 		TableMgr tableMgr = new TableMgr();
 		OrderMgr orderMgr = new OrderMgr();
@@ -18,7 +18,7 @@ public class ReservationMainTestApp {
 		sc.close();
 	}
 	
-	public static void run(Scanner sc,MenuItemMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr) {
+	public static void run(Scanner sc,MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr) {
 		int userInput;
 		menuMgr.printMenuItem();
 		tableMgr.printTableList();
@@ -50,7 +50,7 @@ public class ReservationMainTestApp {
 		System.out.println("16.\tPrint sale revenue report by period(e.g day/month)\n0.\tExit the application");
 	}
 	
-	public static int getUserInput(Scanner sc, MenuItemMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr) {
+	public static int getUserInput(Scanner sc, MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr) {
 		int input = sc.nextInt();
 		sc.nextLine();
 		try {

@@ -7,12 +7,12 @@ import java.util.Scanner;
 import Entity.Alacarte;
 import Entity.PromotionalPackage;
 
-public class MenuItemMgr {
+public class MenuMgr {
 	private ArrayList<Alacarte> menuAl;
 	private ArrayList<PromotionalPackage> promoPackageAl;
 	protected Scanner sc;
 
-	public MenuItemMgr() {
+	public MenuMgr() {
 		menuAl = new ArrayList<Alacarte>();
 		promoPackageAl = new ArrayList<PromotionalPackage>();
 		sc = new Scanner(System.in);
@@ -120,6 +120,7 @@ public class MenuItemMgr {
 	public void createPromotionalPackage() throws IOException {
 		String promoName;
 		String promoDesc;
+		double promoPrice;
 		String foodName;
 		int index;
 		ArrayList<Alacarte> promoItems = new ArrayList<Alacarte>();
@@ -130,8 +131,10 @@ public class MenuItemMgr {
 			System.out.println("Existing promo name found. Please try again");
 			return;
 		}
-		System.out.println("Please enter description for " + promoName);
+		System.out.println("Please enter new promotional package description");
 		promoDesc = sc.nextLine();
+		System.out.println("Please enter new promotional package price");
+		promoPrice = sc.nextInt();
 		do {
 			System.out.println("Please enter food name to add to " + promoName + " (enter 0 to finish adding)");
 			foodName = sc.nextLine();
@@ -144,7 +147,7 @@ public class MenuItemMgr {
 				promoItems.add(menuAl.get(index));
 		} while (foodName != "0");
 
-		PromotionalPackage p1 = new PromotionalPackage(promoName, promoDesc, promoItems);
+		PromotionalPackage p1 = new PromotionalPackage(promoName, promoDesc, promoPrice, promoItems);
 		promoPackageAl.add(p1);
 
 		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
@@ -167,9 +170,10 @@ public class MenuItemMgr {
 //				System.out.println(pp.toString());
 				System.out.println("1) Update promotional package name");
 				System.out.println("2) Update promotional package description");
-				System.out.println("3) Add items to promotional package");
-				System.out.println("4) Remove items from promotional package");
-				System.out.println("5) Exit");
+				System.out.println("3) Update promotional package price");
+				System.out.println("4) Add items to promotional package");
+				System.out.println("5) Remove items from promotional package");
+				System.out.println("6) Exit");
 				choice = sc.nextInt();
 				switch (choice) {
 				case 1:
@@ -181,6 +185,10 @@ public class MenuItemMgr {
 					promoPackageAl.get(index).setDescription(sc.nextLine());
 					break;
 				case 3:
+					System.out.println("Enter updated promotional package price");
+					promoPackageAl.get(index).setPrice(sc.nextInt());
+					break;
+				case 4:
 					System.out.println("Enter food name to add to promotional package");
 					searchFood = sc.nextLine();
 					index2 = getAlacarteIndex(menuAl, searchFood);
@@ -191,7 +199,7 @@ public class MenuItemMgr {
 						promoPackageAl.get(index).getMenuItemArr().add(menuAl.get(index2));
 					}
 					break;
-				case 4:
+				case 5:
 					System.out.println("Enter food name to remove from promotional package");
 					searchFood = sc.nextLine();
 					index2 = getAlacarteIndex(promoPackageAl.get(index).getMenuItemArr(), searchFood);
@@ -203,7 +211,7 @@ public class MenuItemMgr {
 						System.out.println("Removed");
 					}
 					break;
-				case 5:
+				case 6:
 					break;
 				default:
 					System.out.println("Invalid input try again");
@@ -239,13 +247,14 @@ public class MenuItemMgr {
 
 	// rename
 	public void removePromotionalPackage() throws IOException {
+		int index;
 		System.out.println("Please enter the name of the promotional package that you want to remove");
-		String searchName = sc.nextLine();
-		for (PromotionalPackage pp : promoPackageAl) {
-			if (pp.getPromoName().equalsIgnoreCase(searchName)) {
-				menuAl.remove(pp);
-				break;
-			}
+		index = getPPIndex(promoPackageAl, sc.nextLine());
+		if (index == -1)
+			System.out.println("Promotional package not found");
+		else {
+			promoPackageAl.remove(index);
+			System.out.println("Promotional package removed");
 		}
 		TextDB.writePromoPackage("PromoPackages.txt", promoPackageAl);
 

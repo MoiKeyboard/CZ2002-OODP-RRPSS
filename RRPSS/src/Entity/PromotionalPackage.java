@@ -5,17 +5,20 @@ import java.util.ArrayList;
 public class PromotionalPackage extends MenuItem {
 	private String promoName;
 	private String description;
+	private double price;
 	private ArrayList<Alacarte> menuItemArr;
 
 	public PromotionalPackage() {
 		this.promoName = null;
 		this.description = null;
-		menuItemArr = new ArrayList<Alacarte>();
+		this.price = 0;
+		this.menuItemArr = new ArrayList<Alacarte>();
 	}
 
-	public PromotionalPackage(String promoName, String description, ArrayList<Alacarte> menuItemsArr) {
+	public PromotionalPackage(String promoName, String description, double price, ArrayList<Alacarte> menuItemsArr) {
 		this.promoName = promoName;
 		this.description = description;
+		this.price = price;
 		this.menuItemArr = menuItemsArr;
 	}
 
@@ -33,6 +36,14 @@ public class PromotionalPackage extends MenuItem {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public ArrayList<Alacarte> getMenuItemArr() {
