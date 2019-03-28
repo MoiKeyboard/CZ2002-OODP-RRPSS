@@ -97,23 +97,23 @@ public class MenuMgr {
 					System.out.println("Invalid input try again");
 				}
 			}
-			updatePromotionalPackage(currAla, alacarteAL.get(index));
+			updateAlafromPP(currAla, alacarteAL.get(index));
 		}
 		TextDB.saveMenuItem("MenuItems.txt", alacarteAL);
 	}
 
 	public void removeMenuItem() throws IOException {
 		int index;
-		Alacarte oldMI;
+		Alacarte currAla = new Alacarte();
 		System.out.println("Please enter the food item that you want to remove");
 		String searchName = sc.nextLine();
 		index = getAlacarteIndex(alacarteAL, searchName);
 		if (index == -1)
 			System.out.println("Food not found");
 		else {
-			oldMI = alacarteAL.get(index);
+			currAla = alacarteAL.get(index);
 			alacarteAL.remove(index);
-			updatePromotionalPackage(oldMI);
+			removeAlafromPP(currAla);
 		}
 		TextDB.saveMenuItem("MenuItems.txt", alacarteAL);
 	}
@@ -224,28 +224,30 @@ public class MenuMgr {
 		}
 	}
 
-	public void updatePromotionalPackage(Alacarte oldMi, Alacarte newMi) throws IOException {
-		ArrayList<Alacarte> miArr;
+	public void updateAlafromPP(Alacarte currA, Alacarte newA) throws IOException {
+		ArrayList<Alacarte> AlacarteArr;
 		for (PromotionalPackage pp : promoPackageAl) {
-			miArr = pp.getMenuItemArr();
-			for (Alacarte mi : miArr) {
-				if (mi.equals(oldMi))
-					mi = newMi;
+			for (Alacarte a : new ArrayList<>(pp.getMenuItemArr())) {
+				if (currA.equals(a))
+					currA = newA;
 			}
 		}
 		TextDB.savePromoPackage("PromotionalPackages.txt", promoPackageAl);
 	}
 
 	// rename
-	private void updatePromotionalPackage(Alacarte mi) throws IOException {
+	private void removeAlafromPP(Alacarte currA) throws IOException {
+		System.out.println("curPP===\n"+currA.toString());
 		for (PromotionalPackage pp : promoPackageAl) {
-			for (Alacarte mi2 : pp.getMenuItemArr()) {
-				if (mi.equals(mi2)) {
-					pp.getMenuItemArr().remove(mi);
+			
+			for (Alacarte a : new ArrayList<>(pp.getMenuItemArr())){
+				System.out.println("alacarte below\n"+a.toString());
+				if (currA.equals(a)) {
+					pp.getMenuItemArr().remove(a);
 				}
 			}
 		}
-		TextDB.savePromoPackage("PromoPackages.txt", promoPackageAl);
+		TextDB.savePromoPackage("PromotionalPackages.txt", promoPackageAl);
 	}
 
 	// rename

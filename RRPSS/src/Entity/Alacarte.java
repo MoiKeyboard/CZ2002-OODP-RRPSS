@@ -28,4 +28,14 @@ public class Alacarte extends Menu {
 				+ getDescription() + "\nPrice: " + getPrice() + "\n";
 		return menuItemDetails;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		Alacarte comparatorObject = (Alacarte) o;
+		if(this.getName().equalsIgnoreCase(comparatorObject.getName())  && this.getDescription().equalsIgnoreCase(comparatorObject.getDescription()) && this.getPrice() == comparatorObject.getPrice()){
+			
+			return true;
+		}
+		return false;
+	}
 }
