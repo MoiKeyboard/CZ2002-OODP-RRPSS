@@ -21,6 +21,7 @@ public class ReservationMainTestApp {
 	public static void run(Scanner sc,MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr) {
 		int userInput;
 		menuMgr.printMenuItem();
+		menuMgr.printPromotionalPackage();
 		tableMgr.printTableList();
 		reservationMgr.printReservation();
 		do {
@@ -68,7 +69,17 @@ public class ReservationMainTestApp {
 					menuMgr.removeMenuItem();
 					menuMgr.printMenuItem();
 					break;	
+				case 4:
+					menuMgr.createPromotionalPackage();
+					menuMgr.printPromotionalPackage();
+					break;
+				case 5:
+					menuMgr.updatePromotionalPackage();
+					menuMgr.printPromotionalPackage();
+					break;
 				case 6:
+					menuMgr.removePromotionalPackage();
+					menuMgr.printPromotionalPackage();
 					break;
 				case 7:
 					break;

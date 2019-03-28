@@ -1,7 +1,7 @@
-MAINCOURSE|Cheese Prata|Indian Cuisine|1.9
-APPETIZER|Baked Oyster|Western|5.8
-DRINKS|Ice Vodka|In Russia, car drives you.|13.8
-DRINKS|WHISKEY|HARD LIQUOUR|15.7
-MAINCOURSE|Seafood Aglio Olio|Italian Cuisine|8.9
-APPETIZER|Escargots|French Cuisine|7.9
-APPETIZER|Smoked Salmon|Italian Cuisine|4.9
+cheese baked scallops|qwek's love it|9.9|MAINCOURSE
+Carbonara Pasta|Western cuisine|5.9|MAINCOURSE
+Garden Salad|Salad|5.9|APPETIZER
+Green Tea Parafait|Italian Dessert|5.9|DESSERT
+ice cream|green tea|4.9|DESSERT
+MARIGOLD PUDDING|I LOVE MARIGOLD|3.9|DESSERT
+ICE CREAM SANDWICH|ANDROID|3.9|DESSERT

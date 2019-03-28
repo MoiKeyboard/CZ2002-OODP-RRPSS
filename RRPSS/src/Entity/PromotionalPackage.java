@@ -2,7 +2,7 @@ package Entity;
 
 import java.util.ArrayList;
 
-public class PromotionalPackage extends MenuItem {
+public class PromotionalPackage extends Menu {
 	private ArrayList<Alacarte> menuItemArr;
 
 	public PromotionalPackage() {
@@ -11,7 +11,7 @@ public class PromotionalPackage extends MenuItem {
 	}
 
 	public PromotionalPackage(String promoName, String description, double price, ArrayList<Alacarte> menuItemsArr) {
-		super();
+		super(promoName,description,price);
 		this.menuItemArr = menuItemsArr;
 	}
 

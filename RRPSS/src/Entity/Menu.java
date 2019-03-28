@@ -1,10 +1,22 @@
 package Entity;
 
-abstract class MenuItem {
+public class Menu {
 	private String name;
 	private String description;
 	private double price;
 
+	public Menu() {
+		this.name = null;
+		this.description = null;
+		this.price = 0;
+	}
+	
+	public Menu(String name, String description, double price) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
+	}
+	
 	public String getName() {
 		return name;
 	}

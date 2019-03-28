@@ -1,6 +1,6 @@
 package Entity;
 
-public class Alacarte extends MenuItem {
+public class Alacarte extends Menu {
 	private String category;
 
 	public Alacarte() {
@@ -9,7 +9,7 @@ public class Alacarte extends MenuItem {
 	}
 
 	public Alacarte(String name, String description, double price, String category) {
-		super();
+		super(name,description,price);
 		this.category = category;
 	}
 

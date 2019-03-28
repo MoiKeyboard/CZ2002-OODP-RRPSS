@@ -279,6 +279,7 @@ public class TextDB {
 				menuItemAl.add(mi);
 			}
 			PromotionalPackage promoPkg = new PromotionalPackage(promoName,desc,promoPrice,menuItemAl);
+			promoAl.add(promoPkg);
 		}
 		return promoAl;
 	}
@@ -301,6 +302,7 @@ public class TextDB {
 				st.append(SEPARATOR);
 				st.append(s1.getMenuItemArr().get(i2).getPrice());	
 				st.append(SEPARATOR);
+				st.append(s1.getMenuItemArr().get(i2).getCategory());
 			}
 			alw.add(st.toString());
 		}
