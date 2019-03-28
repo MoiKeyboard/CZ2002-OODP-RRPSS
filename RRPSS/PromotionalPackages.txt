@@ -1,1 +1,1 @@
-Western Set A|Western|10.9|Garden Salad|Salad|5.9|APPETIZERCarbonara Pasta|Western cuisine|5.9|MAINCOURSEice cream|green tea|4.9|DESSERT
+Western Set A|Western|10.9|Garden Salad|Salad|5.9|APPETIZER|Carbonara Pasta|Western cuisine|5.9|MAINCOURSE|ice cream|green tea|4.9|DESSERT

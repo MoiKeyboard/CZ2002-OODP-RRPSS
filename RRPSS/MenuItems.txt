@@ -1,4 +1,3 @@
-cheese baked scallops|qwek's love it|9.9|MAINCOURSE
 Carbonara Pasta|Western cuisine|5.9|MAINCOURSE
 Garden Salad|Salad|5.9|APPETIZER
 Green Tea Parafait|Italian Dessert|5.9|DESSERT

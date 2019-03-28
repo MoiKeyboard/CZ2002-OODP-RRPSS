@@ -303,6 +303,7 @@ public class TextDB {
 				st.append(s1.getMenuItemArr().get(i2).getPrice());	
 				st.append(SEPARATOR);
 				st.append(s1.getMenuItemArr().get(i2).getCategory());
+				st.append(SEPARATOR);
 			}
 			alw.add(st.toString());
 		}
