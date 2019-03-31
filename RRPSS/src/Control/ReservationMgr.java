@@ -56,18 +56,13 @@ public class ReservationMgr {
 		System.out.println("Please enter phone number");
 		contactNo = sc.nextInt();
 		sc.nextLine();
-		reservationExists = checkReservation(contactNo);
-		if (reservationExists == true) {
-			System.out.println("Reservation already exists");
-			return;
-		}
 		System.out.println("Please enter name");
 		custName = sc.nextLine();
 		System.out.println("Please enter reservation date and time in 24hour clock format (E.g 10-04-19 1200)");
 		reservationDT = sc.nextLine();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy kkmm");
 		LocalDateTime reservationDateTime = LocalDateTime.parse(reservationDT, formatter);
-		if(reservationDateValidation(reservationDateTime) == false) return;
+		if(reservationDateValidation(contactNo,reservationDateTime) == false) return;
 		System.out.println("Please enter number of pax");
 		pax = sc.nextInt(); 
 		for(Table t : tableAl) {
@@ -102,16 +97,7 @@ public class ReservationMgr {
 		}
 		TextDB.saveReservations("Reservations.txt", reservationAl, tableAl, custAl);
 	}
-	
-	public boolean checkReservation(int contactNo) {
-		boolean reservationExists = false;
-		for (Reservation r: reservationAl) {
-			if(r.getContactNo() == contactNo) {
-				reservationExists = true;
-			}
-		}
-		return reservationExists;
-	}
+
 
 	public void checkReservation() {
 		int contactNo;
@@ -127,18 +113,36 @@ public class ReservationMgr {
 		}
 	}
 	
-	public boolean reservationDateValidation(LocalDateTime reservationDT) {
+	public boolean reservationDateValidation(int contactNum,LocalDateTime reservationDT) {
 		LocalDateTime today = LocalDateTime.now();
-		int reservationHour = reservationDT.getHour();
-		int reservationMinute = reservationDT.getMinute();
+		LocalDateTime existingReservationDT;
+		int newReservationHour = reservationDT.getHour();
+		int newReservationMinute = reservationDT.getMinute();
+		int existingReservationHour, existingReservationMinute;
+		for(Reservation r : reservationAl) {
+			if(r.getContactNo() == contactNum) {
+				existingReservationDT = r.getReservationDate() ;
+				existingReservationHour = existingReservationDT.getHour();
+				existingReservationMinute = existingReservationDT.getMinute();
+				if(existingReservationDT.getDayOfYear()==reservationDT.getDayOfYear()){
+					if((((existingReservationHour >= 11) && (existingReservationHour <= 14)) || ((existingReservationHour == 15) && (existingReservationMinute == 0))) && (((newReservationHour >= 11) && (newReservationHour <= 14)) || ((newReservationHour == 15) && (newReservationMinute == 0)))) {
+						System.out.println("Existing reservation with the same contact number on the same day and same AM Session");
+						return false;
+					} else if((((existingReservationHour >= 18) && (existingReservationHour <= 21)) || ((existingReservationHour == 22) && (existingReservationMinute == 0))) && (((newReservationHour >= 18) && (newReservationHour <= 21)) || ((newReservationHour == 22) && (newReservationMinute == 0)))) {
+						System.out.println("Existing reservation with the same contact number on the same day and same PM session");
+						return false;
+					}
+				}
+			}
+		}
 		if((reservationDT.getDayOfYear() - today.getDayOfYear()) > 30) {
 			System.out.println("Reservation can only be made at most 1 month(30 days) in advance.\n");
 			return false;
-		} else if (((((reservationHour >= 11) && (reservationHour <= 14)) || ((reservationHour == 15) && (reservationMinute == 0)))) != true && 
-				(((reservationHour >= 18) && (reservationHour <= 21)) || ((reservationHour == 22) && (reservationMinute == 0))) != true)  {
+		} else if (((((newReservationHour >= 11) && (newReservationHour <= 14)) || ((newReservationHour == 15) && (newReservationMinute == 0)))) != true && 
+				(((newReservationHour >= 18) && (newReservationHour <= 21)) || ((newReservationHour == 22) && (newReservationMinute == 0))) != true)  {
 			System.out.println("Restaurant is open only from 11:00 am - 15:00 pm (AM Session) and from 18:00 pm - 22:00pm (PM Session).\n");
 			return false;
-		}
+		} 
 		return true;
 	}
 	
