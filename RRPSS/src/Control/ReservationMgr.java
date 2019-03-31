@@ -3,6 +3,7 @@ package Control;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -52,7 +53,7 @@ public class ReservationMgr {
 	public void createReservation() throws Exception {
 		String reservationDT, custName;
 		int contactNo,pax;
-		boolean successFlag = false,reservationExists = false;
+		boolean successFlag = false;
 		System.out.println("Please enter phone number");
 		contactNo = sc.nextInt();
 		sc.nextLine();
@@ -185,5 +186,22 @@ public class ReservationMgr {
 		cMgr.removeCustomer(searchTerm);
 		TextDB.saveReservations("Reservations.txt", reservationAl, tableAl, custAl);
 	}
+	
+	public void removeExpiredReservations() {
+		LocalDateTime existingReservationDT, expiringDT;
+		int existingReservationDay;
+		LocalDateTime today = LocalDateTime.now();
+		for(Reservation r : reservationAl) {
+			existingReservationDT = r.getReservationDate() ;
+			existingReservationDay = existingReservationDT.getDayOfYear();
+			expiringDT = today.minus(10,ChronoUnit.MINUTES);
+			if(expiringDT.getHour() == existingReservationDT.getHour() && expiringDT.getMinute() == existingReservationDT.getMinute()) {
+				if(r.isAttended() != true) {
+					System.out.println("Removing Reservation:\n" + r.toString());
+					reservationAl.remove(r);
+				}
+			}
+		}
+}
 	
 }

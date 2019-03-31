@@ -2,6 +2,7 @@ package Entity;
 
 public class Alacarte extends Menu {
 	private String category;
+	private int alaCarteQty;
 
 	public Alacarte() {
 		super();
@@ -20,7 +21,15 @@ public class Alacarte extends Menu {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	
+	public int getAlaCarteQty() {
+		return alaCarteQty;
+	}
 
+	public void setAlaCarteQty(int alaCarteQty) {
+		this.alaCarteQty = alaCarteQty;
+	}
+	
 	@Override
 	public String toString() {
 		String menuItemDetails = null;

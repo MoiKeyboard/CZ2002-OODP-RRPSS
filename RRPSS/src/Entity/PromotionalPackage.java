@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class PromotionalPackage extends Menu {
 	private ArrayList<Alacarte> menuItemArr;
+	private double promoPkgQty;
 
 	public PromotionalPackage() {
 		super();
@@ -23,6 +24,14 @@ public class PromotionalPackage extends Menu {
 		this.menuItemArr = menuItemArr;
 	}
 
+	public double getPromoPkgQty() {
+		return promoPkgQty;
+	}
+
+	public void setPromoPkgQty(double promoPkgQty) {
+		this.promoPkgQty = promoPkgQty;
+	}
+	
 	@Override
 	public String toString() {
 		String promoDetails = null;

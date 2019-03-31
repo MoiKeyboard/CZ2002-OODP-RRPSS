@@ -8,6 +8,7 @@ public class Reservation {
 	private int contactNo; // primary key
 	private LocalDateTime reservationDateTime;
 	private int pax,tableNo;
+	private boolean attended;
 	
 	public Reservation(){
 		this.contactNo = 0;
@@ -15,7 +16,7 @@ public class Reservation {
 		this.pax = 0;
 		this.tableNo = tableNo;
 	}
-	
+
 	public Reservation(int contactNo, LocalDateTime reservationDateTime,int pax, int tableNo){
 		this.contactNo = contactNo;
 		this.reservationDateTime = reservationDateTime;
@@ -38,6 +39,15 @@ public class Reservation {
 	public int getTableNo() {
 		return tableNo;
 	}
+	
+	public boolean isAttended() {
+		return attended;
+	}
+
+	public void setAttended(boolean attended) {
+		this.attended = attended;
+	}
+
 
 	@Override
 	public String toString() {
