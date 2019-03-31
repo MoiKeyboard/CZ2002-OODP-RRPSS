@@ -7,7 +7,6 @@ public class Order {
 	private int tableNo;
 	private ArrayList<Alacarte> orderAlaCarteItemAl;
 	private ArrayList<PromotionalPackage> orderPromoPackageAl;
-	private int itemQuantity;
 	private int orderNo;
 	
 	public Order(){
@@ -16,16 +15,14 @@ public class Order {
 		this.tableNo = 0;
 		this.orderAlaCarteItemAl = null;
 		this.orderPromoPackageAl = null;
-		this.itemQuantity = 0;
 		
 	}
-	public Order(int orderNo, int staffId, int tableNo, ArrayList<Alacarte> orderAlaCarteItemAl,ArrayList<PromotionalPackage> orderPromoPackageAl, int itemQuantity) {
+	public Order(int orderNo, int staffId, int tableNo, ArrayList<Alacarte> orderAlaCarteItemAl,ArrayList<PromotionalPackage> orderPromoPackageAl) {
 		this.orderNo = orderNo;
 		this.staffId = staffId;
 		this.tableNo = tableNo;
 		this.orderAlaCarteItemAl =orderAlaCarteItemAl;
 		this.orderPromoPackageAl = orderPromoPackageAl;
-		this.itemQuantity = itemQuantity;
 	}
 	
 	public int getOrderNo() {
@@ -52,14 +49,6 @@ public class Order {
 		this.tableNo = tableNo;
 	}
 	
-	public int getItemQuantity() {
-		return itemQuantity;
-	}
-	
-	public void setItemQuantity(int itemQuantity) {
-		this.itemQuantity = itemQuantity;
-	}
-	
 	public ArrayList<Alacarte> getAlaCarteOrderItem() {
 		return orderAlaCarteItemAl;
 	}
@@ -79,7 +68,13 @@ public class Order {
 	@Override
 	public String toString() {
 		String orderItemDetails = null;
-		//orderItemDetails = "Table No: " + getTableNo() + "\nStaff ID: " + getStaffId() + "\nOrder No: " + getOrderNo() + "Order item: " + getOrderItem() + "\nQuantity: " + getItemQuantity();
+		orderItemDetails = "Table No: " + getTableNo() + "\nStaff ID: " + getStaffId() + "\nOrder No: " + getOrderNo() + "\n";
+		for(Alacarte alaCarteItem : orderAlaCarteItemAl) {
+			orderItemDetails += alaCarteItem.toString() + alaCarteItem.getAlaCarteQty();
+		}
+		for(PromotionalPackage promoItem : orderPromoPackageAl) {
+			orderItemDetails += promoItem.toString() + promoItem.getPromoPkgQty();
+		}
 		return orderItemDetails;
 	}
 	

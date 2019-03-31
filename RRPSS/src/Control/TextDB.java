@@ -252,7 +252,6 @@ public class TextDB {
 			st.append(SEPARATOR);
 			//st.append(s1.getOrderItem());
 			//st.append(SEPARATOR);
-			st.append(s1.getItemQuantity());
 			alw.add(st.toString());
 		}
 		write(filename, alw);
