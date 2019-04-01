@@ -1,17 +1,15 @@
 package Control;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Entity.Alacarte;
 import Entity.Reservation;
 import Entity.Table;
 
 public class TableMgr {
 	private ArrayList<Table> tableAl;
 	protected Scanner sc;
-	
+
 	public TableMgr() {
 		tableAl = new ArrayList<Table>();
 		try {
@@ -21,32 +19,32 @@ public class TableMgr {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void printTableList() {
 		System.out.println("Table list as follows:");
-		for(Table s : tableAl) {
+		for (Table s : tableAl) {
 			System.out.println("Table No: " + s.getTableNo());
 			System.out.println("Seat capacity: " + s.getSeatCap());
 			System.out.println("Table status: " + s.getTableStatus() + "\n");
 		}
 		System.out.println();
 	}
-	
-	protected ArrayList<Table> getTableAl(){
+
+	protected ArrayList<Table> getTableAL() {
 		return tableAl;
 	}
-	
+
 	protected String getTableStatusForReservation(Reservation r) {
 		for (Table tables : tableAl) {
-			if(tables.getTableNo() == r.getTableNo()) {
+			if (tables.getTableNo() == r.getTableNo()) {
 				return tables.getTableStatus();
 			}
 		}
 		return null;
 	}
-	
+
 	protected void modifyTableAl(ArrayList<Table> tableArr) {
 		tableAl = tableArr;
 	}
-	
+
 }

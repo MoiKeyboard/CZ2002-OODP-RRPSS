@@ -163,7 +163,7 @@ public class MenuMgr {
 		System.out.println("Please enter the name of the promotional package that you want to update");
 		promoName = sc.nextLine();
 		System.out.println("Search term" + promoName);
-		index = getPPIndex(promoPackageAl, promoName);		
+		index = getPPIndex(promoPackageAl, promoName);
 		if (index == -1) {
 			System.out.println("Promotional Package not found, please try again");
 			return;
@@ -219,7 +219,7 @@ public class MenuMgr {
 				default:
 					System.out.println("Invalid input try again");
 				}
-			}		
+			}
 			TextDB.savePromoPackage("PromotionalPackages.txt", promoPackageAl);
 		}
 	}
@@ -237,11 +237,11 @@ public class MenuMgr {
 
 	// rename
 	private void removeAlafromPP(Alacarte currA) throws IOException {
-		System.out.println("curPP===\n"+currA.toString());
+		System.out.println("curPP===\n" + currA.toString());
 		for (PromotionalPackage pp : promoPackageAl) {
-			
-			for (Alacarte a : new ArrayList<>(pp.getMenuItemArr())){
-				System.out.println("alacarte below\n"+a.toString());
+
+			for (Alacarte a : new ArrayList<>(pp.getMenuItemArr())) {
+				System.out.println("alacarte below\n" + a.toString());
 				if (currA.equals(a)) {
 					pp.getMenuItemArr().remove(a);
 				}
@@ -264,9 +264,9 @@ public class MenuMgr {
 		TextDB.savePromoPackage("PromotionalPackages.txt", promoPackageAl);
 
 	}
-	
+
 	public void printPromotionalPackage() {
-		for(PromotionalPackage pp : promoPackageAl) 
+		for (PromotionalPackage pp : promoPackageAl)
 			System.out.println(pp.toString());
 	}
 
@@ -284,5 +284,13 @@ public class MenuMgr {
 				return i;
 		}
 		return -1;
+	}
+
+	public ArrayList<Alacarte> getAlacarteAL() {
+		return this.alacarteAL;
+	}
+
+	public ArrayList<PromotionalPackage> getPromotionalPackageAL() {
+		return this.promoPackageAl;
 	}
 }

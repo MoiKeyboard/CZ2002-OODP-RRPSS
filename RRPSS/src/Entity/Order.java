@@ -3,11 +3,13 @@ package Entity;
 import java.util.ArrayList;
 
 public class Order {
+	private int orderNo;
 	private int staffId;
 	private int tableNo;
+	private ArrayList<Menu>;
 	private ArrayList<Alacarte> orderAlaCarteItemAl;
 	private ArrayList<PromotionalPackage> orderPromoPackageAl;
-	private int orderNo;
+	
 	
 	public Order(){
 		this.orderNo = 0;
