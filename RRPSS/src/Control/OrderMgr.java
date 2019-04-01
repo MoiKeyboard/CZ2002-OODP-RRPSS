@@ -36,10 +36,14 @@ public class OrderMgr {
 		ArrayList<Table> tableAL = tableMgr.getTableAL();
 		ArrayList<Staff> staffAL = personMgr.getStaffAL();
 		ArrayList<Customer> customerAL = personMgr.getCustomerAL();
+		
 
+		
 		int tableNo;
 		int staffId;
+		ArrayList<Menu> 
 		Order o1;
+		
 
 		System.out.println("Please enter table No: ");
 
