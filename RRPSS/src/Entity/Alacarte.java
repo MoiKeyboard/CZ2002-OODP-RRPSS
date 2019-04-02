@@ -2,7 +2,6 @@ package Entity;
 
 public class Alacarte extends Menu {
 	private String category;
-	private int alaCarteQty;
 
 	public Alacarte() {
 		super();
@@ -10,7 +9,7 @@ public class Alacarte extends Menu {
 	}
 
 	public Alacarte(String name, String description, double price, String category) {
-		super(name,description,price);
+		super(name, description, price);
 		this.category = category;
 	}
 
@@ -21,15 +20,7 @@ public class Alacarte extends Menu {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
-	public int getAlaCarteQty() {
-		return alaCarteQty;
-	}
 
-	public void setAlaCarteQty(int alaCarteQty) {
-		this.alaCarteQty = alaCarteQty;
-	}
-	
 	@Override
 	public String toString() {
 		String menuItemDetails = null;
@@ -37,12 +28,14 @@ public class Alacarte extends Menu {
 				+ getDescription() + "\nPrice: " + getPrice() + "\n";
 		return menuItemDetails;
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
 		Alacarte comparatorObject = (Alacarte) o;
-		if(this.getName().equalsIgnoreCase(comparatorObject.getName())  && this.getDescription().equalsIgnoreCase(comparatorObject.getDescription()) && this.getPrice() == comparatorObject.getPrice()){
-			
+		if (this.getName().equalsIgnoreCase(comparatorObject.getName())
+				&& this.getDescription().equalsIgnoreCase(comparatorObject.getDescription())
+				&& this.getPrice() == comparatorObject.getPrice()) {
+
 			return true;
 		}
 		return false;

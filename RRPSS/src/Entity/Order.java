@@ -6,26 +6,20 @@ public class Order {
 	private int orderNo;
 	private int staffId;
 	private int tableNo;
-	private ArrayList<Menu> food;
-	private ArrayList<Alacarte> orderAlaCarteItemAl;
-	private ArrayList<PromotionalPackage> orderPromoPackageAl;
+	private ArrayList<Menu> foodAL;
 
 	public Order() {
 		this.orderNo = 0;
 		this.staffId = 0;
 		this.tableNo = 0;
-		this.orderAlaCarteItemAl = null;
-		this.orderPromoPackageAl = null;
-
+		this.foodAL = null;
 	}
 
-	public Order(int orderNo, int staffId, int tableNo, ArrayList<Alacarte> orderAlaCarteItemAl,
-			ArrayList<PromotionalPackage> orderPromoPackageAl) {
+	public Order(int orderNo, int staffId, int tableNo, ArrayList<Menu> foodAL) {
 		this.orderNo = orderNo;
 		this.staffId = staffId;
 		this.tableNo = tableNo;
-		this.orderAlaCarteItemAl = orderAlaCarteItemAl;
-		this.orderPromoPackageAl = orderPromoPackageAl;
+		this.foodAL = foodAL;
 	}
 
 	public int getOrderNo() {
@@ -52,20 +46,12 @@ public class Order {
 		this.tableNo = tableNo;
 	}
 
-	public ArrayList<Alacarte> getAlaCarteOrderItem() {
-		return orderAlaCarteItemAl;
+	public ArrayList<Menu> getFoodAL() {
+		return foodAL;
 	}
 
-	public void setOrderAlaCarteItem(Alacarte orderAlaCarteItem) {
-		orderAlaCarteItemAl.add(orderAlaCarteItem);
-	}
-
-	public ArrayList<PromotionalPackage> getPromoPackage() {
-		return orderPromoPackageAl;
-	}
-
-	public void setOrderPromoItems(PromotionalPackage orderPromoItem) {
-		orderPromoPackageAl.add(orderPromoItem);
+	public void setFoodAL(ArrayList<Menu> foodAL) {
+		this.foodAL = foodAL;
 	}
 
 	@Override
@@ -73,12 +59,12 @@ public class Order {
 		String orderItemDetails = null;
 		orderItemDetails = "Table No: " + getTableNo() + "\nStaff ID: " + getStaffId() + "\nOrder No: " + getOrderNo()
 				+ "\n";
-		for (Alacarte alaCarteItem : orderAlaCarteItemAl) {
-			orderItemDetails += alaCarteItem.toString() + alaCarteItem.getAlaCarteQty();
-		}
-		for (PromotionalPackage promoItem : orderPromoPackageAl) {
-			orderItemDetails += promoItem.toString() + promoItem.getPromoPkgQty();
-		}
+//		for (Alacarte alaCarteItem : orderAlaCarteItemAl) {
+//			orderItemDetails += alaCarteItem.toString() + alaCarteItem.getAlaCarteQty();
+//		}
+//		for (PromotionalPackage promoItem : orderPromoPackageAl) {
+//			orderItemDetails += promoItem.toString() + promoItem.getPromoPkgQty();
+//		}
 		return orderItemDetails;
 	}
 

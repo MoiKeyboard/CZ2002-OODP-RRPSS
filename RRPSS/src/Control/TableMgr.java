@@ -34,6 +34,26 @@ public class TableMgr {
 		return tableAl;
 	}
 
+	protected boolean checkTableVacancy(int tableNo) {
+		boolean found = false;
+		Table foundTable = null;
+		for (Table t : tableAl) {
+			if (t.getTableNo() == tableNo) {
+				foundTable = t;
+				found = true;
+				break;
+			}
+		}
+		if (found == false) {
+			System.out.println("Table " + tableNo + " not found");
+			return false;
+		} else if (!"Vaccated".equals(foundTable.getTableStatus())) {
+			System.out.println("Table " + tableNo + " is currently " + foundTable.getTableStatus());
+			return false;
+		} else
+			return true;
+	}
+
 	protected String getTableStatusForReservation(Reservation r) {
 		for (Table tables : tableAl) {
 			if (tables.getTableNo() == r.getTableNo()) {

@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Entity.Alacarte;
-import Entity.Customer;
+import Entity.Menu;
 import Entity.Order;
 import Entity.PromotionalPackage;
-import Entity.Staff;
 import Entity.Table;
 
 public class OrderMgr {
@@ -34,34 +33,29 @@ public class OrderMgr {
 		ArrayList<Alacarte> alacarteAL = menuMgr.getAlacarteAL();
 		ArrayList<PromotionalPackage> promotionalPackageAL = menuMgr.getPromotionalPackageAL();
 		ArrayList<Table> tableAL = tableMgr.getTableAL();
-		ArrayList<Staff> staffAL = personMgr.getStaffAL();
-		ArrayList<Customer> customerAL = personMgr.getCustomerAL();
-		
+//		ArrayList<Staff> staffAL = personMgr.getStaffAL();
 
-		
 		int tableNo;
 		int staffId;
-		ArrayList<Menu> 
+		String foodInput;
+		int foodIndex;
+		ArrayList<Menu> foodAL;
 		Order o1;
-		
 
 		System.out.println("Please enter table No: ");
-
-		int input = 0;
-		System.out.println("Please enter table No: ");
-		int tableID = Integer.parseInt(sc.next());
-		// Should also add in checks if the order exists for the same table number
-		// Check the reservation which is tied to the table No that staff entered and
-		// set the boolean attended to true for the particular reservation
-		if (findTableID(tableID) != true) {
-			System.out.println("Table not found!");
+		tableNo = Integer.parseInt(sc.next());
+		if (tableMgr.checkTableVacancy(tableNo) == false)
 			return;
-		}
+
 		do {
-			System.out.println("1.) Add Promotional Set");
-			System.out.println("2.) Add AlaCarte Item");
-			System.out.println("5.) Exit");
-			input = Integer.parseInt(sc.next());
+			System.out.println("Please enter food name to add to order (enter 0 to finish adding)");
+			foodInput = sc.nextLine();
+			foodIndex = menuMgr.getAlacarteIndex(alacarteAL, foodInput);
+//			menuMgr.getPPIndex(promotionalPackageAL, foodInput)
+			if (foodIndex == -1) {
+				System.out.println("Food item not found please try again");
+				return;
+			}
 			switch (input) {
 			case (1):
 				System.out.println("Enter 0 when you are done adding");
@@ -121,16 +115,5 @@ public class OrderMgr {
 		// Remove reservation tied to that particular table ID in the current session
 		// Change table to vacated
 
-	}
-
-	public boolean findTableID(int tableNo) {
-		boolean found = false;
-		for (Table t : tableAl) {
-			if (t.getTableNo() == tableNo) {
-				found = true;
-				break;
-			}
-		}
-		return found;
 	}
 }
