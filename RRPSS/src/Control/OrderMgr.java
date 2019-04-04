@@ -4,11 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Entity.Alacarte;
 import Entity.Menu;
 import Entity.Order;
-import Entity.PromotionalPackage;
-import Entity.Table;
 
 public class OrderMgr {
 	private ArrayList<Order> orderAl;
@@ -23,96 +20,132 @@ public class OrderMgr {
 			// read text file for order items
 			// orderAl = TextDB.readOrder("Orders.txt");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr reservationMgr) {
-		// Retrieve object by reference on runtime
-		ArrayList<Menu> menuAl = menuMgr.getMenuAl();
-		ArrayList<Table> tableAL = tableMgr.getTableAL();
-//		ArrayList<Staff> staffAL = personMgr.getStaffAL();
 
-		int tableNo;
-		int staffId;
-		String foodInput = "5";
-		int foodIndex;
-		ArrayList<Menu> foodAL;
-		Order o1;
+=======
+		int orderNo, tableInput, staffInput;
+		ArrayList<Menu> foodAL = null;
+		String foodInput;
 
+		orderNo = generateOrderNumber();
+		System.out.println("Please enter staff ID: ");
+		staffInput = Integer.parseInt(sc.next());
+		// check staff id exists
+//		if (checkDuplicateOrderNumber(orderNo) == false)
+//			return;
 		System.out.println("Please enter table No: ");
-		tableNo = Integer.parseInt(sc.next());
-		if (tableMgr.checkTableVacancy(tableNo) == false)
+		tableInput = Integer.parseInt(sc.next());
+		if (tableMgr.checkTableVacancy(tableInput) == false)
 			return;
 
 		do {
-		/*	System.out.println("Please enter food name to add to order (enter 0 to finish adding)");
+
+
+			int foodQty;
+			int foodIndex;
+			Menu foodObj = null;
+
+			System.out.println("Please enter food/promotional package name to add to order (enter 0 to finish adding)");
 			foodInput = sc.nextLine();
-			foodIndex = menuMgr.getAlacarteIndex(alacarteAL, foodInput);
-//			menuMgr.getPPIndex(promotionalPackageAL, foodInput)
-			if (foodIndex == -1) {
-				System.out.println("Food item not found please try again");
-				return;
+			System.out.println("Please enter quanity of " + foodInput);
+			foodQty = Integer.parseInt(sc.nextLine());
+
+			// retrieve foodobj
+			foodObj = menuMgr.getMenu(foodInput);
+
+			if (foodObj != null) {
+				while (foodQty > 0) {
+					foodAL.add(foodObj);
+					foodQty--;
+				}
 			}
-			switch (input) {
-			case (1):
-				System.out.println("Enter 0 when you are done adding");
-				// should print out all the promotion package here and the staff could just
-				// select the index and enter quantity
-				System.out.println("Please enter quantity of promo package");
-				int promoPkgQty = Integer.parseInt(sc.next());
-				// PromotionalPackage promoPkg = new PromotionalPackage(packageSelected);
-				// promoPkg.setPromoPkgQty(promoPkgQty);
-				// promoAl.add(promoPkg);
-				break;
-			case (2):
-				System.out.println("Enter 0 when you are done adding");
-				// should print out all the ala carte menu items here and the staff could just
-				// select the index and enter quantity
-				System.out.println("Please enter quantity of ala carte item");
-				int alaCarteQty = Integer.parseInt(sc.next());
-				// Alacarte alaCarteItem = new Alacarte(alaCarteItemSelected);
-				// alaCarteItem.setAlaCarteQty(alaCarteItem);
-				// alaCarteAl.add(alaCarteItem);
-				break;
-			case (5):
-				break;
-			default:
-				System.out.println("Invalid input!");
-				break;
-			} */
-		} while (Integer.valueOf(foodInput) != 5);
-		// set the table flag to occupied
-		// Order newOrder = new Order(tableID,staffID,alaCarteAl,promoAl);
-		// orderAl.add(newOrder);
+		} while (!"0".equals(foodInput));
+
+		orderAl.add(new Order(orderNo, staffInput, tableInput, foodAL));
+		tableMgr.updateTableStatus(tableInput, "Occupied");
+
 		System.out.println("Creation of order is successful!");
 
 	}
 
 	// View order of the current session
 	public void viewOrder() throws IOException {
-		int tableInput = 0;
+		int index;
 		System.out.println("Please enter table number");
-		tableInput = sc.nextInt();
-		for (Order orderView : orderAl) {
-			if (tableInput == orderView.getTableNo()) {
-				System.out.println(orderView.toString());
-			}
-		}
+		index = getOrderIndex(sc.nextInt());
+		System.out.println(orderAl.get(index).toString());
 	}
 
-	public void updateOrder() {
+	public void updateOrder(MenuMgr menuMgr) {
+		int index, input = -1;
+		System.out.println("Please enter table number");
+		index = getOrderIndex(sc.nextInt());
+		do {
+			System.out.println(orderAl.get(index).toString());
+			System.out.println("1) Add order item(s)");
+			System.out.println("2) Remove order item(s)");
+			System.out.println("3) Finish updating order");
+			input = Integer.parseInt(sc.nextLine());
 
+			String foodInput;
+			int qtyInput;
+			switch (input) {
+			case 1:
+				System.out.println("Enter foodname you want to add");
+				foodInput = sc.nextLine();
+				System.out.println("Please enter quanity of " + foodInput);
+				qtyInput = Integer.parseInt(sc.nextLine());
+				// menumgr
+				break;
+			case 2:
+				System.out.println("Enter foodname you want to remove");
+				foodInput = sc.nextLine();
+				System.out.println("Please enter quanity of " + foodInput);
+				qtyInput = Integer.parseInt(sc.nextLine());
+				break;
+			default:
+				System.out.println("Invalid input please try again");
+				break;
+			}
+		} while (input != 3);
 	}
 
 	public void removeOrder() {
-
+		int index;
+		System.out.println("Please enter table number");
+		index = getOrderIndex(sc.nextInt());
+		if (index != -1) {
+			orderAl.remove(index);
+			System.out.println("Order remove successfully");
+		}
 	}
 
 	public void printInvoice() {
+
 		// Remove reservation tied to that particular table ID in the current session
 		// Change table to vacated
 
+	}
+
+	public int generateOrderNumber() {
+		int i = orderAl.size() + 1;
+		for (Order o : orderAl) {
+			if (i == o.getOrderNo())
+				i++;
+		}
+		return i;
+	}
+
+	public int getOrderIndex(int search) {
+		for (int i = 0; i < orderAl.size(); i++) {
+			if (search == orderAl.get(i).getOrderNo())
+				return i;
+		}
+		System.out.println("Order no" + search + " not found");
+		return -1;
 	}
 }

@@ -34,21 +34,16 @@ public class TableMgr {
 		return tableAl;
 	}
 
+	protected void updateTableStatus(int tableNo, String status) {
+		int index = getTableIndex(tableNo);
+		tableAl.get(index).setTableStatus(status);
+		System.out.println("Table " + tableNo + " set to " + status);
+	}
+
 	protected boolean checkTableVacancy(int tableNo) {
-		boolean found = false;
-		Table foundTable = null;
-		for (Table t : tableAl) {
-			if (t.getTableNo() == tableNo) {
-				foundTable = t;
-				found = true;
-				break;
-			}
-		}
-		if (found == false) {
-			System.out.println("Table " + tableNo + " not found");
-			return false;
-		} else if (!"Vaccated".equals(foundTable.getTableStatus())) {
-			System.out.println("Table " + tableNo + " is currently " + foundTable.getTableStatus());
+		int index = getTableIndex(tableNo);
+		if (!"Vaccated".equals(tableAl.get(index).getTableStatus())) {
+			System.out.println("Table " + tableNo + " is currently " + tableAl.get(index).getTableStatus());
 			return false;
 		} else
 			return true;
@@ -65,6 +60,15 @@ public class TableMgr {
 
 	protected void modifyTableAl(ArrayList<Table> tableArr) {
 		tableAl = tableArr;
+	}
+
+	protected int getTableIndex(int search) {
+		for (int i = 0; i < tableAl.size(); i++) {
+			if (search == tableAl.get(i).getTableNo())
+				return i;
+		}
+		System.out.println("Table " + search + " not found");
+		return -1;
 	}
 
 }
