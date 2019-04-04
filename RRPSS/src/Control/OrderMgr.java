@@ -37,7 +37,7 @@ public class OrderMgr {
 
 		int tableNo;
 		int staffId;
-		String foodInput;
+		String foodInput = "5";
 		int foodIndex;
 		ArrayList<Menu> foodAL;
 		Order o1;
@@ -48,7 +48,7 @@ public class OrderMgr {
 			return;
 
 		do {
-			System.out.println("Please enter food name to add to order (enter 0 to finish adding)");
+		/*	System.out.println("Please enter food name to add to order (enter 0 to finish adding)");
 			foodInput = sc.nextLine();
 			foodIndex = menuMgr.getAlacarteIndex(alacarteAL, foodInput);
 //			menuMgr.getPPIndex(promotionalPackageAL, foodInput)
@@ -82,8 +82,8 @@ public class OrderMgr {
 			default:
 				System.out.println("Invalid input!");
 				break;
-			}
-		} while (input != 5);
+			} */
+		} while (Integer.valueOf(foodInput) != 5);
 		// set the table flag to occupied
 		// Order newOrder = new Order(tableID,staffID,alaCarteAl,promoAl);
 		// orderAl.add(newOrder);
