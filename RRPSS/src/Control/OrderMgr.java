@@ -26,7 +26,6 @@ public class OrderMgr {
 
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr reservationMgr) {
 
-=======
 		int orderNo, tableInput, staffInput;
 		ArrayList<Menu> foodAL = null;
 		String foodInput;
@@ -44,7 +43,6 @@ public class OrderMgr {
 
 		do {
 
-
 			int foodQty;
 			int foodIndex;
 			Menu foodObj = null;
@@ -55,7 +53,7 @@ public class OrderMgr {
 			foodQty = Integer.parseInt(sc.nextLine());
 
 			// retrieve foodobj
-			foodObj = menuMgr.getMenu(foodInput);
+			// foodObj = menuMgr.getMenu(foodInput);
 
 			if (foodObj != null) {
 				while (foodQty > 0) {
@@ -84,6 +82,7 @@ public class OrderMgr {
 		int index, input = -1;
 		System.out.println("Please enter table number");
 		index = getOrderIndex(sc.nextInt());
+		ArrayList<Menu> currFoodAL = orderAl.get(index).getFoodAL();
 		do {
 			System.out.println(orderAl.get(index).toString());
 			System.out.println("1) Add order item(s)");
@@ -92,20 +91,35 @@ public class OrderMgr {
 			input = Integer.parseInt(sc.nextLine());
 
 			String foodInput;
-			int qtyInput;
+			int qtyInput, foodIndex;
 			switch (input) {
 			case 1:
 				System.out.println("Enter foodname you want to add");
 				foodInput = sc.nextLine();
 				System.out.println("Please enter quanity of " + foodInput);
 				qtyInput = Integer.parseInt(sc.nextLine());
-				menuMgr.getIndex(foodInput);
+				foodIndex = menuMgr.getIndex(foodInput);
+				if (foodIndex != -1) {
+					while (qtyInput > 0) {
+						currFoodAL.add(menuMgr.getMenuAl().get(foodIndex));
+						qtyInput--;
+					}
+				}
 				break;
 			case 2:
+				int removeQty = 0;
 				System.out.println("Enter foodname you want to remove");
 				foodInput = sc.nextLine();
 				System.out.println("Please enter quanity of " + foodInput);
 				qtyInput = Integer.parseInt(sc.nextLine());
+				for (Menu m : currFoodAL) {
+					if (foodInput.equalsIgnoreCase(m.getName()) && qtyInput != 0) {
+						currFoodAL.remove(m);
+						qtyInput--;
+						removeQty++;
+					}
+				}
+				System.out.println(foodInput + " " + qtyInput);
 				break;
 			default:
 				System.out.println("Invalid input please try again");
