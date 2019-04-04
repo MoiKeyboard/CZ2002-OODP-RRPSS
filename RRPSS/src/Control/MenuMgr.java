@@ -5,20 +5,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Entity.Alacarte;
+import Entity.Menu;
 import Entity.PromotionalPackage;
 
 public class MenuMgr {
-	private ArrayList<Alacarte> alacarteAL;
-	private ArrayList<PromotionalPackage> promoPackageAl;
+	private ArrayList<Menu> menuAl;
 	protected Scanner sc;
 
 	public MenuMgr() {
-		alacarteAL = new ArrayList<Alacarte>();
-		promoPackageAl = new ArrayList<PromotionalPackage>();
 		sc = new Scanner(System.in);
 		try {
-			alacarteAL = TextDB.readMenuItem("MenuItems.txt");
-			promoPackageAl = TextDB.readPromoPackageItem("PromotionalPackages.txt");
+			
+			menuAl = TextDB.readMenu("MenuItems.txt");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -26,8 +24,11 @@ public class MenuMgr {
 
 	public void printMenuItem() {
 		System.out.println("Menu Item as follows:");
-		for (Alacarte mi : alacarteAL) {
-			System.out.println(mi.toString());
+		for(int i = 0;i < menuAl.size();i++) {
+			if(menuAl.get(i) instanceof Alacarte) {
+				Alacarte aItem = (Alacarte) menuAl.get(i);
+				System.out.println(aItem.toString());
+			}
 		}
 		System.out.println();
 	}
@@ -39,7 +40,7 @@ public class MenuMgr {
 		foodCat = sc.nextLine();
 		System.out.println("Please enter food name");
 		foodName = sc.nextLine();
-		if (getAlacarteIndex(alacarteAL, foodName) != -1) {
+		if (getIndex(foodName) != -1) {
 			System.out.println("Existing food name found. Please try again");
 			return;
 		}
@@ -48,25 +49,26 @@ public class MenuMgr {
 		System.out.println("Please enter price");
 		foodPrice = Double.parseDouble(sc.nextLine());
 		Alacarte i1 = new Alacarte(foodName, foodDesc, foodPrice, foodCat);
-		alacarteAL.add(i1);
-		System.out.println(alacarteAL.get(0).toString());
+		menuAl.add(i1);
+		System.out.println(i1.toString());
 		System.out.println("Creation of menu item is sucessful!");
-		TextDB.saveMenuItem("MenuItems.txt", alacarteAL);
+		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
 	public void updateMenuItem() throws IOException {
 		String searchName;
 		int choice = 0, index;
-		Alacarte currAla;
+		Alacarte oldAla, newAla;
 		System.out.println("Please enter the name of the food item that you want to update");
 		searchName = sc.nextLine();
-		index = getAlacarteIndex(alacarteAL, searchName);
+		index = getIndex(searchName);
 		if (index == -1)
 			System.out.println("Food not found");
 		else {
-			currAla = alacarteAL.get(index);
+			oldAla = (Alacarte) menuAl.get(index);
+			newAla = (Alacarte) menuAl.get(index);
 			while (choice != 5) {
-				System.out.println(alacarteAL.get(index).toString());
+				System.out.println(menuAl.get(index).toString());
 				System.out.println("1) Update food category");
 				System.out.println("2) Update food name");
 				System.out.println("3) Update description");
@@ -77,19 +79,19 @@ public class MenuMgr {
 				switch (choice) {
 				case 1:
 					System.out.println("Enter updated food category");
-					currAla.setCategory(sc.nextLine());
+					newAla.setCategory(sc.nextLine());
 					break;
 				case 2:
 					System.out.println("Enter updated food name");
-					currAla.setName(sc.nextLine());
+					newAla.setName(sc.nextLine());
 					break;
 				case 3:
 					System.out.println("Enter updated description");
-					currAla.setDescription(sc.nextLine());
+					newAla.setDescription(sc.nextLine());
 					break;
 				case 4:
 					System.out.println("Enter updated price");
-					currAla.setPrice(sc.nextDouble());
+					newAla.setPrice(sc.nextDouble());
 					break;
 				case 5:
 					break;
@@ -97,25 +99,26 @@ public class MenuMgr {
 					System.out.println("Invalid input try again");
 				}
 			}
-			updateAlafromPP(currAla, alacarteAL.get(index));
+			updateAlafromPP(oldAla, (Alacarte) menuAl.get(index)); // doesnt update alacarte in promo pkg
 		}
-		TextDB.saveMenuItem("MenuItems.txt", alacarteAL);
+		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
-	public void removeMenuItem() throws IOException {
+	public void removeMenuItem() throws IOException { // whole method working
 		int index;
 		Alacarte currAla = new Alacarte();
 		System.out.println("Please enter the food item that you want to remove");
 		String searchName = sc.nextLine();
-		index = getAlacarteIndex(alacarteAL, searchName);
+		index = getIndex(searchName);
 		if (index == -1)
 			System.out.println("Food not found");
 		else {
-			currAla = alacarteAL.get(index);
-			alacarteAL.remove(index);
+			currAla = (Alacarte) menuAl.get(index);
+			menuAl.remove(index);
 			removeAlafromPP(currAla);
+			System.out.println("Removed ala carte menu item successfully!");
 		}
-		TextDB.saveMenuItem("MenuItems.txt", alacarteAL);
+		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
 	public void createPromotionalPackage() throws IOException {
@@ -127,7 +130,7 @@ public class MenuMgr {
 		ArrayList<Alacarte> promoItems = new ArrayList<Alacarte>();
 		System.out.println("Please enter new promotional package name");
 		promoName = sc.nextLine();
-		if (getPPIndex(promoPackageAl, promoName) != -1) {
+		if (getIndex(promoName) != -1) {
 			System.out.println("Existing promo name found. Please try again");
 			return;
 		}
@@ -140,18 +143,18 @@ public class MenuMgr {
 			System.out.println("Please enter food name to add to " + promoName + " (enter 0 to finish adding)");
 			foodName = sc.nextLine();
 			System.out.println("Food name entered : " + foodName);
-			index = getAlacarteIndex(alacarteAL, foodName);
+			index = getIndex(foodName);
 			if (foodName.equals("0"))
 				break;
 			else if (index == -1)
 				System.out.println("Food not found, Please try again");
 			else
-				promoItems.add(alacarteAL.get(index));
+				promoItems.add((Alacarte)menuAl.get(index));
 		} while (!(foodName.equals("0")));
 		PromotionalPackage p1 = new PromotionalPackage(promoName, promoDesc, promoPrice, promoItems);
-		promoPackageAl.add(p1);
+		menuAl.add(p1);
 		System.out.println("Creation of promotional package is sucessful!");
-		TextDB.savePromoPackage("PromotionalPackages.txt", promoPackageAl);
+		TextDB.saveMenu("MenuItems.txt", menuAl);
 
 	}
 
@@ -162,14 +165,14 @@ public class MenuMgr {
 		PromotionalPackage curPP;
 		System.out.println("Please enter the name of the promotional package that you want to update");
 		promoName = sc.nextLine();
-		System.out.println("Search term" + promoName);
-		index = getPPIndex(promoPackageAl, promoName);
+		System.out.println("Search term " + promoName);
+		index = getIndex(promoName);
 		if (index == -1) {
 			System.out.println("Promotional Package not found, please try again");
 			return;
 		} else {
-			curPP = promoPackageAl.get(index);
-			while (choice != 5) {
+			curPP = (PromotionalPackage) menuAl.get(index);
+			while (choice != 6) {
 				System.out.println(curPP.toString());
 				System.out.println("1) Update promotional package name");
 				System.out.println("2) Update promotional package description");
@@ -177,36 +180,38 @@ public class MenuMgr {
 				System.out.println("4) Add items to promotional package");
 				System.out.println("5) Remove items from promotional package");
 				System.out.println("6) Exit");
-				choice = sc.nextInt();
+				choice = Integer.parseInt(sc.nextLine());
 				switch (choice) {
-				case 1:
+				case 1: // working
 					System.out.println("Enter updated promotional package name");
 					curPP.setName(sc.nextLine());
 					break;
-				case 2:
+				case 2: // working
 					System.out.println("Enter updated promotional package description");
 					curPP.setDescription(sc.nextLine());
 					break;
-				case 3:
+				case 3: // working
 					System.out.println("Enter updated promotional package price");
-					curPP.setPrice(sc.nextInt());
+					curPP.setPrice(Double.parseDouble(sc.nextLine()));
 					break;
-				case 4:
+				case 4: // working
 					System.out.println("Enter food name to add to promotional package");
 					searchFood = sc.nextLine();
-					index2 = getAlacarteIndex(alacarteAL, searchFood);
-					if (index2 != -1) {
+					System.out.println("Wat food u adding to promo pkg : " + searchFood);
+					index2 = getIndex(searchFood);
+					if (index2 == -1) {
 						System.out.println("Food not found. Please try again");
 						break;
 					} else {
-						curPP.getMenuItemArr().add(alacarteAL.get(index2));
+						curPP.getMenuItemArr().add((Alacarte)menuAl.get(index2));
 					}
 					break;
-				case 5:
+				case 5: // not working
 					System.out.println("Enter food name to remove from promotional package");
 					searchFood = sc.nextLine();
-					index2 = getAlacarteIndex(curPP.getMenuItemArr(), searchFood);
-					if (index2 != -1) {
+					System.out.println("Wat food u removing from promo pkg : " + searchFood);
+					index2 = getMenuinPPIndex(curPP, searchFood);
+					if (index2 == -1) {
 						System.out.println("Food not found. Please try again");
 						break;
 					} else {
@@ -220,77 +225,78 @@ public class MenuMgr {
 					System.out.println("Invalid input try again");
 				}
 			}
-			TextDB.savePromoPackage("PromotionalPackages.txt", promoPackageAl);
+			TextDB.saveMenu("MenuItems.txt", menuAl);
 		}
 	}
 
-	public void updateAlafromPP(Alacarte currA, Alacarte newA) throws IOException {
-		ArrayList<Alacarte> AlacarteArr;
-		for (PromotionalPackage pp : promoPackageAl) {
-			for (Alacarte a : new ArrayList<>(pp.getMenuItemArr())) {
-				if (currA.equals(a))
-					currA = newA;
+	public void updateAlafromPP(Alacarte oldA, Alacarte newA) throws IOException {
+		for(int i = 0;i<menuAl.size();i++) {
+			if(menuAl.get(i) instanceof PromotionalPackage) {
+				for (Alacarte a : new ArrayList<>(((PromotionalPackage)menuAl.get(i)).getMenuItemArr())) {
+					if (oldA.equals(a))
+						a = newA;
+				}
 			}
 		}
-		TextDB.savePromoPackage("PromotionalPackages.txt", promoPackageAl);
+		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
 	// rename
 	private void removeAlafromPP(Alacarte currA) throws IOException {
-		System.out.println("curPP===\n" + currA.toString());
-		for (PromotionalPackage pp : promoPackageAl) {
-
-			for (Alacarte a : new ArrayList<>(pp.getMenuItemArr())) {
-				System.out.println("alacarte below\n" + a.toString());
-				if (currA.equals(a)) {
-					pp.getMenuItemArr().remove(a);
+		for(int i = 0;i<menuAl.size();i++) {
+			if(menuAl.get(i) instanceof PromotionalPackage) {
+				for (Alacarte a : new ArrayList<>(((PromotionalPackage)menuAl.get(i)).getMenuItemArr())) {
+					if (currA.equals(a)) 
+						((PromotionalPackage)menuAl.get(i)).getMenuItemArr().remove(a);
 				}
 			}
 		}
-		TextDB.savePromoPackage("PromotionalPackages.txt", promoPackageAl);
+		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
 	// rename
 	public void removePromotionalPackage() throws IOException {
 		int index;
 		System.out.println("Please enter the name of the promotional package that you want to remove");
-		index = getPPIndex(promoPackageAl, sc.nextLine());
+		index = getIndex(sc.nextLine());
 		if (index == -1)
 			System.out.println("Promotional package not found");
 		else {
-			promoPackageAl.remove(index);
+			menuAl.remove(index);
 			System.out.println("Promotional package removed");
 		}
-		TextDB.savePromoPackage("PromotionalPackages.txt", promoPackageAl);
+		TextDB.saveMenu("MenuItems.txt", menuAl);
 
 	}
 
 	public void printPromotionalPackage() {
-		for (PromotionalPackage pp : promoPackageAl)
-			System.out.println(pp.toString());
+		for(int i = 0;i<menuAl.size();i++) {
+			if (menuAl.get(i) instanceof PromotionalPackage)
+	        	System.out.println(((PromotionalPackage) menuAl.get(i)).toString());
+		}
 	}
-
-	public int getAlacarteIndex(ArrayList<Alacarte> al, String search) {
-		for (int i = 0; i < al.size(); i++) {
-			if (search.equalsIgnoreCase(al.get(i).getName()))
+	
+	public int getIndex(String search) {
+		for (int i = 0; i < menuAl.size(); i++) {
+			System.out.println(menuAl.get(i).toString());
+			if (search.equalsIgnoreCase(menuAl.get(i).getName()))
 				return i;
 		}
 		return -1;
 	}
-
-	public int getPPIndex(ArrayList<PromotionalPackage> al, String search) {
-		for (int i = 0; i < al.size(); i++) {
-			if (search.equalsIgnoreCase(al.get(i).getName()))
+	
+	public int getMenuinPPIndex(PromotionalPackage pp, String search) {
+		ArrayList<Alacarte> al = pp.getMenuItemArr();
+		for (int i = 0; i < al.size(); i++){
+			if(search.equalsIgnoreCase(al.get(i).getName()))
 				return i;
 		}
-		return -1;
+		return -1;	
 	}
+	
 
-	public ArrayList<Alacarte> getAlacarteAL() {
-		return this.alacarteAL;
+	public ArrayList<Menu> getMenuAl() {
+		return this.menuAl;
 	}
-
-	public ArrayList<PromotionalPackage> getPromotionalPackageAL() {
-		return this.promoPackageAl;
-	}
+	
 }

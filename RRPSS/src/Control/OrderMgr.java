@@ -25,6 +25,8 @@ public class OrderMgr {
 	}
 
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr reservationMgr) {
+
+=======
 		int orderNo, tableInput, staffInput;
 		ArrayList<Menu> foodAL = null;
 		String foodInput;
@@ -41,6 +43,8 @@ public class OrderMgr {
 			return;
 
 		do {
+
+
 			int foodQty;
 			int foodIndex;
 			Menu foodObj = null;

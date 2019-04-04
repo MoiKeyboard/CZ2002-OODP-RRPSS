@@ -16,15 +16,15 @@ public class ReservationMgr {
 	private ArrayList<Table> tableAl;
 	private ArrayList<Customer> custAl;
 	private TableMgr tMgr;
-	private CustomerMgr cMgr;
+	private PersonMgr pMgr;
 	protected Scanner sc;
 
 	public ReservationMgr() {
 		tMgr = new TableMgr();
-		cMgr = new CustomerMgr();
+		pMgr = new PersonMgr();
 		reservationAl = new ArrayList<Reservation>();
 		tableAl = tMgr.getTableAL();
-		custAl = cMgr.getCustAl();
+		custAl = pMgr.getCustAl();
 		sc = new Scanner(System.in);
 		try {
 			reservationAl = TextDB.readReservation("Reservations.txt");
@@ -41,7 +41,7 @@ public class ReservationMgr {
 	public void printReservation() {
 		System.out.println("Reservation as follows:");
 		for (Reservation mi : reservationAl) {
-			Customer cust = cMgr.findCustomer(mi.getContactNo());
+			Customer cust = pMgr.findCustomer(mi.getContactNo());
 			System.out.println(cust.toString());
 			System.out.println(mi.toString());
 			System.out.println("Table status: " + tMgr.getTableStatusForReservation(mi) + "\n");
@@ -105,7 +105,7 @@ public class ReservationMgr {
 		contactNo = sc.nextInt();
 		for (Reservation r : reservationAl) {
 			if (r.getContactNo() == contactNo) {
-				Customer cust = cMgr.findCustomer(contactNo);
+				Customer cust = pMgr.findCustomer(contactNo);
 				System.out.println(cust.toString());
 				System.out.println(r.toString());
 				System.out.println("Table status: " + tMgr.getTableStatusForReservation(r) + "\n");
@@ -199,7 +199,7 @@ public class ReservationMgr {
 				break;
 			}
 		}
-		cMgr.removeCustomer(searchTerm);
+		pMgr.removeCustomer(searchTerm);
 		TextDB.saveReservations("Reservations.txt", reservationAl, tableAl, custAl);
 	}
 
