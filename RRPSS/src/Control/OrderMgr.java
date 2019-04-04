@@ -30,8 +30,7 @@ public class OrderMgr {
 
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr reservationMgr) {
 		// Retrieve object by reference on runtime
-		ArrayList<Alacarte> alacarteAL = menuMgr.getAlacarteAL();
-		ArrayList<PromotionalPackage> promotionalPackageAL = menuMgr.getPromotionalPackageAL();
+		ArrayList<Menu> menuAl = menuMgr.getMenuAl();
 		ArrayList<Table> tableAL = tableMgr.getTableAL();
 //		ArrayList<Staff> staffAL = personMgr.getStaffAL();
 

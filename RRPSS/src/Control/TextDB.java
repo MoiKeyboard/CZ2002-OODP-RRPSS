@@ -110,6 +110,8 @@ public class TextDB {
 			if(menuAl.get(i) instanceof PromotionalPackage) {
 				PromotionalPackage s1 = (PromotionalPackage) menuAl.get(i);
 				StringBuilder st = new StringBuilder();
+				st.append(s1.getClass());
+				st.append(SEPARATOR);
 				st.append(s1.getName());
 				st.append(SEPARATOR);
 				st.append(s1.getDescription());
@@ -130,6 +132,8 @@ public class TextDB {
 			} else if (menuAl.get(i) instanceof Alacarte) {
 				Alacarte item = (Alacarte) menuAl.get(i);
 				StringBuilder st = new StringBuilder();
+				st.append(item.getClass());
+				st.append(SEPARATOR);
 				st.append(item.getName().trim());
 				st.append(SEPARATOR);
 				st.append(item.getDescription().trim());
