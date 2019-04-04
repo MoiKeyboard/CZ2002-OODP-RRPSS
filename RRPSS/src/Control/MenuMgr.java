@@ -58,15 +58,15 @@ public class MenuMgr {
 	public void updateMenuItem() throws IOException {
 		String searchName;
 		int choice = 0, index;
-		Alacarte oldAla, newAla;
+		Alacarte oldAla,chosenAla;
 		System.out.println("Please enter the name of the food item that you want to update");
 		searchName = sc.nextLine();
 		index = getIndex(searchName);
 		if (index == -1)
 			System.out.println("Food not found");
 		else {
-			oldAla = (Alacarte) menuAl.get(index);
-			newAla = (Alacarte) menuAl.get(index);
+			chosenAla = (Alacarte) menuAl.get(index);
+			oldAla = new Alacarte(chosenAla.getName(),chosenAla.getDescription(),chosenAla.getPrice(),chosenAla.getCategory());
 			while (choice != 5) {
 				System.out.println(menuAl.get(index).toString());
 				System.out.println("1) Update food category");
@@ -79,19 +79,19 @@ public class MenuMgr {
 				switch (choice) {
 				case 1:
 					System.out.println("Enter updated food category");
-					newAla.setCategory(sc.nextLine());
+					chosenAla.setCategory(sc.nextLine());
 					break;
 				case 2:
 					System.out.println("Enter updated food name");
-					newAla.setName(sc.nextLine());
+					chosenAla.setName(sc.nextLine());
 					break;
 				case 3:
 					System.out.println("Enter updated description");
-					newAla.setDescription(sc.nextLine());
+					chosenAla.setDescription(sc.nextLine());
 					break;
 				case 4:
 					System.out.println("Enter updated price");
-					newAla.setPrice(sc.nextDouble());
+					chosenAla.setPrice(sc.nextDouble());
 					break;
 				case 5:
 					break;
@@ -99,7 +99,7 @@ public class MenuMgr {
 					System.out.println("Invalid input try again");
 				}
 			}
-			updateAlafromPP(oldAla, (Alacarte) menuAl.get(index)); // doesnt update alacarte in promo pkg
+			updateAlafromPP(oldAla, chosenAla); // doesnt update alacarte in promo pkg
 		}
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
@@ -205,7 +205,7 @@ public class MenuMgr {
 						curPP.getMenuItemArr().add((Alacarte) menuAl.get(index2));
 					}
 					break;
-				case 5: // not working
+				case 5: // working
 					System.out.println("Enter food name to remove from promotional package");
 					searchFood = sc.nextLine();
 					index2 = getMenuinPPIndex(curPP, searchFood);
@@ -232,7 +232,10 @@ public class MenuMgr {
 			if (menuAl.get(i) instanceof PromotionalPackage) {
 				for (Alacarte a : new ArrayList<>(((PromotionalPackage) menuAl.get(i)).getMenuItemArr())) {
 					if (oldA.equals(a))
-						a = newA;
+						a.setName(newA.getName());
+						a.setDescription(newA.getDescription());
+						a.setPrice(newA.getPrice());
+						a.setCategory(newA.getCategory());
 				}
 			}
 		}

@@ -33,22 +33,22 @@ public class ReservationMainTestApp {
 	}
 	
 	public static void printAppMenu() {
-		System.out.println("1.\tCreate menu item");
-		System.out.println("2.\tUpdate menu item");
-		System.out.println("3.\tRemove menu item");
-		System.out.println("4.\tCreate promotion");
-		System.out.println("5.\tUpdate promotion");
-		System.out.println("6.\tRemove promotion");
-		System.out.println("7.\tCreate Order");
-		System.out.println("8.\tView Order");
-		System.out.println("9.\tAdd order item/s to/from order");
-		System.out.println("10.\tRemove order item/s	to/from order");
-		System.out.println("11.\tCreate reservation booking");
-		System.out.println("12.\tCheck reservation booking");
-		System.out.println("13.\tRemove reservation booking");
-		System.out.println("14.\tCheck table availability");
-		System.out.println("15.\tPrint bill invoice");
-		System.out.println("16.\tPrint sale revenue report by period(e.g day/month)\n0.\tExit the application");
+		System.out.println("1)\tCreate menu item");
+		System.out.println("2)\tUpdate menu item");
+		System.out.println("3)\tRemove menu item");
+		System.out.println("4)\tCreate promotion");
+		System.out.println("5)\tUpdate promotion");
+		System.out.println("6)\tRemove promotion");
+		System.out.println("7)\tCreate Order");
+		System.out.println("8)\tView Order");
+		System.out.println("9)\tAdd order item/s to/from order");
+		System.out.println("10)\tRemove order item/s	to/from order");
+		System.out.println("11)\tCreate reservation booking");
+		System.out.println("12)\tCheck reservation booking");
+		System.out.println("13)\tRemove reservation booking");
+		System.out.println("14)\tCheck table availability");
+		System.out.println("15)\tPrint bill invoice");
+		System.out.println("16)\tPrint sale revenue report by period(e.g day/month)\n0)\tExit the application");
 	}
 	
 	public static int getUserInput(Scanner sc, MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr) {
