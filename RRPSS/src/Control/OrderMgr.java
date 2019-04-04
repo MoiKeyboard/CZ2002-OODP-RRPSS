@@ -99,7 +99,7 @@ public class OrderMgr {
 				foodInput = sc.nextLine();
 				System.out.println("Please enter quanity of " + foodInput);
 				qtyInput = Integer.parseInt(sc.nextLine());
-				// menumgr
+				menuMgr.getIndex(foodInput);
 				break;
 			case 2:
 				System.out.println("Enter foodname you want to remove");

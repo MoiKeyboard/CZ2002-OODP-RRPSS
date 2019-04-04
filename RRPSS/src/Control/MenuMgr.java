@@ -15,7 +15,7 @@ public class MenuMgr {
 	public MenuMgr() {
 		sc = new Scanner(System.in);
 		try {
-			
+
 			menuAl = TextDB.readMenu("MenuItems.txt");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -24,8 +24,8 @@ public class MenuMgr {
 
 	public void printMenuItem() {
 		System.out.println("Menu Item as follows:");
-		for(int i = 0;i < menuAl.size();i++) {
-			if(menuAl.get(i) instanceof Alacarte) {
+		for (int i = 0; i < menuAl.size(); i++) {
+			if (menuAl.get(i) instanceof Alacarte) {
 				Alacarte aItem = (Alacarte) menuAl.get(i);
 				System.out.println(aItem.toString());
 			}
@@ -149,7 +149,7 @@ public class MenuMgr {
 			else if (index == -1)
 				System.out.println("Food not found, Please try again");
 			else
-				promoItems.add((Alacarte)menuAl.get(index));
+				promoItems.add((Alacarte) menuAl.get(index));
 		} while (!(foodName.equals("0")));
 		PromotionalPackage p1 = new PromotionalPackage(promoName, promoDesc, promoPrice, promoItems);
 		menuAl.add(p1);
@@ -197,19 +197,17 @@ public class MenuMgr {
 				case 4: // working
 					System.out.println("Enter food name to add to promotional package");
 					searchFood = sc.nextLine();
-					System.out.println("Wat food u adding to promo pkg : " + searchFood);
 					index2 = getIndex(searchFood);
 					if (index2 == -1) {
 						System.out.println("Food not found. Please try again");
 						break;
 					} else {
-						curPP.getMenuItemArr().add((Alacarte)menuAl.get(index2));
+						curPP.getMenuItemArr().add((Alacarte) menuAl.get(index2));
 					}
 					break;
 				case 5: // not working
 					System.out.println("Enter food name to remove from promotional package");
 					searchFood = sc.nextLine();
-					System.out.println("Wat food u removing from promo pkg : " + searchFood);
 					index2 = getMenuinPPIndex(curPP, searchFood);
 					if (index2 == -1) {
 						System.out.println("Food not found. Please try again");
@@ -230,9 +228,9 @@ public class MenuMgr {
 	}
 
 	public void updateAlafromPP(Alacarte oldA, Alacarte newA) throws IOException {
-		for(int i = 0;i<menuAl.size();i++) {
-			if(menuAl.get(i) instanceof PromotionalPackage) {
-				for (Alacarte a : new ArrayList<>(((PromotionalPackage)menuAl.get(i)).getMenuItemArr())) {
+		for (int i = 0; i < menuAl.size(); i++) {
+			if (menuAl.get(i) instanceof PromotionalPackage) {
+				for (Alacarte a : new ArrayList<>(((PromotionalPackage) menuAl.get(i)).getMenuItemArr())) {
 					if (oldA.equals(a))
 						a = newA;
 				}
@@ -243,11 +241,11 @@ public class MenuMgr {
 
 	// rename
 	private void removeAlafromPP(Alacarte currA) throws IOException {
-		for(int i = 0;i<menuAl.size();i++) {
-			if(menuAl.get(i) instanceof PromotionalPackage) {
-				for (Alacarte a : new ArrayList<>(((PromotionalPackage)menuAl.get(i)).getMenuItemArr())) {
-					if (currA.equals(a)) 
-						((PromotionalPackage)menuAl.get(i)).getMenuItemArr().remove(a);
+		for (int i = 0; i < menuAl.size(); i++) {
+			if (menuAl.get(i) instanceof PromotionalPackage) {
+				for (Alacarte a : new ArrayList<>(((PromotionalPackage) menuAl.get(i)).getMenuItemArr())) {
+					if (currA.equals(a))
+						((PromotionalPackage) menuAl.get(i)).getMenuItemArr().remove(a);
 				}
 			}
 		}
@@ -270,33 +268,31 @@ public class MenuMgr {
 	}
 
 	public void printPromotionalPackage() {
-		for(int i = 0;i<menuAl.size();i++) {
+		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage)
-	        	System.out.println(((PromotionalPackage) menuAl.get(i)).toString());
+				System.out.println(((PromotionalPackage) menuAl.get(i)).toString());
 		}
 	}
-	
+
 	public int getIndex(String search) {
 		for (int i = 0; i < menuAl.size(); i++) {
-			System.out.println(menuAl.get(i).toString());
 			if (search.equalsIgnoreCase(menuAl.get(i).getName()))
 				return i;
 		}
 		return -1;
 	}
-	
+
 	public int getMenuinPPIndex(PromotionalPackage pp, String search) {
 		ArrayList<Alacarte> al = pp.getMenuItemArr();
-		for (int i = 0; i < al.size(); i++){
-			if(search.equalsIgnoreCase(al.get(i).getName()))
+		for (int i = 0; i < al.size(); i++) {
+			if (search.equalsIgnoreCase(al.get(i).getName()))
 				return i;
 		}
-		return -1;	
+		return -1;
 	}
-	
 
 	public ArrayList<Menu> getMenuAl() {
 		return this.menuAl;
 	}
-	
+
 }
