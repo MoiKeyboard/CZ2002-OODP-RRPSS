@@ -24,49 +24,6 @@ import Entity.Table;
 public class TextDB {
 	public static final String SEPARATOR = "|";
 
-	// an example of reading
-	public static ArrayList<Alacarte> readMenuItem(String filename) throws IOException {
-		// read String from text file
-		ArrayList stringArray = (ArrayList) read(filename);
-		ArrayList<Alacarte> menuAl = new ArrayList<Alacarte>();
-
-		for (int i = 0; i < stringArray.size(); i++) {
-			String st = (String) stringArray.get(i);
-			// get individual 'fields' of the string separated by SEPARATOR
-			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
-																		// using delimiter ",
-			String foodName = star.nextToken().trim(); // second token
-			String description = star.nextToken().trim(); // third token
-			double price = Double.parseDouble(star.nextToken().trim());
-			String category = star.nextToken().trim();
-			// create Professor object from file data
-			Alacarte item = new Alacarte(foodName,description,price,category);
-			// add to Professors list
-			menuAl.add(item);
-		}
-		return menuAl;
-	}
-
-	// an example of saving
-	public static void saveMenuItem(String filename, ArrayList<Alacarte> al) throws IOException {
-		List alw = new ArrayList();// to store Professors data
-
-		for (int i = 0; i < al.size(); i++) {
-			Alacarte item = (Alacarte) al.get(i);
-			StringBuilder st = new StringBuilder();
-			st.append(item.getName().trim());
-			st.append(SEPARATOR);
-			st.append(item.getDescription().trim());
-			st.append(SEPARATOR);
-			st.append(item.getPrice());
-			st.append(SEPARATOR);
-			st.append(item.getCategory());
-			alw.add(st.toString());
-		}
-		write(filename, alw);
-	}
-	
-
 	public static ArrayList<Menu> readMenu(String filename) throws IOException {
 		ArrayList stringArray = (ArrayList) read(filename);
 		ArrayList<Menu> menuAl = new ArrayList<Menu>();
@@ -91,7 +48,7 @@ public class TextDB {
 				}
 				PromotionalPackage promoPkg = new PromotionalPackage(promoName,promoDesc,promoPrice,tempAlacarteAl);
 				menuAl.add(promoPkg);
-			} else {
+			} else if (menuType.equalsIgnoreCase("AlaCarte")) {
 				String alaCarteName = star.nextToken().trim();
 				String alaCartedesc = star.nextToken().trim();
 				double alaCarteprice = Double.parseDouble(star.nextToken());
@@ -110,7 +67,7 @@ public class TextDB {
 			if(menuAl.get(i) instanceof PromotionalPackage) {
 				PromotionalPackage s1 = (PromotionalPackage) menuAl.get(i);
 				StringBuilder st = new StringBuilder();
-				st.append(s1.getClass());
+				st.append("PromoPackage");
 				st.append(SEPARATOR);
 				st.append(s1.getName());
 				st.append(SEPARATOR);
@@ -132,7 +89,7 @@ public class TextDB {
 			} else if (menuAl.get(i) instanceof Alacarte) {
 				Alacarte item = (Alacarte) menuAl.get(i);
 				StringBuilder st = new StringBuilder();
-				st.append(item.getClass());
+				st.append("AlaCarte");
 				st.append(SEPARATOR);
 				st.append(item.getName().trim());
 				st.append(SEPARATOR);
@@ -146,59 +103,7 @@ public class TextDB {
 		}
 		write(filename, alw);
 	}
-
-	public static ArrayList<PromotionalPackage> readPromoPackageItem(String filename) throws IOException {
-		ArrayList stringArray = (ArrayList) read(filename);
-		ArrayList<PromotionalPackage> promoAl = new ArrayList<PromotionalPackage>();
-		ArrayList<Alacarte> menuItemAl = new ArrayList<Alacarte>();
-		for (int i = 0; i < stringArray.size(); i++) {
-			String st = (String) stringArray.get(i);
-			// get individual 'fields' of the string separated by SEPARATOR
-			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
-																		// using delimiter ","
-			String promoName = star.nextToken().trim();
-			String desc = star.nextToken().trim();
-			double promoPrice = Double.parseDouble(star.nextToken());
-			while(star.hasMoreTokens()) {
-				String foodName = star.nextToken().trim();
-				String description = star.nextToken().trim();
-				double price = Double.parseDouble(star.nextToken());
-				String category = star.nextToken().trim();
-				Alacarte mi = new Alacarte(foodName,description,price,category);
-				menuItemAl.add(mi);
-			}
-			PromotionalPackage promoPkg = new PromotionalPackage(promoName,desc,promoPrice,menuItemAl);
-			promoAl.add(promoPkg);
-		}
-		return promoAl;
-	}
-
-	public static void savePromoPackage(String filename, ArrayList<PromotionalPackage> promoAl) throws IOException {
-		List alw = new ArrayList();// to store Orders data
-		for (int i = 0; i < promoAl.size(); i++) {
-			PromotionalPackage s1 = (PromotionalPackage) promoAl.get(i);
-			StringBuilder st = new StringBuilder();
-			st.append(s1.getName());
-			st.append(SEPARATOR);
-			st.append(s1.getDescription());
-			st.append(SEPARATOR);
-			st.append(s1.getPrice());
-			st.append(SEPARATOR);
-			for(int i2 = 0;i2 < s1.getMenuItemArr().size();i2++) {
-				st.append(s1.getMenuItemArr().get(i2).getName());	
-				st.append(SEPARATOR);
-				st.append(s1.getMenuItemArr().get(i2).getDescription());	
-				st.append(SEPARATOR);
-				st.append(s1.getMenuItemArr().get(i2).getPrice());	
-				st.append(SEPARATOR);
-				st.append(s1.getMenuItemArr().get(i2).getCategory());
-				st.append(SEPARATOR);
-			}
-			alw.add(st.toString());
-		}
-		write(filename, alw);
-	}
-
+	
 	public static ArrayList<Staff> readStaff(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);

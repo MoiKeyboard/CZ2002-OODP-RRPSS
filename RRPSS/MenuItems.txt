@@ -1,6 +1,4 @@
-cheese baked scallops|qwek's love it|9.9|MAINCOURSE
-Garden Salad|Salad|5.9|APPETIZER
-Green Tea Parafait|Italian Dessert|5.9|DESSERT
-ice cream|green tea|4.9|DESSERT
-MARIGOLD PUDDING|I LOVE MARIGOLD|3.9|DESSERT
-ICE CREAM SANDWICH|ANDROID|3.9|DESSERT
+AlaCarte|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE
+AlaCarte|Cheese baked oyster|Entree|5.8|APPETIZER
+AlaCarte|Mushroom soup|Chef's recommendation|2.9|APPETIZER
+PromoPackage|Soup Spoon Set A|special pkg|9.9|Mushroom soup|Chef's recommendation|2.9|APPETIZER|
