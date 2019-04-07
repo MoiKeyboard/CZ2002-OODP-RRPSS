@@ -33,36 +33,18 @@ public class OrderMgr {
 		orderNo = generateOrderNumber();
 		System.out.println("Please enter staff ID: ");
 		staffInput = Integer.parseInt(sc.next());
-		// check staff id exists
-//		if (checkDuplicateOrderNumber(orderNo) == false)
-//			return;
+		// Check staff
+		if (personMgr.getStaffIndex(staffInput) == -1)
+			return;
 		System.out.println("Please enter table No: ");
+		// Check table
 		tableInput = Integer.parseInt(sc.next());
 		if (tableMgr.checkTableVacancy(tableInput) == false)
 			return;
+		// Call menu manager to create list
+		menuMgr.updateMenuAL(foodAL);
 
-		do {
-
-			int foodQty;
-			int foodIndex;
-			Menu foodObj = null;
-
-			System.out.println("Please enter food/promotional package name to add to order (enter 0 to finish adding)");
-			foodInput = sc.nextLine();
-			System.out.println("Please enter quanity of " + foodInput);
-			foodQty = Integer.parseInt(sc.nextLine());
-
-			// retrieve foodobj
-			// foodObj = menuMgr.getMenu(foodInput);
-
-			if (foodObj != null) {
-				while (foodQty > 0) {
-					foodAL.add(foodObj);
-					foodQty--;
-				}
-			}
-		} while (!"0".equals(foodInput));
-
+		// Instantiate new order
 		orderAl.add(new Order(orderNo, staffInput, tableInput, foodAL));
 		tableMgr.updateTableStatus(tableInput, "Occupied");
 
@@ -75,57 +57,20 @@ public class OrderMgr {
 		int index;
 		System.out.println("Please enter table number");
 		index = getOrderIndex(sc.nextInt());
+		if (index == -1)
+			return;
 		System.out.println(orderAl.get(index).toString());
 	}
 
 	public void updateOrder(MenuMgr menuMgr) {
-		int index, input = -1;
+		int index;
 		System.out.println("Please enter table number");
 		index = getOrderIndex(sc.nextInt());
-		ArrayList<Menu> currFoodAL = orderAl.get(index).getFoodAL();
-		do {
-			System.out.println(orderAl.get(index).toString());
-			System.out.println("1) Add order item(s)");
-			System.out.println("2) Remove order item(s)");
-			System.out.println("3) Finish updating order");
-			input = Integer.parseInt(sc.nextLine());
+		if (index == -1)
+			return;
 
-			String foodInput;
-			int qtyInput, foodIndex;
-			switch (input) {
-			case 1:
-				System.out.println("Enter foodname you want to add");
-				foodInput = sc.nextLine();
-				System.out.println("Please enter quanity of " + foodInput);
-				qtyInput = Integer.parseInt(sc.nextLine());
-				foodIndex = menuMgr.getIndex(foodInput);
-				if (foodIndex != -1) {
-					while (qtyInput > 0) {
-						currFoodAL.add(menuMgr.getMenuAl().get(foodIndex));
-						qtyInput--;
-					}
-				}
-				break;
-			case 2:
-				int removeQty = 0;
-				System.out.println("Enter foodname you want to remove");
-				foodInput = sc.nextLine();
-				System.out.println("Please enter quanity of " + foodInput);
-				qtyInput = Integer.parseInt(sc.nextLine());
-				for (Menu m : currFoodAL) {
-					if (foodInput.equalsIgnoreCase(m.getName()) && qtyInput != 0) {
-						currFoodAL.remove(m);
-						qtyInput--;
-						removeQty++;
-					}
-				}
-				System.out.println(foodInput + " " + qtyInput);
-				break;
-			default:
-				System.out.println("Invalid input please try again");
-				break;
-			}
-		} while (input != 3);
+		ArrayList<Menu> currFoodAL = orderAl.get(index).getFoodAL();
+		menuMgr.updateMenuAL(currFoodAL);
 	}
 
 	public void removeOrder() {
@@ -159,7 +104,11 @@ public class OrderMgr {
 			if (search == orderAl.get(i).getOrderNo())
 				return i;
 		}
-		System.out.println("Order no" + search + " not found");
+		System.out.println("Table " + search + " has no order");
 		return -1;
+	}
+
+	public ArrayList<Order> getOrderAL() {
+		return this.orderAl;
 	}
 }
