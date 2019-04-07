@@ -255,47 +255,12 @@ public class TextDB {
 		}
 		write(filename, alw);
 	}
-
-	public static ArrayList<Order> readOrder(String filename) throws IOException {
-		// read String from text file
-		ArrayList stringArray = (ArrayList) read(filename);
-		ArrayList<Order> orderAl = new ArrayList<Order>();
-		for (int i = 0; i < stringArray.size(); i++) {
-			String st = (String) stringArray.get(i);
-			// get individual 'fields' of the string separated by SEPARATOR
-			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
-																		// using delimiter ","
-			int orderNo = Integer.parseInt(star.nextToken()); // first token
-			int staffId = Integer.parseInt(star.nextToken()); // second token
-			int tableNo = Integer.parseInt(star.nextToken()); // third token
-			String orderItem = star.nextToken().trim(); // fourth token
-			int itemQuantity = Integer.parseInt(star.nextToken()); // fifth token
-			// create Order object from file data
-			//Order order = new Order(orderNo, staffId, tableNo, orderItem, itemQuantity);
-			// add to Customer array list
-			//orderAl.add(order);
-		}
-		return orderAl;
-	}
 	
-	public static void saveOrder(String filename, List orderAl) throws IOException {
-		List alw = new ArrayList();// to store Orders data
-		for (int i = 0; i < orderAl.size(); i++) {
-			Order s1 = (Order) orderAl.get(i);
-			StringBuilder st = new StringBuilder();
-			st.append(s1.getOrderNo());
-			st.append(SEPARATOR);
-			st.append(s1.getStaffId());
-			st.append(SEPARATOR);
-			st.append(s1.getTableNo());
-			st.append(SEPARATOR);
-			//st.append(s1.getOrderItem());
-			//st.append(SEPARATOR);
-			alw.add(st.toString());
-		}
-		write(filename, alw);
-	}
-
+	
+	
+	
+	
+	
 	/** Write fixed content to the given file. */
 	public static void write(String fileName, List data) throws IOException {
 		PrintWriter out = new PrintWriter(new FileWriter(fileName));
