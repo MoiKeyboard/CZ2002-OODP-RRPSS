@@ -24,7 +24,7 @@ public class OrderMgr {
 		}
 	}
 
-	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr reservationMgr) {
+	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
 
 		int orderNo, tableInput, staffInput;
 		ArrayList<Menu> foodAL = null;
@@ -81,13 +81,6 @@ public class OrderMgr {
 			orderAl.remove(index);
 			System.out.println("Order remove successfully");
 		}
-	}
-
-	public void printInvoice() {
-
-		// Remove reservation tied to that particular table ID in the current session
-		// Change table to vacated
-
 	}
 
 	public int generateOrderNumber() {
