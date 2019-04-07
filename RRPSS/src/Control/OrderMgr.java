@@ -26,9 +26,7 @@ public class OrderMgr {
 
 		int orderNo, tableInput, staffInput;
 		ArrayList<Menu> foodAL = new ArrayList<Menu>();
-		String foodInput;
-
-		orderNo = generateOrderNumber();
+ 		String foodInput;
 		System.out.println("Please enter staff ID: ");
 		staffInput = Integer.parseInt(sc.nextLine());
 		// Check staff
@@ -40,7 +38,7 @@ public class OrderMgr {
 		// Call menu manager to create list
 		foodAL = menuMgr.updateMenuAL(foodAL);
 		// Instantiate new order
-		orderAl.add(new Order(orderNo, staffInput, tableInput, foodAL));
+		orderAl.add(new Order(staffInput, tableInput, foodAL));
 		tableMgr.updateTableStatus(tableInput, "Occupied");
 
 		System.out.println("Creation of order is successful!");
@@ -78,18 +76,9 @@ public class OrderMgr {
 		}
 	}
 
-	public int generateOrderNumber() {
-		int i = orderAl.size() + 1;
-		for (Order o : orderAl) {
-			if (i == o.getOrderNo())
-				i++;
-		}
-		return i;
-	}
-
 	public int getOrderIndex(int search) {
 		for (int i = 0; i < orderAl.size(); i++) {
-			if (search == orderAl.get(i).getOrderNo())
+			if (search == orderAl.get(i).getTableNo())
 				return i;
 		}
 		System.out.println("Table " + search + " has no order");

@@ -59,7 +59,7 @@ public class PersonMgr {
 			if (staffInput == staffAl.get(i).getStaffId())
 				return i;
 		}
-		return 0;
+		return -1;
 	}
 
 	/*

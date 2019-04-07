@@ -31,7 +31,11 @@ public class InvoiceMgr {
 		Invoice currInvoice = new Invoice();
 
 	}
-	
+   
+	public int generateInvoiceNum() {
+		return 0;
+	}
+
 	// Option 0 - print revenue report for particular day , Option 1 - print revenue report for particular month
 	public void printSaleRevenueReport(LocalDateTime period, int option) {
 		int month,day,year;

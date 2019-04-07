@@ -3,31 +3,20 @@ package Entity;
 import java.util.ArrayList;
 
 public class Order {
-	private int orderNo;
 	private int staffId;
 	private int tableNo;
 	private ArrayList<Menu> foodAL;
 
 	public Order() {
-		this.orderNo = 0;
 		this.staffId = 0;
 		this.tableNo = 0;
 		this.foodAL = null;
 	}
 
-	public Order(int orderNo, int staffId, int tableNo, ArrayList<Menu> foodAL) {
-		this.orderNo = orderNo;
+	public Order(int staffId, int tableNo, ArrayList<Menu> foodAL) {
 		this.staffId = staffId;
 		this.tableNo = tableNo;
 		this.foodAL = foodAL;
-	}
-
-	public int getOrderNo() {
-		return orderNo;
-	}
-
-	public void setOrderNo(int orderNo) {
-		this.orderNo = orderNo;
 	}
 
 	public int getStaffId() {
@@ -57,8 +46,7 @@ public class Order {
 	@Override
 	public String toString() {
 		String orderItemDetails = null;
-		orderItemDetails = "Table No: " + getTableNo() + "\nStaff ID: " + getStaffId() + "\nOrder No: " + getOrderNo()
-				+ "\n";
+		orderItemDetails = "Table No: " + getTableNo() + "\nStaff ID: " + getStaffId() + "\n";
 		for (Menu menu : foodAL) {
 			if(menu instanceof Alacarte)
 				orderItemDetails += ((Alacarte)menu).toString();

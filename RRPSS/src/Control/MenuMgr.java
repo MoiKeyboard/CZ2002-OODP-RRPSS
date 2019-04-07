@@ -349,7 +349,7 @@ public class MenuMgr {
 			System.out.println("2) Remove items from list");
 			System.out.println("3) Finish");
 			choice = Integer.parseInt(sc.nextLine());
-			if(choice == 3) return null;
+			if(choice == 3) return al;
 			System.out.println("Enter food name");
 			foodName = sc.nextLine();
 			System.out.println("Please enter quanity of " + foodName);
@@ -378,7 +378,7 @@ public class MenuMgr {
 				al.remove(index);
 				qty--;
 			}
-			System.out.println(qty + " " + foodName + " removed");
+			System.out.println(foodName + " removed");
 		}
 		return al;
 	}
