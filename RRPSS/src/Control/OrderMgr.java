@@ -10,8 +10,6 @@ import Entity.Order;
 public class OrderMgr {
 	private ArrayList<Order> orderAl;
 	protected Scanner sc;
-	private static final double GST = 0.07; // CONSTANT GST 7%
-	private static final double serviceCharge = 0.1; // CONSTANT SERVICE CHARGE 10%
 
 	public OrderMgr() {
 		orderAl = new ArrayList<Order>();
