@@ -110,8 +110,10 @@ public class ReservationMainTestApp {
 					tableMgr.printTableList();
 					break;
 				case 15:
+					invoiceMgr.generateInvoice(orderMgr, tableMgr);
 					break;
 				case 16:
+					invoiceMgr.printSaleRevenueReport();
 					break;
 				default:
 					System.out.println("Invalid input! Please choose option 0-16");

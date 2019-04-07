@@ -40,7 +40,6 @@ public class OrderMgr {
 		// Instantiate new order
 		orderAl.add(new Order(staffInput, tableInput, foodAL));
 		tableMgr.updateTableStatus(tableInput, "Occupied");
-
 		System.out.println("Creation of order is successful!");
 
 	}

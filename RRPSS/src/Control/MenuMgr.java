@@ -389,7 +389,10 @@ public class MenuMgr {
 			return al;
 		else {
 			while (qty > 0) {
-				al.add((Alacarte) menuAl.get(index));
+				if(menuAl.get(index) instanceof Alacarte) 
+					al.add((Alacarte) menuAl.get(index));
+				else if (menuAl.get(index) instanceof PromotionalPackage)
+					al.add((PromotionalPackage) menuAl.get(index));
 				qty--;
 			}
 			System.out.println(foodName + " added");

@@ -13,6 +13,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import Entity.Customer;
+import Entity.Invoice;
 import Entity.Alacarte;
 import Entity.Order;
 import Entity.Menu;
@@ -125,7 +126,7 @@ public class TextDB {
 		return staffAl;
 	}
 
-// an example of saving
+	// an example of saving
 	public static void saveStaff(String filename, List staffAl) throws IOException {
 		List alw = new ArrayList();// to store Professors data
 
@@ -223,6 +224,48 @@ public class TextDB {
 		TextDB.saveCustomer("Customer.txt", custAl);
 		write(filename, alw);
 	}
+	
+//	public static ArrayList<Invoice> readInvoice(String filename) throws IOException {
+//		// read String from text file
+//		ArrayList stringArray = (ArrayList) read(filename);
+//		ArrayList<Invoice> invoice = new ArrayList<Invoice>();
+//		for (int i = 0; i < stringArray.size(); i++) {
+//			String st = (String) stringArray.get(i);
+//			// get individual 'fields' of the string separated by SEPARATOR
+//			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
+//																		// using delimiter ","
+//			String reservationDateTime = star.nextToken().trim();// second token
+//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy kkmm", Locale.ENGLISH);
+//			LocalDateTime reservationDT = LocalDateTime.parse(reservationDateTime, formatter);
+//			int pax = Integer.parseInt(star.nextToken());
+//			int tableNo = Integer.parseInt(star.nextToken());
+//			// create Reservation object from file data
+//			// add to Reservation array list
+//			reservationAl.add(reservation);
+//		}
+//		return reservationAl;
+//	}
+//
+//// an example of saving
+//	public static void saveInvoice(String filename, List reservationAl, List tableAl, List custAl) throws IOException {
+//		List alw = new ArrayList();// to store Professors data
+//		for (int i = 0; i < reservationAl.size(); i++) {
+//			Reservation s1 = (Reservation) reservationAl.get(i);
+//			StringBuilder st = new StringBuilder();
+//			st.append(s1.getContactNo());
+//			st.append(SEPARATOR);
+//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy kkmm");
+//			st.append(s1.getReservationDate().format(formatter));
+//			st.append(SEPARATOR);
+//			st.append(s1.getPax());
+//			st.append(SEPARATOR);
+//			st.append(s1.getTableNo());
+//			alw.add(st.toString());
+//		}
+//		TextDB.saveTable("Table.txt", tableAl);
+//		TextDB.saveCustomer("Customer.txt", custAl);
+//		write(filename, alw);
+//	}
 
 	public static ArrayList<Customer> readCustomer(String filename) throws IOException {
 		// read String from text file

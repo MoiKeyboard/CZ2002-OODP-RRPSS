@@ -1,10 +1,14 @@
 package Control;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 import Entity.Customer;
 import Entity.Staff;
 import Entity.Invoice;
+import Entity.Menu;
 import Entity.Order;
 import Entity.Table;
 
@@ -14,12 +18,12 @@ public class InvoiceMgr {
 	private ReservationMgr rMgr;
 	private static final double GST = 0.07; // CONSTANT GST 7%
 	private static final double serviceCharge = 0.1; // CONSTANT SERVICE CHARGE 10%
+	protected Scanner sc;
 	
 	public InvoiceMgr() {
-		//invoiceAl = TextDB.readInvoice();
+		sc = new Scanner(System.in);
 		try {	
-			
-			
+			//invoiceAl = TextDB.readInvoice();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -28,36 +32,69 @@ public class InvoiceMgr {
 	}
 	
    public void generateInvoice(OrderMgr orderMgr, TableMgr tableMgr) {
-		Invoice currInvoice = new Invoice();
-
+	    int tableNo = 0;
+		LocalDateTime timeStamp = LocalDateTime.now();
+		System.out.println("Please enter the table no: ");
+		tableNo = Integer.parseInt(sc.nextLine());
+		Order o = orderMgr.getOrderAL().get(orderMgr.getOrderIndex(tableNo));
+		Invoice currInvoice = new Invoice(tableNo,o.getStaffId(),timeStamp,(computeTotalPrice(o) * GST),(computeTotalPrice(o) * serviceCharge),
+				((computeTotalPrice(o) * (1+GST+serviceCharge))),generateInvoiceNum(),o.getFoodAL());
+		System.out.println(currInvoice.toString());
+		invoiceAl.add(currInvoice);
+		// TextDB.saveInvoice("Invoices.txt", invoiceAl);
 	}
    
-	public int generateInvoiceNum() {
-		return 0;
+	public long generateInvoiceNum() {
+		long invoiceNum = 0;
+		Random rand = new Random();
+		LocalDateTime timeStamp = LocalDateTime.now();
+	   	invoiceNum = (long) ((timeStamp.getYear() * Math.pow(10, 11)) + (timeStamp.getMonthValue() * Math.pow(10, 9)) 
+	   			+(timeStamp.getDayOfMonth() * Math.pow(10, 7)) + (timeStamp.getHour() * Math.pow(10, 5)) 
+	   			+(timeStamp.getMinute() * Math.pow(10, 3)) + (timeStamp.getSecond() * Math.pow(10, 1)) + rand.nextInt(10));
+		return invoiceNum;
+	}
+	
+	public double computeTotalPrice(Order o) {
+		double price = 0;
+		for(Menu menu : o.getFoodAL()) {
+			price += menu.getPrice();
+		}
+		return price;
 	}
 
-	// Option 0 - print revenue report for particular day , Option 1 - print revenue report for particular month
-	public void printSaleRevenueReport(LocalDateTime period, int option) {
-		int month,day,year;
-		double totalRevenue;
-		if(option == 0) {
-			day = period.getDayOfYear();
-			month = period.getMonthValue();
-			year = period.getYear();
+	// Option 1 - print revenue report for particular day , Option 2 - print revenue report for particular month, Option 3 - return
+	public void printSaleRevenueReport() {
+		int optionInput;
+		String periodDT;
+		System.out.println("1) Sale Revenue Report by day");
+		System.out.println("2) Sale Revenue Report by month");
+		System.out.println("0) Back to previous screen");
+		optionInput = Integer.parseInt(sc.nextLine());
+		if(optionInput == 1) {
+			System.out.println("Please enter date (E.g 10-04-2019)");
+			periodDT = sc.nextLine();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+			LocalDateTime saleReportPeriod = LocalDateTime.parse(periodDT, formatter);
 			for(Invoice invoice : invoiceAl) {
-				if(invoice.getInvoiceDT().getYear() == year && invoice.getInvoiceDT().getMonthValue() == month && invoice.getInvoiceDT().getDayOfYear() == day) {
-					
+				if(invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear() && invoice.getInvoiceDT().getMonthValue() == saleReportPeriod.getMonthValue()
+						&& invoice.getInvoiceDT().getDayOfYear() == saleReportPeriod.getDayOfYear()) {
+					System.out.println("Selected printing revenue report by day");
+					System.out.println(invoice.toString());
 				}
 			}
-		} else if (option == 1) {
-			month = period.getMonthValue();
-			year = period.getYear();
+		} else if (optionInput == 2) {
+			System.out.println("Please enter month and year in the following format (E.g 04-2019)");
+			periodDT = sc.nextLine();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-yyyy");
+			LocalDateTime saleReportPeriod = LocalDateTime.parse(periodDT, formatter);
 			for(Invoice invoice : invoiceAl) {
-				if(invoice.getInvoiceDT().getYear() == year && invoice.getInvoiceDT().getMonthValue() == month) {
-					
+				if(invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear() && invoice.getInvoiceDT().getMonthValue() == saleReportPeriod.getMonthValue()) {
+					System.out.println("Selected printing revenue report by month");
+					System.out.println(invoice.toString());
 				}
 			}
-		}
+		} else if (optionInput == 0) 
+			return;
 	}
 	
 }
