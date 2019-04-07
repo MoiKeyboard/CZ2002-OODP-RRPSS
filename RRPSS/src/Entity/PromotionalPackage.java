@@ -19,7 +19,7 @@ public class PromotionalPackage extends Menu {
 		return menuItemArr;
 	}
 
-	public void setMenuItemArr(ArrayList<Alacarte> menuItemArr) {
+	public void setAlacarteArr(ArrayList<Alacarte> menuItemArr) {
 		this.menuItemArr = menuItemArr;
 	}
 

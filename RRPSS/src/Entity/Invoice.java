@@ -14,12 +14,12 @@ public class Invoice {
 		this.invoiceDT = null;
 		this.price = 0;
 	}
-	
+
 	public Invoice(int tableNo, LocalDateTime invoiceDT) {
 		this.tableNo = tableNo;
 		this.invoiceDT = invoiceDT;
-	} 
- 
+	}
+
 	public int getTableNo() {
 		return tableNo;
 	}
@@ -36,8 +36,9 @@ public class Invoice {
 	public String toString() {
 		String invoiceDetails = null;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy kkmm", Locale.ENGLISH);
-		invoiceDetails =  "Table Number: " + getTableNo() + "\nDate and Time of Invoice" + invoiceDT.format(formatter) + "\nPrice of order" + getPrice() + "\n";
+		invoiceDetails = "Table Number: " + getTableNo() + "\nDate and Time of Invoice" + invoiceDT.format(formatter)
+				+ "\nPrice of order" + getPrice() + "\n";
 		return invoiceDetails;
-		
+
 	}
 }

@@ -58,15 +58,15 @@ public class ReservationMainTestApp {
 			if (input == 0) return input;
 			switch(input) {
 				case 1:
-					menuMgr.createMenuItem();
+					menuMgr.createAlacarte();
 					menuMgr.printMenuItem();
 					break;
 				case 2:
-					menuMgr.updateMenuItem();
+					menuMgr.updateAlacarte();
 					menuMgr.printMenuItem();
 					break;
 				case 3:
-					menuMgr.removeMenuItem();
+					menuMgr.removeAlacarte();
 					menuMgr.printMenuItem();
 					break;	
 				case 4:

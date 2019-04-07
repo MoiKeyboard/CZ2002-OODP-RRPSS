@@ -1,6 +1,4 @@
 package Control;
-
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -31,7 +29,12 @@ public class InvoiceMgr {
 		}
 	}
 	
-	public void billPls(int tableNo,Order o) {
+  public void generateInvoice(OrderMgr orderMgr, TableMgr tableMgr) {
+		Invoice currInvoice = new Invoice();
+
+	}
+	
+  public void billPls(int tableNo,Order o) {
 		
 	}
 	
