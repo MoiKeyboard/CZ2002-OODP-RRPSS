@@ -31,8 +31,8 @@ public class Invoice {
 		this.tableNo = tableNo;
 		this.staffID = staffID;
 		this.invoiceDT = invoiceDT;
-		this.GST = GST;
-		this.serviceCharge = serviceCharge;
+		this.GST =  Double.parseDouble(new DecimalFormat("#.##").format(GST));
+		this.serviceCharge =  Double.parseDouble(new DecimalFormat("#.##").format(serviceCharge));
 		this.totalPrice =  Double.parseDouble(new DecimalFormat("#.##").format(price));
 		this.invoiceNo = invoiceNo;
 		this.foodAL = foodAL;

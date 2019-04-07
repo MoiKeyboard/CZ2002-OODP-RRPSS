@@ -23,8 +23,7 @@ public class InvoiceMgr {
 	public InvoiceMgr() {
 		sc = new Scanner(System.in);
 		try {	
-			//invoiceAl = TextDB.readInvoice();
-			
+			invoiceAl = TextDB.readInvoice("Invoices.txt");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,7 +40,11 @@ public class InvoiceMgr {
 				((computeTotalPrice(o) * (1+GST+serviceCharge))),generateInvoiceNum(),o.getFoodAL());
 		System.out.println(currInvoice.toString());
 		invoiceAl.add(currInvoice);
-		// TextDB.saveInvoice("Invoices.txt", invoiceAl);
+		try {
+			TextDB.saveInvoice("Invoices.txt", invoiceAl);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
    
 	public long generateInvoiceNum() {
@@ -75,6 +78,10 @@ public class InvoiceMgr {
 			periodDT = sc.nextLine();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 			LocalDateTime saleReportPeriod = LocalDateTime.parse(periodDT, formatter);
+			System.out.println(saleReportPeriod);
+			System.out.println("Year " + saleReportPeriod.getYear());
+			System.out.println("Month " + saleReportPeriod.getMonthValue());
+			System.out.println("day " + saleReportPeriod.getDayOfYear());
 			for(Invoice invoice : invoiceAl) {
 				if(invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear() && invoice.getInvoiceDT().getMonthValue() == saleReportPeriod.getMonthValue()
 						&& invoice.getInvoiceDT().getDayOfYear() == saleReportPeriod.getDayOfYear()) {
