@@ -15,16 +15,10 @@ public class ReservationMgr {
 	private ArrayList<Reservation> reservationAl;
 	private ArrayList<Table> tableAl;
 	private ArrayList<Customer> custAl;
-	private TableMgr tMgr;
-	private PersonMgr pMgr;
 	protected Scanner sc;
 
 	public ReservationMgr() {
-		tMgr = new TableMgr();
-		pMgr = new PersonMgr();
 		reservationAl = new ArrayList<Reservation>();
-		tableAl = tMgr.getTableAL();
-		custAl = pMgr.getCustAl();
 		sc = new Scanner(System.in);
 		try {
 			reservationAl = TextDB.readReservation("Reservations.txt");
@@ -38,7 +32,9 @@ public class ReservationMgr {
 		return reservationAl;
 	}
 
-	public void printReservation() {
+	public void printReservation(TableMgr tMgr, PersonMgr pMgr) {
+		tableAl = tMgr.getTableAL();
+		custAl = pMgr.getCustAl();
 		System.out.println("Reservation as follows:");
 		for (Reservation mi : reservationAl) {
 			Customer cust = pMgr.findCustomer(mi.getContactNo());
@@ -99,7 +95,7 @@ public class ReservationMgr {
 		TextDB.saveReservations("Reservations.txt", reservationAl, tableAl, custAl);
 	}
 
-	public void checkReservation() {
+	public void checkReservation(TableMgr tMgr, PersonMgr pMgr) {
 		int contactNo;
 		System.out.println("Please enter contact Number to search for reservation");
 		contactNo = sc.nextInt();
@@ -185,7 +181,7 @@ public class ReservationMgr {
 		return true;
 	}
 
-	public void removeReservation() throws IOException {
+	public void removeReservation(PersonMgr pMgr) throws IOException {
 		System.out.println("Please enter the contact number used for the reservation that you want to remove");
 		int searchTerm = sc.nextInt();
 		for (Reservation mi : reservationAl) {

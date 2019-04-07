@@ -25,23 +25,20 @@ public class OrderMgr {
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
 
 		int orderNo, tableInput, staffInput;
-		ArrayList<Menu> foodAL = null;
+		ArrayList<Menu> foodAL = new ArrayList<Menu>();
 		String foodInput;
 
 		orderNo = generateOrderNumber();
 		System.out.println("Please enter staff ID: ");
-		staffInput = Integer.parseInt(sc.next());
+		staffInput = Integer.parseInt(sc.nextLine());
 		// Check staff
 		if (personMgr.getStaffIndex(staffInput) == -1)
 			return;
 		System.out.println("Please enter table No: ");
 		// Check table
-		tableInput = Integer.parseInt(sc.next());
-		if (tableMgr.checkTableVacancy(tableInput) == false)
-			return;
+		tableInput = Integer.parseInt(sc.nextLine());
 		// Call menu manager to create list
-		menuMgr.updateMenuAL(foodAL);
-
+		foodAL = menuMgr.updateMenuAL(foodAL);
 		// Instantiate new order
 		orderAl.add(new Order(orderNo, staffInput, tableInput, foodAL));
 		tableMgr.updateTableStatus(tableInput, "Occupied");

@@ -59,12 +59,12 @@ public class Order {
 		String orderItemDetails = null;
 		orderItemDetails = "Table No: " + getTableNo() + "\nStaff ID: " + getStaffId() + "\nOrder No: " + getOrderNo()
 				+ "\n";
-//		for (Alacarte alaCarteItem : orderAlaCarteItemAl) {
-//			orderItemDetails += alaCarteItem.toString() + alaCarteItem.getAlaCarteQty();
-//		}
-//		for (PromotionalPackage promoItem : orderPromoPackageAl) {
-//			orderItemDetails += promoItem.toString() + promoItem.getPromoPkgQty();
-//		}
+		for (Menu menu : foodAL) {
+			if(menu instanceof Alacarte)
+				orderItemDetails += ((Alacarte)menu).toString();
+			else if (menu instanceof PromotionalPackage)
+				orderItemDetails += ((PromotionalPackage)menu).toString();
+		}
 		return orderItemDetails;
 	}
 

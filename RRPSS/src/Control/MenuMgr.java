@@ -335,15 +335,21 @@ public class MenuMgr {
 		return menuAl;
 	}
 
-	public void updateMenuAL(ArrayList<Menu> al) {
+	public ArrayList<Menu> updateMenuAL(ArrayList<Menu> al) {
 		String foodName;
 		int choice, qty;
 		do {
-			System.out.println(al.toString());
+			for(Menu menu : menuAl) {
+				if(menu instanceof Alacarte) 
+					System.out.println(((Alacarte)menu).toString());
+				else
+					System.out.println(((PromotionalPackage)menu).toString());
+			}
 			System.out.println("1) Add items to list");
 			System.out.println("2) Remove items from list");
 			System.out.println("3) Finish");
 			choice = Integer.parseInt(sc.nextLine());
+			if(choice == 3) return null;
 			System.out.println("Enter food name");
 			foodName = sc.nextLine();
 			System.out.println("Please enter quanity of " + foodName);
@@ -360,7 +366,7 @@ public class MenuMgr {
 			}
 
 		} while (choice != 3);
-		return;
+		return al;
 	}
 
 	private ArrayList<Menu> removeMenuAL(ArrayList<Menu> al, String foodName, int qty) {
@@ -386,7 +392,7 @@ public class MenuMgr {
 				al.add((Alacarte) menuAl.get(index));
 				qty--;
 			}
-			System.out.println(qty + " " + foodName + " added");
+			System.out.println(foodName + " added");
 		}
 		return al;
 	}

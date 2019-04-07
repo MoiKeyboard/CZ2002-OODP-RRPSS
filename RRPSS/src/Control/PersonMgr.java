@@ -38,12 +38,10 @@ public class PersonMgr {
 
 	protected void removeCustomer(int searchTerm) {
 		for (Customer cust : custAl) {
-			{
 				if (cust.getContactNumber() == searchTerm) {
 					custAl.remove(cust);
 					break;
 				}
-			}
 		}
 	}
 

@@ -1,4 +1,4 @@
-AlaCarte|noName|Italian Cuisin|0.0|MAINCOURSE
+AlaCarte|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE
 AlaCarte|Cheese baked oyster|Entree|5.8|APPETIZER
 AlaCarte|Mushroom soup|Chef's recommendation|3.6|APPETIZER
-PromoPackage|Soup Spoon Set A|special pkg|9.9|Mushroom soup|Italian Cuisin|3.6|MAINCOURSE|noName|Italian Cuisin|0.0|MAINCOURSE|Cheese baked oyster|Italian Cuisin|5.8|MAINCOURSE|
+PromoPackage|Soup Spoon Set A|special pkg|9.9|Mushroom soup|Italian Cuisin|3.6|MAINCOURSE|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE|Cheese baked oyster|Italian Cuisin|5.8|MAINCOURSE|

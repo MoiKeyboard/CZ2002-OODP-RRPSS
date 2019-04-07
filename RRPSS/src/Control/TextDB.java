@@ -116,8 +116,9 @@ public class TextDB {
 			int staffId = Integer.parseInt(star.nextToken().trim()); // first token
 			String jobTitle = star.nextToken().trim(); // second token
 			String staffName = star.nextToken().trim(); // third token
+			String gender = star.nextToken().trim(); // fourth token
 			// create Staff object from file data
-			Staff item = new Staff(staffId, jobTitle, staffName);
+			Staff item = new Staff(staffId, jobTitle, staffName,gender);
 			// add to Staff array list
 			staffAl.add(item);
 		}

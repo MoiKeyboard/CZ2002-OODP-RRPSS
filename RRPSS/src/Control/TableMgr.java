@@ -58,10 +58,6 @@ public class TableMgr {
 		return null;
 	}
 
-	protected void modifyTableAl(ArrayList<Table> tableArr) {
-		tableAl = tableArr;
-	}
-
 	protected int getTableIndex(int search) {
 		for (int i = 0; i < tableAl.size(); i++) {
 			if (search == tableAl.get(i).getTableNo())

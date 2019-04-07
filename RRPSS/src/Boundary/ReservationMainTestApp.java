@@ -14,19 +14,21 @@ public class ReservationMainTestApp {
 		ReservationMgr reservationMgr = new ReservationMgr();
 		TableMgr tableMgr = new TableMgr();
 		OrderMgr orderMgr = new OrderMgr();
-		test.run(sc, menuMgr,tableMgr,reservationMgr, orderMgr);
+		InvoiceMgr invoiceMgr = new InvoiceMgr();
+		PersonMgr personMgr = new PersonMgr();
+		test.run(sc, menuMgr,tableMgr,reservationMgr, orderMgr,invoiceMgr,personMgr);
 		sc.close();
 	}
 	
-	public static void run(Scanner sc,MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr) {
+	public static void run(Scanner sc,MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr,InvoiceMgr invoiceMgr,PersonMgr personMgr) {
 		int userInput;
 		menuMgr.printMenuItem();
 		menuMgr.printPromotionalPackage();
 		tableMgr.printTableList();
-		reservationMgr.printReservation();
+		reservationMgr.printReservation(tableMgr,personMgr);
 		do {
 			ReservationMainTestApp.printAppMenu();
-			userInput = ReservationMainTestApp.getUserInput(sc, menuMgr, tableMgr,reservationMgr, orderMgr);
+			userInput = ReservationMainTestApp.getUserInput(sc, menuMgr, tableMgr,reservationMgr, orderMgr,invoiceMgr,personMgr);
 			
 		} while (userInput != 0 );
 		System.out.println("Thanks for using our app!");
@@ -51,7 +53,7 @@ public class ReservationMainTestApp {
 		System.out.println("16)\tPrint sale revenue report by period(e.g day/month)\n0)\tExit the application");
 	}
 	
-	public static int getUserInput(Scanner sc, MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr) {
+	public static int getUserInput(Scanner sc, MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr, InvoiceMgr invoiceMgr,PersonMgr personMgr) {
 		int input = sc.nextInt();
 		sc.nextLine();
 		try {
@@ -82,24 +84,27 @@ public class ReservationMainTestApp {
 					menuMgr.printPromotionalPackage();
 					break;
 				case 7:
+					orderMgr.createOrder(tableMgr, menuMgr, personMgr);
 					break;
 				case 8:
 					orderMgr.viewOrder();
 					break;
 				case 9:
+					orderMgr.updateOrder(menuMgr);
 					break;
 				case 10:
+					orderMgr.removeOrder();
 					break;
 				case 11:
 					reservationMgr.createReservation();
-					reservationMgr.printReservation();
+					reservationMgr.printReservation(tableMgr,personMgr);
 					break;
 				case 12:
-					reservationMgr.checkReservation();
+					reservationMgr.checkReservation(tableMgr,personMgr);
 					break;
 				case 13:
-					reservationMgr.removeReservation();
-					reservationMgr.printReservation();
+					reservationMgr.removeReservation(personMgr);
+					reservationMgr.printReservation(tableMgr,personMgr);
 					break;
 				case 14:
 					tableMgr.printTableList();

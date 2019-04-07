@@ -12,13 +12,11 @@ public class InvoiceMgr {
 	private ArrayList<Invoice> invoiceAl;
 	private ArrayList<Table> tableAl;
 	private ReservationMgr rMgr;
-	private TableMgr tMgr;
 	private static final double GST = 0.07; // CONSTANT GST 7%
 	private static final double serviceCharge = 0.1; // CONSTANT SERVICE CHARGE 10%
 	
 	public InvoiceMgr() {
 		//invoiceAl = TextDB.readInvoice();
-		tableAl = tMgr.getTableAL();
 		try {	
 			
 			
@@ -29,13 +27,9 @@ public class InvoiceMgr {
 		}
 	}
 	
-  public void generateInvoice(OrderMgr orderMgr, TableMgr tableMgr) {
+   public void generateInvoice(OrderMgr orderMgr, TableMgr tableMgr) {
 		Invoice currInvoice = new Invoice();
 
-	}
-	
-  public void billPls(int tableNo,Order o) {
-		
 	}
 	
 	// Option 0 - print revenue report for particular day , Option 1 - print revenue report for particular month
