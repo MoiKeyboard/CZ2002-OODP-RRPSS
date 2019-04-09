@@ -1,6 +1,5 @@
 package Boundary;
-import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 import Control.*;
@@ -20,13 +19,14 @@ public class ReservationMainTestApp {
 		sc.close();
 	}
 	
-	public static void run(Scanner sc,MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr,InvoiceMgr invoiceMgr,PersonMgr personMgr) {
+	public void run(Scanner sc,MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr,InvoiceMgr invoiceMgr,PersonMgr personMgr) {
 		int userInput;
 		menuMgr.printMenuItem();
 		menuMgr.printPromotionalPackage();
 		tableMgr.printTableList();
 		reservationMgr.printReservation(tableMgr,personMgr);
 		do {
+			reservationMgr.removeExpiredReservations();
 			ReservationMainTestApp.printAppMenu();
 			userInput = ReservationMainTestApp.getUserInput(sc, menuMgr, tableMgr,reservationMgr, orderMgr,invoiceMgr,personMgr);
 			

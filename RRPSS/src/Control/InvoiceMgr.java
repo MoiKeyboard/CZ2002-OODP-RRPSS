@@ -1,5 +1,7 @@
 package Control;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
@@ -26,6 +28,9 @@ public class InvoiceMgr {
 		sc = new Scanner(System.in);
 		try {	
 			invoiceAl = TextDB.readInvoice("Invoices.txt");
+			for(Invoice invoice : invoiceAl) {
+				System.out.println(invoice.toString());
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,14 +84,10 @@ public class InvoiceMgr {
 			System.out.println("Please enter date (E.g 10-04-2019)");
 			periodDT = sc.nextLine();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-			LocalDateTime saleReportPeriod = LocalDateTime.parse(periodDT, formatter);
+			LocalDate saleReportPeriod = LocalDate.parse(periodDT, formatter);
 			System.out.println(saleReportPeriod);
-			System.out.println("Year " + saleReportPeriod.getYear());
-			System.out.println("Month " + saleReportPeriod.getMonthValue());
-			System.out.println("day " + saleReportPeriod.getDayOfYear());
 			for(Invoice invoice : invoiceAl) {
-				if(invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear() && invoice.getInvoiceDT().getMonthValue() == saleReportPeriod.getMonthValue()
-						&& invoice.getInvoiceDT().getDayOfYear() == saleReportPeriod.getDayOfYear()) {
+				if(invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear()  && invoice.getInvoiceDT().getDayOfYear() == saleReportPeriod.getDayOfYear()) {
 					System.out.println("Selected printing revenue report by day");
 					System.out.println(invoice.toString());
 				}
@@ -95,7 +96,8 @@ public class InvoiceMgr {
 			System.out.println("Please enter month and year in the following format (E.g 04-2019)");
 			periodDT = sc.nextLine();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-yyyy");
-			LocalDateTime saleReportPeriod = LocalDateTime.parse(periodDT, formatter);
+			YearMonth ym = YearMonth.parse(periodDT, formatter);
+			LocalDate saleReportPeriod = ym.atDay(1);
 			for(Invoice invoice : invoiceAl) {
 				if(invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear() && invoice.getInvoiceDT().getMonthValue() == saleReportPeriod.getMonthValue()) {
 					System.out.println("Selected printing revenue report by month");

@@ -207,7 +207,7 @@ public class ReservationMgr {
 			existingReservationDT = r.getReservationDate();
 			existingReservationDay = existingReservationDT.getDayOfYear();
 			expiringDT = today.minus(10, ChronoUnit.MINUTES);
-			if (expiringDT.getHour() == existingReservationDT.getHour()
+			if (expiringDT.getDayOfYear() == existingReservationDT.getDayOfYear() && expiringDT.getHour() == existingReservationDT.getHour()
 					&& expiringDT.getMinute() == existingReservationDT.getMinute()) {
 				if (r.isAttended() != true) {
 					System.out.println("Removing Reservation:\n" + r.toString());
