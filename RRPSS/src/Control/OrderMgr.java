@@ -24,9 +24,8 @@ public class OrderMgr {
 
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
 
-		int orderNo, tableInput, staffInput;
+		int tableInput, staffInput;
 		ArrayList<Menu> foodAL = new ArrayList<Menu>();
- 		String foodInput;
 		System.out.println("Please enter staff ID: ");
 		staffInput = Integer.parseInt(sc.nextLine());
 		// Check staff

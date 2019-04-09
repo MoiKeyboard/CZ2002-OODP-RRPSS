@@ -130,7 +130,7 @@ public class MenuMgr {
 		System.out.println("Please enter new promotional package name");
 		promoName = sc.nextLine();
 		if (getMenuIndex(promoName) != -1) {
-			System.out.println("Existing promo name found. Please try again");
+			System.out.println("Existing name found. Please try again");
 			return;
 		}
 		System.out.println("Please enter new promotional package description");
@@ -339,17 +339,18 @@ public class MenuMgr {
 		String foodName;
 		int choice, qty;
 		do {
-			for(Menu menu : menuAl) {
-				if(menu instanceof Alacarte) 
-					System.out.println(((Alacarte)menu).toString());
+			for (Menu menu : menuAl) {
+				if (menu instanceof Alacarte)
+					System.out.println(((Alacarte) menu).toString());
 				else
-					System.out.println(((PromotionalPackage)menu).toString());
+					System.out.println(((PromotionalPackage) menu).toString());
 			}
 			System.out.println("1) Add items to list");
 			System.out.println("2) Remove items from list");
 			System.out.println("3) Finish");
 			choice = Integer.parseInt(sc.nextLine());
-			if(choice == 3) return al;
+			if (choice == 3)
+				return al;
 			System.out.println("Enter food name");
 			foodName = sc.nextLine();
 			System.out.println("Please enter quanity of " + foodName);
@@ -389,7 +390,7 @@ public class MenuMgr {
 			return al;
 		else {
 			while (qty > 0) {
-				if(menuAl.get(index) instanceof Alacarte) 
+				if (menuAl.get(index) instanceof Alacarte)
 					al.add((Alacarte) menuAl.get(index));
 				else if (menuAl.get(index) instanceof PromotionalPackage)
 					al.add((PromotionalPackage) menuAl.get(index));

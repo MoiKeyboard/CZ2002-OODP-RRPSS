@@ -40,6 +40,7 @@ public class TableMgr {
 		System.out.println("Table " + tableNo + " set to " + status);
 	}
 
+	// might remove this
 	protected boolean checkTableVacancy(int tableNo) {
 		int index = getTableIndex(tableNo);
 		if (!"Vaccated".equals(tableAl.get(index).getTableStatus())) {
@@ -48,6 +49,16 @@ public class TableMgr {
 		} else
 			return true;
 	}
+
+//	protected int assignTable(int pax) {
+//		for(Table t: tableAl) {
+//			if(pax <= t.getSeatCap() && t.getTableStatus().equals("Vacated")) {
+//				return t.getTableNo();
+//			}
+//		}
+//		System.out.println("All tables are unavailable...");
+//		return -1;
+//	}
 
 	protected String getTableStatusForReservation(Reservation r) {
 		for (Table tables : tableAl) {
