@@ -55,6 +55,7 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
+	// check instance of alacarte
 	public void updateAlacarte() throws IOException {
 		String searchName;
 		int choice = 0, index;
