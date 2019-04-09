@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import Entity.Customer;
@@ -203,7 +204,9 @@ public class ReservationMgr {
 		LocalDateTime existingReservationDT, expiringDT;
 		int existingReservationDay;
 		LocalDateTime today = LocalDateTime.now();
-		for (Reservation r : reservationAl) {
+		Iterator<Reservation> it = reservationAl.iterator();
+		while(it.hasNext()) {
+			Reservation r = it.next();
 			existingReservationDT = r.getReservationDate();
 			existingReservationDay = existingReservationDT.getDayOfYear();
 			expiringDT = today.minus(10, ChronoUnit.MINUTES);
@@ -211,9 +214,14 @@ public class ReservationMgr {
 					&& expiringDT.getMinute() == existingReservationDT.getMinute()) {
 				if (r.isAttended() != true) {
 					System.out.println("Removing Reservation:\n" + r.toString());
-					reservationAl.remove(r);
+					it.remove();
 				}
 			}
+		}
+		try {
+			TextDB.saveReservations("Reservations.txt", reservationAl, tableAl, custAl);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

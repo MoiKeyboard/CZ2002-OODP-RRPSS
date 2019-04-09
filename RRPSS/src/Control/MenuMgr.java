@@ -383,7 +383,7 @@ public class MenuMgr {
 		return al;
 	}
 
-	public ArrayList<Menu> addMenuAL(ArrayList<Menu> al, String foodName, int qty) {
+	private ArrayList<Menu> addMenuAL(ArrayList<Menu> al, String foodName, int qty) {
 		int index = getMenuIndex(foodName);
 		if (index == -1)
 			return al;
