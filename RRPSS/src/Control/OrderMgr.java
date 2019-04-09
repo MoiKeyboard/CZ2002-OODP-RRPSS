@@ -22,7 +22,7 @@ public class OrderMgr {
 		}
 	}
 
-	protected void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
+	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
 
 		int tableInput, staffInput;
 		ArrayList<Menu> foodAL = new ArrayList<Menu>();
@@ -44,7 +44,7 @@ public class OrderMgr {
 	}
 
 	// View order of the current session
-	protected void viewOrder() throws IOException {
+	public void viewOrder() throws IOException {
 		int index;
 		System.out.println("Please enter table number");
 		index = getOrderIndex(sc.nextInt());
@@ -53,7 +53,7 @@ public class OrderMgr {
 		System.out.println(orderAl.get(index).toString());
 	}
 
-	protected void updateOrder(MenuMgr menuMgr) {
+	public void updateOrder(MenuMgr menuMgr) {
 		int index;
 		System.out.println("Please enter table number");
 		index = getOrderIndex(sc.nextInt());
@@ -64,7 +64,7 @@ public class OrderMgr {
 		menuMgr.updateMenuAL(currFoodAL);
 	}
 
-	protected void removeOrder() {
+	public void removeOrder() {
 		int index;
 		System.out.println("Please enter table number");
 		index = getOrderIndex(sc.nextInt());

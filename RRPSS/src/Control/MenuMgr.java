@@ -33,7 +33,7 @@ public class MenuMgr {
 		System.out.println();
 	}
 
-	protected void createAlacarte() throws Exception {
+	public void createAlacarte() throws Exception {
 		String foodCat, foodName, foodDesc;
 		double foodPrice;
 		System.out.println("Please enter food category");
@@ -56,7 +56,7 @@ public class MenuMgr {
 	}
 
 	// check instance of alacarte
-	protected void updateAlacarte() throws IOException {
+	public void updateAlacarte() throws IOException {
 		String searchName;
 		int choice = 0, index;
 		System.out.println("Please enter the name of the food item that you want to update");
@@ -106,7 +106,7 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
-	protected void removeAlacarte() throws IOException { // whole method working
+	public void removeAlacarte() throws IOException { // whole method working
 		int index;
 		Alacarte currAla = new Alacarte();
 		System.out.println("Please enter the food item that you want to remove");
@@ -123,7 +123,7 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
-	protected void createPromotionalPackage() throws IOException {
+	public void createPromotionalPackage() throws IOException {
 		String promoName;
 		String promoDesc;
 		double promoPrice;
@@ -147,7 +147,7 @@ public class MenuMgr {
 
 	}
 
-	protected void updatePromotionalPackage() throws IOException {
+	public void updatePromotionalPackage() throws IOException {
 		int index, choice = 0;
 		String promoName;
 		PromotionalPackage curPP;
@@ -282,7 +282,7 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
-	protected void removePromotionalPackage() throws IOException {
+	public void removePromotionalPackage() throws IOException {
 		int index;
 		System.out.println("Please enter the name of the promotional package that you want to remove");
 		index = getMenuIndex(sc.nextLine());
@@ -296,7 +296,7 @@ public class MenuMgr {
 
 	}
 
-	protected void printPromotionalPackage() {
+	public void printPromotionalPackage() {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage)
 				System.out.println(((PromotionalPackage) menuAl.get(i)).toString());
