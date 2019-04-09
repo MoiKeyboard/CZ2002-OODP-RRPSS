@@ -3,12 +3,12 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <package id="1" language="java" name="Boundary" project="RRPSS" file="/RRPSS/src/Boundary" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="55" width="122" x="187" y="157"/>    
+    <position height="55" width="122" x="263" y="190"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
   <class id="2" language="java" name="Entity.PromotionalPackage" project="RRPSS" 
     file="/RRPSS/src/Entity/PromotionalPackage.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="214" width="388" x="562" y="1007"/>    
+    <position height="160" width="388" x="770" y="1474"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -17,252 +17,297 @@
   </class>  
   <class id="3" language="java" name="Control.MenuMgr" project="RRPSS" file="/RRPSS/src/Control/MenuMgr.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="322" width="345" x="522" y="609"/>    
+    <position height="466" width="431" x="708" y="606"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="Entity.Person" project="RRPSS" file="/RRPSS/src/Entity/Person.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="160" width="146" x="1169" y="1007"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="Control.OrderMgr" project="RRPSS" file="/RRPSS/src/Control/OrderMgr.java" 
+  <class id="4" language="java" name="Control.InvoiceMgr" project="RRPSS" file="/RRPSS/src/Control/InvoiceMgr.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="250" width="159" x="1969" y="157"/>    
+    <position height="214" width="258" x="2035" y="190"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="Entity.Reservation" project="RRPSS" file="/RRPSS/src/Entity/Reservation.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="322" width="241" x="1656" y="1007"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <package id="7" language="java" name="Control" project="RRPSS" file="/RRPSS/src/Control" binary="false" 
+  <class id="5" language="java" name="Entity.Person" project="RRPSS" file="/RRPSS/src/Entity/Person.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="55" width="122" x="493" y="157"/>    
+    <position height="160" width="146" x="522" y="606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="Control.OrderMgr" project="RRPSS" file="/RRPSS/src/Control/OrderMgr.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="303" x="1692" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="Entity.Reservation" project="RRPSS" file="/RRPSS/src/Entity/Reservation.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="322" width="241" x="1935" y="1112"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="8" language="java" name="Control" project="RRPSS" file="/RRPSS/src/Control" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="55" width="122" x="425" y="190"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <class id="8" language="java" name="Entity.Invoice" project="RRPSS" file="/RRPSS/src/Entity/Invoice.java" 
+  <class id="9" language="java" name="Control.PersonMgr" project="RRPSS" file="/RRPSS/src/Control/PersonMgr.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="197" x="655" y="157"/>    
+    <position height="196" width="219" x="263" y="606"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="Entity.Table" project="RRPSS" file="/RRPSS/src/Entity/Table.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="250" width="180" x="1937" y="1369"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="Control.TextDB" project="RRPSS" file="/RRPSS/src/Control/TextDB.java" 
+  <class id="10" language="java" name="Entity.Invoice" project="RRPSS" file="/RRPSS/src/Entity/Invoice.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="412" width="401" x="892" y="157"/>    
+    <position height="394" width="453" x="1442" y="606"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="Entity.Order" project="RRPSS" file="/RRPSS/src/Entity/Order.java" binary="false" 
+  <class id="11" language="java" name="Entity.Table" project="RRPSS" file="/RRPSS/src/Entity/Table.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="358" width="428" x="1127" y="609"/>    
+    <position height="250" width="180" x="2288" y="1112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <package id="12" language="java" name="Entity" project="RRPSS" file="/RRPSS/src/Entity" binary="false" 
+  <class id="12" language="java" name="Control.TextDB" project="RRPSS" file="/RRPSS/src/Control/TextDB.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="376" width="299" x="587" y="190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="Entity.Order" project="RRPSS" file="/RRPSS/src/Entity/Order.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="55" width="122" x="1333" y="157"/>    
+    <position height="268" width="223" x="1179" y="606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="14" language="java" name="Entity" project="RRPSS" file="/RRPSS/src/Entity" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="55" width="122" x="926" y="190"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <class id="13" language="java" name="Control.ReservationMgr" project="RRPSS" 
+  <class id="15" language="java" name="Control.ReservationMgr" project="RRPSS" 
     file="/RRPSS/src/Control/ReservationMgr.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="250" width="332" x="1595" y="609"/>    
+    <position height="250" width="332" x="1935" y="606"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="Entity.Staff" project="RRPSS" file="/RRPSS/src/Entity/Staff.java" binary="false" 
+  <class id="16" language="java" name="Entity.Staff" project="RRPSS" file="/RRPSS/src/Entity/Staff.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="232" width="156" x="1169" y="1369"/>    
+    <position height="268" width="188" x="294" y="1112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="Entity.Alacarte" project="RRPSS" file="/RRPSS/src/Entity/Alacarte.java" 
+  <class id="17" language="java" name="Entity.Alacarte" project="RRPSS" file="/RRPSS/src/Entity/Alacarte.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="250" width="234" x="895" y="1369"/>    
+    <position height="196" width="234" x="1179" y="1674"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="Control.TableMgr" project="RRPSS" file="/RRPSS/src/Control/TableMgr.java" 
+  <class id="18" language="java" name="Control.TableMgr" project="RRPSS" file="/RRPSS/src/Control/TableMgr.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="311" x="1937" y="1007"/>    
+    <position height="214" width="311" x="2328" y="606"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="Entity.Menu" project="RRPSS" file="/RRPSS/src/Entity/Menu.java" binary="false" 
+  <class id="19" language="java" name="Entity.Menu" project="RRPSS" file="/RRPSS/src/Entity/Menu.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="268" width="180" x="907" y="609"/>    
+    <position height="268" width="180" x="1179" y="1112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="Entity.Customer" project="RRPSS" file="/RRPSS/src/Entity/Customer.java" 
+  <class id="20" language="java" name="Entity.Customer" project="RRPSS" file="/RRPSS/src/Entity/Customer.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="160" x="1429" y="1369"/>    
+    <position height="160" width="160" x="522" y="1112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="Boundary.ReservationMainTestApp" project="RRPSS" 
+  <class id="21" language="java" name="Boundary.ReservationMainTestApp" project="RRPSS" 
     file="/RRPSS/src/Boundary/ReservationMainTestApp.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1603" y="308"/>    
+    <position height="160" width="564" x="1088" y="190"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="20">    
-    <bendpoint x="1604" y="1007"/>    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="21" name="custAl">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
   <generalization id="23">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="4"/>  
+    <bendpoint x="1188" y="1474"/>    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="19"/>  
   </generalization>  
   <association id="24">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="25" name="menuItemArr">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="26" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="17"/>  
-  </generalization>  
-  <association id="28">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="29" name="tableAl">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="30" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="32" name="tMgr">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="25" name="staffAl"/>      
+      <multiplicity id="26" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="34">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="35" name="orderAl">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="36" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <association id="27">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="28" name="foodAL"/>      
+      <multiplicity id="29" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="31" name="tableAl"/>      
+      <multiplicity id="32" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="37">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="38" name="reservationAl">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="39" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <association id="33">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="34" name="menuItemArr"/>      
+      <multiplicity id="35" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="40">    
-    <bendpoint x="1625" y="1007"/>    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="41" name="tableAl">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="42" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <association id="36">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="37" name="menuAl"/>      
+      <multiplicity id="38" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="4"/>  
+  <association id="39">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="40" name="orderAl"/>      
+      <multiplicity id="41" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="19"/>  
   </generalization>  
-  <generalization id="44">    
-    <bendpoint x="980" y="1007"/>    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="17"/>  
+  <association id="43">    
+    <bendpoint x="2297" y="606"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="44" name="tableAl"/>      
+      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="47" name="foodAL"/>      
+      <multiplicity id="48" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="50" name="tableAl"/>      
+      <multiplicity id="51" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="5"/>  
   </generalization>  
+  <association id="53">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="54" name="custAl"/>      
+      <multiplicity id="55" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="57" name="custAl"/>      
+      <multiplicity id="58" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="60" name="rMgr"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="63" name="invoiceAl"/>      
+      <multiplicity id="64" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="66" name="reservationAl"/>      
+      <multiplicity id="67" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
