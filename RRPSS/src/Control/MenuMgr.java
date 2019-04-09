@@ -33,7 +33,7 @@ public class MenuMgr {
 		System.out.println();
 	}
 
-	public void createAlacarte() throws Exception {
+	protected void createAlacarte() throws Exception {
 		String foodCat, foodName, foodDesc;
 		double foodPrice;
 		System.out.println("Please enter food category");
@@ -56,7 +56,7 @@ public class MenuMgr {
 	}
 
 	// check instance of alacarte
-	public void updateAlacarte() throws IOException {
+	protected void updateAlacarte() throws IOException {
 		String searchName;
 		int choice = 0, index;
 		System.out.println("Please enter the name of the food item that you want to update");
@@ -106,7 +106,7 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
-	public void removeAlacarte() throws IOException { // whole method working
+	protected void removeAlacarte() throws IOException { // whole method working
 		int index;
 		Alacarte currAla = new Alacarte();
 		System.out.println("Please enter the food item that you want to remove");
@@ -123,7 +123,7 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
-	public void createPromotionalPackage() throws IOException {
+	protected void createPromotionalPackage() throws IOException {
 		String promoName;
 		String promoDesc;
 		double promoPrice;
@@ -147,7 +147,7 @@ public class MenuMgr {
 
 	}
 
-	public void updatePromotionalPackage() throws IOException {
+	protected void updatePromotionalPackage() throws IOException {
 		int index, choice = 0;
 		String promoName;
 		PromotionalPackage curPP;
@@ -192,7 +192,7 @@ public class MenuMgr {
 		}
 	}
 
-	public void updateAlacarteAL(ArrayList<Alacarte> al) {
+	protected void updateAlacarteAL(ArrayList<Alacarte> al) {
 		String foodName;
 		int choice, qty;
 		do {
@@ -234,7 +234,7 @@ public class MenuMgr {
 		return al;
 	}
 
-	public ArrayList<Alacarte> addAlacarteAL(ArrayList<Alacarte> al, String foodName, int qty) {
+	private ArrayList<Alacarte> addAlacarteAL(ArrayList<Alacarte> al, String foodName, int qty) {
 		int index = getMenuIndex(foodName);
 		if (index == -1)
 			return al;
@@ -251,7 +251,7 @@ public class MenuMgr {
 		return al;
 	}
 
-	public void updateAlafromPP(Alacarte oldA, Alacarte newA) throws IOException {
+	private void updateAlafromPP(Alacarte oldA, Alacarte newA) throws IOException {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage) {
 				for (Alacarte a : ((PromotionalPackage) menuAl.get(i)).getMenuItemArr()) {
@@ -270,7 +270,6 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
-	// rename
 	private void removeAlafromPP(Alacarte currA) throws IOException {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage) {
@@ -283,8 +282,7 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
-	// rename
-	public void removePromotionalPackage() throws IOException {
+	protected void removePromotionalPackage() throws IOException {
 		int index;
 		System.out.println("Please enter the name of the promotional package that you want to remove");
 		index = getMenuIndex(sc.nextLine());
@@ -298,14 +296,14 @@ public class MenuMgr {
 
 	}
 
-	public void printPromotionalPackage() {
+	protected void printPromotionalPackage() {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage)
 				System.out.println(((PromotionalPackage) menuAl.get(i)).toString());
 		}
 	}
 
-	public int getMenuIndex(String search) {
+	protected int getMenuIndex(String search) {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (search.equalsIgnoreCase(menuAl.get(i).getName()))
 				return i;
@@ -314,7 +312,7 @@ public class MenuMgr {
 		return -1;
 	}
 
-	public int getMenuIndex(ArrayList<Menu> al, String search) {
+	protected int getMenuIndex(ArrayList<Menu> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
 			if (search.equalsIgnoreCase(al.get(i).getName()))
 				return i;
@@ -323,7 +321,7 @@ public class MenuMgr {
 		return -1;
 	}
 
-	private int getAlacarteIndex(ArrayList<Alacarte> al, String search) {
+	protected int getAlacarteIndex(ArrayList<Alacarte> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
 			if (search.equalsIgnoreCase(al.get(i).getName()))
 				return i;
@@ -332,11 +330,11 @@ public class MenuMgr {
 		return -1;
 	}
 
-	public ArrayList<Menu> getMenuAl() {
+	protected ArrayList<Menu> getMenuAl() {
 		return menuAl;
 	}
 
-	public ArrayList<Menu> updateMenuAL(ArrayList<Menu> al) {
+	protected ArrayList<Menu> updateMenuAL(ArrayList<Menu> al) {
 		String foodName;
 		int choice, qty;
 		do {
