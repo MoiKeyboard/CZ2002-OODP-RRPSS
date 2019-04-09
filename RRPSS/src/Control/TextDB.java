@@ -1,8 +1,11 @@
 package Control;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -227,114 +230,30 @@ public class TextDB {
 	
 	public static ArrayList<Invoice> readInvoice(String filename) throws IOException {
 		// read String from text file
-		ArrayList stringArray = (ArrayList) read(filename);
 		ArrayList<Invoice> invoiceAl = new ArrayList<Invoice>();
-		for (int i = 0; i < stringArray.size(); i++) {
-			ArrayList<Menu> menuAl = new ArrayList<Menu>();
-			String st = (String) stringArray.get(i);
-			// get individual 'fields' of the string separated by SEPARATOR
-			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
-																		// using delimiter ","
-			int tableNo = Integer.parseInt(star.nextToken().trim());//second token
-			int staffID = Integer.parseInt(star.nextToken().trim());
-			LocalDateTime invoiceDT = LocalDateTime.parse(star.nextToken().trim());
-			double GST = Double.parseDouble(star.nextToken().trim());
-			double serviceCharge = Double.parseDouble(star.nextToken().trim());
-			double totalPrice = Double.parseDouble(star.nextToken().trim());
-			long invoiceNo = Long.parseLong(star.nextToken().trim());
-			// create Invoice object from file data
-			// add to Invoice array list
-			String menuType = star.nextToken().trim();
-			if(menuType.equalsIgnoreCase("PromoPackage")) {
-				ArrayList<Alacarte> tempAlacarteAl = new ArrayList<Alacarte>();
-				String promoName = star.nextToken().trim();
-				String promoDesc = star.nextToken().trim();
-				double promoPrice = Double.parseDouble(star.nextToken());
-				while(star.hasMoreTokens()) {
-					String foodName = star.nextToken().trim();
-					String description = star.nextToken().trim();
-					double price = Double.parseDouble(star.nextToken());
-					String category = star.nextToken().trim();
-					Alacarte mi = new Alacarte(foodName,description,price,category);
-					tempAlacarteAl.add(mi);
-				}
-				PromotionalPackage promoPkg = new PromotionalPackage(promoName,promoDesc,promoPrice,tempAlacarteAl);
-				menuAl.add(promoPkg);
-			} else if (menuType.equalsIgnoreCase("AlaCarte")) {
-				String alaCarteName = star.nextToken().trim();
-				String alaCartedesc = star.nextToken().trim();
-				double alaCarteprice = Double.parseDouble(star.nextToken());
-				String category = star.nextToken().trim();
-				Alacarte item = new Alacarte(alaCarteName,alaCartedesc,alaCarteprice,category);
-				// add to MenuAl list
-				menuAl.add(item);
-			}
-			invoiceAl.add(new Invoice(tableNo,staffID,invoiceDT,GST,serviceCharge,totalPrice,invoiceNo,menuAl));
-		}
+			try {
+	            FileInputStream fis = new FileInputStream(filename);
+	            ObjectInputStream ois = new ObjectInputStream(fis);
+	            invoiceAl = (ArrayList) ois.readObject();
+	            ois.close();
+	            fis.close();
+	        } catch (Exception e) {
+	            System.out.println(e);
+	        }
 		return invoiceAl;
 	}
 
 	// an example of saving
-	public static void saveInvoice(String filename, List invoiceAl) throws IOException {
-		List alw = new ArrayList();// to store Professors data
-		for (int i = 0; i < invoiceAl.size(); i++) { 
-			Invoice s1 = (Invoice) invoiceAl.get(i);
-			StringBuilder st = new StringBuilder();
-			st.append(s1.getTableNo());
-			st.append(SEPARATOR);
-			st.append(s1.getStaffID());
-			st.append(SEPARATOR);
-			st.append(s1.getInvoiceDT().toString());
-			st.append(SEPARATOR);
-			st.append(s1.getGST());
-			st.append(SEPARATOR);
-			st.append(s1.getServiceCharge());
-			st.append(SEPARATOR);
-			st.append(s1.getTotalPrice());
-			st.append(SEPARATOR);
-			st.append(s1.getInvoiceNo());
-			st.append(SEPARATOR);
-			for (int index = 0; i < s1.getFoodAL().size();i++) {
-				if(s1.getFoodAL().get(index) instanceof PromotionalPackage) {
-					PromotionalPackage p1 = (PromotionalPackage) s1.getFoodAL().get(index);
-					StringBuilder st2 = new StringBuilder();
-					st.append("PromoPackage");
-					st.append(SEPARATOR);
-					st.append(p1.getName());
-					st.append(SEPARATOR);
-					st.append(p1.getDescription());
-					st.append(SEPARATOR);
-					st.append(p1.getPrice());
-					st.append(SEPARATOR);
-					for(int i2 = 0;i2 < p1.getMenuItemArr().size();i2++) {
-						st.append(p1.getMenuItemArr().get(i2).getName());	
-						st.append(SEPARATOR);
-						st.append(p1.getMenuItemArr().get(i2).getDescription());	
-						st.append(SEPARATOR);
-						st.append(p1.getMenuItemArr().get(i2).getPrice());	
-						st.append(SEPARATOR);
-						st.append(p1.getMenuItemArr().get(i2).getCategory());
-						st.append(SEPARATOR);
-					}
-				} else if (s1.getFoodAL().get(index) instanceof Alacarte) {
-					Alacarte item = (Alacarte) s1.getFoodAL().get(index);
-					StringBuilder st2 = new StringBuilder();
-					st.append("AlaCarte");
-					st.append(SEPARATOR);
-					st.append(item.getName().trim());
-					st.append(SEPARATOR);
-					st.append(item.getDescription().trim());
-					st.append(SEPARATOR);
-					st.append(item.getPrice());
-					st.append(SEPARATOR);
-					st.append(item.getCategory());
-					st.append(SEPARATOR);
-				}
-			}
-			alw.add(st.toString());
-		}
-		
-		write(filename, alw);
+	public static void saveInvoice(String filename, ArrayList<Invoice> invoiceAl) throws IOException {
+			try {
+	            FileOutputStream fos = new FileOutputStream(filename);
+	            ObjectOutputStream oos = new ObjectOutputStream(fos);
+	            oos.writeObject(invoiceAl);
+	            oos.close();
+	            fos.close();
+	        } catch (IOException ioe) {
+	            ioe.printStackTrace();
+	        }
 	}
 
 	public static ArrayList<Customer> readCustomer(String filename) throws IOException {

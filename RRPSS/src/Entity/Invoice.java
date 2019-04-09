@@ -1,12 +1,13 @@
 package Entity;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Invoice {
+public class Invoice implements Serializable {
 	private int tableNo;
 	private int staffID;
 	private LocalDateTime invoiceDT;

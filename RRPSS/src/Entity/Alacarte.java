@@ -1,6 +1,8 @@
 package Entity;
 
-public class Alacarte extends Menu {
+import java.io.Serializable;
+
+public class Alacarte extends Menu implements Serializable {
 	private String category;
 
 	public Alacarte() {

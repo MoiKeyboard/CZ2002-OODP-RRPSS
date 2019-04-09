@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import Entity.Alacarte;
 import Entity.Customer;
 import Entity.Staff;
 import Entity.Invoice;
 import Entity.Menu;
 import Entity.Order;
+import Entity.PromotionalPackage;
 import Entity.Table;
 
 public class InvoiceMgr {

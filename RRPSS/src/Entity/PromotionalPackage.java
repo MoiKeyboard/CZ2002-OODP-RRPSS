@@ -1,8 +1,9 @@
 package Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PromotionalPackage extends Menu {
+public class PromotionalPackage extends Menu  implements Serializable {
 	private ArrayList<Alacarte> menuItemArr;
 
 	public PromotionalPackage() {
