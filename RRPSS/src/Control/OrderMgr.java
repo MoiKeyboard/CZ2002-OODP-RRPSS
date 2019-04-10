@@ -23,7 +23,8 @@ public class OrderMgr {
 	}
 
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
-
+//delete reservation after creating order
+		// branch methods for resercation and normal order
 		int tableInput, staffInput;
 		ArrayList<Menu> foodAL = new ArrayList<Menu>();
 		System.out.println("Please enter staff ID: ");

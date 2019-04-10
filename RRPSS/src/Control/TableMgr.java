@@ -1,5 +1,6 @@
 package Control;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,6 +29,20 @@ public class TableMgr {
 			System.out.println("Table status: " + s.getTableStatus() + "\n");
 		}
 		System.out.println();
+	}
+
+	protected void updateTableStatus(ReservationMgr rMgr) {
+		LocalDateTime today = LocalDateTime.now();
+		ArrayList<Reservation> reservationAL = rMgr.getReservationAl();
+		for (Reservation r : reservationAL) {
+			LocalDateTime dt = r.getReservationDate();
+			if (dt.getDayOfYear() == today.getDayOfYear()) {
+				int tableNo = r.getTableNo();
+				int index = getTableIndex(tableNo);
+				tableAl.get(index).setTableStatus("Reserved");
+
+			}
+		}
 	}
 
 	protected ArrayList<Table> getTableAL() {
