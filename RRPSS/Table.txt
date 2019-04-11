@@ -1,4 +1,4 @@
-1|2|Vacated
+1|2|Occupied
 2|2|Vacated
 3|2|Vacated
 4|2|Vacated
@@ -18,7 +18,7 @@
 18|4|Vacated
 19|4|Vacated
 20|4|Vacated
-21|8|Reserved
+21|8|Occupied
 22|8|Vacated
 23|8|Vacated
 24|8|Vacated

@@ -34,7 +34,7 @@ public class OrderMgr {
 			return;
 		System.out.println("Please enter table No: ");
 		// Check table
-		tableInput = Integer.parseInt(sc.nextLine());
+		tableInput = Integer.parseInt(sc.nextInt());
 		// Call menu manager to create list
 		foodAL = menuMgr.updateMenuAL(foodAL);
 		// Instantiate new order

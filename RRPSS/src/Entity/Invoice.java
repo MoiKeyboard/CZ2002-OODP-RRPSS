@@ -74,11 +74,67 @@ public class Invoice implements Serializable {
 	@Override
 	public String toString() {
 		String invoiceDetails = null;
-		invoiceDetails = "Table Number: " + getTableNo() + "\nDate and Time of Invoice: " + invoiceDT.toString() + "\n";
+		String display = "";
+		
+		//or just use menu array list..
+		ArrayList<Menu> uniqueList = new ArrayList <Menu>();
+		//to count each unique item
+		ArrayList<Integer> eachCount = new ArrayList <Integer>();
+		
+		
+		/*
+		 * uniqueList: [menuItem1, menuItem2]
+		 * eachCount: [1, 2]
+		 */
+		
+		
+		invoiceDetails = "============ Oops Bar & Cafe ============\n"
+					    +"        50 Nanyang Ave, 639798\n"
+					    +"               SCSE, NTU\n"
+					    +"Table: " + getTableNo() + "\nDate/time: " 
+				        + invoiceDT.toString() 
+				      +"\n------------------------------------------\n";
+						
 		for(Menu menu : foodAL) {
-			invoiceDetails += menu.toString();
+			
+			if (uniqueList.contains(menu)){
+			//if item is a repeat, add to respective count.
+				eachCount.add(uniqueList.indexOf(menu),
+						eachCount.get(uniqueList.indexOf(menu))+1);
+			}
+			else {
+			//item is not a repeat, add to uniqueList and start eachCount at 1.
+				uniqueList.add(menu);
+				eachCount.add(1);
+			
+			}
 		}
-		invoiceDetails +=  "\nGST: " + getGST() + "\nService charge: " + getServiceCharge() + "\nTotal Price of order: " + getTotalPrice() + "\n";
+		
+		for (int i = 0; i<uniqueList.size(); i++) {
+			display = String.format("%-5d %-22s %5.2f\n", eachCount.get(i), 
+									uniqueList.get(i).getName(),
+									uniqueList.get(i).getPrice());
+			invoiceDetails += display;
+			
+		}
+		
+		invoiceDetails += "------------------------------------------";
+		display = String.format("                          SubTotal: %.2d",
+				(getTotalPrice()-(getGST()+getServiceCharge())));
+		invoiceDetails += display;
+		invoiceDetails +=  "\n                          GST: " 
+							+ getGST() 
+							+ "\nService Charge: " 
+							+ getServiceCharge() 
+							+ "\nTotal: " 
+							+ getTotalPrice() + "\n";
+		
+		invoiceDetails += "------------------------------------------";
+		display= String.format("                  TOTAL: %.2d\n",getTotalPrice());
+		invoiceDetails += "==========================================\n";
+		invoiceDetails += "Thank you for dropping by Oops (I did it again) Bar & Cafe."
+						+ "                   *****                    ";
+		invoiceDetails += display;
 		return invoiceDetails;
 	}
 }
