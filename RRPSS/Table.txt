@@ -1,8 +1,8 @@
 1|2|Occupied
-2|2|Vacated
+2|2|Occupied
 3|2|Vacated
-4|2|Vacated
-5|2|Vacated
+4|2|Occupied
+5|2|Occupied
 6|2|Vacated
 7|2|Vacated
 8|2|Vacated

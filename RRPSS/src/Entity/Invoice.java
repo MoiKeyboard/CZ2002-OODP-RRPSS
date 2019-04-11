@@ -77,7 +77,8 @@ public class Invoice implements Serializable {
 		
 		String invoiceDetails = null;
 		String display = "";
-		double subTotal = 0.0;
+		double subTotal = 0.0; 
+		double total = 0.0;
 		
 		//or just use menu array list..
 		ArrayList<Menu> uniqueList = new ArrayList <Menu>();
@@ -128,11 +129,14 @@ public class Invoice implements Serializable {
 
 		invoiceDetails += display;
 		
-		invoiceDetails += "------------------------------------------";
-		display= String.format("                          TOTAL: %.2f\n",getTotalPrice());
+		invoiceDetails += "------------------------------------------\n";
+		
+		total = getTotalPrice();
+		display= String.format("                        TOTAL: %.2f\n",total);
+		invoiceDetails += display;
 		invoiceDetails += "\n==========================================\n";
 		invoiceDetails += "Thank you for your patronage!\n"+ "                   *****                    ";
-		invoiceDetails += display;
+		
 		return invoiceDetails;
 	}
 }
