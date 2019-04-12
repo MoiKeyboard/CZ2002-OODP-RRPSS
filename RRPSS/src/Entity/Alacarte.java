@@ -33,12 +33,14 @@ public class Alacarte extends Menu implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		Alacarte comparatorObject = (Alacarte) o;
-		if (this.getName().equalsIgnoreCase(comparatorObject.getName())
-				&& this.getDescription().equalsIgnoreCase(comparatorObject.getDescription())
-				&& this.getPrice() == comparatorObject.getPrice()) {
+		if (o instanceof Alacarte) {
+			Alacarte comparatorObject = (Alacarte) o;
+			if (this.getName().equalsIgnoreCase(comparatorObject.getName())
+					&& this.getDescription().equalsIgnoreCase(comparatorObject.getDescription())
+					&& this.getPrice() == comparatorObject.getPrice()) {
 
-			return true;
+				return true;
+			}
 		}
 		return false;
 	}
