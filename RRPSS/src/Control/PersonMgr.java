@@ -16,7 +16,6 @@ public class PersonMgr {
 			custAl = TextDB.readCustomer("Customer.txt");
 			staffAl = TextDB.readStaff("Staff.txt");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -38,14 +37,14 @@ public class PersonMgr {
 
 	protected void removeCustomer(int searchTerm) {
 		for (Customer cust : custAl) {
-				if (cust.getContactNumber() == searchTerm) {
-					custAl.remove(cust);
-					break;
-				}
+			if (cust.getContactNumber() == searchTerm) {
+				custAl.remove(cust);
+				break;
+			}
 		}
 	}
 
-	public ArrayList<Staff> getStaffAl() {
+	protected ArrayList<Staff> getStaffAl() {
 		return staffAl;
 	}
 
@@ -54,19 +53,11 @@ public class PersonMgr {
 			System.out.println(staff.toString());
 	}
 
-	public int getStaffIndex(int staffInput) {
+	protected int getStaffIndex(int staffInput) {
 		for (int i = 0; i < staffAl.size(); i++) {
 			if (staffInput == staffAl.get(i).getStaffId())
 				return i;
 		}
 		return -1;
 	}
-
-	/*
-	 * public void findStaff(int staffid) throws IOException { for(Staff staff :
-	 * staffAl) { if(staff.getStaffId() == staffid) {
-	 * 
-	 * break; } } }
-	 */
-
 }

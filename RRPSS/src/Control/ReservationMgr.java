@@ -16,7 +16,7 @@ public class ReservationMgr {
 	private ArrayList<Reservation> reservationAl;
 	private ArrayList<Table> tableAl;
 	private ArrayList<Customer> custAl;
-	protected Scanner sc;
+	private Scanner sc;
 
 	public ReservationMgr() {
 		reservationAl = new ArrayList<Reservation>();
@@ -24,7 +24,6 @@ public class ReservationMgr {
 		try {
 			reservationAl = TextDB.readReservation("Reservations.txt");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -110,7 +109,7 @@ public class ReservationMgr {
 		}
 	}
 
-	public boolean reservationDateValidation(int contactNum, LocalDateTime reservationDT) {
+	private boolean reservationDateValidation(int contactNum, LocalDateTime reservationDT) {
 		LocalDateTime today = LocalDateTime.now();
 		LocalDateTime existingReservationDT;
 		int newReservationHour = reservationDT.getHour();
@@ -154,7 +153,7 @@ public class ReservationMgr {
 		return true;
 	}
 
-	public boolean checkAvailability(Table t, LocalDateTime reservationDT) {
+	private boolean checkAvailability(Table t, LocalDateTime reservationDT) {
 		LocalDateTime existingReservationDT;
 		int existingReservationHour, existingReservationMinute, newReservationHour, newReservationMinute;
 		for (Reservation r : reservationAl) {

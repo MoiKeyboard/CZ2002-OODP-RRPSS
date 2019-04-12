@@ -9,7 +9,7 @@ import Entity.Order;
 
 public class OrderMgr {
 	private ArrayList<Order> orderAl;
-	protected Scanner sc;
+	private Scanner sc;
 
 	public OrderMgr() {
 		orderAl = new ArrayList<Order>();

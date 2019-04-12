@@ -2,14 +2,12 @@ package Control;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import Entity.Reservation;
 import Entity.Table;
 
 public class TableMgr {
 	private ArrayList<Table> tableAl;
-	protected Scanner sc;
 
 	public TableMgr(ReservationMgr reservationMgr) {
 		tableAl = new ArrayList<Table>();
@@ -17,7 +15,6 @@ public class TableMgr {
 			tableAl = TextDB.readTable("Table.txt");
 			updateTableStatus(reservationMgr);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

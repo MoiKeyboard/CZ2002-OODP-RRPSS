@@ -10,7 +10,7 @@ import Entity.PromotionalPackage;
 
 public class MenuMgr {
 	private ArrayList<Menu> menuAl;
-	protected Scanner sc;
+	private Scanner sc;
 
 	public MenuMgr() {
 		sc = new Scanner(System.in);
@@ -169,19 +169,19 @@ public class MenuMgr {
 				System.out.println("5) Exit");
 				choice = Integer.parseInt(sc.nextLine());
 				switch (choice) {
-				case 1: // working
+				case 1:
 					System.out.println("Enter updated promotional package name");
 					curPP.setName(sc.nextLine());
 					break;
-				case 2: // working
+				case 2:
 					System.out.println("Enter updated promotional package description");
 					curPP.setDescription(sc.nextLine());
 					break;
-				case 3: // working
+				case 3:
 					System.out.println("Enter updated promotional package price");
 					curPP.setPrice(Double.parseDouble(sc.nextLine()));
 					break;
-				case 4: // need to test
+				case 4:
 					updateAlacarteAL(curPP.getMenuItemArr());
 					break;
 				default:
@@ -192,7 +192,7 @@ public class MenuMgr {
 		}
 	}
 
-	protected void updateAlacarteAL(ArrayList<Alacarte> al) {
+	private void updateAlacarteAL(ArrayList<Alacarte> al) {
 		String foodName;
 		int choice, qty;
 		do {

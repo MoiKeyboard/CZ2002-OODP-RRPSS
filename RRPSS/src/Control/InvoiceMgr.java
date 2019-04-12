@@ -15,8 +15,8 @@ import Entity.Order;
 public class InvoiceMgr {
 	private ArrayList<Invoice> invoiceAl;
 	private static final double GST = 0.07; // CONSTANT GST 7%
-	private static final double serviceCharge = 0.1; // CONSTANT SERVICE CHARGE 10%
-	protected Scanner sc;
+	private static final double SC = 0.1; // CONSTANT SERVICE CHARGE 10%
+	private Scanner sc;
 
 	public InvoiceMgr() {
 		sc = new Scanner(System.in);
@@ -26,7 +26,6 @@ public class InvoiceMgr {
 				System.out.println(invoice.toString());
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -38,8 +37,8 @@ public class InvoiceMgr {
 		tableNo = Integer.parseInt(sc.nextLine());
 		Order o = orderMgr.getOrderAL().get(orderMgr.getOrderIndex(tableNo));
 		Invoice currInvoice = new Invoice(tableNo, o.getStaffId(), timeStamp, (computeTotalPrice(o) * GST),
-				(computeTotalPrice(o) * serviceCharge), ((computeTotalPrice(o) * (1 + GST + serviceCharge))),
-				generateInvoiceNum(), o.getFoodAL());
+				(computeTotalPrice(o) * SC), ((computeTotalPrice(o) * (1 + GST + SC))), generateInvoiceNum(),
+				o.getFoodAL());
 		System.out.println(currInvoice.toString());
 		invoiceAl.add(currInvoice);
 		try {
@@ -49,7 +48,7 @@ public class InvoiceMgr {
 		}
 	}
 
-	public long generateInvoiceNum() {
+	private long generateInvoiceNum() {
 		long invoiceNum = 0;
 		Random rand = new Random();
 		LocalDateTime timeStamp = LocalDateTime.now();
@@ -60,7 +59,7 @@ public class InvoiceMgr {
 		return invoiceNum;
 	}
 
-	public double computeTotalPrice(Order o) {
+	private double computeTotalPrice(Order o) {
 		double price = 0;
 		for (Menu menu : o.getFoodAL()) {
 			price += menu.getPrice();
