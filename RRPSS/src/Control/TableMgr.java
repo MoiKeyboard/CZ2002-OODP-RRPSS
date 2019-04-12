@@ -36,7 +36,7 @@ public class TableMgr {
 		ArrayList<Reservation> reservationAL = rMgr.getReservationAl();
 		for (Reservation r : reservationAL) {
 			LocalDateTime dt = r.getReservationDate();
-			if (dt.getDayOfYear() == today.getDayOfYear()) {
+			if (dt.getDayOfYear() == today.getDayOfYear() && dt.getHour() == (today.getHour())) {
 				int tableNo = r.getTableNo();
 				int index = getTableIndex(tableNo);
 				tableAl.get(index).setTableStatus("Reserved");
@@ -65,15 +65,15 @@ public class TableMgr {
 			return true;
 	}
 
-//	protected int assignTable(int pax) {
-//		for(Table t: tableAl) {
-//			if(pax <= t.getSeatCap() && t.getTableStatus().equals("Vacated")) {
-//				return t.getTableNo();
-//			}
-//		}
-//		System.out.println("All tables are unavailable...");
-//		return -1;
-//	}
+	protected int assignTable(int pax) {
+		for (Table t : tableAl) {
+			if (pax <= t.getSeatCap() && t.getTableStatus().equals("Vacated")) {
+				return t.getTableNo();
+			}
+		}
+		System.out.println("All tables that can fit " + pax + " are unavailable right now...");
+		return -1;
+	}
 
 	protected String getTableStatusForReservation(Reservation r) {
 		for (Table tables : tableAl) {

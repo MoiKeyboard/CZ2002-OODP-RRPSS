@@ -23,6 +23,15 @@ public class OrderMgr {
 	}
 
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
+		
+		System.out.println("Create order for Walk in or Reservation?");
+		System.out.println("1) Walk in");
+		System.out.println("2) Reservation");
+		int input = Integer.parseInt(sc.nextLine());
+		if(input == 1) {
+			walkInOrder()
+		}
+			
 //delete reservation after creating order
 		// branch methods for resercation and normal order
 		int tableInput, staffInput;
