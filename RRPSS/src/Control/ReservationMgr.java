@@ -228,17 +228,20 @@ public class ReservationMgr {
 
 	protected int getReservationIndex(int contactNo) {
 		LocalDateTime today = LocalDateTime.now();
-		for(int i = 0;i<reservationAl.size();i++) {
+		for (int i = 0; i < reservationAl.size(); i++) {
 			LocalDateTime dt = reservationAl.get(i).getReservationDate();
 			// AM SESSION
-			if(reservationAl.get(i).getContactNo() == contactNo && today.getHour() >= 11 && dt.getHour() >= 11 && today.getHour() <= 15  && dt.getHour() <= 15) {
+			if (reservationAl.get(i).getContactNo() == contactNo && today.getHour() >= 11 && dt.getHour() >= 11
+					&& today.getHour() <= 15 && dt.getHour() <= 15) {
 				return i;
 			}
 			// PM SESSION
-			else if(reservationAl.get(i).getContactNo() == contactNo && today.getHour() >= 18 && dt.getHour() >= 18 && today.getHour() <= 22  && dt.getHour() <= 22) {
+			else if (reservationAl.get(i).getContactNo() == contactNo && today.getHour() >= 18 && dt.getHour() >= 18
+					&& today.getHour() <= 22 && dt.getHour() <= 22) {
 				return i;
 			}
 		}
+		System.out.println("Reservation not found. Please try again.");
 		return -1;
 	}
 

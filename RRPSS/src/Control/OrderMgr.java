@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import Entity.Menu;
 import Entity.Order;
-import Entity.Reservation;
 
 public class OrderMgr {
 	private ArrayList<Order> orderAl;
@@ -52,7 +51,7 @@ public class OrderMgr {
 		if (tableNo == -1)
 			return false;
 
-		// all menu manager to create list
+		// Create food list through menuMgr
 		ArrayList<Menu> foodAL = new ArrayList<Menu>();
 		foodAL = menuMgr.updateMenuAL(foodAL);
 
@@ -64,18 +63,34 @@ public class OrderMgr {
 	}
 
 	private boolean reservationOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr rMgr) {
+		// Staff
 		System.out.println("Please enter staff ID: ");
 		int staffInput = Integer.parseInt(sc.nextLine());
 		if (personMgr.getStaffIndex(staffInput) == -1)
 			return false;
+
+		// Retrieve tableNo via reservationMgr
 		System.out.println("Enter reservation phone number");
-		for(Reservation r : rMgr.getReservationAl()) {
-	
-		}
-		//if()
+		int contactNo = Integer.parseInt(sc.nextLine());
+		int reservationIndex = rMgr.getReservationIndex(contactNo);
+		if (reservationIndex == -1)
+			return false;
+		int tableNo = rMgr.getReservationAl().get(reservationIndex).getTableNo();
+
+		// Create food list via menuMgr
+		ArrayList<Menu> foodAL = new ArrayList<Menu>();
+		foodAL = menuMgr.updateMenuAL(foodAL);
+
+		// Instantiate new order
+		orderAl.add(new Order(staffInput, tableNo, foodAL));
+		// Update table status
+		tableMgr.updateTableStatus(tableNo, "Occupied");
+		// Remove reservation via rMgr
+		rMgr.getReservationAl().remove(reservationIndex);
+
+		System.out.println("Creation of order is successful!");
 		return true;
 	}
-	// branch methods for resercation and normal order
 
 	// View order of the current session
 	public void viewOrder() throws IOException {
