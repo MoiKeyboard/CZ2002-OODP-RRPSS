@@ -205,12 +205,13 @@ public class ReservationMgr {
 		int existingReservationDay;
 		LocalDateTime today = LocalDateTime.now();
 		Iterator<Reservation> it = reservationAl.iterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			Reservation r = it.next();
 			existingReservationDT = r.getReservationDate();
 			existingReservationDay = existingReservationDT.getDayOfYear();
 			expiringDT = today.minus(10, ChronoUnit.MINUTES);
-			if (expiringDT.getDayOfYear() == existingReservationDT.getDayOfYear() && expiringDT.getHour() == existingReservationDT.getHour()
+			if (expiringDT.getDayOfYear() == existingReservationDT.getDayOfYear()
+					&& expiringDT.getHour() == existingReservationDT.getHour()
 					&& expiringDT.getMinute() == existingReservationDT.getMinute()) {
 				if (r.isAttended() != true) {
 					System.out.println("Removing Reservation:\n" + r.toString());
@@ -222,6 +223,12 @@ public class ReservationMgr {
 			TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	protected int getReservationIndex(int contactNo) {
+		for(Reservation r : reservationAl) {
+			if(r.getContactNo() == )
 		}
 	}
 

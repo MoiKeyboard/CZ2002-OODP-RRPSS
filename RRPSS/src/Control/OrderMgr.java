@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import Entity.Menu;
 import Entity.Order;
+import Entity.Reservation;
 
 public class OrderMgr {
 	private ArrayList<Order> orderAl;
@@ -22,7 +23,7 @@ public class OrderMgr {
 		}
 	}
 
-	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
+	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr rMgr) {
 		// updateTableAL tablemgr
 		boolean success;
 		System.out.println("Create order for Walk in or Reservation?");
@@ -33,7 +34,7 @@ public class OrderMgr {
 		if (input == 1) {
 			success = walkInOrder(tableMgr, menuMgr, personMgr);
 		} else if (input == 2)
-			success = reservationOrder(tableMgr, menuMgr, personMgr);
+			success = reservationOrder(tableMgr, menuMgr, personMgr, rMgr);
 		else
 			System.out.println("Invalid input, please try again");
 	}
@@ -62,15 +63,18 @@ public class OrderMgr {
 		return true;
 	}
 
-	private boolean reservationOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
+	private boolean reservationOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr rMgr) {
 		System.out.println("Please enter staff ID: ");
 		int staffInput = Integer.parseInt(sc.nextLine());
 		if (personMgr.getStaffIndex(staffInput) == -1)
 			return false;
-
+		System.out.println("Enter reservation phone number");
+		for(Reservation r : rMgr.getReservationAl()) {
+	
+		}
+		if()
+		return true;
 	}
-
-//delete reservation after creating order
 	// branch methods for resercation and normal order
 
 	// View order of the current session
