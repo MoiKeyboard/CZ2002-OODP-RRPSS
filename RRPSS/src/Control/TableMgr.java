@@ -11,10 +11,11 @@ public class TableMgr {
 	private ArrayList<Table> tableAl;
 	protected Scanner sc;
 
-	public TableMgr() {
+	public TableMgr(ReservationMgr reservationMgr) {
 		tableAl = new ArrayList<Table>();
 		try {
 			tableAl = TextDB.readTable("Table.txt");
+			updateTableStatus(reservationMgr);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,12 +37,21 @@ public class TableMgr {
 		ArrayList<Reservation> reservationAL = rMgr.getReservationAl();
 		for (Reservation r : reservationAL) {
 			LocalDateTime dt = r.getReservationDate();
-			if (dt.getDayOfYear() == today.getDayOfYear() && dt.getHour() == (today.getHour())) {
-				int tableNo = r.getTableNo();
-				int index = getTableIndex(tableNo);
-				tableAl.get(index).setTableStatus("Reserved");
-
+			if (dt.getDayOfYear() == today.getDayOfYear()) {
+				// AM SESSION
+				if (today.getHour() >= 11 && dt.getHour() >= 11 && today.getHour() <= 15  && dt.getHour() <= 15 ) {
+					int tableNo = r.getTableNo();
+					int index = getTableIndex(tableNo);
+					tableAl.get(index).setTableStatus("Reserved");
+				}
+				// PM SESSION
+				else if (today.getHour() >= 18 && dt.getHour() >= 18 && today.getHour() <= 22  && dt.getHour() <= 22) {
+					int tableNo = r.getTableNo();
+					int index = getTableIndex(tableNo);
+					tableAl.get(index).setTableStatus("Reserved");
+				}
 			}
+			
 		}
 	}
 

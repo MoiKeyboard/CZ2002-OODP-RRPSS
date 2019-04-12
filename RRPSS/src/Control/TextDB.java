@@ -207,7 +207,7 @@ public class TextDB {
 	}
 
 // an example of saving
-	public static void saveReservations(String filename, List reservationAl, List tableAl, List custAl)
+	public static void saveReservations(String filename, List reservationAl, List custAl)
 			throws IOException {
 		List alw = new ArrayList();// to store Professors data
 		for (int i = 0; i < reservationAl.size(); i++) {
@@ -223,7 +223,6 @@ public class TextDB {
 			st.append(s1.getTableNo());
 			alw.add(st.toString());
 		}
-		TextDB.saveTable("Table.txt", tableAl);
 		TextDB.saveCustomer("Customer.txt", custAl);
 		write(filename, alw);
 	}

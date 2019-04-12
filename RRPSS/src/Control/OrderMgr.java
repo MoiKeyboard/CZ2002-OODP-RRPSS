@@ -29,6 +29,7 @@ public class OrderMgr {
 		System.out.println("1) Walk in");
 		System.out.println("2) Reservation");
 		int input = Integer.parseInt(sc.nextLine());
+
 		if (input == 1) {
 			success = walkInOrder(tableMgr, menuMgr, personMgr);
 		} else if (input == 2)

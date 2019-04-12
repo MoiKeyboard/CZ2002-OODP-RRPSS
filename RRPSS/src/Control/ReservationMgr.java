@@ -93,7 +93,7 @@ public class ReservationMgr {
 			System.out.println("Sorry! All tables for the number of pax that you requested are fully booked!!");
 			return;
 		}
-		TextDB.saveReservations("Reservations.txt", reservationAl, tableAl, custAl);
+		TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
 	}
 
 	public void checkReservation(TableMgr tMgr, PersonMgr pMgr) {
@@ -197,7 +197,7 @@ public class ReservationMgr {
 			}
 		}
 		pMgr.removeCustomer(searchTerm);
-		TextDB.saveReservations("Reservations.txt", reservationAl, tableAl, custAl);
+		TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
 	}
 
 	public void removeExpiredReservations() {
@@ -219,7 +219,7 @@ public class ReservationMgr {
 			}
 		}
 		try {
-			TextDB.saveReservations("Reservations.txt", reservationAl, tableAl, custAl);
+			TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
