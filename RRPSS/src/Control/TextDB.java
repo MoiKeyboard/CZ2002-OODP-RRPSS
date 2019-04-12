@@ -166,23 +166,6 @@ public class TextDB {
 		return tableAl;
 	}
 
-// an example of saving
-	public static void saveTable(String filename, List tableAl) throws IOException {
-		List alw = new ArrayList();// to store Professors data
-
-		for (int i = 0; i < tableAl.size(); i++) {
-			Table s1 = (Table) tableAl.get(i);
-			StringBuilder st = new StringBuilder();
-			st.append(s1.getTableNo());
-			st.append(SEPARATOR);
-			st.append(s1.getSeatCap());
-			st.append(SEPARATOR);
-			st.append(s1.getTableStatus());
-			alw.add(st.toString());
-		}
-		write(filename, alw);
-	}
-
 	public static ArrayList<Reservation> readReservation(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
