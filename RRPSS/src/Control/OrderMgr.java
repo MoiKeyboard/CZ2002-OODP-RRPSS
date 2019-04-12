@@ -72,7 +72,7 @@ public class OrderMgr {
 		for(Reservation r : rMgr.getReservationAl()) {
 	
 		}
-		if()
+		//if()
 		return true;
 	}
 	// branch methods for resercation and normal order
