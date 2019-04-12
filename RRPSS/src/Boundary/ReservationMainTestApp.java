@@ -11,7 +11,7 @@ public class ReservationMainTestApp {
 		ReservationMainTestApp test = new ReservationMainTestApp();
 		MenuMgr menuMgr = new MenuMgr();
 		ReservationMgr reservationMgr = new ReservationMgr();
-		TableMgr tableMgr = new TableMgr();
+		TableMgr tableMgr = new TableMgr(reservationMgr);
 		OrderMgr orderMgr = new OrderMgr();
 		InvoiceMgr invoiceMgr = new InvoiceMgr();
 		PersonMgr personMgr = new PersonMgr();
@@ -23,8 +23,8 @@ public class ReservationMainTestApp {
 		int userInput;
 		menuMgr.printMenuItem();
 		menuMgr.printPromotionalPackage();
-		tableMgr.printTableList();
 		reservationMgr.printReservation(tableMgr,personMgr);
+		tableMgr.printTableList();
 		do {
 			reservationMgr.removeExpiredReservations();
 			ReservationMainTestApp.printAppMenu();
