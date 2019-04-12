@@ -23,35 +23,55 @@ public class OrderMgr {
 	}
 
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
-		
+		// updateTableAL tablemgr
+		boolean success;
 		System.out.println("Create order for Walk in or Reservation?");
 		System.out.println("1) Walk in");
 		System.out.println("2) Reservation");
 		int input = Integer.parseInt(sc.nextLine());
-		if(input == 1) {
-			//walkInOrder()
-		}
-			
-//delete reservation after creating order
-		// branch methods for resercation and normal order
-		int tableInput, staffInput;
-		ArrayList<Menu> foodAL = new ArrayList<Menu>();
+
+		if (input == 1) {
+			success = walkInOrder(tableMgr, menuMgr, personMgr);
+		} else if (input == 2)
+			success = reservationOrder(tableMgr, menuMgr, personMgr);
+		else
+			System.out.println("Invalid input, please try again");
+	}
+
+	private boolean walkInOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
+		// Staff
 		System.out.println("Please enter staff ID: ");
-		staffInput = Integer.parseInt(sc.nextLine());
-		// Check staff
+		int staffInput = Integer.parseInt(sc.nextLine());
 		if (personMgr.getStaffIndex(staffInput) == -1)
-			return;
-		System.out.println("Please enter table No: ");
-		// Check table
-		tableInput = Integer.parseInt(sc.nextLine());
-		// Call menu manager to create list
+			return false;
+
+		// Check table availability and auto assign table
+		System.out.println("Please enter pax size: ");
+		int tableNo = tableMgr.assignTable(Integer.parseInt(sc.nextLine()));
+		if (tableNo == -1)
+			return false;
+
+		// all menu manager to create list
+		ArrayList<Menu> foodAL = new ArrayList<Menu>();
 		foodAL = menuMgr.updateMenuAL(foodAL);
+
 		// Instantiate new order
-		orderAl.add(new Order(staffInput, tableInput, foodAL));
-		tableMgr.updateTableStatus(tableInput, "Occupied");
+		orderAl.add(new Order(staffInput, tableNo, foodAL));
+		tableMgr.updateTableStatus(tableNo, "Occupied");
 		System.out.println("Creation of order is successful!");
+		return true;
+	}
+
+	private boolean reservationOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
+		System.out.println("Please enter staff ID: ");
+		int staffInput = Integer.parseInt(sc.nextLine());
+		if (personMgr.getStaffIndex(staffInput) == -1)
+			return false;
 
 	}
+
+//delete reservation after creating order
+	// branch methods for resercation and normal order
 
 	// View order of the current session
 	public void viewOrder() throws IOException {
