@@ -96,10 +96,10 @@ public class ReservationMainTestApp {
 				orderMgr.createOrder(tableMgr, menuMgr, personMgr, reservationMgr);
 				break;
 			case 8:
-				orderMgr.removeOrder(tableMgr);
+				orderMgr.updateOrder(menuMgr);
 				break;
 			case 9:
-				orderMgr.updateOrder(menuMgr);
+				orderMgr.removeOrder(tableMgr);
 				break;
 			case 10:
 				orderMgr.viewOrder();
