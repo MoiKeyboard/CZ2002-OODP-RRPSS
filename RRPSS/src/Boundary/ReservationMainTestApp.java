@@ -102,7 +102,7 @@ public class ReservationMainTestApp {
 				orderMgr.removeOrder(tableMgr);
 				break;
 			case 10:
-				orderMgr.viewOrder();
+				orderMgr.viewOrder(tableMgr);
 				break;
 			case 11:
 				reservationMgr.createReservation();

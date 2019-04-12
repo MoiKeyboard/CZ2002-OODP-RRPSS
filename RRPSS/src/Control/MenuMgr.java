@@ -338,12 +338,12 @@ public class MenuMgr {
 		String foodName;
 		int choice, qty;
 		do {
-			for (Menu menu : menuAl) {
-				if (menu instanceof Alacarte)
-					System.out.println(((Alacarte) menu).toString());
-				else
-					System.out.println(((PromotionalPackage) menu).toString());
-			}
+//			for (Menu menu : menuAl) {
+//				if (menu instanceof Alacarte)
+//					System.out.println(((Alacarte) menu).toString());
+//				else
+//					System.out.println(((PromotionalPackage) menu).toString());
+//			}
 			System.out.println("1) Add items to list");
 			System.out.println("2) Remove items from list");
 			System.out.println("3) Finish");

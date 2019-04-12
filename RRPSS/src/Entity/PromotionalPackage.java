@@ -3,7 +3,7 @@ package Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PromotionalPackage extends Menu  implements Serializable {
+public class PromotionalPackage extends Menu implements Serializable {
 	private ArrayList<Alacarte> menuItemArr;
 
 	public PromotionalPackage() {
@@ -27,10 +27,22 @@ public class PromotionalPackage extends Menu  implements Serializable {
 	@Override
 	public String toString() {
 		String promoDetails = null;
+		int qty = 0;
+		Alacarte a = new Alacarte();
 		promoDetails = "Promo Name: " + getName() + "\nDescription: " + getDescription() + "\nPromo Price: "
 				+ getPrice() + "\n";
 		for (Alacarte mi : menuItemArr) {
-			promoDetails += mi.toString();
+			if (qty == 0) {
+				a = mi;
+				qty++;
+			} else if (mi.equals(a)) {
+				qty++;
+			} else {
+				System.out.println("Quantity of " + qty);
+				promoDetails += mi.toString();
+				qty = 0;
+			}
+
 		}
 		return promoDetails;
 	}
