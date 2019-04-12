@@ -58,6 +58,7 @@ public class PersonMgr {
 			if (staffInput == staffAl.get(i).getStaffId())
 				return i;
 		}
+		System.out.println("Staff not found");
 		return -1;
 	}
 }
