@@ -39,19 +39,19 @@ public class TableMgr {
 			LocalDateTime dt = r.getReservationDate();
 			if (dt.getDayOfYear() == today.getDayOfYear()) {
 				// AM SESSION
-				if (today.getHour() >= 11 && dt.getHour() >= 11 && today.getHour() <= 15  && dt.getHour() <= 15 ) {
+				if (today.getHour() >= 11 && dt.getHour() >= 11 && today.getHour() <= 15 && dt.getHour() <= 15) {
 					int tableNo = r.getTableNo();
 					int index = getTableIndex(tableNo);
 					tableAl.get(index).setTableStatus("Reserved");
 				}
 				// PM SESSION
-				else if (today.getHour() >= 18 && dt.getHour() >= 18 && today.getHour() <= 22  && dt.getHour() <= 22) {
+				else if (today.getHour() >= 18 && dt.getHour() >= 18 && today.getHour() <= 22 && dt.getHour() <= 22) {
 					int tableNo = r.getTableNo();
 					int index = getTableIndex(tableNo);
 					tableAl.get(index).setTableStatus("Reserved");
 				}
 			}
-			
+
 		}
 	}
 
@@ -65,7 +65,6 @@ public class TableMgr {
 		System.out.println("Table " + tableNo + " set to " + status);
 	}
 
-	// might remove this
 	protected boolean checkTableVacancy(int tableNo) {
 		int index = getTableIndex(tableNo);
 		if (!"Vaccated".equals(tableAl.get(index).getTableStatus())) {
@@ -85,6 +84,7 @@ public class TableMgr {
 		return -1;
 	}
 
+	// redacted soon???
 	protected String getTableStatusForReservation(Reservation r) {
 		for (Table tables : tableAl) {
 			if (tables.getTableNo() == r.getTableNo()) {

@@ -23,8 +23,10 @@ public class OrderMgr {
 	}
 
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr rMgr) {
-		// updateTableAL tablemgr
-		boolean success;
+		// update tableAL on runtime via tableMgr
+		tableMgr.updateTableStatus(rMgr);
+
+		boolean success = false;
 		System.out.println("Create order for Walk in or Reservation?");
 		System.out.println("1) Walk in");
 		System.out.println("2) Reservation");
@@ -36,6 +38,8 @@ public class OrderMgr {
 			success = reservationOrder(tableMgr, menuMgr, personMgr, rMgr);
 		else
 			System.out.println("Invalid input, please try again");
+		if (!success)
+			System.out.println();
 	}
 
 	private boolean walkInOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
@@ -113,13 +117,14 @@ public class OrderMgr {
 		menuMgr.updateMenuAL(currFoodAL);
 	}
 
-	public void removeOrder() {
+	public void removeOrder(TableMgr tableMgr) {
 		int index;
 		System.out.println("Please enter table number");
 		index = getOrderIndex(sc.nextInt());
 		if (index != -1) {
 			orderAl.remove(index);
 			System.out.println("Order remove successfully");
+			tableMgr.updateTableStatus(index, "Vacated");
 		}
 	}
 

@@ -49,9 +49,9 @@ public class ReservationMainTestApp {
 		System.out.println("5)\tUpdate promotion");
 		System.out.println("6)\tRemove promotion");
 		System.out.println("7)\tCreate Order");
-		System.out.println("8)\tView Order");
-		System.out.println("9)\tAdd order item/s to/from order");
-		System.out.println("10)\tRemove order item/s	to/from order");
+		System.out.println("8)\tUpdate Order");
+		System.out.println("9)\tRemove Order");
+		System.out.println("10)\tView Order");
 		System.out.println("11)\tCreate reservation booking");
 		System.out.println("12)\tCheck reservation booking");
 		System.out.println("13)\tRemove reservation booking");
@@ -96,13 +96,13 @@ public class ReservationMainTestApp {
 				orderMgr.createOrder(tableMgr, menuMgr, personMgr, reservationMgr);
 				break;
 			case 8:
-				orderMgr.viewOrder();
+				orderMgr.removeOrder(tableMgr);
 				break;
 			case 9:
 				orderMgr.updateOrder(menuMgr);
 				break;
 			case 10:
-				orderMgr.removeOrder();
+				orderMgr.viewOrder();
 				break;
 			case 11:
 				reservationMgr.createReservation();
