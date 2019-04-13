@@ -126,7 +126,7 @@ public class InvoiceMgr {
 							// if item is a repeat, add to respective count.
 							oldCount = seachCount.get(suniqueList.indexOf(menu));
 							oldCount ++;
-							System.out.println("Index: "+suniqueList.indexOf(menu));
+							//System.out.println("Index: "+suniqueList.indexOf(menu));
 							seachCount.set(suniqueList.indexOf(menu), oldCount);
 						} else {
 							// item is not a repeat, add to uniqueList and start eachCount at 1.

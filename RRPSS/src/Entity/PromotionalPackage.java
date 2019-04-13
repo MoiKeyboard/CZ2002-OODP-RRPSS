@@ -46,4 +46,31 @@ public class PromotionalPackage extends Menu implements Serializable {
 		}
 		return promoDetails;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		
+		
+		if (o instanceof PromotionalPackage) {
+			PromotionalPackage comparatorObject = (PromotionalPackage) o;
+			
+			
+			if (this.getName().equalsIgnoreCase(comparatorObject.getName())
+					&& this.getDescription().equalsIgnoreCase(comparatorObject.getDescription())
+					&& this.getPrice() == comparatorObject.getPrice()) {
+
+				return true;
+			}
+			
+			
+		}
+	
+		return false;
+	}
+	
+	
+	
+
+	
+	
 }
