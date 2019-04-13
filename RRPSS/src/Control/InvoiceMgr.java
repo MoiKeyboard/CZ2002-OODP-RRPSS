@@ -82,11 +82,44 @@ public class InvoiceMgr {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 			LocalDate saleReportPeriod = LocalDate.parse(periodDT, formatter);
 			System.out.println(saleReportPeriod);
-			for (Invoice invoice : invoiceAl) {
+			
+			
+			//use menu array list..put outside for loop so it counts 
+			//unique items in ALL invoices, not just one invoice.
+			ArrayList<Menu> uniqueList = new ArrayList<Menu>();
+			// to count each unique item
+			ArrayList<Integer> eachCount = new ArrayList<Integer>();
+
+			/*
+			 * uniqueList: [menuItem1, menuItem2] eachCount: [1, 2]
+			 */
+			
+			
+			for (Invoice invoice : invoiceAl) {  //going into each individual invoice
 				if (invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear()
 						&& invoice.getInvoiceDT().getDayOfYear() == saleReportPeriod.getDayOfYear()) {
+					//reformatting to print as one big invoice.
+					
+					//for each invoice object, retrieve FoodAL
+					ArrayList<Menu> foodAL = invoice.getFoodAL();
+					//repeat the same thing done in invoice to count unique food
+					
+					
+					for (Menu menu : foodAL) {
+						if (uniqueList.contains(menu)) {
+							// if item is a repeat, add to respective count.
+							eachCount.add(uniqueList.indexOf(menu), eachCount.get(uniqueList.indexOf(menu)) + 1);
+						} else {
+							// item is not a repeat, add to uniqueList and start eachCount at 1.
+							uniqueList.add(menu);
+							eachCount.add(1);
+
+						}
+					}
+					
+					
 					System.out.println("Selected printing revenue report by day");
-					System.out.println(invoice.toString());
+					//System.out.println(invoice.toString());
 				}
 			}
 		} else if (optionInput == 2) {
