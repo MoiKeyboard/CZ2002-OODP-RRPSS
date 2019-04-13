@@ -85,7 +85,7 @@ public class InvoiceMgr {
 			periodDT = sc.nextLine();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 			LocalDate saleReportPeriod = LocalDate.parse(periodDT, formatter);
-			System.out.println(saleReportPeriod);
+			
 			
 			
 			//use menu array list..put outside for loop so it counts 
@@ -97,6 +97,9 @@ public class InvoiceMgr {
 			ArrayList<Menu> foodAL = new ArrayList<Menu>();
 			//need to add all the total sales.
 			double salesTotal = 0.0;
+			double subTotal = 0.0;
+			double totalGST = 0.0;
+			double totalSC = 0.0;
 			double itemCount = 0.0; //debug
 			int oldCount = 0;
 
@@ -113,12 +116,11 @@ public class InvoiceMgr {
 					//for each invoice object, retrieve FoodAL
 					foodAL = invoice.getFoodAL();
 					//repeat the same thing done in invoice to count unique food
-					
 					//add each invoice's total price to salesTotal
 					salesTotal += invoice.getTotalPrice();
-					
+					totalGST += invoice.getGST();
+					totalSC += invoice.getServiceCharge();
 					oldCount = 0;
-					
 					//loop through the various menu objects in invoice
 					for (Menu menu : foodAL) {
 						itemCount++;
@@ -126,7 +128,6 @@ public class InvoiceMgr {
 							// if item is a repeat, add to respective count.
 							oldCount = seachCount.get(suniqueList.indexOf(menu));
 							oldCount ++;
-							//System.out.println("Index: "+suniqueList.indexOf(menu));
 							seachCount.set(suniqueList.indexOf(menu), oldCount);
 						} else {
 							// item is not a repeat, add to uniqueList and start eachCount at 1.
@@ -145,6 +146,10 @@ public class InvoiceMgr {
 			//start printing as per normal, like the invoice.
 			String salesRep = "";
 			String display = "";
+			salesRep += "==========================================\n";
+		//	System.out.println(saleReportPeriod);
+			salesRep+="   Sales Revenue Report - " + saleReportPeriod+"\n";
+			salesRep += "==========================================\n";
 			
 			for (int i = 0; i < suniqueList.size(); i++) {
 				display = String.format("%-5d %-22s %5.2f\n", seachCount.get(i), suniqueList.get(i).getName(),
@@ -152,28 +157,26 @@ public class InvoiceMgr {
 				salesRep += display;
 
 			}
-			
-			System.out.println("[DEBUG]: total item count: "+itemCount);
-			System.out.println("[DEBUG]: suniqueList: ");
-			System.out.println(Arrays.toString(suniqueList.toArray()));
-			System.out.println("[DEBUG]: seachCount");
-			System.out.println(Arrays.toString(seachCount.toArray()));
+						
+			//System.out.println("[DEBUG]: total item count: "+itemCount);
+			//System.out.println("[DEBUG]: suniqueList: ");
+			//System.out.println(Arrays.toString(suniqueList.toArray()));
+			//System.out.println("[DEBUG]: seachCount");
+			//System.out.println(Arrays.toString(seachCount.toArray()));
 
-			//salesRep += "------------------------------------------\n";
+			salesRep += "------------------------------------------\n";
 			
 			
-			//subTotal = getTotalPrice() - (getGST() + getServiceCharge());
+			subTotal = salesTotal - totalGST - totalSC;
 
-			//display = String.format("                        SubTotal: %.2f", subTotal);
-			//invoiceDetails += display;
-			//display = String.format("\n                        GST:%.2f \n                        Service Charge:%.2f\n",
-					//getGST(), getServiceCharge());
-
-			//salesRep += display;
+			display = String.format("                        SubTotal: %.2f", subTotal);
+			salesRep += display;
+			display = String.format("\n                        GST:%.2f \n                        Service Charge:%.2f\n",
+					totalGST, totalSC);
+			salesRep += display;
 
 			salesRep += "------------------------------------------\n";
 			display = String.format("                        TOTAL: %.2f\n", salesTotal);
-			//total should be around $700++ or so.
 			salesRep += display;
 			salesRep += "\n==========================================\n";
 			System.out.println(salesRep);
