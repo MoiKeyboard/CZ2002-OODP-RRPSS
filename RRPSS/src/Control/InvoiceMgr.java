@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -77,6 +78,8 @@ public class InvoiceMgr {
 		System.out.println("0) Back to previous screen");
 		optionInput = Integer.parseInt(sc.nextLine());
 		if (optionInput == 1) {
+			System.out.println(">>Selected printing revenue report by day<<");
+			
 			System.out.println("Please enter date (E.g 10-04-2019)");
 			periodDT = sc.nextLine();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -86,9 +89,11 @@ public class InvoiceMgr {
 			
 			//use menu array list..put outside for loop so it counts 
 			//unique items in ALL invoices, not just one invoice.
-			ArrayList<Menu> uniqueList = new ArrayList<Menu>();
+			ArrayList<Menu> suniqueList = new ArrayList<Menu>();
 			// to count each unique item
-			ArrayList<Integer> eachCount = new ArrayList<Integer>();
+			ArrayList<Integer> seachCount = new ArrayList<Integer>();
+			//need to add all the total sales.
+			double salesTotal = 0.0;
 
 			/*
 			 * uniqueList: [menuItem1, menuItem2] eachCount: [1, 2]
@@ -103,25 +108,58 @@ public class InvoiceMgr {
 					//for each invoice object, retrieve FoodAL
 					ArrayList<Menu> foodAL = invoice.getFoodAL();
 					//repeat the same thing done in invoice to count unique food
-					
-					
 					for (Menu menu : foodAL) {
-						if (uniqueList.contains(menu)) {
+						salesTotal += invoice.getTotalPrice();
+						if (suniqueList.contains(menu)) {
 							// if item is a repeat, add to respective count.
-							eachCount.add(uniqueList.indexOf(menu), eachCount.get(uniqueList.indexOf(menu)) + 1);
+							seachCount.add(suniqueList.indexOf(menu), seachCount.get(suniqueList.indexOf(menu)) + 1);
 						} else {
 							// item is not a repeat, add to uniqueList and start eachCount at 1.
-							uniqueList.add(menu);
-							eachCount.add(1);
+							suniqueList.add(menu);
+							seachCount.add(1);
 
 						}
 					}
-					
-					
-					System.out.println("Selected printing revenue report by day");
 					//System.out.println(invoice.toString());
 				}
 			}
+		
+			//now all the lists are filled with unique items and their count respectively
+			//start printing as per normal, like the invoice.
+			String salesRep = "";
+			String display = "";
+			
+			for (int i = 0; i < suniqueList.size(); i++) {
+				display = String.format("%-5d %-22s %5.2f\n", seachCount.get(i), suniqueList.get(i).getName(),
+						suniqueList.get(i).getPrice());
+				salesRep += display;
+
+			}
+			
+			System.out.println("[DEBUG]: suniqueList: ");
+			System.out.println(Arrays.toString(suniqueList.toArray()));
+			System.out.println("[DEBUG]: seachCount");
+			System.out.println(Arrays.toString(seachCount.toArray()));
+
+			//salesRep += "------------------------------------------\n";
+			
+			
+			//subTotal = getTotalPrice() - (getGST() + getServiceCharge());
+
+			//display = String.format("                        SubTotal: %.2f", subTotal);
+			//invoiceDetails += display;
+			//display = String.format("\n                        GST:%.2f \n                        Service Charge:%.2f\n",
+					//getGST(), getServiceCharge());
+
+			//salesRep += display;
+
+			salesRep += "------------------------------------------\n";
+			display = String.format("                        TOTAL: %.2f\n", salesTotal);
+			salesRep += display;
+			salesRep += "\n==========================================\n";
+			System.out.println(salesRep);
+			
+			
 		} else if (optionInput == 2) {
 			System.out.println("Please enter month and year in the following format (E.g 04-2019)");
 			periodDT = sc.nextLine();
