@@ -9,8 +9,21 @@ import Control.PersonMgr;
 import Control.ReservationMgr;
 import Control.TableMgr;
 
+/**
+ * Boundary class for RRPSS restaurant application Upon start, loads interfaces
+ * and all required control classes
+ * 
+ * @author Qwek Zhi Hui
+ * @version 1.0
+ * @since 2019-04-13
+ */
 public class ReservationMainTestApp {
 
+	/**
+	 * Loads control layer managers
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		ReservationMainTestApp test = new ReservationMainTestApp();
@@ -24,6 +37,16 @@ public class ReservationMainTestApp {
 		sc.close();
 	}
 
+	/**
+	 * 
+	 * @param sc
+	 * @param menuMgr
+	 * @param tableMgr
+	 * @param reservationMgr
+	 * @param orderMgr
+	 * @param invoiceMgr
+	 * @param personMgr
+	 */
 	public void run(Scanner sc, MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr,
 			InvoiceMgr invoiceMgr, PersonMgr personMgr) {
 		int userInput;
@@ -41,6 +64,9 @@ public class ReservationMainTestApp {
 		System.out.println("Thanks for using our app!");
 	}
 
+	/**
+	 * Print out general interface for application
+	 */
 	public static void printAppMenu() {
 		System.out.println("1)\tCreate menu item");
 		System.out.println("2)\tUpdate menu item");
@@ -60,6 +86,18 @@ public class ReservationMainTestApp {
 		System.out.println("16)\tPrint sale revenue report by period(e.g day/month)\n0)\tExit the application");
 	}
 
+	/**
+	 * Captures input and calls related manager to perform required action
+	 * 
+	 * @param sc
+	 * @param menuMgr
+	 * @param tableMgr
+	 * @param reservationMgr
+	 * @param orderMgr
+	 * @param invoiceMgr
+	 * @param personMgr
+	 * @return
+	 */
 	public static int getUserInput(Scanner sc, MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr,
 			OrderMgr orderMgr, InvoiceMgr invoiceMgr, PersonMgr personMgr) {
 		int input = sc.nextInt();
