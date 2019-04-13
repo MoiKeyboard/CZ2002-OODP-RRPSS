@@ -50,19 +50,29 @@ public class PromotionalPackage extends Menu implements Serializable {
 	@Override
 	public boolean equals(Object o) {
 		
-		
+		ArrayList<Alacarte> coMenuItemArr = new ArrayList <Alacarte>();
+		int count = 0;
+		Menu coMenu;
+		boolean flag = true;
 		if (o instanceof PromotionalPackage) {
 			PromotionalPackage comparatorObject = (PromotionalPackage) o;
-			
-			
 			if (this.getName().equalsIgnoreCase(comparatorObject.getName())
 					&& this.getDescription().equalsIgnoreCase(comparatorObject.getDescription())
 					&& this.getPrice() == comparatorObject.getPrice()) {
-
-				return true;
+				//now check further if each Alacarte menu item in its array is equal to coMenuItemArr's
+				coMenuItemArr = comparatorObject.getMenuItemArr();
+				for (Menu menu: this.getMenuItemArr()) {
+					coMenu = coMenuItemArr.get(count);
+					if(!menu.equals(coMenu)) {
+						flag = false;
+						break;
+					}
+					else {
+						count++;
+					}
+				}
+				return flag;
 			}
-			
-			
 		}
 	
 		return false;
