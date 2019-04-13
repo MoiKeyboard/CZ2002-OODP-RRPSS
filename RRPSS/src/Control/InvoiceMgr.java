@@ -1,5 +1,6 @@
 package Control;
 
+import java.io.EOFException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
@@ -21,12 +22,19 @@ public class InvoiceMgr {
 
 	public InvoiceMgr() {
 		sc = new Scanner(System.in);
+		
+		
 		try {
 			invoiceAl = TextDB.readInvoice("Invoices.txt");
 			for (Invoice invoice : invoiceAl) {
 				System.out.println(invoice.toString());
 			}
-		} catch (Exception e) {
+		} 
+		catch(EOFException e) {
+			System.out.println("reservation.txt is empty");
+		}
+		
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
