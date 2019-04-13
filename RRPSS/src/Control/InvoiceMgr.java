@@ -98,6 +98,7 @@ public class InvoiceMgr {
 			//need to add all the total sales.
 			double salesTotal = 0.0;
 			double itemCount = 0.0; //debug
+			int oldCount = 0;
 
 			/*
 			 * uniqueList: [menuItem1, menuItem2] eachCount: [1, 2]
@@ -116,17 +117,24 @@ public class InvoiceMgr {
 					//add each invoice's total price to salesTotal
 					salesTotal += invoice.getTotalPrice();
 					
-					//loop through menu objects in invoice
+					oldCount = 0;
+					
+					//loop through the various menu objects in invoice
 					for (Menu menu : foodAL) {
 						itemCount++;
 						if (suniqueList.contains(menu)) {
 							// if item is a repeat, add to respective count.
-							seachCount.add(suniqueList.indexOf(menu), seachCount.get(suniqueList.indexOf(menu)) + 1);
+							oldCount = seachCount.get(suniqueList.indexOf(menu));
+							oldCount ++;
+							System.out.println("Index: "+suniqueList.indexOf(menu));
+							seachCount.set(suniqueList.indexOf(menu), oldCount);
 						} else {
 							// item is not a repeat, add to uniqueList and start eachCount at 1.
+							
 							suniqueList.add(menu);
 							seachCount.add(1);
-
+							
+							
 						}
 					}
 					//System.out.println(invoice.toString());

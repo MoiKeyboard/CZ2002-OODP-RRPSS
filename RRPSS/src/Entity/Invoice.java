@@ -94,7 +94,8 @@ public class Invoice implements Serializable {
 		for (Menu menu : foodAL) {
 			if (uniqueList.contains(menu)) {
 				// if item is a repeat, add to respective count.
-				eachCount.add(uniqueList.indexOf(menu), eachCount.get(uniqueList.indexOf(menu)) + 1);
+				//.set not .add
+				eachCount.set(uniqueList.indexOf(menu), eachCount.get(uniqueList.indexOf(menu)) + 1);
 			} else {
 				// item is not a repeat, add to uniqueList and start eachCount at 1.
 				uniqueList.add(menu);
