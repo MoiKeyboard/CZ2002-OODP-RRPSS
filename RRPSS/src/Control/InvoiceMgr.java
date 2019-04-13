@@ -81,6 +81,7 @@ public class InvoiceMgr {
 			System.out.println(">>Selected printing revenue report by day<<");
 			
 			System.out.println("Please enter date (E.g 10-04-2019)");
+			//use 11-04-2019 to test.
 			periodDT = sc.nextLine();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 			LocalDate saleReportPeriod = LocalDate.parse(periodDT, formatter);
@@ -92,8 +93,11 @@ public class InvoiceMgr {
 			ArrayList<Menu> suniqueList = new ArrayList<Menu>();
 			// to count each unique item
 			ArrayList<Integer> seachCount = new ArrayList<Integer>();
+			//foodAL declaration
+			ArrayList<Menu> foodAL = new ArrayList<Menu>();
 			//need to add all the total sales.
 			double salesTotal = 0.0;
+			double itemCount = 0.0; //debug
 
 			/*
 			 * uniqueList: [menuItem1, menuItem2] eachCount: [1, 2]
@@ -106,10 +110,15 @@ public class InvoiceMgr {
 					//reformatting to print as one big invoice.
 					
 					//for each invoice object, retrieve FoodAL
-					ArrayList<Menu> foodAL = invoice.getFoodAL();
+					foodAL = invoice.getFoodAL();
 					//repeat the same thing done in invoice to count unique food
+					
+					//add each invoice's total price to salesTotal
+					salesTotal += invoice.getTotalPrice();
+					
+					//loop through menu objects in invoice
 					for (Menu menu : foodAL) {
-						salesTotal += invoice.getTotalPrice();
+						itemCount++;
 						if (suniqueList.contains(menu)) {
 							// if item is a repeat, add to respective count.
 							seachCount.add(suniqueList.indexOf(menu), seachCount.get(suniqueList.indexOf(menu)) + 1);
@@ -136,6 +145,7 @@ public class InvoiceMgr {
 
 			}
 			
+			System.out.println("[DEBUG]: total item count: "+itemCount);
 			System.out.println("[DEBUG]: suniqueList: ");
 			System.out.println(Arrays.toString(suniqueList.toArray()));
 			System.out.println("[DEBUG]: seachCount");
@@ -155,6 +165,7 @@ public class InvoiceMgr {
 
 			salesRep += "------------------------------------------\n";
 			display = String.format("                        TOTAL: %.2f\n", salesTotal);
+			//total should be around $700++ or so.
 			salesRep += display;
 			salesRep += "\n==========================================\n";
 			System.out.println(salesRep);
