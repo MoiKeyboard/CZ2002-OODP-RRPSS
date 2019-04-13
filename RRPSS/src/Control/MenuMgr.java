@@ -312,7 +312,7 @@ public class MenuMgr {
 		return -1;
 	}
 
-	protected int getMenuIndex(ArrayList<Menu> al, String search) {
+	private int getMenuIndex(ArrayList<Menu> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
 			if (search.equalsIgnoreCase(al.get(i).getName()))
 				return i;
@@ -321,7 +321,7 @@ public class MenuMgr {
 		return -1;
 	}
 
-	protected int getAlacarteIndex(ArrayList<Alacarte> al, String search) {
+	private int getAlacarteIndex(ArrayList<Alacarte> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
 			if (search.equalsIgnoreCase(al.get(i).getName()))
 				return i;

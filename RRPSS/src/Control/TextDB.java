@@ -15,10 +15,9 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import Entity.Alacarte;
 import Entity.Customer;
 import Entity.Invoice;
-import Entity.Alacarte;
-import Entity.Order;
 import Entity.Menu;
 import Entity.PromotionalPackage;
 import Entity.Reservation;
@@ -26,7 +25,7 @@ import Entity.Staff;
 import Entity.Table;
 
 public class TextDB {
-	public static final String SEPARATOR = "|";
+	private static final String SEPARATOR = "|";
 
 	public static ArrayList<Menu> readMenu(String filename) throws IOException {
 		ArrayList stringArray = (ArrayList) read(filename);
@@ -37,27 +36,27 @@ public class TextDB {
 			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
 																		// using delimiter ","
 			String menuType = star.nextToken().trim();
-			if(menuType.equalsIgnoreCase("PromoPackage")) {
+			if (menuType.equalsIgnoreCase("PromoPackage")) {
 				ArrayList<Alacarte> tempAlacarteAl = new ArrayList<Alacarte>();
 				String promoName = star.nextToken().trim();
 				String promoDesc = star.nextToken().trim();
 				double promoPrice = Double.parseDouble(star.nextToken());
-				while(star.hasMoreTokens()) {
+				while (star.hasMoreTokens()) {
 					String foodName = star.nextToken().trim();
 					String description = star.nextToken().trim();
 					double price = Double.parseDouble(star.nextToken());
 					String category = star.nextToken().trim();
-					Alacarte mi = new Alacarte(foodName,description,price,category);
+					Alacarte mi = new Alacarte(foodName, description, price, category);
 					tempAlacarteAl.add(mi);
 				}
-				PromotionalPackage promoPkg = new PromotionalPackage(promoName,promoDesc,promoPrice,tempAlacarteAl);
+				PromotionalPackage promoPkg = new PromotionalPackage(promoName, promoDesc, promoPrice, tempAlacarteAl);
 				menuAl.add(promoPkg);
 			} else if (menuType.equalsIgnoreCase("AlaCarte")) {
 				String alaCarteName = star.nextToken().trim();
 				String alaCartedesc = star.nextToken().trim();
 				double alaCarteprice = Double.parseDouble(star.nextToken());
 				String category = star.nextToken().trim();
-				Alacarte item = new Alacarte(alaCarteName,alaCartedesc,alaCarteprice,category);
+				Alacarte item = new Alacarte(alaCarteName, alaCartedesc, alaCarteprice, category);
 				// add to MenuAl list
 				menuAl.add(item);
 			}
@@ -68,7 +67,7 @@ public class TextDB {
 	public static void saveMenu(String filename, List menuAl) throws IOException {
 		List alw = new ArrayList();// to store Orders data
 		for (int i = 0; i < menuAl.size(); i++) {
-			if(menuAl.get(i) instanceof PromotionalPackage) {
+			if (menuAl.get(i) instanceof PromotionalPackage) {
 				PromotionalPackage s1 = (PromotionalPackage) menuAl.get(i);
 				StringBuilder st = new StringBuilder();
 				st.append("PromoPackage");
@@ -79,12 +78,12 @@ public class TextDB {
 				st.append(SEPARATOR);
 				st.append(s1.getPrice());
 				st.append(SEPARATOR);
-				for(int i2 = 0;i2 < s1.getMenuItemArr().size();i2++) {
-					st.append(s1.getMenuItemArr().get(i2).getName());	
+				for (int i2 = 0; i2 < s1.getMenuItemArr().size(); i2++) {
+					st.append(s1.getMenuItemArr().get(i2).getName());
 					st.append(SEPARATOR);
-					st.append(s1.getMenuItemArr().get(i2).getDescription());	
+					st.append(s1.getMenuItemArr().get(i2).getDescription());
 					st.append(SEPARATOR);
-					st.append(s1.getMenuItemArr().get(i2).getPrice());	
+					st.append(s1.getMenuItemArr().get(i2).getPrice());
 					st.append(SEPARATOR);
 					st.append(s1.getMenuItemArr().get(i2).getCategory());
 					st.append(SEPARATOR);
@@ -107,7 +106,7 @@ public class TextDB {
 		}
 		write(filename, alw);
 	}
-	
+
 	public static ArrayList<Staff> readStaff(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
@@ -122,7 +121,7 @@ public class TextDB {
 			String staffName = star.nextToken().trim(); // third token
 			String gender = star.nextToken().trim(); // fourth token
 			// create Staff object from file data
-			Staff item = new Staff(staffId, jobTitle, staffName,gender);
+			Staff item = new Staff(staffId, jobTitle, staffName, gender);
 			// add to Staff array list
 			staffAl.add(item);
 		}
@@ -190,8 +189,7 @@ public class TextDB {
 	}
 
 // an example of saving
-	public static void saveReservations(String filename, List reservationAl, List custAl)
-			throws IOException {
+	public static void saveReservations(String filename, List reservationAl, List custAl) throws IOException {
 		List alw = new ArrayList();// to store Professors data
 		for (int i = 0; i < reservationAl.size(); i++) {
 			Reservation s1 = (Reservation) reservationAl.get(i);
@@ -209,33 +207,33 @@ public class TextDB {
 		TextDB.saveCustomer("Customer.txt", custAl);
 		write(filename, alw);
 	}
-	
+
 	public static ArrayList<Invoice> readInvoice(String filename) throws IOException {
 		// read String from text file
 		ArrayList<Invoice> invoiceAl = new ArrayList<Invoice>();
-			try {
-	            FileInputStream fis = new FileInputStream(filename);
-	            ObjectInputStream ois = new ObjectInputStream(fis);
-	            invoiceAl = (ArrayList) ois.readObject();
-	            ois.close();
-	            fis.close();
-	        } catch (Exception e) {
-	            System.out.println(e);
-	        }
+		try {
+			FileInputStream fis = new FileInputStream(filename);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			invoiceAl = (ArrayList) ois.readObject();
+			ois.close();
+			fis.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		return invoiceAl;
 	}
 
 	// an example of saving
 	public static void saveInvoice(String filename, ArrayList<Invoice> invoiceAl) throws IOException {
-			try {
-	            FileOutputStream fos = new FileOutputStream(filename);
-	            ObjectOutputStream oos = new ObjectOutputStream(fos);
-	            oos.writeObject(invoiceAl);
-	            oos.close();
-	            fos.close();
-	        } catch (IOException ioe) {
-	            ioe.printStackTrace();
-	        }
+		try {
+			FileOutputStream fos = new FileOutputStream(filename);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(invoiceAl);
+			oos.close();
+			fos.close();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 	public static ArrayList<Customer> readCustomer(String filename) throws IOException {
@@ -270,14 +268,9 @@ public class TextDB {
 		}
 		write(filename, alw);
 	}
-	
-	
-	
-	
-	
-	
+
 	/** Write fixed content to the given file. */
-	public static void write(String fileName, List data) throws IOException {
+	private static void write(String fileName, List data) throws IOException {
 		PrintWriter out = new PrintWriter(new FileWriter(fileName));
 
 		try {
@@ -290,13 +283,13 @@ public class TextDB {
 	}
 
 	/** Delete everything within a file. **/
-	public static void deleteEverything(String fileName) throws IOException {
+	private static void deleteEverything(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new FileWriter(fileName));
 		out.close();
 	}
 
 	/** Read the contents of the given file. */
-	public static List read(String fileName) throws IOException {
+	private static List read(String fileName) throws IOException {
 		List data = new ArrayList();
 		Scanner scanner = new Scanner(new FileInputStream(fileName));
 		try {
