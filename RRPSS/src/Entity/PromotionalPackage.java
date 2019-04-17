@@ -37,7 +37,7 @@ public class PromotionalPackage extends Menu implements Serializable {
 		int count = 0;
 		Alacarte a = new Alacarte();
 		
-		ArrayList<Menu> uniqueList = new ArrayList<Menu>();
+		ArrayList<Alacarte> uniqueList = new ArrayList<Alacarte>();
 		ArrayList<Integer> eachCount = new ArrayList<Integer>();
 		
 				
@@ -68,10 +68,10 @@ public class PromotionalPackage extends Menu implements Serializable {
 			*/
 			
 		}
-		
+		System.out.println("[DEBUG]: "+uniqueList);
+		System.out.println("[DEBUG]: "+eachCount);
 		for (int i = 0; i < uniqueList.size(); i++) {
-			display = String.format("%-5d %-22s %5.2f\n", eachCount.get(i), uniqueList.get(i).getName(),
-					uniqueList.get(i).getPrice());
+			display = String.format("%d %s\n", eachCount.get(i), uniqueList.get(i).getName());
 			promoDetails += display;
 
 		}
