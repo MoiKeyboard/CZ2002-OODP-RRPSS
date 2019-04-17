@@ -26,6 +26,9 @@ public class ReservationMgr {
 	private ArrayList<Customer> custAl;
 	private Scanner sc;
 
+	/**
+	 * Constructor for ReservationMgr, calls readReservation
+	 */
 	public ReservationMgr() {
 		reservationAl = new ArrayList<Reservation>();
 		sc = new Scanner(System.in);
@@ -35,11 +38,20 @@ public class ReservationMgr {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Returns the ArrayList[Reservation]. 
+	 */
 	protected ArrayList<Reservation> getReservationAl() {
 		return reservationAl;
 	}
 
+	/**
+	 * Prints all the Reservations of the ArrayList.
+	 * 
+	 * @param tMgr ReservationMgr
+	 * @param pMgr PersonMgr
+	 */
 	public void printReservation(TableMgr tMgr, PersonMgr pMgr) {
 		tableAl = tMgr.getTableAL();
 		custAl = pMgr.getCustAl();
@@ -53,6 +65,9 @@ public class ReservationMgr {
 		System.out.println();
 	}
 
+	/**
+	 * Creates Reservation based on User Inputs, calls ReservationDateValidation, SetTableStatus and SaveReservations.
+	 */
 	public void createReservation() throws Exception {
 		String reservationDT, custName;
 		int contactNo, pax;
@@ -103,6 +118,12 @@ public class ReservationMgr {
 		TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
 	}
 
+	/**
+	 * Checks Reservation based on contact number.
+	 * 
+	 * @param tMgr Control for TableMgr
+	 * @param pMgr Control for PersonMgr
+	 */
 	public void checkReservation(TableMgr tMgr, PersonMgr pMgr) {
 		int contactNo;
 		System.out.println("Please enter contact Number to search for reservation");
@@ -207,6 +228,9 @@ public class ReservationMgr {
 		TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
 	}
 
+	/**
+	 * Removes Expired Reservations 10 minutes after the Reservation booking time.
+	 */
 	public void removeExpiredReservations() {
 		LocalDateTime existingReservationDT, expiringDT;
 		int existingReservationDay;
@@ -220,10 +244,8 @@ public class ReservationMgr {
 			if (expiringDT.getDayOfYear() == existingReservationDT.getDayOfYear()
 					&& expiringDT.getHour() == existingReservationDT.getHour()
 					&& expiringDT.getMinute() == existingReservationDT.getMinute()) {
-				if (r.isAttended() != true) {
-					System.out.println("Removing Reservation:\n" + r.toString());
-					it.remove();
-				}
+				System.out.println("Removing Reservation:\n" + r.toString());
+				it.remove();
 			}
 		}
 		try {
@@ -232,7 +254,12 @@ public class ReservationMgr {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Returns the Index of Reservation for a particular Reservation based on the current AM/PM runtime session.
+	 * 
+	 * @param contactNo ContactNumber
+	 */
 	protected int getReservationIndex(int contactNo) {
 		LocalDateTime today = LocalDateTime.now();
 		for (int i = 0; i < reservationAl.size(); i++) {
