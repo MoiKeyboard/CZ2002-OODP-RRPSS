@@ -97,10 +97,10 @@ public class OrderMgr {
 	}
 
 	// View order of the current session
-	public void viewOrder(TableMgr tableMgr) throws IOException {
+	public void viewOrder() throws IOException {
 		int index;
 		System.out.println("Please enter table number");
-		index = tableMgr.getTableIndex(sc.nextInt());
+		index = getOrderIndex(sc.nextInt());
 		if (index == -1)
 			return;
 		System.out.println(orderAl.get(index).toString());
