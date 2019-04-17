@@ -27,10 +27,12 @@ public class InvoiceMgr {
 	private static final double GST = 0.07; // CONSTANT GST 7%
 	private static final double SC = 0.1; // CONSTANT SERVICE CHARGE 10%
 	private Scanner sc;
-
+	
+	/**
+	 * Constructor for InvoiceMgr, calls {@link TextDB#readInvoice(String)}.
+	 */
 	public InvoiceMgr() {
 		sc = new Scanner(System.in);
-		
 		
 		try {
 			invoiceAl = TextDB.readInvoice("Invoices.txt");
@@ -39,14 +41,20 @@ public class InvoiceMgr {
 			}
 		} 
 		catch(EOFException e) {
-			System.out.println("reservation.txt is empty");
+			System.out.println("Reservation.txt is empty");
 		}
 		
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Creates Invoice for a particular Table , calls {@link generateInvoiceNum(),computeTotalPrice(Order)}, {@link TableMgr#updateTableStatus(int, String)} to set the Table status to Vacated, add the Invoice to ArrayList[Invoice] AND calls {@link TextDB#saveInvoice(String, ArrayList)} to save the ArrayList[Invoice] to text file.
+	 * 
+	 * @param orderMgr Control of OrderMgr
+	 * @param tableMgr Control of TableMgr
+	 */
 	public void generateInvoice(OrderMgr orderMgr, TableMgr tableMgr) {
 		int tableNo = 0;
 		LocalDateTime timeStamp = LocalDateTime.now();
@@ -66,6 +74,12 @@ public class InvoiceMgr {
 		}
 	}
 
+	/**
+	 * Creates and returns a new Invoice Number based on the current time stamp.
+	 * <br>
+	 * <br>
+	 * Format of invoice number (YearMonthDayHourMinuteSecondRandomInt)
+	 */
 	private long generateInvoiceNum() {
 		long invoiceNum = 0;
 		Random rand = new Random();
@@ -77,6 +91,11 @@ public class InvoiceMgr {
 		return invoiceNum;
 	}
 
+	/**
+	 * Returns the total sum of all the price of each Promotional Package Item and Alacarte for the Order object passed in.
+	 * 
+	 * @param order Order object
+	 */
 	private double computeTotalPrice(Order o) {
 		double price = 0;
 		for (Menu menu : o.getFoodAL()) {
@@ -85,6 +104,9 @@ public class InvoiceMgr {
 		return price;
 	}
 
+	/**
+	 *
+	 */
 	// Option 1 - print revenue report for particular day , Option 2 - print revenue
 	// report for particular month, Option 3 - return
 	public void printSaleRevenueReport() {
