@@ -24,9 +24,23 @@ import Entity.Reservation;
 import Entity.Staff;
 import Entity.Table;
 
+
+/**
+ * (Control) Object wrapper for TextDB
+ * 
+ * @author Joseph Fung King Yiu
+ * @version 1.0
+ * @since 2019-04-17
+ */
+
 public class TextDB {
 	private static final String SEPARATOR = "|";
-
+	
+	/**
+	 * Reads in the Menu Item from text file. Returns ArrayList[Menu].
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Menu> readMenu(String filename) throws IOException {
 		ArrayList stringArray = (ArrayList) read(filename);
 		ArrayList<Menu> menuAl = new ArrayList<Menu>();
@@ -63,7 +77,13 @@ public class TextDB {
 		}
 		return menuAl;
 	}
-
+	
+	/**
+	 * Saves ArrayList[Menu] to text file.
+	 * 
+	 * @param filename FilePath
+	 * @param menuAl ArrayList[Menu]
+	 */
 	public static void saveMenu(String filename, List menuAl) throws IOException {
 		List alw = new ArrayList();// to store Orders data
 		for (int i = 0; i < menuAl.size(); i++) {
@@ -107,6 +127,11 @@ public class TextDB {
 		write(filename, alw);
 	}
 
+	/**
+	 * Reads in Staff from text file. Returns ArrayList[Staff].
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Staff> readStaff(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
@@ -116,10 +141,10 @@ public class TextDB {
 			// get individual 'fields' of the string separated by SEPARATOR
 			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
 																		// using delimiter ","
-			int staffId = Integer.parseInt(star.nextToken().trim()); // first token
-			String jobTitle = star.nextToken().trim(); // second token
-			String staffName = star.nextToken().trim(); // third token
-			String gender = star.nextToken().trim(); // fourth token
+			int staffId = Integer.parseInt(star.nextToken().trim());
+			String jobTitle = star.nextToken().trim(); 
+			String staffName = star.nextToken().trim(); 
+			String gender = star.nextToken().trim();
 			// create Staff object from file data
 			Staff item = new Staff(staffId, jobTitle, staffName, gender);
 			// add to Staff array list
@@ -128,7 +153,12 @@ public class TextDB {
 		return staffAl;
 	}
 
-	// an example of saving
+	/**
+	 * Saves ArrayList[Staff] to text file.
+	 * 
+	 * @param filename FilePath
+	 * @param staffAl ArrayList[Staff]
+	 */
 	public static void saveStaff(String filename, List staffAl) throws IOException {
 		List alw = new ArrayList();// to store Professors data
 
@@ -144,7 +174,12 @@ public class TextDB {
 		}
 		write(filename, alw);
 	}
-
+	
+	/**
+	 * Reads in Table from text file. Returns ArrayList[Table].
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Table> readTable(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
@@ -157,14 +192,19 @@ public class TextDB {
 			int tableNo = Integer.parseInt(star.nextToken().trim()); // first token
 			int seatCap = Integer.parseInt(star.nextToken().trim());// second token
 			String tableStatus = star.nextToken().trim();// third token
-			// create Staff object from file data
+			// create Table object from file data
 			Table table = new Table(tableNo, seatCap, tableStatus);
-			// add to Staff array list
+			// add to Table array list
 			tableAl.add(table);
 		}
 		return tableAl;
 	}
 
+	/**
+	 * Reads in Reservation from text file. Returns ArrayList[Reservation].
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Reservation> readReservation(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
@@ -174,8 +214,8 @@ public class TextDB {
 			// get individual 'fields' of the string separated by SEPARATOR
 			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
 																		// using delimiter ","
-			int contactNo = Integer.parseInt(star.nextToken().trim()); // first token
-			String reservationDateTime = star.nextToken().trim();// second token
+			int contactNo = Integer.parseInt(star.nextToken().trim());
+			String reservationDateTime = star.nextToken().trim();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy kkmm", Locale.ENGLISH);
 			LocalDateTime reservationDT = LocalDateTime.parse(reservationDateTime, formatter);
 			int pax = Integer.parseInt(star.nextToken());
@@ -188,9 +228,15 @@ public class TextDB {
 		return reservationAl;
 	}
 
-// an example of saving
+	/**
+	 * Save Reservation to textfile. Calls {@link saveCustomer(String,List)}.
+	 * 
+	 * @param filename FilePath
+	 * @param reservationAl ArrayList[Reservation]
+	 * @param custAl ArrayList[Customer]
+	 */
 	public static void saveReservations(String filename, List reservationAl, List custAl) throws IOException {
-		List alw = new ArrayList();// to store Professors data
+		List alw = new ArrayList();
 		for (int i = 0; i < reservationAl.size(); i++) {
 			Reservation s1 = (Reservation) reservationAl.get(i);
 			StringBuilder st = new StringBuilder();
@@ -208,6 +254,12 @@ public class TextDB {
 		write(filename, alw);
 	}
 
+
+	/**
+	 * Reads in Invoice from text file (Deserialization). Returns ArrayList[Invoice].
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Invoice> readInvoice(String filename) throws IOException {
 		// read String from text file
 		ArrayList<Invoice> invoiceAl = new ArrayList<Invoice>();
@@ -223,7 +275,13 @@ public class TextDB {
 		return invoiceAl;
 	}
 
-	// an example of saving
+
+	/**
+	 * Save ArrayList[Invoice] to text file (Serialization).
+	 * 
+	 * @param filename FilePath
+	 * @param invoiceAl ArrayList[Invoice]
+	 */
 	public static void saveInvoice(String filename, ArrayList<Invoice> invoiceAl) throws IOException {
 		try {
 			FileOutputStream fos = new FileOutputStream(filename);
@@ -236,6 +294,12 @@ public class TextDB {
 		}
 	}
 
+
+	/**
+	 * Reads in Customer from text file. Returns ArrayList[Customer].
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Customer> readCustomer(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
@@ -255,7 +319,13 @@ public class TextDB {
 		return customerAl;
 	}
 
-// an example of saving
+
+	/**
+	 * Saves ArrayList[Customer] to text file.
+	 * 
+	 * @param filename FilePath
+	 * @param custAl ArrayList[Customer]
+	 */
 	public static void saveCustomer(String filename, List custAl) throws IOException {
 		List alw = new ArrayList();// to store Professors data
 		for (int i = 0; i < custAl.size(); i++) {
@@ -269,6 +339,13 @@ public class TextDB {
 		write(filename, alw);
 	}
 
+
+	/**
+	 * Writes data to file.
+	 * 
+	 * @param filename FilePath
+	 * @param data Data
+	 */
 	/** Write fixed content to the given file. */
 	private static void write(String fileName, List data) throws IOException {
 		PrintWriter out = new PrintWriter(new FileWriter(fileName));
@@ -281,14 +358,23 @@ public class TextDB {
 			out.close();
 		}
 	}
+	
 
-	/** Delete everything within a file. **/
+	/**
+	 * Delete everything within a file.
+	 * 
+	 * @param filename FilePath
+	 */
 	private static void deleteEverything(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new FileWriter(fileName));
 		out.close();
 	}
-
-	/** Read the contents of the given file. */
+	
+	/**
+	 * Reads the content of the given file.
+	 * 
+	 * @param filename FilePath
+	 */
 	private static List read(String fileName) throws IOException {
 		List data = new ArrayList();
 		Scanner scanner = new Scanner(new FileInputStream(fileName));

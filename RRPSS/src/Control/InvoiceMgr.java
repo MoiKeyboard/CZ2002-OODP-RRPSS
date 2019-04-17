@@ -13,12 +13,23 @@ import Entity.Invoice;
 import Entity.Menu;
 import Entity.Order;
 
+/**
+ * (Control) Object wrapper for InvoiceMgr
+ * 
+ * @author Tay Jaslyn
+ * @version 1.0
+ * @since 2019-04-17
+ */
+
 public class InvoiceMgr {
 	private ArrayList<Invoice> invoiceAl;
 	private static final double GST = 0.07; // CONSTANT GST 7%
 	private static final double SC = 0.1; // CONSTANT SERVICE CHARGE 10%
 	private Scanner sc;
-
+	
+	/**
+	 * Constructor for InvoiceMgr, calls {@link TextDB#readInvoice(String)}.
+	 */
 	public InvoiceMgr() {
 		sc = new Scanner(System.in);
 
@@ -27,15 +38,19 @@ public class InvoiceMgr {
 			for (Invoice invoice : invoiceAl) {
 				System.out.println(invoice.toString());
 			}
-		} catch (EOFException e) {
-			System.out.println("reservation.txt is empty");
-		}
-
-		catch (Exception e) {
+		} catch(EOFException e) {
+			System.out.println("Reservation.txt is empty");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Creates Invoice for a particular Table , calls {@link generateInvoiceNum(),computeTotalPrice(Order)}, {@link TableMgr#updateTableStatus(int, String)} to set the Table status to Vacated, add the Invoice to ArrayList[Invoice] AND calls {@link TextDB#saveInvoice(String, ArrayList)} to save the ArrayList[Invoice] to text file.
+	 * 
+	 * @param orderMgr Control of OrderMgr
+	 * @param tableMgr Control of TableMgr
+	 */
 	public void generateInvoice(OrderMgr orderMgr, TableMgr tableMgr) {
 		int tableNo = 0;
 		LocalDateTime timeStamp = LocalDateTime.now();
@@ -55,6 +70,12 @@ public class InvoiceMgr {
 		}
 	}
 
+	/**
+	 * Creates and returns a new Invoice Number based on the current time stamp.
+	 * <br>
+	 * <br>
+	 * Format of invoice number (YearMonthDayHourMinuteSecondRandomInt)
+	 */
 	private long generateInvoiceNum() {
 		long invoiceNum = 0;
 		Random rand = new Random();
@@ -66,6 +87,11 @@ public class InvoiceMgr {
 		return invoiceNum;
 	}
 
+	/**
+	 * Returns the sum of the total price of all the Alacarte and PromotionalPackage Items in the Order object which is passed in.
+	 * 
+	 * @param order Order object
+	 */
 	private double computeTotalPrice(Order o) {
 		double price = 0;
 		for (Menu menu : o.getFoodAL()) {
@@ -74,6 +100,9 @@ public class InvoiceMgr {
 		return price;
 	}
 
+	/**
+	 * Prints Sale Revenue Report for a particular Day or Month based on Users Input. It will print out a list of Menu Items (Alacarte | Promotional Packages) sold during that time period, the total quantity, total GST, total Service Charge and Total Gross Revenue.
+	 */
 	// Option 1 - print revenue report for particular day , Option 2 - print revenue
 	// report for particular month, Option 3 - return
 	public void printSaleRevenueReport() {

@@ -12,12 +12,23 @@ import Entity.Customer;
 import Entity.Reservation;
 import Entity.Table;
 
+/**
+ * (Control) Object wrapper for ReservationMgr
+ * 
+ * @author Joseph Fung King Yiu
+ * @version 1.0
+ * @since 2019-04-17
+ */
+
 public class ReservationMgr {
 	private ArrayList<Reservation> reservationAl;
 	private ArrayList<Table> tableAl;
 	private ArrayList<Customer> custAl;
 	private Scanner sc;
 
+	/**
+	 * Constructor for ReservationMgr, calls {@link TextDB#readReservation(String)}.
+	 */
 	public ReservationMgr() {
 		reservationAl = new ArrayList<Reservation>();
 		sc = new Scanner(System.in);
@@ -27,11 +38,20 @@ public class ReservationMgr {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Returns the ArrayList[Reservation]. 
+	 */
 	protected ArrayList<Reservation> getReservationAl() {
 		return reservationAl;
 	}
 
+	/**
+	 * Prints out all the Reservations within the ArrayList.
+	 * 
+	 * @param tMgr Control for TableMgr
+	 * @param pMgr Control for PersonMgr
+	 */
 	public void printReservation(TableMgr tMgr, PersonMgr pMgr) {
 		tableAl = tMgr.getTableAL();
 		custAl = pMgr.getCustAl();
@@ -45,6 +65,9 @@ public class ReservationMgr {
 		System.out.println();
 	}
 
+	/**
+	 * Creates Reservation based on User Inputs(Phone Number, Name, Reservation Date and Time, Number of pax), calls {@link reservationDateValidation(int, LocalDateTime)}, {@link Table#setTableStatus(String)} and {@link TextDB#saveReservations(String, List, List)}.
+	 */
 	public void createReservation() throws Exception {
 		String reservationDT, custName;
 		int contactNo, pax;
@@ -95,6 +118,12 @@ public class ReservationMgr {
 		TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
 	}
 
+	/**
+	 * Prints out all the Reservations for a particular contact number.
+	 * 
+	 * @param tMgr Control for TableMgr
+	 * @param pMgr Control for PersonMgr
+	 */
 	public void checkReservation(TableMgr tMgr, PersonMgr pMgr) {
 		int contactNo;
 		System.out.println("Please enter contact Number to search for reservation");
@@ -108,7 +137,14 @@ public class ReservationMgr {
 			}
 		}
 	}
-
+	
+	/**
+	 * Validates the date and time of the new Reservation to be within the opening hours of the Restaurant (AM/PM Session) and checks if there is an existing Reservation with the same Contact Number in the same Session and on the same Day.<br>
+	 * <br>
+	 * Returns false if there is Existing Reservation with the same Contact Number in the same Session and on the same Day OR Reservation is more than 30 Days in advance OR the date time entered is not within the Restaurant Operating Hours.
+	 * @param contactNum Contact Number of User Input 
+	 * @param reservationDT Reservation Date Time of User Input
+	 */
 	private boolean reservationDateValidation(int contactNum, LocalDateTime reservationDT) {
 		LocalDateTime today = LocalDateTime.now();
 		LocalDateTime existingReservationDT;
@@ -152,7 +188,15 @@ public class ReservationMgr {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * Verifies if the table has a reservation for the particular Session on a particular Day based on User Input.
+	 * <br> 
+	 * <br>
+	 * Returns false if the table has a reservation on the same Session and on the same Day. 
+	 * @param t Table Object
+	 * @param reservationDT Reservation Date Time that the user inputs
+	 */
 	private boolean checkAvailability(Table t, LocalDateTime reservationDT) {
 		LocalDateTime existingReservationDT;
 		int existingReservationHour, existingReservationMinute, newReservationHour, newReservationMinute;
@@ -180,25 +224,34 @@ public class ReservationMgr {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * Asks for user input for the Contact Number used for the Reservation and removes it from the ArrayList{Reservation],calls {@link PersonMgr#removeCustomer(int)} to remove Customer from Customer ArrayList and {@link TextDB#saveReservations(String, List, List)} to save the Reservation ArrayList and Customer ArrayList to text file  
+	 * 
+	 * @param pMgr Control for PersonMgr
+	 */
 	public void removeReservation(PersonMgr pMgr) throws IOException {
+		boolean successFlag = false;
 		System.out.println("Please enter the contact number used for the reservation that you want to remove");
 		int searchTerm = sc.nextInt();
 		for (Reservation mi : reservationAl) {
 			if (mi.getContactNo() == searchTerm) {
-				for (Table t : tableAl) {
-					if (t.getTableNo() == mi.getTableNo()) {
-						t.setTableStatus("Vacated");
-					}
-				}
 				reservationAl.remove(mi);
-				break;
+				successFlag = true;
 			}
 		}
-		pMgr.removeCustomer(searchTerm);
-		TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
+		if(successFlag != true) 
+			System.out.println("Reservation for contact number"  + searchTerm + " not found");
+		else {
+			pMgr.removeCustomer(searchTerm);
+			TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
+		}
 	}
 
+
+	/**
+	 * Delete Expired Reservations 10 minutes after the Reservation booking time and calls {@link TextDB#saveReservations(String, List, List)} to save the updated Reservation ArrayList to text file.
+	 */
 	public void removeExpiredReservations() {
 		LocalDateTime existingReservationDT, expiringDT;
 		int existingReservationDay;
@@ -212,10 +265,8 @@ public class ReservationMgr {
 			if (expiringDT.getDayOfYear() == existingReservationDT.getDayOfYear()
 					&& expiringDT.getHour() == existingReservationDT.getHour()
 					&& expiringDT.getMinute() == existingReservationDT.getMinute()) {
-				if (r.isAttended() != true) {
-					System.out.println("Removing Reservation:\n" + r.toString());
-					it.remove();
-				}
+				System.out.println("Removing Reservation:\n" + r.toString());
+				it.remove();
 			}
 		}
 		try {
@@ -224,7 +275,12 @@ public class ReservationMgr {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Returns the Index of Reservation for a particular Reservation based on the current AM/PM runtime session.
+	 * 
+	 * @param contactNo Contact Number used for Reservation
+	 */
 	protected int getReservationIndex(int contactNo) {
 		LocalDateTime today = LocalDateTime.now();
 		for (int i = 0; i < reservationAl.size(); i++) {
