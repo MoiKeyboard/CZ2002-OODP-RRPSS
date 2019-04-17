@@ -128,6 +128,16 @@ public class OrderMgr {
 		}
 	}
 
+	protected void removeOrder(TableMgr tableMgr, int tableNo) {
+		int index;
+		index = getOrderIndex(tableNo);
+		if (index != -1) {
+			orderAl.remove(index);
+			System.out.println("Order remove successfully");
+			tableMgr.updateTableStatus(index, "Vacated");
+		}
+	}
+
 	protected int getOrderIndex(int search) {
 		for (int i = 0; i < orderAl.size(); i++) {
 			if (search == orderAl.get(i).getTableNo())
