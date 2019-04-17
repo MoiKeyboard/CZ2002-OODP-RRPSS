@@ -6,8 +6,7 @@ import java.io.Serializable;
  * The {@code Alacarte} entity class is an object wrapper. Subclass of
  * {@link Menu}.
  * <p>
- * Contains primitive information related to an alacarte item (e.g alacarte
- * name, alacarte price, alacarte description, etc).
+ * Contains primitive information related to an alacarte item.
  * </p>
  * 
  * @author Qwek Zhi Hui
@@ -20,7 +19,7 @@ public class Alacarte extends Menu implements Serializable {
 	private String category;
 
 	/**
-	 * Default constructor for {@code Alcarte}, calls superclass {@link Menu}
+	 * Default constructor for {@code Alcarte}. Calls superclass {@link Menu}
 	 * constructor.
 	 */
 	public Alacarte() {

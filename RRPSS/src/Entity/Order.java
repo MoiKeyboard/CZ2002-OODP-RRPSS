@@ -97,6 +97,9 @@ public class Order {
 		this.foodAL = foodAL;
 	}
 
+	/**
+	 * Returns the string resepresentation of the {@code Order} object.
+	 */
 	@Override
 	public String toString() {
 		String orderItemDetails = null;

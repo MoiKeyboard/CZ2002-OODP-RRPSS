@@ -16,7 +16,7 @@ public class Customer extends Person {
 	private int contactNumber;
 
 	/**
-	 * Default constructor for {@code Customer}, calls superclass {@link Person}
+	 * Default constructor for {@code Customer}. Calls superclass {@link Person}
 	 * constructor.
 	 */
 	public Customer() {
@@ -24,7 +24,7 @@ public class Customer extends Person {
 	}
 
 	/**
-	 * Constructor for {@code Customer}, calls superclass constructor {@link Person}
+	 * Constructor for {@code Customer}. Calls superclass constructor {@link Person}
 	 * and creates a {@code Customer} object with required parameters
 	 * 
 	 * @param name          Name of {@code Customer}

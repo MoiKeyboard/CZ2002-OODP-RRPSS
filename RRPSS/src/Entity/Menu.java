@@ -34,7 +34,7 @@ public class Menu implements Serializable {
 
 	/**
 	 * Constructor for {@code Menu}. Creates a {@code Menu} object with required
-	 * parameters
+	 * parameters.
 	 * 
 	 * @param name        Name of {@code Menu}
 	 * @param description Description of {@code Menu}
