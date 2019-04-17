@@ -104,30 +104,31 @@ public class OrderMgr {
 		index = getOrderIndex(sc.nextInt());
 		if (index == -1)
 			return;
-		System.out.println(orderAl.get(index).toString());
-		
-		
-		//print count and name + price. same as invoice...
-		
+		//System.out.println(orderAl.get(index).toString());
+		display += "Viewing order at Table "+orderAl.get(index).getTableNo()+"...";
+		display+="\n------------------------------------------\n";
 		ArrayList<Menu> uniqueList = new ArrayList<Menu>();
 		ArrayList<Integer> eachCount = new ArrayList<Integer>();
 		ArrayList<Menu> foodAL = new ArrayList<Menu>();
-		/*
-		for (Menu menu : orderAl.get(index)) {
+		
+		foodAL = orderAl.get(index).getFoodAL();
+		
+		for (Menu menu : foodAL) {
+			
 			if (uniqueList.contains(menu)) {
-				// if item is a repeat, add to respective count.
-				//.set not .add
 				eachCount.set(uniqueList.indexOf(menu), eachCount.get(uniqueList.indexOf(menu)) + 1);
 			} else {
-				// item is not a repeat, add to uniqueList and start eachCount at 1.
 				uniqueList.add(menu);
 				eachCount.add(1);
 
 			}
 		}
-		*/
-
 		
+		for(int i = 0; i < uniqueList.size(); i++) {
+			display += String.format("Qty: %-5d \n%s\n", eachCount.get(i), uniqueList.get(i).toString());
+		}
+		
+		System.out.println(display);
 	}
 
 	public void updateOrder(MenuMgr menuMgr) {
