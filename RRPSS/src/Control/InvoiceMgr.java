@@ -14,6 +14,14 @@ import Entity.Invoice;
 import Entity.Menu;
 import Entity.Order;
 
+/**
+ * (Control) Object wrapper for InvoiceMgr
+ * 
+ * @author Tay Jaslyn
+ * @version 1.0
+ * @since 2019-04-17
+ */
+
 public class InvoiceMgr {
 	private ArrayList<Invoice> invoiceAl;
 	private static final double GST = 0.07; // CONSTANT GST 7%

@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import Entity.Customer;
 import Entity.Staff;
 
+/**
+ * (Control) Object wrapper for PersonMgr
+ * 
+ * @author Joseph Fung King Yiu
+ * @version 1.0
+ * @since 2019-04-17
+ */
+
 public class PersonMgr {
 	private ArrayList<Customer> custAl;
 	private ArrayList<Staff> staffAl;

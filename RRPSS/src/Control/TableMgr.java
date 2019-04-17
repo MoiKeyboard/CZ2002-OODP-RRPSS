@@ -3,12 +3,26 @@ package Control;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import Entity.Menu;
 import Entity.Reservation;
 import Entity.Table;
+
+/**
+ * (Control) Object wrapper for TableMgr
+ * 
+ * @author Joseph Fung King Yiu
+ * @version 1.0
+ * @since 2019-04-17
+ */
 
 public class TableMgr {
 	private ArrayList<Table> tableAl;
 
+	/**
+	 * Constructor for TableMgr, calls readTable and updateTableStatus
+	 * 
+	 * @param reservationMgr ReservationManager
+	 */
 	public TableMgr(ReservationMgr reservationMgr) {
 		tableAl = new ArrayList<Table>();
 		try {
@@ -19,6 +33,9 @@ public class TableMgr {
 		}
 	}
 
+	/**
+	 * Prints the Table List.
+	 */
 	public void printTableList() {
 		System.out.println("Table list as follows:");
 		for (Table s : tableAl) {
@@ -29,6 +46,11 @@ public class TableMgr {
 		System.out.println();
 	}
 
+	/**
+	 * Updates Table status to Reserved according to the Reservations for the particular AM/PM Session on runtime.
+	 * 
+	 * @param rMgr ReservationMgr
+	 */
 	protected void updateTableStatus(ReservationMgr rMgr) {
 		LocalDateTime today = LocalDateTime.now();
 		ArrayList<Reservation> reservationAL = rMgr.getReservationAl();
@@ -51,17 +73,31 @@ public class TableMgr {
 
 		}
 	}
-
+	
+	/**
+	 * Returns the ArrayList[Table].
+	 */
 	protected ArrayList<Table> getTableAL() {
 		return tableAl;
 	}
 
+	/**
+	 * Updates the Table Status for a particular Table.
+	 * 
+	 * @param tableNo TableNumber
+	 * @param status TableStatus
+	 */
 	protected void updateTableStatus(int tableNo, String status) {
 		int index = getTableIndex(tableNo);
 		tableAl.get(index).setTableStatus(status);
 		System.out.println("Table " + tableNo + " set to " + status);
 	}
 
+	/**
+	 * Checks Table Vacancy for a particular Table.
+	 * 
+	 * @param tableNo TableNumber
+	 */
 	protected boolean checkTableVacancy(int tableNo) {
 		int index = getTableIndex(tableNo);
 		if (!"Vaccated".equals(tableAl.get(index).getTableStatus())) {
@@ -70,7 +106,12 @@ public class TableMgr {
 		} else
 			return true;
 	}
-
+	
+	/**
+	 * Assigns an Empty(Vacated) Table according to the number of pax.
+	 * 
+	 * @param pax Pax
+	 */
 	protected int assignTable(int pax) {
 		for (Table t : tableAl) {
 			if (pax <= t.getSeatCap() && t.getTableStatus().equals("Vacated")) {
@@ -90,7 +131,12 @@ public class TableMgr {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Returns the Index for a particular table.
+	 * 
+	 * @param search TableNumber
+	 */
 	protected int getTableIndex(int search) {
 		for (int i = 0; i < tableAl.size(); i++) {
 			if (search == tableAl.get(i).getTableNo())

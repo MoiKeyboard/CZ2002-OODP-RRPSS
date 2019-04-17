@@ -7,6 +7,14 @@ import java.util.Scanner;
 import Entity.Menu;
 import Entity.Order;
 
+/**
+ * (Control) Object wrapper for OrderMgr
+ * 
+ * @author Qwek Zhi Hui
+ * @version 1.0
+ * @since 2019-04-17
+ */
+
 public class OrderMgr {
 	private ArrayList<Order> orderAl;
 	private Scanner sc;

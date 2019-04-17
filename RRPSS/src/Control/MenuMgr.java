@@ -8,6 +8,14 @@ import Entity.Alacarte;
 import Entity.Menu;
 import Entity.PromotionalPackage;
 
+/**
+ * (Control) Object wrapper for MenuMgr
+ * 
+ * @author Qwek Zhi Hui
+ * @version 1.0
+ * @since 2019-04-17
+ */
+
 public class MenuMgr {
 	private ArrayList<Menu> menuAl;
 	private Scanner sc;

@@ -12,6 +12,14 @@ import Entity.Customer;
 import Entity.Reservation;
 import Entity.Table;
 
+/**
+ * (Control) Object wrapper for ReservationMgr
+ * 
+ * @author Joseph Fung King Yiu
+ * @version 1.0
+ * @since 2019-04-17
+ */
+
 public class ReservationMgr {
 	private ArrayList<Reservation> reservationAl;
 	private ArrayList<Table> tableAl;
