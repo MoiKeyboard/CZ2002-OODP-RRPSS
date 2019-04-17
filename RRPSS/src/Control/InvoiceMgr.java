@@ -49,6 +49,7 @@ public class InvoiceMgr {
 				(computeTotalPrice(o) * SC), ((computeTotalPrice(o) * (1 + GST + SC))), generateInvoiceNum(),
 				o.getFoodAL());
 		System.out.println(currInvoice.toString());
+		tableMgr.updateTableStatus(tableNo, "Vacated");
 		invoiceAl.add(currInvoice);
 		try {
 			TextDB.saveInvoice("Invoices.txt", invoiceAl);
@@ -143,8 +144,6 @@ public class InvoiceMgr {
 					
 					//for each invoice object, retrieve FoodAL
 					foodAL = invoice.getFoodAL();
-					//repeat the same thing done in invoice to count unique food
-					//add each invoice's total price to salesTotal
 					salesTotal += invoice.getTotalPrice();
 					totalGST += invoice.getGST();
 					totalSC += invoice.getServiceCharge();
@@ -165,9 +164,6 @@ public class InvoiceMgr {
 				}
 			}
 		
-			//now all the lists are filled with unique items and their count respectively
-			//start printing as per normal, like the invoice.
-			
 			
 			for (int i = 0; i < suniqueList.size(); i++) {
 				display = String.format("%-5d %-22s %5.2f\n", seachCount.get(i), suniqueList.get(i).getName(),
@@ -189,26 +185,10 @@ public class InvoiceMgr {
 			System.out.println(salesRep);
 			
 			
-		} else if (optionInput == 2) {
-			System.out.println("Don't enter here.");
-			/*
-			System.out.println("Please enter month and year in the following format (E.g 04-2019)");
-			periodDT = sc.nextLine();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-yyyy");
-			YearMonth ym = YearMonth.parse(periodDT, formatter);
-			LocalDate saleReportPeriod = ym.atDay(1);
-			for (Invoice invoice : invoiceAl) {
-				if (invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear()
-						&& invoice.getInvoiceDT().getMonthValue() == saleReportPeriod.getMonthValue()) {
-					System.out.println("Selected printing revenue report by month");
-					System.out.println(invoice.toString());
-				}
-			}
-			
-			
-			*/
-		} else if (optionInput == 0)
+		} else {
+			System.out.println("...returning to main screen...");
 			return;
+		}
 	}
 
 }
