@@ -66,7 +66,7 @@ public class ReservationMgr {
 	}
 
 	/**
-	 * Creates Reservation based on User Inputs, calls {@link reservationDateValidation(int, LocalDateTime)}, {@link Table#setTableStatus(String)} and {@link TextDB#saveReservations(String, List, List)}.
+	 * Creates Reservation based on User Inputs(Phone Number, Name, Reservation Date and Time, Number of pax), calls {@link reservationDateValidation(int, LocalDateTime)}, {@link Table#setTableStatus(String)} and {@link TextDB#saveReservations(String, List, List)}.
 	 */
 	public void createReservation() throws Exception {
 		String reservationDT, custName;
@@ -188,7 +188,15 @@ public class ReservationMgr {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * Verifies if the table has a reservation for the particular Session on a particular Day based on User Input.
+	 * <br> 
+	 * <br>
+	 * Returns false if the table has a reservation on the same Session and on the same Day. 
+	 * @param t Table Object
+	 * @param reservationDT Reservation Date Time that the user inputs
+	 */
 	private boolean checkAvailability(Table t, LocalDateTime reservationDT) {
 		LocalDateTime existingReservationDT;
 		int existingReservationHour, existingReservationMinute, newReservationHour, newReservationMinute;
