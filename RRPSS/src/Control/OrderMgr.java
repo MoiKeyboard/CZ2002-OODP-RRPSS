@@ -7,21 +7,34 @@ import java.util.Scanner;
 import Entity.Menu;
 import Entity.Order;
 
+/**
+ * (Control) Object wrapper for OrderMgr
+ * 
+ * @author Qwek Zhi Hui
+ * @version 1.0
+ * @since 2019-04-17
+ */
+
 public class OrderMgr {
 	private ArrayList<Order> orderAl;
 	private Scanner sc;
-
+	
+	/**
+	 * Constructor for OrderMgr.
+	 */
 	public OrderMgr() {
 		orderAl = new ArrayList<Order>();
 		sc = new Scanner(System.in);
-		try {
-			// read text file for order items
-			// orderAl = TextDB.readOrder("Orders.txt");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
-
+	
+	/**
+	 * Asks User for Input if it is Walk In Case or Reservation Case and calls either {@link walkInOrder(TableMgr, MenuMgr, PersonMgr)} OR {@link reservationOrder(TableMgr, MenuMgr, PersonMgr, ReservationMgr)} accordingly.
+	 * 
+	 * @param tableMgr Control for TableMgr
+	 * @param menuMgr Control for MenuMgr
+	 * @param personMgr Control for PersonMgr
+	 * @param rMgr Control for ReservationMgr
+	 */
 	public void createOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr rMgr) {
 		// update tableAL on runtime via tableMgr
 		tableMgr.updateTableStatus(rMgr);
@@ -42,6 +55,13 @@ public class OrderMgr {
 			System.out.println();
 	}
 
+	/**
+	 * Creates Order for WalkIn cases. Calls {@link menuMgr#updateMenuAl(ArrayList)} AND {@link TableMgr#updateTableStatus(int, String)}.
+	 * 
+	 * @param tableMgr Control for TableMgr
+	 * @param menuMgr Control for MenuMgr
+	 * @param personMgr Control for PersonMgr
+	 */
 	private boolean walkInOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr) {
 		// Staff
 		System.out.println("Please enter staff ID: ");
@@ -66,6 +86,14 @@ public class OrderMgr {
 		return true;
 	}
 
+	/**
+	 * Creates Order for Reservation cases. Calls {@link menuMgr#updateMenuAl(ArrayList)} AND {@link TableMgr#updateTableStatus(int, String)} AND {@link ReservationMgr#getReservationAl()}.
+	 * 
+	 * @param tableMgr Control for TableMgr
+	 * @param menuMgr Control for MenuMgr
+	 * @param personMgr Control for PersonMgr
+	 * @param rMgr Control for ReservationMgr
+	 */
 	private boolean reservationOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr rMgr) {
 		// Staff
 		System.out.println("Please enter staff ID: ");
@@ -96,7 +124,9 @@ public class OrderMgr {
 		return true;
 	}
 
-	// View order of the current session
+	/**
+	 *  Prints out the Order for a particular Table.
+	 */
 	public void viewOrder() throws IOException {
 		int index;
 		String display = "";
@@ -131,6 +161,11 @@ public class OrderMgr {
 		System.out.println(display);
 	}
 
+	/**
+	 * Calls {@link MenuMgr#updateMenuAL(ArrayList)} to update the Order for a particular table.
+	 * 
+	 * @param menuMgr Control for MenuMgr
+	 */
 	public void updateOrder(MenuMgr menuMgr) {
 		int index;
 		System.out.println("Please enter table number");
@@ -142,6 +177,11 @@ public class OrderMgr {
 		menuMgr.updateMenuAL(currFoodAL);
 	}
 
+	/**
+	 * Removes Order for a particular Table and sets the status of Table to be vacated.
+	 * 
+	 * @param tableMgr Control for TableMgr
+	 */
 	public void removeOrder(TableMgr tableMgr) {
 		System.out.println("Please enter table number");
 		int tableNo = sc.nextInt();
@@ -158,6 +198,11 @@ public class OrderMgr {
 		}
 	}
 
+	/**
+	 * Returns Index of Order in ArrayList[Order] based on Table Number Input.
+	 * 
+	 * @param search Number of Table
+	 */
 	protected int getOrderIndex(int search) {
 		for (int i = 0; i < orderAl.size(); i++) {
 			if (search == orderAl.get(i).getTableNo())
@@ -167,6 +212,9 @@ public class OrderMgr {
 		return -1;
 	}
 
+	/**
+	 * Returns ArrayList[Order]
+	 */
 	protected ArrayList<Order> getOrderAL() {
 		return this.orderAl;
 	}
