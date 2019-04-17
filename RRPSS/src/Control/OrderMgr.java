@@ -99,12 +99,13 @@ public class OrderMgr {
 	// View order of the current session
 	public void viewOrder() throws IOException {
 		int index;
+		String view = "";
 		String display = "";
 		System.out.println("Please enter table number");
 		index = getOrderIndex(sc.nextInt());
 		if (index == -1)
 			return;
-		System.out.println(orderAl.get(index).toString());
+		//System.out.println(orderAl.get(index).toString());
 		
 		
 		//print count and name + price. same as invoice...
@@ -112,11 +113,12 @@ public class OrderMgr {
 		ArrayList<Menu> uniqueList = new ArrayList<Menu>();
 		ArrayList<Integer> eachCount = new ArrayList<Integer>();
 		ArrayList<Menu> foodAL = new ArrayList<Menu>();
-		/*
-		for (Menu menu : orderAl.get(index)) {
+		
+		foodAL = orderAl.get(index).getFoodAL();
+		
+		for (Menu menu : foodAL) {
+			//System.out.println("[DEBUG]: "+menu.getName());
 			if (uniqueList.contains(menu)) {
-				// if item is a repeat, add to respective count.
-				//.set not .add
 				eachCount.set(uniqueList.indexOf(menu), eachCount.get(uniqueList.indexOf(menu)) + 1);
 			} else {
 				// item is not a repeat, add to uniqueList and start eachCount at 1.
@@ -125,9 +127,17 @@ public class OrderMgr {
 
 			}
 		}
-		*/
-
 		
+		//System.out.println("[DEBUG]: ");
+		display = "";
+		for(int i = 0; i < uniqueList.size(); i++) {
+			//System.out.println("[DEBUG]: "+uniqueList.get(i).getName());
+			display += String.format("Qty: %-5d \n%s\n", eachCount.get(i), uniqueList.get(i).toString());
+			
+		}
+		
+		view += display;
+		System.out.println(display);
 	}
 
 	public void updateOrder(MenuMgr menuMgr) {
