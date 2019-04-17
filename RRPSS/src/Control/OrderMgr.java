@@ -118,23 +118,18 @@ public class OrderMgr {
 	}
 
 	public void removeOrder(TableMgr tableMgr) {
-		int index;
 		System.out.println("Please enter table number");
-		index = getOrderIndex(sc.nextInt());
-		if (index != -1) {
-			orderAl.remove(index);
-			System.out.println("Order remove successfully");
-			tableMgr.updateTableStatus(index, "Vacated");
-		}
+		int tableNo = sc.nextInt();
+		removeOrder(tableMgr, tableNo);
 	}
 
 	protected void removeOrder(TableMgr tableMgr, int tableNo) {
-		int index;
-		index = getOrderIndex(tableNo);
-		if (index != -1) {
-			orderAl.remove(index);
+		int tableIndex = tableMgr.getTableIndex(tableNo);
+		int orderIndex = getOrderIndex(tableNo);
+		if (orderIndex != -1 && tableIndex != -1) {
+			orderAl.remove(orderIndex);
 			System.out.println("Order remove successfully");
-			tableMgr.updateTableStatus(index, "Vacated");
+			tableMgr.updateTableStatus(tableNo, "Vacated");
 		}
 	}
 
