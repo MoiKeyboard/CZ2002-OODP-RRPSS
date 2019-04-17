@@ -20,6 +20,9 @@ public class MenuMgr {
 	private ArrayList<Menu> menuAl;
 	private Scanner sc;
 
+	/**
+	 * Constructor for MenuMgr, calls {@link TextDB#readMenu(String)}.
+	 */
 	public MenuMgr() {
 		sc = new Scanner(System.in);
 		try {
@@ -29,7 +32,10 @@ public class MenuMgr {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Prints out every Alacarte Item in ArrayList[Menu].
+	 */
 	public void printMenuItem() {
 		System.out.println("Menu Item as follows:");
 		for (int i = 0; i < menuAl.size(); i++) {
@@ -41,6 +47,9 @@ public class MenuMgr {
 		System.out.println();
 	}
 
+	/**
+	 * Creates Alacarte item based on user inputs and adds it to ArrayList[Menu]. Calls {@link TextDB#saveMenu(String, List)}.
+	 */
 	public void createAlacarte() throws Exception {
 		String foodCat, foodName, foodDesc;
 		double foodPrice;
@@ -63,6 +72,10 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
+
+	/**
+	 * Update the details for an existing Alacarte item based on user inputs and saves the updated ArrayList[Menu] to text file. Calls {@link updateAlafromPP(Alacarte, Alacarte)} AND {@link TextDB#saveMenu(String, List).
+	 */
 	// check instance of alacarte
 	public void updateAlacarte() throws IOException {
 		String searchName;
@@ -114,6 +127,9 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
+	/**
+	 *  Deletes Alacarte item from ArrayList[Menu], removes it from ArrayList[Menu] and saves the updated ArrayList[Menu] to text file. Calls {@link removeAlafromPP(Alacarte)} and {@link TextDB#saveMenu(String, List)}.
+	 */
 	public void removeAlacarte() throws IOException { // whole method working
 		int index;
 		Alacarte currAla = new Alacarte();
@@ -130,7 +146,10 @@ public class MenuMgr {
 		}
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
-
+	
+	/**
+	 * Create new PromotionalPackage, adds it to ArrayList[Menu] and saves it to text file. Calls {@link updateAlacarteAL(PromotionalPackage)} AND {@link TextDB#saveMenu(String, List)}.
+	 */
 	public void createPromotionalPackage() throws IOException {
 		String promoName;
 		String promoDesc;
@@ -155,6 +174,9 @@ public class MenuMgr {
 
 	}
 
+	/**
+	 * Update the details for an existing PromotionalPackage item based on user inputs and saves the updated ArrayList[Menu] to text file. Calls {@link updateAlacarteAL(ArrayList)} AND {@link TextDB#saveMenu(String, List).
+	 */
 	public void updatePromotionalPackage() throws IOException {
 		int index, choice = 0;
 		String promoName;
@@ -200,6 +222,11 @@ public class MenuMgr {
 		}
 	}
 
+	/**
+	 * Add/Remove items to/from PromotionalPackage.
+	 * 
+	 * @param al Alacarte ArrayList
+	 */
 	private void updateAlacarteAL(ArrayList<Alacarte> al) {
 		String foodName;
 		int choice, qty;
@@ -228,6 +255,13 @@ public class MenuMgr {
 		return;
 	}
 
+	/**
+	 * Returns ArrayList[Alacarte] after removing the particular food from it.
+	 * 
+	 * @param al Alacarte ArrayList
+	 * @param foodName Name of Alacarte item
+	 * @param qty Quantity of Alacarte item
+	 */
 	private ArrayList<Alacarte> removeAlacarteAL(ArrayList<Alacarte> al, String foodName, int qty) {
 		int index = getAlacarteIndex(al, foodName);
 		if (index == -1)
@@ -242,6 +276,13 @@ public class MenuMgr {
 		return al;
 	}
 
+	/**
+	 * Returns ArrayList[Alacarte] after adding the particular food to it.
+	 * 
+	 * @param al Alacarte ArrayList
+	 * @param foodName Name of Alacarte item
+	 * @param qty Quantity of Alacarte item
+	 */
 	private ArrayList<Alacarte> addAlacarteAL(ArrayList<Alacarte> al, String foodName, int qty) {
 		int index = getMenuIndex(foodName);
 		if (index == -1)
@@ -259,6 +300,12 @@ public class MenuMgr {
 		return al;
 	}
 
+	/**
+	 * Replaces the New Updated Alacarte Object with the Existing Alacarte Object in the ArrayList[Menu] and saves it to text file.Calls {@link Alacarte#equals(Object)} AND {@link TextDB#saveMenu(String, List)}.
+	 * 
+	 * @param oldA Existing Alacarte Object to be replaced
+	 * @param newA New Alacarte Object replacing oldA
+	 */
 	private void updateAlafromPP(Alacarte oldA, Alacarte newA) throws IOException {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage) {
@@ -278,6 +325,11 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
+	/**
+	 * Deletes a particular Alacarte Object from the ArrayList[Menu] and saves updated ArrayList[Menu] to text file .Calls {@link Alacarte#equals(Object)} AND {@link TextDB#saveMenu(String, List)}.
+	 * 
+	 * @param currA Alacarte Object to be removed
+	 */
 	private void removeAlafromPP(Alacarte currA) throws IOException {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage) {
@@ -290,6 +342,10 @@ public class MenuMgr {
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
+	/**
+	 * Deletes a particular Promotional Package based on user input and saves updated ArrayList[Menu] to text file. Calls {@link TextDB#saveMenu(String, List)}.
+	 * 
+	 */
 	public void removePromotionalPackage() throws IOException {
 		int index;
 		System.out.println("Please enter the name of the promotional package that you want to remove");
@@ -304,6 +360,9 @@ public class MenuMgr {
 
 	}
 
+	/**
+	 * Prints out every Alacarte Item in ArrayList[Menu].
+	 */
 	public void printPromotionalPackage() {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage)
@@ -311,6 +370,11 @@ public class MenuMgr {
 		}
 	}
 
+	/**
+	 * Returns the Index of Menu in ArrayList[Menu] based on Name.
+	 * 
+	 * @param search Name of MenuItem
+	 */
 	protected int getMenuIndex(String search) {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (search.equalsIgnoreCase(menuAl.get(i).getName()))
@@ -320,6 +384,11 @@ public class MenuMgr {
 		return -1;
 	}
 
+	/**
+	 * Returns the Index of Menu in ArrayList[Menu] based on Name. This method can only be called within this class.
+	 * 
+	 * @param search Name of MenuItem
+	 */
 	private int getMenuIndex(ArrayList<Menu> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
 			if (search.equalsIgnoreCase(al.get(i).getName()))
@@ -329,6 +398,7 @@ public class MenuMgr {
 		return -1;
 	}
 
+	// Is this even needed??????? Tot we migrated to Menu ArrayList 
 	private int getAlacarteIndex(ArrayList<Alacarte> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
 			if (search.equalsIgnoreCase(al.get(i).getName()))
@@ -338,10 +408,18 @@ public class MenuMgr {
 		return -1;
 	}
 
+	/**
+	 * Returns the ArrayList[Menu].
+	 */
 	protected ArrayList<Menu> getMenuAl() {
 		return menuAl;
 	}
 
+	/**
+	 * Returns ArrayList[Menu] after updating the PromotionalPackage in it based on User Input.
+	 * 
+	 * @param al Menu ArrayList
+	 */
 	protected ArrayList<Menu> updateMenuAL(ArrayList<Menu> al) {
 		String foodName;
 		int choice, qty;
@@ -377,6 +455,13 @@ public class MenuMgr {
 		return al;
 	}
 
+	/**
+	 * Returns ArrayList[Menu] after removing a particular Menu Item from it.
+	 * 
+	 * @param al ArrayList[Menu]
+	 * @param foodName Name of Food to be removed
+	 * @param qty Qty of Food to be removed
+	 */
 	private ArrayList<Menu> removeMenuAL(ArrayList<Menu> al, String foodName, int qty) {
 		int index = getMenuIndex(al, foodName);
 		if (index == -1)
@@ -391,6 +476,13 @@ public class MenuMgr {
 		return al;
 	}
 
+	/**
+	 * Returns ArrayList[Menu] after adding a particular Menu Item into it.
+	 * 
+	 * @param al ArrayList[Menu]
+	 * @param foodName Name of Food to be added
+	 * @param qty Qty of Food to be added
+	 */
 	private ArrayList<Menu> addMenuAL(ArrayList<Menu> al, String foodName, int qty) {
 		int index = getMenuIndex(foodName);
 		if (index == -1)

@@ -92,7 +92,7 @@ public class InvoiceMgr {
 	}
 
 	/**
-	 * Returns the total sum of all the price of each Promotional Package Item and Alacarte for the Order object passed in.
+	 * Returns the sum of the total price of all the Alacarte and PromotionalPackage Items in the Order object which is passed in.
 	 * 
 	 * @param order Order object
 	 */
@@ -105,7 +105,7 @@ public class InvoiceMgr {
 	}
 
 	/**
-	 *
+	 * Prints Sale Revenue Report for a particular Day or Month based on Users Input. It will print out a list of Menu Items (Alacarte | Promotional Packages) sold during that time period, the total quantity, total GST, total Service Charge and Total Gross Revenue.
 	 */
 	// Option 1 - print revenue report for particular day , Option 2 - print revenue
 	// report for particular month, Option 3 - return

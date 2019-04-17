@@ -39,7 +39,7 @@ public class PersonMgr {
 	}
 
 	/**
-	 * Returns Customer based on the contact number
+	 * Returns Customer based on contact number
 	 * 
 	 * @param contactNo Contact Number of Customer
 	 */
