@@ -20,7 +20,7 @@ import Control.TableMgr;
 public class ReservationMainTestApp {
 
 	/**
-	 * Loads control layer managers
+	 * Loads control layer managers through instantiation.
 	 * 
 	 * @param args
 	 */
@@ -39,8 +39,8 @@ public class ReservationMainTestApp {
 
 	/**
 	 * 
-	 * @param sc
-	 * @param menuMgr
+	 * @param sc             {@link Scanner} object used for capturing console input
+	 * @param menuMgr        {@link MenuMgr} object for control
 	 * @param tableMgr
 	 * @param reservationMgr
 	 * @param orderMgr
