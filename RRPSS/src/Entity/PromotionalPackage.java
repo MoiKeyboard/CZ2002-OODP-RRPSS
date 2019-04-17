@@ -68,17 +68,20 @@ public class PromotionalPackage extends Menu implements Serializable {
 			*/
 			
 		}
-		System.out.println("[DEBUG]: "+uniqueList);
-		System.out.println("[DEBUG]: "+eachCount);
+		
+		promoDetails = "PROMO:" + getName() + "\nDescription: " + getDescription() + "\nPRICE: "
+				+ getPrice() + "\n";
+		promoDetails += "******************************************\n";
+		
 		for (int i = 0; i < uniqueList.size(); i++) {
-			display = String.format("%d %s\n", eachCount.get(i), uniqueList.get(i).getName());
+			//System.out.println("[DEBUG]: "+uniqueList.get(i).getName()+"\n");
+			display = String.format("%-5d %s\n", eachCount.get(i), uniqueList.get(i).getName());
 			promoDetails += display;
 
 		}
 		
 		
-		promoDetails = "Promo Name: " + getName() + "\nDescription: " + getDescription() + "\nPromo Price: "
-				+ getPrice() + "\n";
+		
 		return promoDetails;
 	}
 	
