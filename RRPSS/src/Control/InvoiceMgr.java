@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -33,18 +32,15 @@ public class InvoiceMgr {
 	 */
 	public InvoiceMgr() {
 		sc = new Scanner(System.in);
-		
+
 		try {
 			invoiceAl = TextDB.readInvoice("Invoices.txt");
 			for (Invoice invoice : invoiceAl) {
 				System.out.println(invoice.toString());
 			}
-		} 
-		catch(EOFException e) {
+		} catch(EOFException e) {
 			System.out.println("Reservation.txt is empty");
-		}
-		
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -65,7 +61,7 @@ public class InvoiceMgr {
 				(computeTotalPrice(o) * SC), ((computeTotalPrice(o) * (1 + GST + SC))), generateInvoiceNum(),
 				o.getFoodAL());
 		System.out.println(currInvoice.toString());
-		tableMgr.updateTableStatus(tableNo, "Vacated");
+		orderMgr.removeOrder(tableMgr, tableNo);
 		invoiceAl.add(currInvoice);
 		try {
 			TextDB.saveInvoice("Invoices.txt", invoiceAl);
@@ -116,26 +112,24 @@ public class InvoiceMgr {
 		System.out.println("2) Sale Revenue Report by month");
 		System.out.println("0) Back to previous screen");
 		optionInput = Integer.parseInt(sc.nextLine());
-		
-		
-		if (optionInput == 1 || optionInput==2) {
+
+		if (optionInput == 1 || optionInput == 2) {
 			String salesRep = "";
 			String display = "";
-			salesRep+="============ Oops Bar & Cafe ============\n" + "        50 Nanyang Ave, 639798\n"
-			+ "               SCSE, NTU\n" +"\nGenerated: " + LocalDateTime.now()+"\n";
-			//asks for and sets appropriate saleReportPeriod
+			salesRep += "============ Oops Bar & Cafe ============\n" + "        50 Nanyang Ave, 639798\n"
+					+ "               SCSE, NTU\n" + "\nGenerated: " + LocalDateTime.now() + "\n";
+			// asks for and sets appropriate saleReportPeriod
 			LocalDate saleReportPeriod = null;
-			if(optionInput==1) {
+			if (optionInput == 1) {
 				System.out.println(">>Selected printing revenue report by day<<");
 				System.out.println("Please enter date (E.g 10-04-2019)");
 				periodDT = sc.nextLine();
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 				saleReportPeriod = LocalDate.parse(periodDT, formatter);
 				salesRep += "==========================================\n";
-				salesRep+=" Daily Sales Revenue Report - " + saleReportPeriod+"\n";
+				salesRep += " Daily Sales Revenue Report - " + saleReportPeriod + "\n";
 				salesRep += "==========================================\n";
-			}
-			else {
+			} else {
 				System.out.println(">>Selected printing revenue report by month<<");
 				System.out.println("Please enter month and year in the following format (E.g 04-2019)");
 				periodDT = sc.nextLine();
@@ -143,14 +137,12 @@ public class InvoiceMgr {
 				YearMonth ym = YearMonth.parse(periodDT, formatter);
 				saleReportPeriod = ym.atDay(1);
 				salesRep += "==========================================\n";
-				salesRep+=" Monthly Sales Revenue Report - " +ym+"\n";
+				salesRep += " Monthly Sales Revenue Report - " + ym + "\n";
 				salesRep += "==========================================\n";
 			}
-			
-			
-			
-			//use menu array list..put outside for loop so it counts 
-			//unique items in ALL invoices, not just one invoice.
+
+			// use menu array list..put outside for loop so it counts
+			// unique items in ALL invoices, not just one invoice.
 			ArrayList<Menu> suniqueList = new ArrayList<Menu>();
 			ArrayList<Integer> seachCount = new ArrayList<Integer>();
 			ArrayList<Menu> foodAL = new ArrayList<Menu>();
@@ -162,28 +154,28 @@ public class InvoiceMgr {
 			/*
 			 * suniqueList: [menuItem1, menuItem2] seachCount: [1, 2]
 			 */
-			
-			 //for loop goes into each individual invoice
-			for (Invoice invoice : invoiceAl) { 
-				//if option 1, will filter by date. if option 2, will filter by month.
+
+			// for loop goes into each individual invoice
+			for (Invoice invoice : invoiceAl) {
+				// if option 1, will filter by date. if option 2, will filter by month.
 				if ((optionInput == 1 && invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear()
 						&& invoice.getInvoiceDT().getDayOfYear() == saleReportPeriod.getDayOfYear())
-						|| (optionInput ==2 && invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear()
+						|| (optionInput == 2 && invoice.getInvoiceDT().getYear() == saleReportPeriod.getYear()
 								&& invoice.getInvoiceDT().getMonthValue() == saleReportPeriod.getMonthValue())) {
-					//reformatting to print as one big invoice.
-					
-					//for each invoice object, retrieve FoodAL
+					// reformatting to print as one big invoice.
+
+					// for each invoice object, retrieve FoodAL
 					foodAL = invoice.getFoodAL();
 					salesTotal += invoice.getTotalPrice();
 					totalGST += invoice.getGST();
 					totalSC += invoice.getServiceCharge();
 					oldCount = 0;
-					//loop through the various menu objects in invoice
+					// loop through the various menu objects in invoice
 					for (Menu menu : foodAL) {
 						if (suniqueList.contains(menu)) {
 							// if item is a repeat, add to respective count.
 							oldCount = seachCount.get(suniqueList.indexOf(menu));
-							oldCount ++;
+							oldCount++;
 							seachCount.set(suniqueList.indexOf(menu), oldCount);
 						} else {
 							// item is not a repeat, add to uniqueList and start eachCount at 1.
@@ -193,8 +185,7 @@ public class InvoiceMgr {
 					}
 				}
 			}
-		
-			
+
 			for (int i = 0; i < suniqueList.size(); i++) {
 				display = String.format("%-5d %-22s %5.2f\n", seachCount.get(i), suniqueList.get(i).getName(),
 						suniqueList.get(i).getPrice());
@@ -205,16 +196,16 @@ public class InvoiceMgr {
 			subTotal = salesTotal - totalGST - totalSC;
 			display = String.format("                        SubTotal: %.2f", subTotal);
 			salesRep += display;
-			display = String.format("\n                        GST:%.2f \n                        Service Charge:%.2f\n",
-					totalGST, totalSC);
+			display = String.format(
+					"\n                        GST:%.2f \n                        Service Charge:%.2f\n", totalGST,
+					totalSC);
 			salesRep += display;
 			salesRep += "------------------------------------------\n";
 			display = String.format("                        TOTAL: %.2f\n", salesTotal);
 			salesRep += display;
 			salesRep += "\n==========================================\n";
 			System.out.println(salesRep);
-			
-			
+
 		} else {
 			System.out.println("...returning to main screen...");
 			return;

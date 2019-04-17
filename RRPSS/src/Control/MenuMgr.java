@@ -96,8 +96,7 @@ public class MenuMgr {
 				System.out.println("3) Update description");
 				System.out.println("4) Update price");
 				System.out.println("5) Exit");
-				choice = sc.nextInt();
-				sc.nextLine();
+				choice = Integer.parseInt(sc.nextLine());
 				switch (choice) {
 				case 1:
 					System.out.println("Enter updated food category");
@@ -164,8 +163,7 @@ public class MenuMgr {
 		System.out.println("Please enter new promotional package description");
 		promoDesc = sc.nextLine();
 		System.out.println("Please enter new promotional package price");
-		promoPrice = sc.nextDouble();
-		sc.nextLine();
+		promoPrice = Integer.parseInt(sc.nextLine());
 		updateAlacarteAL(promoItems);
 		PromotionalPackage p1 = new PromotionalPackage(promoName, promoDesc, promoPrice, promoItems);
 		menuAl.add(p1);
@@ -231,7 +229,6 @@ public class MenuMgr {
 		String foodName;
 		int choice, qty;
 		do {
-			System.out.println(al.toString());
 			System.out.println("1) Add items to promotional package");
 			System.out.println("2) Remove items from promotional package");
 			System.out.println("3) Finish");
@@ -380,7 +377,6 @@ public class MenuMgr {
 			if (search.equalsIgnoreCase(menuAl.get(i).getName()))
 				return i;
 		}
-		System.out.println("Menu item: " + search + " not found");
 		return -1;
 	}
 

@@ -31,23 +31,42 @@ public class PromotionalPackage extends Menu implements Serializable {
 	@Override
 	public String toString() {
 		String promoDetails = null;
-		int qty = 0;
+		String display = "";
+		int index = 0;
+		int count = 0;
 		Alacarte a = new Alacarte();
-		promoDetails = "Promo Name: " + getName() + "\nDescription: " + getDescription() + "\nPromo Price: "
-				+ getPrice() + "\n";
+		
+		ArrayList<Alacarte> uniqueList = new ArrayList<Alacarte>();
+		ArrayList<Integer> eachCount = new ArrayList<Integer>();
+		
+				
 		for (Alacarte mi : menuItemArr) {
-			if (qty == 0) {
-				a = mi;
-				qty++;
-			} else if (mi.equals(a)) {
-				qty++;
-			} else {
-				System.out.println("Quantity of " + qty);
-				promoDetails += mi.toString();
-				qty = 0;
+			if(uniqueList.contains(mi)) {
+				index = uniqueList.indexOf(mi);
+				count = eachCount.get(index)+1;
+				eachCount.set(index, count);
 			}
+			
+			else {
+				uniqueList.add(mi);
+				eachCount.add(1);
+			}
+			
+		}
+		
+		display = String.format("%-10s : %-22s %5.2f\n","PROMO", getName(), getPrice());
+		promoDetails = display;
+		promoDetails += "******************************************\n";
+		for (int i = 0; i < uniqueList.size(); i++) {
+			//System.out.println("[DEBUG]: "+uniqueList.get(i).getName()+"\n");
+			display = String.format("%-5d %s\n", eachCount.get(i), uniqueList.get(i).getName());
+			promoDetails += display;
 
 		}
+		promoDetails += "******************************************\n";
+		
+		
+		
 		return promoDetails;
 	}
 	

@@ -129,11 +129,36 @@ public class OrderMgr {
 	 */
 	public void viewOrder() throws IOException {
 		int index;
+		String display = "";
 		System.out.println("Please enter table number");
 		index = getOrderIndex(sc.nextInt());
 		if (index == -1)
 			return;
-		System.out.println(orderAl.get(index).toString());
+		//System.out.println(orderAl.get(index).toString());
+		display += "Viewing order at Table "+orderAl.get(index).getTableNo()+"...";
+		display+="\n------------------------------------------\n";
+		ArrayList<Menu> uniqueList = new ArrayList<Menu>();
+		ArrayList<Integer> eachCount = new ArrayList<Integer>();
+		ArrayList<Menu> foodAL = new ArrayList<Menu>();
+		
+		foodAL = orderAl.get(index).getFoodAL();
+		
+		for (Menu menu : foodAL) {
+			
+			if (uniqueList.contains(menu)) {
+				eachCount.set(uniqueList.indexOf(menu), eachCount.get(uniqueList.indexOf(menu)) + 1);
+			} else {
+				uniqueList.add(menu);
+				eachCount.add(1);
+
+			}
+		}
+		
+		for(int i = 0; i < uniqueList.size(); i++) {
+			display += String.format("Qty: %-5d \n%s\n", eachCount.get(i), uniqueList.get(i).toString());
+		}
+		
+		System.out.println(display);
 	}
 
 	/**
@@ -158,13 +183,18 @@ public class OrderMgr {
 	 * @param tableMgr Control for TableMgr
 	 */
 	public void removeOrder(TableMgr tableMgr) {
-		int index;
 		System.out.println("Please enter table number");
-		index = getOrderIndex(sc.nextInt());
-		if (index != -1) {
-			orderAl.remove(index);
+		int tableNo = sc.nextInt();
+		removeOrder(tableMgr, tableNo);
+	}
+
+	protected void removeOrder(TableMgr tableMgr, int tableNo) {
+		int tableIndex = tableMgr.getTableIndex(tableNo);
+		int orderIndex = getOrderIndex(tableNo);
+		if (orderIndex != -1 && tableIndex != -1) {
+			orderAl.remove(orderIndex);
 			System.out.println("Order remove successfully");
-			tableMgr.updateTableStatus(index, "Vacated");
+			tableMgr.updateTableStatus(tableNo, "Vacated");
 		}
 	}
 

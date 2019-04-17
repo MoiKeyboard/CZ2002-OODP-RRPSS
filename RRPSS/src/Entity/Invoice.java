@@ -5,6 +5,18 @@ import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * The {@code Invoice} entity class is an object wrapper.
+ * <p>
+ * Contains primitive information related to an invoice (e.g Invoice
+ * number,table number of invoice, etc) alacarte price, alacarte description,
+ * etc).
+ * </p>
+ * 
+ * @author Qwek Zhi Hui
+ * @version 1.0
+ * @since 2019-04-13
+ */
 public class Invoice implements Serializable {
 	private int tableNo;
 	private int staffID;
@@ -15,6 +27,9 @@ public class Invoice implements Serializable {
 	private long invoiceNo;
 	private ArrayList<Menu> foodAL;
 
+	/**
+	 * Default constructor for {@code Invoice}.
+	 */
 	public Invoice() {
 		this.tableNo = 0;
 		this.staffID = 0;
@@ -26,6 +41,19 @@ public class Invoice implements Serializable {
 		foodAL = null;
 	}
 
+	/**
+	 * Constructor for {@code Invoice}, creates an {@code Invoice} object with
+	 * required parameters
+	 * 
+	 * @param tableNo       Table Number of table used for generating the invoice.
+	 * @param staffID       Staff Id of staff that creates the invoice.
+	 * @param invoiceDT     Date and time of invoice.
+	 * @param GST           Government Service Tax for calculating nett price.
+	 * @param serviceCharge Service Tax for calculating nett price.
+	 * @param price         Nett price of invoice.
+	 * @param invoiceNo     Invoice identifier number
+	 * @param foodAL        Menu
+	 */
 	public Invoice(int tableNo, int staffID, LocalDateTime invoiceDT, double GST, double serviceCharge, double price,
 			long invoiceNo, ArrayList<Menu> foodAL) {
 		this.tableNo = tableNo;
@@ -94,7 +122,7 @@ public class Invoice implements Serializable {
 		for (Menu menu : foodAL) {
 			if (uniqueList.contains(menu)) {
 				// if item is a repeat, add to respective count.
-				//.set not .add
+				// .set not .add
 				eachCount.set(uniqueList.indexOf(menu), eachCount.get(uniqueList.indexOf(menu)) + 1);
 			} else {
 				// item is not a repeat, add to uniqueList and start eachCount at 1.

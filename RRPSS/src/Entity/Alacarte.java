@@ -3,7 +3,12 @@ package Entity;
 import java.io.Serializable;
 
 /**
- * (Entity) Object wrapper for Alacarte. Subclass of {@link Menu}
+ * The {@code Alacarte} entity class is an object wrapper. Subclass of
+ * {@link Menu}.
+ * <p>
+ * Contains primitive information related to an alacarte item (e.g alacarte
+ * name, alacarte price, alacarte description, etc).
+ * </p>
  * 
  * @author Qwek Zhi Hui
  * @version 1.0
@@ -15,8 +20,8 @@ public class Alacarte extends Menu implements Serializable {
 	private String category;
 
 	/**
-	 * Default constructor for Alacarte, calls constructor superclass {@link Menu}
-	 * and creates an empty object.
+	 * Default constructor for {@code Alcarte}, calls superclass {@link Menu}
+	 * constructor.
 	 */
 	public Alacarte() {
 		super();
@@ -24,13 +29,13 @@ public class Alacarte extends Menu implements Serializable {
 	}
 
 	/**
-	 * Constructor for Alacarte, calls superclass constructor {@link Menu} and
-	 * creates an object with required parameters
+	 * Constructor for {@code Alcarte}, calls superclass constructor {@link Menu}
+	 * and creates an {@code Alacarte} object with required parameters
 	 * 
-	 * @param name        Name of Alacarte
-	 * @param description Description of Alacarte
-	 * @param price       Price of alacarte
-	 * @param category    Category of alacarte
+	 * @param name        Name of {@code Alcarte}
+	 * @param description Description of {@code Alcarte}
+	 * @param price       Price of {@code Alcarte}
+	 * @param category    Category of {@code Alcarte}
 	 */
 	public Alacarte(String name, String description, double price, String category) {
 		super(name, description, price);
@@ -38,7 +43,7 @@ public class Alacarte extends Menu implements Serializable {
 	}
 
 	/**
-	 * Returns category of Alacarte object
+	 * Returns category of {@code Alcarte} object.
 	 * 
 	 * @return
 	 */
@@ -47,25 +52,35 @@ public class Alacarte extends Menu implements Serializable {
 	}
 
 	/**
-	 * Replaces catogory of Alacarte object
+	 * Replaces category of {@code Alcarte} object
 	 * 
-	 * @param category Updated category
+	 * @param category Updated category information
 	 */
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
 	/**
-	 * Returns String of entire
+	 * Returns the string resepresentation of the {@code Alcarte} object.
 	 */
 	@Override
 	public String toString() {
-		String menuItemDetails = null;
-		menuItemDetails = "Category: " + getCategory() + "\nFood Name: " + getName() + "\nDescription: "
-				+ getDescription() + "\nPrice: " + getPrice() + "\n";
+		String menuItemDetails = "";
+		String display = "";
+
+		display += String.format("%-10s : %-22s %5.2f\n", getCategory(), getName(), getPrice());
+		menuItemDetails += display;
+		menuItemDetails += "\n" + getDescription();
+		menuItemDetails += "\n------------------------------------------";
 		return menuItemDetails;
 	}
 
+	/**
+	 * Indicates whether some other {@code Alcarte} object is "equal to" this one.
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 * 
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Alacarte) {

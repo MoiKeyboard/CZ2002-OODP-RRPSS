@@ -2,7 +2,19 @@ package Entity;
 
 import java.io.Serializable;
 
-public class Menu  implements Serializable  {
+/**
+ * The {@code Menu} entity class is an object wrapper. Superclass of
+ * {@link Alacarte} and {@link Menu}.
+ * <p>
+ * Contains primitive information related to a menu item (e.g name, price,
+ * description).
+ * </p>
+ * 
+ * @author Qwek Zhi Hui
+ * @version 1.0
+ * @since 2019-04-13
+ */
+public class Menu implements Serializable {
 	/**
 	 * 
 	 */
@@ -16,13 +28,16 @@ public class Menu  implements Serializable  {
 		this.description = null;
 		this.price = 0;
 	}
-	
+
+	/**
+	 * Default constructor for {@code Menu}.
+	 */
 	public Menu(String name, String description, double price) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
