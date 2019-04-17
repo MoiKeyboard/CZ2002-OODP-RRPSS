@@ -31,11 +31,29 @@ public class PromotionalPackage extends Menu implements Serializable {
 	@Override
 	public String toString() {
 		String promoDetails = null;
-		int qty = 0;
+		String display = "";
+		//int qty = 0;
+		int index = 0;
+		int count = 0;
 		Alacarte a = new Alacarte();
-		promoDetails = "Promo Name: " + getName() + "\nDescription: " + getDescription() + "\nPromo Price: "
-				+ getPrice() + "\n";
+		
+		ArrayList<Menu> uniqueList = new ArrayList<Menu>();
+		ArrayList<Integer> eachCount = new ArrayList<Integer>();
+		
+				
 		for (Alacarte mi : menuItemArr) {
+			if(uniqueList.contains(mi)) {
+				index = uniqueList.indexOf(mi);
+				count = eachCount.get(index)+1;
+				eachCount.set(index, count);
+			}
+			
+			else {
+				uniqueList.add(mi);
+				eachCount.add(1);
+			}
+			
+			/*
 			if (qty == 0) {
 				a = mi;
 				qty++;
@@ -46,8 +64,21 @@ public class PromotionalPackage extends Menu implements Serializable {
 				promoDetails += mi.toString();
 				qty = 0;
 			}
+			
+			*/
+			
+		}
+		
+		for (int i = 0; i < uniqueList.size(); i++) {
+			display = String.format("%-5d %-22s %5.2f\n", eachCount.get(i), uniqueList.get(i).getName(),
+					uniqueList.get(i).getPrice());
+			promoDetails += display;
 
 		}
+		
+		
+		promoDetails = "Promo Name: " + getName() + "\nDescription: " + getDescription() + "\nPromo Price: "
+				+ getPrice() + "\n";
 		return promoDetails;
 	}
 	
