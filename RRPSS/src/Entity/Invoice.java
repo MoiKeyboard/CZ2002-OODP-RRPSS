@@ -9,8 +9,7 @@ import java.util.ArrayList;
  * The {@code Invoice} entity class is an object wrapper.
  * <p>
  * Contains primitive information related to an invoice (e.g Invoice
- * number,table number of invoice, etc) alacarte price, alacarte description,
- * etc).
+ * number,table number of invoice, etc).
  * </p>
  * 
  * @author Qwek Zhi Hui
@@ -48,11 +47,12 @@ public class Invoice implements Serializable {
 	 * @param tableNo       Table Number of table used for generating the invoice.
 	 * @param staffID       Staff Id of staff that creates the invoice.
 	 * @param invoiceDT     Date and time of invoice.
-	 * @param GST           Government Service Tax for calculating nett price.
-	 * @param serviceCharge Service Tax for calculating nett price.
-	 * @param price         Nett price of invoice.
-	 * @param invoiceNo     Invoice identifier number
-	 * @param foodAL        Menu
+	 * @param GST           Government Service Tax for calculating total price.
+	 * @param serviceCharge Service Tax for calculating total price.
+	 * @param price         Total price of invoice.
+	 * @param invoiceNo     Invoice identifier number.
+	 * @param foodAL        {@code ArrayList} of {@link Menu} items within the
+	 *                      invoice.
 	 */
 	public Invoice(int tableNo, int staffID, LocalDateTime invoiceDT, double GST, double serviceCharge, double price,
 			long invoiceNo, ArrayList<Menu> foodAL) {
@@ -66,38 +66,85 @@ public class Invoice implements Serializable {
 		this.foodAL = foodAL;
 	}
 
+	/**
+	 * Returns the invoice identfier number of {@code Invoice} object.
+	 * 
+	 * @return the String of invoiceNumber
+	 */
 	public long getInvoiceNo() {
 		return invoiceNo;
 	}
 
+	/**
+	 * Returns the table number used in generating {@code Invoice} object.
+	 * 
+	 * @return the integer value of tableNo
+	 */
 	public int getTableNo() {
 		return tableNo;
 	}
 
+	/**
+	 * Returns the date and time used in generating {@code Invoice} object.
+	 * 
+	 * @return the {@linkplain LocalDateTime}
+	 */
 	public LocalDateTime getInvoiceDT() {
 		return invoiceDT;
 	}
 
+	/**
+	 * Returns the staff identification number that generates the {@code Invoice}
+	 * object.
+	 * 
+	 * @return the integer value of staffID
+	 */
 	public int getStaffID() {
 		return staffID;
 	}
 
+	/**
+	 * Returns the government service tax used in calculating total price of
+	 * {@code Invoice} object.
+	 * 
+	 * @return the decimal value of GST
+	 */
 	public double getGST() {
 		return GST;
 	}
 
+	/**
+	 * Returns the service tax used in calculating total price of {@code Invoice}
+	 * object.
+	 * 
+	 * @return the decimal value of service tax
+	 */
 	public double getServiceCharge() {
 		return serviceCharge;
 	}
 
+	/**
+	 * Returns the total price of {@code Invoice} object.
+	 * 
+	 * @return the decimal value of service tax
+	 */
 	public double getTotalPrice() {
 		return totalPrice;
 	}
 
+	/**
+	 * Returns the {@code ArrayList} of {@link Menu} items within the
+	 * {@code Invoice} object.
+	 * 
+	 * @return the {@link Menu} {@code ArrayList} of foodAL
+	 */
 	public ArrayList<Menu> getFoodAL() {
 		return foodAL;
 	}
 
+	/**
+	 * Returns the string resepresentation of the {@code Invoice} object.
+	 */
 	@Override
 	public String toString() {
 
@@ -110,10 +157,6 @@ public class Invoice implements Serializable {
 		ArrayList<Menu> uniqueList = new ArrayList<Menu>();
 		// to count each unique item
 		ArrayList<Integer> eachCount = new ArrayList<Integer>();
-
-		/*
-		 * uniqueList: [menuItem1, menuItem2] eachCount: [1, 2]
-		 */
 
 		invoiceDetails = "============ Oops Bar & Cafe ============\n" + "        50 Nanyang Ave, 639798\n"
 				+ "               SCSE, NTU\n" + "Table: " + getTableNo() + "\nDate/time: " + invoiceDT.toString()

@@ -31,8 +31,8 @@ public class Alacarte extends Menu implements Serializable {
 	}
 
 	/**
-	 * Constructor for {@code Alcarte}, calls superclass constructor {@link Menu}
-	 * and creates an {@code Alacarte} object with required parameters
+	 * Constructor for {@code Alcarte}. Calls superclass constructor {@link Menu}
+	 * and creates an {@code Alacarte} object with required parameters.
 	 * 
 	 * @param name        Name of {@code Alcarte}
 	 * @param description Description of {@code Alcarte}
@@ -47,16 +47,16 @@ public class Alacarte extends Menu implements Serializable {
 	/**
 	 * Returns category of {@code Alcarte} object.
 	 * 
-	 * @return
+	 * @return the String of category
 	 */
 	public String getCategory() {
 		return category;
 	}
 
 	/**
-	 * Replaces category of {@code Alcarte} object
+	 * Updates category of {@code Alcarte} object.
 	 * 
-	 * @param category Updated category information
+	 * @param category the updated category String
 	 */
 	public void setCategory(String category) {
 		this.category = category;

@@ -7,17 +7,17 @@ import java.util.Locale;
 public class Reservation {
 	private int contactNo; // primary key
 	private LocalDateTime reservationDateTime;
-	private int pax,tableNo;
+	private int pax, tableNo;
 	private boolean attended;
-	
-	public Reservation(){
+
+	public Reservation() {
 		this.contactNo = 0;
 		this.reservationDateTime = null;
 		this.pax = 0;
-		this.tableNo = tableNo;
+		this.tableNo = 0;
 	}
 
-	public Reservation(int contactNo, LocalDateTime reservationDateTime,int pax, int tableNo){
+	public Reservation(int contactNo, LocalDateTime reservationDateTime, int pax, int tableNo) {
 		this.contactNo = contactNo;
 		this.reservationDateTime = reservationDateTime;
 		this.pax = pax;
@@ -39,7 +39,7 @@ public class Reservation {
 	public int getTableNo() {
 		return tableNo;
 	}
-	
+
 	public boolean isAttended() {
 		return attended;
 	}
@@ -48,12 +48,11 @@ public class Reservation {
 		this.attended = attended;
 	}
 
-
 	@Override
 	public String toString() {
 		String reservationDetails = null;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy kkmm", Locale.ENGLISH);
-		reservationDetails =  "Reservation Date/Time: " + getReservationDate().format(formatter) + "\nPax: " + getPax();
+		reservationDetails = "Reservation Date/Time: " + getReservationDate().format(formatter) + "\nPax: " + getPax();
 		return reservationDetails;
 	}
 }
