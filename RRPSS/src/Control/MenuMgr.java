@@ -305,7 +305,6 @@ public class MenuMgr {
 			if (search.equalsIgnoreCase(menuAl.get(i).getName()))
 				return i;
 		}
-		System.out.println("Menu item: " + search + " not found");
 		return -1;
 	}
 
