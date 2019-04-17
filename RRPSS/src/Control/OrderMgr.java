@@ -99,11 +99,35 @@ public class OrderMgr {
 	// View order of the current session
 	public void viewOrder() throws IOException {
 		int index;
+		String display = "";
 		System.out.println("Please enter table number");
 		index = getOrderIndex(sc.nextInt());
 		if (index == -1)
 			return;
 		System.out.println(orderAl.get(index).toString());
+		
+		
+		//print count and name + price. same as invoice...
+		
+		ArrayList<Menu> uniqueList = new ArrayList<Menu>();
+		ArrayList<Integer> eachCount = new ArrayList<Integer>();
+		ArrayList<Menu> foodAL = new ArrayList<Menu>();
+		/*
+		for (Menu menu : orderAl.get(index)) {
+			if (uniqueList.contains(menu)) {
+				// if item is a repeat, add to respective count.
+				//.set not .add
+				eachCount.set(uniqueList.indexOf(menu), eachCount.get(uniqueList.indexOf(menu)) + 1);
+			} else {
+				// item is not a repeat, add to uniqueList and start eachCount at 1.
+				uniqueList.add(menu);
+				eachCount.add(1);
+
+			}
+		}
+		*/
+
+		
 	}
 
 	public void updateOrder(MenuMgr menuMgr) {

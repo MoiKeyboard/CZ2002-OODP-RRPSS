@@ -32,7 +32,6 @@ public class PromotionalPackage extends Menu implements Serializable {
 	public String toString() {
 		String promoDetails = null;
 		String display = "";
-		//int qty = 0;
 		int index = 0;
 		int count = 0;
 		Alacarte a = new Alacarte();
@@ -52,20 +51,6 @@ public class PromotionalPackage extends Menu implements Serializable {
 				uniqueList.add(mi);
 				eachCount.add(1);
 			}
-			
-			/*
-			if (qty == 0) {
-				a = mi;
-				qty++;
-			} else if (mi.equals(a)) {
-				qty++;
-			} else {
-				System.out.println("Quantity of " + qty);
-				promoDetails += mi.toString();
-				qty = 0;
-			}
-			
-			*/
 			
 		}
 		
