@@ -67,6 +67,7 @@ public class Alacarte extends Menu implements Serializable {
 		
 		display += String.format("%-10s : %-22s %5.2f\n", getCategory(), getName(), getPrice());
 		menuItemDetails += display;
+		menuItemDetails += "------------------------------------------";
 		
 		
 		//"PROMO: %-22s %5.2f\n", getName(), getPrice()

@@ -105,7 +105,8 @@ public class OrderMgr {
 		if (index == -1)
 			return;
 		//System.out.println(orderAl.get(index).toString());
-		
+		display += "Viewing order at Table "+orderAl.get(index).getTableNo()+"...";
+		display+="\n------------------------------------------\n";
 		ArrayList<Menu> uniqueList = new ArrayList<Menu>();
 		ArrayList<Integer> eachCount = new ArrayList<Integer>();
 		ArrayList<Menu> foodAL = new ArrayList<Menu>();
