@@ -229,7 +229,7 @@ public class TextDB {
 	}
 
 	/**
-	 * Save Reservation to textfile and calls saveCustomer method to save Customer to textfile
+	 * Save Reservation to textfile and calls {@link saveCustomer(String,List)} method to save Customer to textfile
 	 * 
 	 * @param filename FilePath
 	 * @param reservationAl ArrayList[Reservation]

@@ -19,9 +19,9 @@ public class TableMgr {
 	private ArrayList<Table> tableAl;
 
 	/**
-	 * Constructor for TableMgr, calls readTable and updateTableStatus
+	 * Constructor for TableMgr, calls {@link TextDB#readTable(String)} and {@link updateTableStatus(int, String)}.
 	 * 
-	 * @param reservationMgr ReservationManager
+	 * @param reservationMgr Control for ReservationManager
 	 */
 	public TableMgr(ReservationMgr reservationMgr) {
 		tableAl = new ArrayList<Table>();
@@ -49,7 +49,7 @@ public class TableMgr {
 	/**
 	 * Updates Table status to Reserved according to the Reservations for the particular AM/PM Session on runtime.
 	 * 
-	 * @param rMgr ReservationMgr
+	 * @param rMgr Control for ReservationMgr
 	 */
 	protected void updateTableStatus(ReservationMgr rMgr) {
 		LocalDateTime today = LocalDateTime.now();
@@ -84,8 +84,8 @@ public class TableMgr {
 	/**
 	 * Updates the Table Status for a particular Table.
 	 * 
-	 * @param tableNo TableNumber
-	 * @param status TableStatus
+	 * @param tableNo Number of table
+	 * @param status Status of table
 	 */
 	protected void updateTableStatus(int tableNo, String status) {
 		int index = getTableIndex(tableNo);
@@ -96,7 +96,7 @@ public class TableMgr {
 	/**
 	 * Checks Table Vacancy for a particular Table.
 	 * 
-	 * @param tableNo TableNumber
+	 * @param tableNo Number of table
 	 */
 	protected boolean checkTableVacancy(int tableNo) {
 		int index = getTableIndex(tableNo);
@@ -108,9 +108,9 @@ public class TableMgr {
 	}
 	
 	/**
-	 * Assigns an Empty(Vacated) Table according to the number of pax.
+	 * Assigns an Empty(Vacated) Table according to the number of Pax.
 	 * 
-	 * @param pax Pax
+	 * @param pax Number of Pax
 	 */
 	protected int assignTable(int pax) {
 		for (Table t : tableAl) {
@@ -135,7 +135,7 @@ public class TableMgr {
 	/**
 	 * Returns the Index for a particular table.
 	 * 
-	 * @param search TableNumber
+	 * @param search Number of Table
 	 */
 	protected int getTableIndex(int search) {
 		for (int i = 0; i < tableAl.size(); i++) {
