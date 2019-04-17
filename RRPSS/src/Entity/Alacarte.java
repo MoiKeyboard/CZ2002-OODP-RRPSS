@@ -10,9 +10,7 @@ import java.io.Serializable;
  * @since 2019-04-13
  */
 public class Alacarte extends Menu implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private String category;
 

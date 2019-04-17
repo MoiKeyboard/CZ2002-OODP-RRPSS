@@ -24,9 +24,23 @@ import Entity.Reservation;
 import Entity.Staff;
 import Entity.Table;
 
+
+/**
+ * (Control) Object wrapper for TextDB
+ * 
+ * @author Joseph Fung King Yiu
+ * @version 1.0
+ * @since 2019-04-17
+ */
+
 public class TextDB {
 	private static final String SEPARATOR = "|";
-
+	
+	/**
+	 * Reads in the Menu Item from textfile
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Menu> readMenu(String filename) throws IOException {
 		ArrayList stringArray = (ArrayList) read(filename);
 		ArrayList<Menu> menuAl = new ArrayList<Menu>();
@@ -63,7 +77,13 @@ public class TextDB {
 		}
 		return menuAl;
 	}
-
+	
+	/**
+	 * Saves Menu Item to textfile
+	 * 
+	 * @param filename FilePath
+	 * @param menuAl ArrayList[Menu]
+	 */
 	public static void saveMenu(String filename, List menuAl) throws IOException {
 		List alw = new ArrayList();// to store Orders data
 		for (int i = 0; i < menuAl.size(); i++) {
@@ -107,6 +127,11 @@ public class TextDB {
 		write(filename, alw);
 	}
 
+	/**
+	 * Reads in Staff from textfile
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Staff> readStaff(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
@@ -128,7 +153,12 @@ public class TextDB {
 		return staffAl;
 	}
 
-	// an example of saving
+	/**
+	 * Save Staff to text file
+	 * 
+	 * @param filename FilePath
+	 * @param staffAl ArrayList[Staff]
+	 */
 	public static void saveStaff(String filename, List staffAl) throws IOException {
 		List alw = new ArrayList();// to store Professors data
 
@@ -144,7 +174,12 @@ public class TextDB {
 		}
 		write(filename, alw);
 	}
-
+	
+	/**
+	 * Reads in Table from textfile
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Table> readTable(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
@@ -165,6 +200,11 @@ public class TextDB {
 		return tableAl;
 	}
 
+	/**
+	 * Reads in Reservation from textfile
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Reservation> readReservation(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
@@ -188,7 +228,13 @@ public class TextDB {
 		return reservationAl;
 	}
 
-// an example of saving
+	/**
+	 * Save Reservation to textfile and calls saveCustomer method to save Customer to textfile
+	 * 
+	 * @param filename FilePath
+	 * @param reservationAl ArrayList[Reservation]
+	 * @param custAl ArrayList[Customer]
+	 */
 	public static void saveReservations(String filename, List reservationAl, List custAl) throws IOException {
 		List alw = new ArrayList();// to store Professors data
 		for (int i = 0; i < reservationAl.size(); i++) {
@@ -208,6 +254,12 @@ public class TextDB {
 		write(filename, alw);
 	}
 
+
+	/**
+	 * Reads in Invoice from textfile (Deserialization)
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Invoice> readInvoice(String filename) throws IOException {
 		// read String from text file
 		ArrayList<Invoice> invoiceAl = new ArrayList<Invoice>();
@@ -223,7 +275,13 @@ public class TextDB {
 		return invoiceAl;
 	}
 
-	// an example of saving
+
+	/**
+	 * Save Invoice to textfile (Serialization)
+	 * 
+	 * @param filename FilePath
+	 * @param invoiceAl ArrayList[Invoice]
+	 */
 	public static void saveInvoice(String filename, ArrayList<Invoice> invoiceAl) throws IOException {
 		try {
 			FileOutputStream fos = new FileOutputStream(filename);
@@ -236,6 +294,12 @@ public class TextDB {
 		}
 	}
 
+
+	/**
+	 * Reads in Customer from textfile
+	 * 
+	 * @param filename FilePath
+	 */
 	public static ArrayList<Customer> readCustomer(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList) read(filename);
@@ -255,7 +319,13 @@ public class TextDB {
 		return customerAl;
 	}
 
-// an example of saving
+
+	/**
+	 * Save Customer to textfile
+	 * 
+	 * @param filename FilePath
+	 * @param custAl ArrayList[Customer]
+	 */
 	public static void saveCustomer(String filename, List custAl) throws IOException {
 		List alw = new ArrayList();// to store Professors data
 		for (int i = 0; i < custAl.size(); i++) {
@@ -269,6 +339,13 @@ public class TextDB {
 		write(filename, alw);
 	}
 
+
+	/**
+	 * Writes data to file
+	 * 
+	 * @param filename FilePath
+	 * @param data Data
+	 */
 	/** Write fixed content to the given file. */
 	private static void write(String fileName, List data) throws IOException {
 		PrintWriter out = new PrintWriter(new FileWriter(fileName));
@@ -281,14 +358,23 @@ public class TextDB {
 			out.close();
 		}
 	}
+	
 
-	/** Delete everything within a file. **/
+	/**
+	 * Delete everything within a file
+	 * 
+	 * @param filename FilePath
+	 */
 	private static void deleteEverything(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new FileWriter(fileName));
 		out.close();
 	}
-
-	/** Read the contents of the given file. */
+	
+	/**
+	 * Reads the content of the given file
+	 * 
+	 * @param filename FilePath
+	 */
 	private static List read(String fileName) throws IOException {
 		List data = new ArrayList();
 		Scanner scanner = new Scanner(new FileInputStream(fileName));
