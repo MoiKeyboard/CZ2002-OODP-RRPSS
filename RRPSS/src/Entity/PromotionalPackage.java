@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PromotionalPackage extends Menu implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3L;
 	private ArrayList<Alacarte> menuItemArr;
 
 	public PromotionalPackage() {

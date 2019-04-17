@@ -3,6 +3,10 @@ package Entity;
 import java.io.Serializable;
 
 public class Menu  implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
 	private String name;
 	private String description;
 	private double price;
