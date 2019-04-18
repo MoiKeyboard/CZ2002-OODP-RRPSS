@@ -3,12 +3,12 @@ package Control;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import Entity.Menu;
 import Entity.Reservation;
 import Entity.Table;
 
 /**
- * (Control) Object wrapper for TableMgr
+ * The {@code TableMgr} is a control class used to model all control behavior
+ * specific to the {@link Table}.
  * 
  * @author Joseph Fung King Yiu
  * @version 1.0
@@ -19,7 +19,8 @@ public class TableMgr {
 	private ArrayList<Table> tableAl;
 
 	/**
-	 * Constructor for TableMgr, calls {@link TextDB#readTable(String)} and {@link updateTableStatus(int, String)}.
+	 * Constructor for TableMgr, calls {@link TextDB#readTable(String)} and
+	 * {@link updateTableStatus(int, String)}.
 	 * 
 	 * @param reservationMgr Control for ReservationManager
 	 */
@@ -47,7 +48,8 @@ public class TableMgr {
 	}
 
 	/**
-	 * Updates Table status to Reserved according to the Reservations for the particular AM/PM Session on runtime.
+	 * Updates Table status to Reserved according to the Reservations for the
+	 * particular AM/PM Session on runtime.
 	 * 
 	 * @param rMgr Control for ReservationMgr
 	 */
@@ -73,7 +75,7 @@ public class TableMgr {
 
 		}
 	}
-	
+
 	/**
 	 * Returns the ArrayList[Table].
 	 */
@@ -85,7 +87,7 @@ public class TableMgr {
 	 * Updates the Table Status for a particular Table.
 	 * 
 	 * @param tableNo Number of table
-	 * @param status Status of table
+	 * @param status  Status of table
 	 */
 	protected void updateTableStatus(int tableNo, String status) {
 		int index = getTableIndex(tableNo);
@@ -106,7 +108,7 @@ public class TableMgr {
 		} else
 			return true;
 	}
-	
+
 	/**
 	 * Assigns an Empty(Vacated) Table according to the number of Pax.
 	 * 
@@ -131,7 +133,7 @@ public class TableMgr {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Returns the Index for a particular table.
 	 * 
