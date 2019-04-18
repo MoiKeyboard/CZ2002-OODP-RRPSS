@@ -121,12 +121,12 @@ public class ReservationMainTestApp {
 			case 0:
 				break;
 			default:
-				System.out.println("Invalid input! Please choose option 1-17");
+				System.out.println("Invalid input! Please choose option 0-7");
 				break;
 			}
 
-		} catch (InputMismatchException e) {
-			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (1-17).");
+		} catch (NumerFormatException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-7).");
 			sc.next();
 		} catch (Exception e) {
 			e.getStackTrace();
@@ -174,7 +174,7 @@ public class ReservationMainTestApp {
 				break;
 			}
 
-		} catch (InputMismatchException e) {
+		} catch (NumberFormatException e) {
 			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
 			sc.next();
 		} catch (Exception e) {
@@ -220,8 +220,8 @@ public class ReservationMainTestApp {
 				break;
 			}
 
-		} catch (InputMismatchException e) {
-			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
+		} catch (NumberFormatException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-4).");
 			sc.next();
 		} catch (Exception e) {
 			e.getStackTrace();
@@ -256,8 +256,8 @@ public class ReservationMainTestApp {
 				break;
 			}
 
-		} catch (InputMismatchException e) {
-			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
+		} catch (NumberFormatException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-2).");
 			sc.next();
 		} catch (Exception e) {
 			e.getStackTrace();
@@ -282,7 +282,7 @@ public class ReservationMainTestApp {
 		int input = 1;
 		try {
 			input = Integer.parseInt(sc.nextLine());
-
+			System.out.println(input);
 			switch (input) {
 			case 1:
 				printAppMenu1(sc, menuMgr);
@@ -307,8 +307,8 @@ public class ReservationMainTestApp {
 				break;
 
 			}
-		} catch (InputMismatchException e) {
-			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (1-17).");
+		} catch (NumberFormatException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-4).");
 			sc.next();
 		} catch (Exception e) {
 			e.getStackTrace();
