@@ -8,13 +8,13 @@ import Entity.Menu;
 import Entity.Order;
 
 /**
- * (Control) Object wrapper for OrderMgr
+ * The {@code OrderMgr} is a control class used to model all control behavior
+ * specific to the {@link Order}.
  * 
  * @author Qwek Zhi Hui
  * @version 1.0
  * @since 2019-04-17
  */
-
 public class OrderMgr {
 	private ArrayList<Order> orderAl;
 	private Scanner sc;
@@ -59,8 +59,12 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Creates Order for WalkIn cases. Calls {@link menuMgr#updateMenuAl(ArrayList)}
-	 * AND {@link TableMgr#updateTableStatus(int, String)}.
+	 * Creates {@link Order} object for WalkIn cases. Calls the following methods
+	 * <ul>
+	 * <li>{@link menuMgr#updateMenuAl(ArrayList)} to populate list of food in
+	 * {@link Order}
+	 * <li>{@link TableMgr#updateTableStatus(int, String)} to set table status to
+	 * occupied upon {@link Order} creation.
 	 * 
 	 * @param tableMgr  Control for TableMgr
 	 * @param menuMgr   Control for MenuMgr
@@ -91,8 +95,8 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Creates Order for Reservation cases. Calls
-	 * {@link menuMgr#updateMenuAl(ArrayList)} AND
+	 * Creates {@link Order} object for Reservation cases. Calls populate list of
+	 * food in {@link Order}. {@link menuMgr#updateMenuAl(ArrayList)} AND
 	 * {@link TableMgr#updateTableStatus(int, String)} AND
 	 * {@link ReservationMgr#getReservationAl()}.
 	 * 

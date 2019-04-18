@@ -290,15 +290,19 @@ public class MenuMgr {
 			System.out.println("2) Remove items from promotional package");
 			System.out.println("3) Finish");
 			choice = Integer.parseInt(sc.nextLine());
-			System.out.println("Enter food name");
-			foodName = sc.nextLine();
-			System.out.println("Please enter quanity of " + foodName);
-			qty = Integer.parseInt(sc.nextLine());
 			switch (choice) {
 			case 1:
+				System.out.println("Enter food name");
+				foodName = sc.nextLine();
+				System.out.println("Please enter quanity of " + foodName);
+				qty = Integer.parseInt(sc.nextLine());
 				al = addAlacarteAL(al, foodName, qty);
 				break;
 			case 2:
+				System.out.println("Enter food name");
+				foodName = sc.nextLine();
+				System.out.println("Please enter quanity of " + foodName);
+				qty = Integer.parseInt(sc.nextLine());
 				al = removeAlacarteAL(al, foodName, qty);
 				break;
 			default:
