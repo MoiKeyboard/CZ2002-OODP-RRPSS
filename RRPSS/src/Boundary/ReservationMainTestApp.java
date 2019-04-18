@@ -152,12 +152,12 @@ public class ReservationMainTestApp {
 		// sub-menu 2
 		System.out.println("<<               Orders                 >>");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("1)View Order");
-		System.out.println("2)View Tables");
-		System.out.println("3)Create Order");
-		System.out.println("4)Update Order");
-		System.out.println("5)Remove Order");
-		System.out.println("0)Back");
+		System.out.println("1)\tView Order");
+		System.out.println("2)\tView Tables");
+		System.out.println("3)\tCreate Order");
+		System.out.println("4)\tUpdate Order");
+		System.out.println("5)\tRemove Order");
+		System.out.println("0)\tBack");
 
 		int input = 1;
 		try {
