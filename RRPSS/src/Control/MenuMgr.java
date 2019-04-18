@@ -151,7 +151,7 @@ public class MenuMgr {
 					break;
 				case 4:
 					System.out.println("Enter updated price");
-					chosenAla.setPrice(sc.nextDouble());
+					chosenAla.setPrice(Double.parseDouble(sc.next()));
 					break;
 				case 5:
 					break;

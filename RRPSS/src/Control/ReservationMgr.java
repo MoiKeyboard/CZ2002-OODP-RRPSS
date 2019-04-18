@@ -66,11 +66,16 @@ public class ReservationMgr {
 	}
 
 	/**
-	 * Creates Reservation based on User Inputs(Phone Number, Name, Reservation Date
-	 * and Time, Number of pax), calls {@link reservationDateValidation(int,
-	 * LocalDateTime)}, {@link Table#setTableStatus(String)} and
-	 * {@link TextDB#saveReservations(String, List, List)}.
+	 * Creates {@link Reservation} object based on User Inputs(Phone Number, Name,
+	 * Reservation Date and Time, Number of pax), calls the following
+	 * <ul>
+	 * <li>{@link reservationDateValidation(int, LocalDateTime)} for date-time
+	 * validation
+	 * <li>{@link Table#setTableStatus(String)} to update table status to occupied
+	 * <li>{@link TextDB#saveReservations(String, List, List)} to update text file
 	 * 
+	 * @param tMgr Control for TableMgr
+	 * @param pMgr Control for PersonMgr
 	 */
 	public void createReservation(TableMgr tMgr, PersonMgr pMgr) throws Exception {
 		String reservationDT, custName;
@@ -250,11 +255,10 @@ public class ReservationMgr {
 
 	/**
 	 * Asks for user input for the Contact Number used for the Reservation and
-	 * removes all Reservations with that contact number from the
-	 * ArrayList{Reservation],calls {@link PersonMgr#removeCustomer(int)} to remove
-	 * Customer from Customer ArrayList and
-	 * {@link TextDB#saveReservations(String, List, List)} to save the Reservation
-	 * ArrayList and Customer ArrayList to text file
+	 * removes all Reservations with that contact number from the reservationAl.
+	 * calls {@link PersonMgr#removeCustomer(int)} to remove Customer from Customer
+	 * ArrayList and {@link TextDB#saveReservations(String, List, List)} to save the
+	 * Reservation ArrayList and Customer ArrayList to text file
 	 * 
 	 * @param pMgr Control for PersonMgr
 	 */
