@@ -15,7 +15,6 @@ public class Reservation {
 	private int contactNo; // primary key
 	private LocalDateTime reservationDateTime;
 	private int pax, tableNo;
-	private boolean attended;
 
 	/**
 	 * Default constructor for {@code Reservation}
@@ -79,23 +78,6 @@ public class Reservation {
 		return tableNo;
 	}
 
-	/**
-	 * Returns the attendance of {@code Reservation}
-	 * 
-	 * @return boolean value of attended
-	 */
-	public boolean isAttended() {
-		return attended;
-	}
-
-	/**
-	 * Updates attendance of {@code Reservation}
-	 * 
-	 * @param attended the updated attendance boolean value
-	 */
-	public void setAttended(boolean attended) {
-		this.attended = attended;
-	}
 
 	/**
 	 * Returns the string resepresentation of the {@code Reservation} object.
