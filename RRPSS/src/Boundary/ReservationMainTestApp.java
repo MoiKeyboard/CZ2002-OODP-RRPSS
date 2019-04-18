@@ -102,27 +102,21 @@ public class ReservationMainTestApp {
 				break;
 			case 2:
 				menuMgr.createAlacarte();
-				menuMgr.printAlacarteItem();
 				break;
 			case 3:
 				menuMgr.updateAlacarte();
-				menuMgr.printAlacarteItem();
 				break;
 			case 4:
 				menuMgr.removeAlacarte();
-				menuMgr.printAlacarteItem();
 				break;
 			case 5:
 				menuMgr.createPromotionalPackage();
-				menuMgr.printPromotionalPackage();
 				break;
 			case 6:
 				menuMgr.updatePromotionalPackage();
-				menuMgr.printPromotionalPackage();
 				break;
 			case 7:
 				menuMgr.removePromotionalPackage();
-				menuMgr.printPromotionalPackage();
 				break;
 			case 0:
 				break;

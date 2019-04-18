@@ -461,6 +461,7 @@ public class MenuMgr {
 	 * {@link Menu} object based on matching String. Returns the index when found.
 	 * This method can only be called within this class.
 	 * 
+	 * @param al     the Arraylist to be looped through
 	 * @param search Name of {@link Menu} item to match
 	 */
 	private int getMenuIndex(ArrayList<Menu> al, String search) {
@@ -480,7 +481,6 @@ public class MenuMgr {
 	 * @param search
 	 * @return
 	 */
-	// Is this even needed??????? Tot we migrated to Menu ArrayList
 	private int getAlacarteIndex(ArrayList<Alacarte> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
 			if (search.equalsIgnoreCase(al.get(i).getName()))
