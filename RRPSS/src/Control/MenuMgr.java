@@ -58,7 +58,7 @@ public class MenuMgr {
 		for(int j = 0; j<catsArr.size();j++) {
 			itemCat = catsArr.get(j);
 			System.out.println();
-			System.out.println("                 - "+itemCat+"-                  ");
+			System.out.println("               - "+itemCat+"-                 ");
 			System.out.println();
 			for(int k = 0; k<menuAl.size();k++) {
 				
@@ -419,6 +419,9 @@ public class MenuMgr {
 	 * Prints out every Alacarte Item in ArrayList[Menu].
 	 */
 	public void printPromotionalPackage() {
+		System.out.println("[][][][][][][][][][][][][][][][][][][][][]");
+		System.out.println("[][][]      P R O M O T I O N S     [][][]");
+		System.out.println("------------------------------------------");
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage)
 				System.out.println(((PromotionalPackage) menuAl.get(i)).toString());
