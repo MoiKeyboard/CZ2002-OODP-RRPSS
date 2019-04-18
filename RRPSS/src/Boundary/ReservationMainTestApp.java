@@ -204,7 +204,7 @@ public class ReservationMainTestApp {
 				reservationMgr.checkReservation(tableMgr, personMgr);
 				break;
 			case 3:
-				reservationMgr.createReservation();
+				reservationMgr.createReservation(tableMgr,personMgr);
 				reservationMgr.printReservation(tableMgr, personMgr);
 				break;
 
