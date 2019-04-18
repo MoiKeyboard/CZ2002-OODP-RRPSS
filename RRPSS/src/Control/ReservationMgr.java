@@ -156,6 +156,11 @@ public class ReservationMgr {
 		int newReservationHour = reservationDT.getHour();
 		int newReservationMinute = reservationDT.getMinute();
 		int existingReservationHour, existingReservationMinute;
+		if(reservationDT.getDayOfYear() < today.getDayOfYear() || 
+				(reservationDT.getDayOfYear() == today.getDayOfYear() && reservationDT.getHour() < today.getHour())) {
+			System.out.println("Cannot make reservation for the past");
+			return false;
+		}	
 		for (Reservation r : reservationAl) {
 			if (r.getContactNo() == contactNum) {
 				existingReservationDT = r.getReservationDate();
