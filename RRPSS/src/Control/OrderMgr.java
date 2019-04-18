@@ -148,7 +148,7 @@ public class OrderMgr {
 		int index;
 		String display = "";
 		System.out.println("Please enter table number");
-		index = getOrderIndex(sc.nextInt());
+		index = getOrderIndex(Integer.parseInt(sc.nextLine()));
 		if (index == -1)
 			return;
 		// System.out.println(orderAl.get(index).toString());
@@ -187,7 +187,7 @@ public class OrderMgr {
 	public void updateOrder(MenuMgr menuMgr) {
 		int index;
 		System.out.println("Please enter table number");
-		index = getOrderIndex(sc.nextInt());
+		index = getOrderIndex(Integer.parseInt(sc.nextLine()));
 		if (index == -1)
 			return;
 
@@ -203,7 +203,7 @@ public class OrderMgr {
 	 */
 	public void removeOrder(TableMgr tableMgr) {
 		System.out.println("Please enter table number");
-		int tableNo = sc.nextInt();
+		int tableNo = Integer.parseInt(sc.nextLine());
 		removeOrder(tableMgr, tableNo);
 	}
 
