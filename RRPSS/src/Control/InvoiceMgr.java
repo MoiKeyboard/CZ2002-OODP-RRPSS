@@ -31,7 +31,7 @@ public class InvoiceMgr {
 
 	/**
 	 * Constructor for {@code InvoiceMgr}. Calls {@link TextDB#readInvoice(String)}
-	 * to read from file and populate {@code ArrayList<Invoice>} .
+	 * to read from file and populate invoiceAl ({@code ArrayList<Invoice>}).
 	 */
 	public InvoiceMgr() {
 		sc = new Scanner(System.in);

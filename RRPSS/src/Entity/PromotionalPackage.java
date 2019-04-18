@@ -19,7 +19,7 @@ public class PromotionalPackage extends Menu implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 3L;
-	private ArrayList<Alacarte> menuItemArr;
+	private ArrayList<Alacarte> alacarteAl;
 
 	/**
 	 * Default constructor for {@code PromotionalPackage}, calls superclass
@@ -27,7 +27,7 @@ public class PromotionalPackage extends Menu implements Serializable {
 	 */
 	public PromotionalPackage() {
 		super();
-		this.menuItemArr = new ArrayList<Alacarte>();
+		this.alacarteAl = new ArrayList<Alacarte>();
 	}
 
 	/**
@@ -35,15 +35,15 @@ public class PromotionalPackage extends Menu implements Serializable {
 	 * {@link Menu} and creates an {@code PromotionalPackage} object with required
 	 * parameters.
 	 * 
-	 * @param promoName    Name of {@code PromotionalPackage}
-	 * @param description  Description of {@code PromotionalPackage}
-	 * @param price        Price of {@code PromotionalPackage}
-	 * @param menuItemsArr {@code ArrayList} of {@link Alacarte} items within the
-	 *                     promotional package.
+	 * @param promoName   Name of {@code PromotionalPackage}
+	 * @param description Description of {@code PromotionalPackage}
+	 * @param price       Price of {@code PromotionalPackage}
+	 * @param alacarteAl  {@code ArrayList} of {@link Alacarte} items within the
+	 *                    promotional package.
 	 */
-	public PromotionalPackage(String promoName, String description, double price, ArrayList<Alacarte> menuItemsArr) {
+	public PromotionalPackage(String promoName, String description, double price, ArrayList<Alacarte> alacarteAl) {
 		super(promoName, description, price);
-		this.menuItemArr = menuItemsArr;
+		this.alacarteAl = alacarteAl;
 	}
 
 	/**
@@ -52,8 +52,8 @@ public class PromotionalPackage extends Menu implements Serializable {
 	 * 
 	 * @return the {@link Alacarte} {@code ArrayList} of menuItemArr
 	 */
-	public ArrayList<Alacarte> getMenuItemArr() {
-		return menuItemArr;
+	public ArrayList<Alacarte> getAlacarteAl() {
+		return alacarteAl;
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class PromotionalPackage extends Menu implements Serializable {
 	 *                    {@link Alacarte})
 	 */
 	public void setAlacarteArr(ArrayList<Alacarte> menuItemArr) {
-		this.menuItemArr = menuItemArr;
+		this.alacarteAl = menuItemArr;
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class PromotionalPackage extends Menu implements Serializable {
 		ArrayList<Alacarte> uniqueList = new ArrayList<Alacarte>();
 		ArrayList<Integer> eachCount = new ArrayList<Integer>();
 
-		for (Alacarte mi : menuItemArr) {
+		for (Alacarte mi : alacarteAl) {
 			if (uniqueList.contains(mi)) {
 				index = uniqueList.indexOf(mi);
 				count = eachCount.get(index) + 1;
@@ -130,8 +130,8 @@ public class PromotionalPackage extends Menu implements Serializable {
 					&& this.getPrice() == comparatorObject.getPrice()) {
 				// now check further if each Alacarte menu item in its array is equal to
 				// coMenuItemArr's
-				coMenuItemArr = comparatorObject.getMenuItemArr();
-				for (Menu menu : this.getMenuItemArr()) {
+				coMenuItemArr = comparatorObject.getAlacarteAl();
+				for (Menu menu : this.getAlacarteAl()) {
 					coMenu = coMenuItemArr.get(count);
 					if (!menu.equals(coMenu)) {
 						flag = false;

@@ -98,14 +98,14 @@ public class TextDB {
 				st.append(SEPARATOR);
 				st.append(s1.getPrice());
 				st.append(SEPARATOR);
-				for (int i2 = 0; i2 < s1.getMenuItemArr().size(); i2++) {
-					st.append(s1.getMenuItemArr().get(i2).getName());
+				for (int i2 = 0; i2 < s1.getAlacarteAl().size(); i2++) {
+					st.append(s1.getAlacarteAl().get(i2).getName());
 					st.append(SEPARATOR);
-					st.append(s1.getMenuItemArr().get(i2).getDescription());
+					st.append(s1.getAlacarteAl().get(i2).getDescription());
 					st.append(SEPARATOR);
-					st.append(s1.getMenuItemArr().get(i2).getPrice());
+					st.append(s1.getAlacarteAl().get(i2).getPrice());
 					st.append(SEPARATOR);
-					st.append(s1.getMenuItemArr().get(i2).getCategory());
+					st.append(s1.getAlacarteAl().get(i2).getCategory());
 					st.append(SEPARATOR);
 				}
 				alw.add(st.toString());
