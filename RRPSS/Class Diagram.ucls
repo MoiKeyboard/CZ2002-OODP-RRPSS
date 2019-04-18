@@ -305,7 +305,7 @@
   </association>  
   <association id="53">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="54" name="menuItemArr">        
+      <attribute id="54" name="alacarteAl">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="55" minimum="0" maximum="2147483647">        
