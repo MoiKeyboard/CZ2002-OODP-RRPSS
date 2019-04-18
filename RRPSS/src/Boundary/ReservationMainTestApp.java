@@ -218,12 +218,12 @@ public class ReservationMainTestApp {
 				break;
 			case 3:
 				reservationMgr.createReservation(tableMgr, personMgr);
-				reservationMgr.printReservation(tableMgr, personMgr);
+				// reservationMgr.printReservation(tableMgr, personMgr);
 				break;
 
 			case 4:
 				reservationMgr.removeReservation(personMgr);
-				reservationMgr.printReservation(tableMgr, personMgr);
+				// reservationMgr.printReservation(tableMgr, personMgr);
 				break;
 
 			case 0:
