@@ -248,7 +248,7 @@ public class MenuMgr {
 				System.out.println("2) Update promotional package description");
 				System.out.println("3) Update promotional package price");
 				System.out.println("4) Update items of promotional package");
-				System.out.println("5) Exit");
+				System.out.println("0) Exit");
 				choice = Integer.parseInt(sc.nextLine());
 				switch (choice) {
 				case 1:
