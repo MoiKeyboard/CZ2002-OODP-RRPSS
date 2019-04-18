@@ -248,11 +248,9 @@ public class MenuMgr {
 				System.out.println("2) Update promotional package description");
 				System.out.println("3) Update promotional package price");
 				System.out.println("4) Update items of promotional package");
-				System.out.println("0) Exit");
+				System.out.println("5) Exit");
 				choice = Integer.parseInt(sc.nextLine());
 				switch (choice) {
-				case 0:
-					break;
 				case 1:
 					System.out.println("Enter updated promotional package name");
 					curPP.setName(sc.nextLine());
@@ -267,6 +265,8 @@ public class MenuMgr {
 					break;
 				case 4:
 					updateAlacarteAL(curPP.getMenuItemArr());
+					break;
+				case 5:
 					break;
 				default:
 					System.out.println("Invalid input try again");
