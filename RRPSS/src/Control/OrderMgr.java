@@ -93,8 +93,9 @@ public class OrderMgr {
 	 * @param menuMgr Control for MenuMgr
 	 * @param personMgr Control for PersonMgr
 	 * @param rMgr Control for ReservationMgr
+	 * @throws IOException 
 	 */
-	private boolean reservationOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr rMgr) {
+	private boolean reservationOrder(TableMgr tableMgr, MenuMgr menuMgr, PersonMgr personMgr, ReservationMgr rMgr)  {
 		// Staff
 		System.out.println("Please enter staff ID: ");
 		int staffInput = Integer.parseInt(sc.nextLine());
@@ -118,8 +119,8 @@ public class OrderMgr {
 		// Update table status
 		tableMgr.updateTableStatus(tableNo, "Occupied");
 		// Remove reservation via rMgr
-		rMgr.getReservationAl().remove(reservationIndex);
-
+		rMgr.removeReservation(personMgr,contactNo);
+		
 		System.out.println("Creation of order is successful!");
 		return true;
 	}

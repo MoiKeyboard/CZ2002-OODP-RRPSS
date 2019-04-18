@@ -159,7 +159,8 @@ public class Invoice implements Serializable {
 		ArrayList<Integer> eachCount = new ArrayList<Integer>();
 
 		invoiceDetails = "============ Oops Bar & Cafe ============\n" + "        50 Nanyang Ave, 639798\n"
-				+ "               SCSE, NTU\n" + "Table: " + getTableNo() + "\nDate/time: " + invoiceDT.toString()
+				+ "               SCSE, NTU\n" + "Table: " + getTableNo() + "\nDate/time: " + invoiceDT.toString() 
+				+"\n#"+getInvoiceNo()
 				+ "\n------------------------------------------\n";
 
 		for (Menu menu : foodAL) {

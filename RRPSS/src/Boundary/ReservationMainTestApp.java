@@ -1,5 +1,6 @@
 package Boundary;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Control.InvoiceMgr;
@@ -100,12 +101,13 @@ public class ReservationMainTestApp {
 	 */
 	public static int getUserInput(Scanner sc, MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr,
 			OrderMgr orderMgr, InvoiceMgr invoiceMgr, PersonMgr personMgr) {
-		int input = sc.nextInt();
-		sc.nextLine();
+		int input = 1;
 		try {
-			if (input == 0)
-				return input;
+			input = sc.nextInt();
+			sc.nextLine();
 			switch (input) {
+			case 0:
+				return input;
 			case 1:
 				menuMgr.createAlacarte();
 				menuMgr.printMenuItem();
@@ -167,7 +169,11 @@ public class ReservationMainTestApp {
 				break;
 
 			}
-		} catch (Exception e) {
+		} catch (InputMismatchException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-16).");
+			sc.next();
+		}
+		catch (Exception e) {
 			e.getStackTrace();
 		}
 		return input;
