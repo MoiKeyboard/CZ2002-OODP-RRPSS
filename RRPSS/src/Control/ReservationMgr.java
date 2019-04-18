@@ -233,7 +233,7 @@ public class ReservationMgr {
 	}
 	
 	/**
-	 * Asks for user input for the Contact Number used for the Reservation and removes it from the ArrayList{Reservation],calls {@link PersonMgr#removeCustomer(int)} to remove Customer from Customer ArrayList and {@link TextDB#saveReservations(String, List, List)} to save the Reservation ArrayList and Customer ArrayList to text file  
+	 * Asks for user input for the Contact Number used for the Reservation and removes all Reservations with that contact number from the ArrayList{Reservation],calls {@link PersonMgr#removeCustomer(int)} to remove Customer from Customer ArrayList and {@link TextDB#saveReservations(String, List, List)} to save the Reservation ArrayList and Customer ArrayList to text file  
 	 * 
 	 * @param pMgr Control for PersonMgr
 	 */
@@ -244,7 +244,7 @@ public class ReservationMgr {
 		for (Reservation mi : reservationAl) {
 			if (mi.getContactNo() == searchTerm) {
 				reservationAl.remove(mi);
-				System.out.println("Reservation for contact number " + searchTerm + " has been removed successfully!");
+				System.out.println("All Reservations for contact number " + searchTerm + " has been removed successfully!");
 				successFlag = true;
 			}
 		}
@@ -252,19 +252,22 @@ public class ReservationMgr {
 			System.out.println("Reservation for contact number"  + searchTerm + " not found");
 		else {
 			pMgr.removeCustomer(searchTerm);
-			TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
+			TextDB.saveReservations("Reservations.txt", reservationAl, pMgr.getCustAl());
 		}
 	}
 	
 	/**
-	 * Asks for user input for the Contact Number used for the Reservation and removes it from the ArrayList{Reservation],calls {@link PersonMgr#removeCustomer(int)} to remove Customer from Customer ArrayList and {@link TextDB#saveReservations(String, List, List)} to save the Reservation ArrayList and Customer ArrayList to text file  
+	 * Removes Current Session Reservation which has been attended from the ArrayList{Reservation],calls {@link PersonMgr#removeCustomer(int)} to remove Customer from Customer ArrayList and {@link TextDB#saveReservations(String, List, List)} to save the Reservation ArrayList and Customer ArrayList to text file  
 	 * 
 	 * @param pMgr Control for PersonMgr
+	 * @param contactNo Contact Number for Reservation to be removed
 	 */
 	public void removeReservation(PersonMgr pMgr, int contactNo) {
 		boolean successFlag = false;
+		LocalDateTime today = LocalDateTime.now();
 		for (Reservation mi : reservationAl) {
-			if (mi.getContactNo() == contactNo) {
+			LocalDateTime reservationDT = mi.getReservationDate();
+			if (mi.getContactNo() == contactNo && today.getDayOfYear() == reservationDT.getDayOfYear() && today.getHour() == reservationDT.getHour() && today.getMinute() >= reservationDT.getMinute()) {
 				reservationAl.remove(mi);
 				System.out.println("Reservation for contact number " + contactNo + " has been removed successfully!");
 				successFlag = true;
@@ -273,9 +276,10 @@ public class ReservationMgr {
 		if(successFlag != true) 
 			System.out.println("Reservation for contact number "  + contactNo + " not found");
 		else {
-			pMgr.removeCustomer(contactNo);
+			if(getReservationIndex(contactNo) == -1)
+				pMgr.removeCustomer(contactNo);
 			try {
-			TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
+				TextDB.saveReservations("Reservations.txt", reservationAl, pMgr.getCustAl());
 			} catch (IOException e){
 				System.out.println("IOException");
 			}
@@ -286,8 +290,10 @@ public class ReservationMgr {
 
 	/**
 	 * Delete Expired Reservations 10 minutes after the Reservation booking time and calls {@link TextDB#saveReservations(String, List, List)} to save the updated Reservation ArrayList to text file.
+	 * 
+	 * @param pMgr Control for PersonMgr
 	 */
-	public void removeExpiredReservations() {
+	public void removeExpiredReservations(PersonMgr pMgr) {
 		LocalDateTime existingReservationDT, expiringDT;
 		int existingReservationDay;
 		LocalDateTime today = LocalDateTime.now();
@@ -302,10 +308,12 @@ public class ReservationMgr {
 					&& expiringDT.getMinute() == existingReservationDT.getMinute()) {
 				System.out.println("...Removing Expired Reservation:\n" + r.toString());
 				it.remove();
+				if(getReservationIndex(r.getContactNo()) == -1)
+					pMgr.removeCustomer(r.getContactNo());
 			}
 		}
 		try {
-			TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
+			TextDB.saveReservations("Reservations.txt", reservationAl, pMgr.getCustAl());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
