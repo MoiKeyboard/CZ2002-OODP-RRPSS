@@ -40,13 +40,45 @@ public class MenuMgr {
 	 * Prints out every {@link Alacarte} object in menuAl.
 	 */
 	public void printAlacarteItem() {
-		System.out.println("Alacarte Item as follows:");
+		String itemCat = "";
+		ArrayList<String> catsArr = new ArrayList<String>();
+		System.out.println();
+		System.out.println("[][][][][][][][][][][][][][][][][][][][][]");
+		System.out.println("[][][]            M E N U           [][][]");
+		System.out.println("------------------------------------------");
+		for (int i = 0; i < menuAl.size(); i++) {
+			if (menuAl.get(i) instanceof Alacarte) {
+				Alacarte aItem = (Alacarte) menuAl.get(i);
+				if (!catsArr.contains(aItem.getCategory())) {
+					catsArr.add(aItem.getCategory());
+				}
+			}
+		}
+		
+		for(int j = 0; j<catsArr.size();j++) {
+			itemCat = catsArr.get(j);
+			System.out.println();
+			System.out.println("               - "+itemCat+"-                 ");
+			System.out.println();
+			for(int k = 0; k<menuAl.size();k++) {
+				
+				if(menuAl.get(k) instanceof Alacarte) {
+				//System.out.println(((Alacarte) menuAl.get(k)).getCategory());
+					Alacarte aItem = (Alacarte) menuAl.get(k);
+					if(aItem.getCategory().equals(itemCat))
+						System.out.println(aItem.toString());
+				}
+			}
+		}
+		
+		/*
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof Alacarte) {
 				Alacarte aItem = (Alacarte) menuAl.get(i);
 				System.out.println(aItem.toString());
 			}
 		}
+		*/
 		System.out.println();
 	}
 
@@ -404,6 +436,9 @@ public class MenuMgr {
 	 * Prints out every {@link PromotionalPackage} object in menuAl.
 	 */
 	public void printPromotionalPackage() {
+		System.out.println("[][][][][][][][][][][][][][][][][][][][][]");
+		System.out.println("[][][]      P R O M O T I O N S     [][][]");
+		System.out.println("------------------------------------------");
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage)
 				System.out.println(((PromotionalPackage) menuAl.get(i)).toString());
