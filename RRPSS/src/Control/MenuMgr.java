@@ -137,9 +137,13 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Deletes Alacarte item from ArrayList[Menu], removes it from ArrayList[Menu]
-	 * and saves the updated ArrayList[Menu] to text file. Calls
-	 * {@link removeAlafromPP(Alacarte)} and {@link TextDB#saveMenu(String, List)}.
+	 * Deletes an existing {@link Alacarte} object (in menuAl). Deleted
+	 * {@link Alacarte} object will reflect inside {@link PromotionalPackage} foodAl
+	 * ({@code ArrayList<Alacarte>}) as well by calling
+	 * {@link removeAlafromPP(currAla)}.
+	 * <p>
+	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
+	 * updated menuAl.
 	 */
 	public void removeAlacarte() throws IOException { // whole method working
 		int index;
@@ -159,9 +163,9 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Create new PromotionalPackage, adds it to ArrayList[Menu] and saves it to
-	 * text file. Calls {@link updateAlacarteAL(PromotionalPackage)} AND
-	 * {@link TextDB#saveMenu(String, List)}.
+	 * Create new {@link PromotionalPackage} and adds it to existing ArrayList[Menu]
+	 * and saves it to text file. Calls {@link updateAlacarteAL(PromotionalPackage)}
+	 * AND {@link TextDB#saveMenu(String, List)}.
 	 */
 	public void createPromotionalPackage() throws IOException {
 		String promoName;
@@ -226,7 +230,7 @@ public class MenuMgr {
 					curPP.setPrice(Double.parseDouble(sc.nextLine()));
 					break;
 				case 4:
-					updateAlacarteAL(curPP.getAlacarteAl());
+					updateAlacarteAL(curPP.getMenuItemArr());
 					break;
 				default:
 					System.out.println("Invalid input try again");
@@ -324,7 +328,7 @@ public class MenuMgr {
 	private void updateAlafromPP(Alacarte oldA, Alacarte newA) throws IOException {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage) {
-				for (Alacarte a : ((PromotionalPackage) menuAl.get(i)).getAlacarteAl()) {
+				for (Alacarte a : ((PromotionalPackage) menuAl.get(i)).getMenuItemArr()) {
 					System.out.println(oldA.getName() + " ||| " + a.getName() + "<<<");
 					if (oldA.equals(a)) {
 						System.out.println("oldA = " + oldA.toString());
@@ -350,9 +354,9 @@ public class MenuMgr {
 	private void removeAlafromPP(Alacarte currA) throws IOException {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage) {
-				for (Alacarte a : new ArrayList<>(((PromotionalPackage) menuAl.get(i)).getAlacarteAl())) {
+				for (Alacarte a : new ArrayList<>(((PromotionalPackage) menuAl.get(i)).getMenuItemArr())) {
 					if (currA.equals(a))
-						((PromotionalPackage) menuAl.get(i)).getAlacarteAl().remove(a);
+						((PromotionalPackage) menuAl.get(i)).getMenuItemArr().remove(a);
 				}
 			}
 		}
