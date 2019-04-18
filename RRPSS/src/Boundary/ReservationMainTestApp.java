@@ -203,7 +203,7 @@ public class ReservationMainTestApp {
 		System.out.println("2)\tCheck Reservation");
 		System.out.println("3)\tCreate Reservation");
 		System.out.println("4)\tRemove Reservation");
-		System.out.println("0)Back");
+		System.out.println("0)\tBack");
 		int input = 1;
 		try {
 			input = Integer.parseInt(sc.nextLine());
@@ -244,9 +244,9 @@ public class ReservationMainTestApp {
 		// sub-menu 4
 		System.out.println("<<            Invoices/Reports           >>");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("1)Print Invoice");
-		System.out.println("2)Print Sales Revenue Report (Day/Month)");
-		System.out.println("0)Back");
+		System.out.println("1)\tPrint Invoice");
+		System.out.println("2)\tPrint Sales Revenue Report (Day/Month)");
+		System.out.println("0)\tBack");
 
 		int input = 1;
 		try {
