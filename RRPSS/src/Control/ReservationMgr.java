@@ -274,14 +274,13 @@ public class ReservationMgr {
 			if (r.getContactNo() == contactNo && today.getDayOfYear() == reservationDT.getDayOfYear() && today.getHour() == reservationDT.getHour()) {
 				it.remove();
 				System.out.println("Reservation for contact number " + contactNo + " has been removed successfully!");
+				pMgr.removeCustomer(contactNo);
 				successFlag = true;
 			}
 		}
-		if(successFlag != true) 
+		if(successFlag == false) 
 			System.out.println("Reservation for contact number "  + contactNo + " not found");
 		else {
-			if(getReservationIndex(contactNo) == -1)
-				pMgr.removeCustomer(contactNo);
 			try {
 				TextDB.saveReservations("Reservations.txt", reservationAl, pMgr.getCustAl());
 			} catch (IOException e){
