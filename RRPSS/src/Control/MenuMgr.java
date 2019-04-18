@@ -212,7 +212,7 @@ public class MenuMgr {
 		System.out.println("Please enter new promotional package description");
 		promoDesc = sc.nextLine();
 		System.out.println("Please enter new promotional package price");
-		promoPrice = Integer.parseInt(sc.nextLine());
+		promoPrice = Double.parseDouble(sc.nextLine());
 		updateAlacarteAL(promoItems);
 		PromotionalPackage p1 = new PromotionalPackage(promoName, promoDesc, promoPrice, promoItems);
 		menuAl.add(p1);
