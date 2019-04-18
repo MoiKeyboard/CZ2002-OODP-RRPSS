@@ -271,7 +271,7 @@ public class ReservationMgr {
 		while (it.hasNext()) {
 			Reservation r = it.next();
 			LocalDateTime reservationDT = r.getReservationDate();
-			if (r.getContactNo() == contactNo && today.getDayOfYear() == reservationDT.getDayOfYear() && today.getHour() == reservationDT.getHour() && today.getMinute() >= reservationDT.getMinute()) {
+			if (r.getContactNo() == contactNo && today.getDayOfYear() == reservationDT.getDayOfYear() && today.getHour() == reservationDT.getHour()) {
 				it.remove();
 				System.out.println("Reservation for contact number " + contactNo + " has been removed successfully!");
 				successFlag = true;
