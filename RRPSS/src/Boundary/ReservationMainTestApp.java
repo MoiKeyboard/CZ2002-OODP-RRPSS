@@ -86,6 +86,13 @@ public class ReservationMainTestApp {
 		System.out.println("15)\tCheck table availability");
 		System.out.println("16)\tPrint bill invoice");
 		System.out.println("17)\tPrint sale revenue report by period(e.g day/month)\n0)\tExit the application");
+		System.out.println("18) \tView reservations");
+	}
+	
+	public static void printAppMenu1() {
+		//sub-menu 1
+		System.out.println();
+		System.out.println("1)View Menu");
 	}
 
 	/**
@@ -166,6 +173,9 @@ public class ReservationMainTestApp {
 			case 17:
 				invoiceMgr.printSaleRevenueReport();
 				break;
+				
+			case 18:
+				reservationMgr.printReservation(tableMgr, personMgr);
 			default:
 				System.out.println("Invalid input! Please choose option 1-17");
 				break;
