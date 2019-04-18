@@ -59,7 +59,8 @@ public class ReservationMgr {
 			Customer cust = pMgr.findCustomer(mi.getContactNo());
 			System.out.println(cust.toString());
 			System.out.println(mi.toString());
-			System.out.println("Current Table status: " + tMgr.getTableStatusForReservation(mi) + "\n");
+			System.out.println("Table assigned: " + mi.getTableNo());
+			System.out.println("Current status: " + tMgr.getTableStatusForReservation(mi) + "\n");
 			System.out.println("..........................................\n");
 		}
 		System.out.println();
@@ -356,7 +357,7 @@ public class ReservationMgr {
 	 */
 	protected int getReservationIndex(int contactNo) {
 		LocalDateTime today = LocalDateTime.now();
-		
+
 		for (int i = 0; i < reservationAl.size(); i++) {
 			LocalDateTime dt = reservationAl.get(i).getReservationDate();
 			// AM SESSION
