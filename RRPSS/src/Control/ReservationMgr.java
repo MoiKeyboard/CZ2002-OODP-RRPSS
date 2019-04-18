@@ -22,8 +22,6 @@ import Entity.Table;
 
 public class ReservationMgr {
 	private ArrayList<Reservation> reservationAl;
-	private ArrayList<Table> tableAl;
-	private ArrayList<Customer> custAl;
 	private Scanner sc;
 
 	/**
@@ -53,8 +51,8 @@ public class ReservationMgr {
 	 * @param pMgr Control for PersonMgr
 	 */
 	public void printReservation(TableMgr tMgr, PersonMgr pMgr) {
-		tableAl = tMgr.getTableAL();
-		custAl = pMgr.getCustAl();
+		ArrayList<Table> tableAl = tMgr.getTableAL();
+		ArrayList<Customer> custAl = pMgr.getCustAl();
 		System.out.println("               *Reservations*               ");
 		System.out.println("..........................................\n");
 		for (Reservation mi : reservationAl) {
@@ -70,7 +68,7 @@ public class ReservationMgr {
 	/**
 	 * Creates Reservation based on User Inputs(Phone Number, Name, Reservation Date and Time, Number of pax), calls {@link reservationDateValidation(int, LocalDateTime)}, {@link Table#setTableStatus(String)} and {@link TextDB#saveReservations(String, List, List)}.
 	 */
-	public void createReservation() throws Exception {
+	public void createReservation(TableMgr tMgr, PersonMgr pMgr) throws Exception {
 		String reservationDT, custName;
 		int contactNo, pax;
 		boolean successFlag = false;
@@ -87,26 +85,26 @@ public class ReservationMgr {
 			return;
 		System.out.println("Please enter number of pax");
 		pax = sc.nextInt();
-		for (Table t : tableAl) {
+		for (Table t : tMgr.getTableAL()) {
 			if (t.getSeatCap() == pax && (checkAvailability(t, reservationDateTime) == true)) {
 				Reservation i1 = new Reservation(contactNo, reservationDateTime, pax, t.getTableNo());
 				Customer customer = new Customer(custName, contactNo);
 				t.setTableStatus("Reserved");
 				reservationAl.add(i1);
-				custAl.add(customer);
+				pMgr.getCustAl().add(customer);
 				System.out.println("Successfully reserved a table");
 				successFlag = true;
 				break;
 			}
 		}
 		if (successFlag == false) {
-			for (Table t2 : tableAl) {
+			for (Table t2 : tMgr.getTableAL()) {
 				if (t2.getSeatCap() > pax && (checkAvailability(t2, reservationDateTime) == true)) {
 					Reservation i1 = new Reservation(contactNo, reservationDateTime, pax, t2.getTableNo());
 					Customer customer = new Customer(custName, contactNo);
 					t2.setTableStatus("Reserved");
 					reservationAl.add(i1);
-					custAl.add(customer);
+					pMgr.getCustAl().add(customer);
 					System.out.println("Successfully reserved a table");
 					successFlag = true;
 					break;
@@ -117,7 +115,7 @@ public class ReservationMgr {
 			System.out.println("Sorry! All tables for the number of pax that you requested are fully booked!!");
 			return;
 		}
-		TextDB.saveReservations("Reservations.txt", reservationAl, custAl);
+		TextDB.saveReservations("Reservations.txt", reservationAl, pMgr.getCustAl());
 	}
 
 	/**
