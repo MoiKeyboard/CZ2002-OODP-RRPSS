@@ -80,7 +80,7 @@ public class Reservation {
 
 
 	/**
-	 * Returns the string resepresentation of the {@code Reservation} object.
+	 * Returns the string representation of the {@code Reservation} object.
 	 */
 	@Override
 	public String toString() {
