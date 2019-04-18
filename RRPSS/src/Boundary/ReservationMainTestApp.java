@@ -134,13 +134,12 @@ public class ReservationMainTestApp {
 			case 0:
 				break;
 			default:
-				System.out.println("Invalid input! Please choose option 1-17");
+				System.out.println("Invalid input! Please choose option 0-7");
 				break;
 			}
 
-		} catch (InputMismatchException e) {
-			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (1-17).");
-			sc.next();
+		} catch (NumberFormatException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-7).");
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -167,12 +166,12 @@ public class ReservationMainTestApp {
 		// sub-menu 2
 		System.out.println("<<               Orders                 >>");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("1)View Order");
-		System.out.println("2)View Tables");
-		System.out.println("3)Create Order");
-		System.out.println("4)Update Order");
-		System.out.println("5)Remove Order");
-		System.out.println("0)Back");
+		System.out.println("1)\tView Order");
+		System.out.println("2)\tView Tables");
+		System.out.println("3)\tCreate Order");
+		System.out.println("4)\tUpdate Order");
+		System.out.println("5)\tRemove Order");
+		System.out.println("0)\tBack");
 
 		int input = 1;
 		try {
@@ -201,9 +200,8 @@ public class ReservationMainTestApp {
 				break;
 			}
 
-		} catch (InputMismatchException e) {
+		} catch (NumberFormatException e) {
 			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
-			sc.next();
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -230,7 +228,7 @@ public class ReservationMainTestApp {
 		System.out.println("2)\tCheck Reservation");
 		System.out.println("3)\tCreate Reservation");
 		System.out.println("4)\tRemove Reservation");
-		System.out.println("0)Back");
+		System.out.println("0)\tBack");
 		int input = 1;
 		try {
 			input = Integer.parseInt(sc.nextLine());
@@ -258,9 +256,8 @@ public class ReservationMainTestApp {
 				break;
 			}
 
-		} catch (InputMismatchException e) {
-			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
-			sc.next();
+		} catch (NumberFormatException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-4).");
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -282,9 +279,9 @@ public class ReservationMainTestApp {
 		// sub-menu 4
 		System.out.println("<<            Invoices/Reports           >>");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("1)Print Invoice");
-		System.out.println("2)Print Sales Revenue Report (Day/Month)");
-		System.out.println("0)Back");
+		System.out.println("1)\tPrint Invoice");
+		System.out.println("2)\tPrint Sales Revenue Report (Day/Month)");
+		System.out.println("0)\tBack");
 
 		int input = 1;
 		try {
@@ -304,9 +301,8 @@ public class ReservationMainTestApp {
 				break;
 			}
 
-		} catch (InputMismatchException e) {
-			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
-			sc.next();
+		} catch (NumberFormatException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-2).");
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -331,7 +327,7 @@ public class ReservationMainTestApp {
 		int input = 1;
 		try {
 			input = Integer.parseInt(sc.nextLine());
-
+			System.out.println(input);
 			switch (input) {
 			case 1:
 				printAppMenu1(sc, menuMgr);
@@ -356,9 +352,8 @@ public class ReservationMainTestApp {
 				break;
 
 			}
-		} catch (InputMismatchException e) {
-			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (1-17).");
-			sc.next();
+		} catch (NumberFormatException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-4).");
 		} catch (Exception e) {
 			e.getStackTrace();
 		}

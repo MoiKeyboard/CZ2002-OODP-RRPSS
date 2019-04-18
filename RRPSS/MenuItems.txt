@@ -1,9 +1,11 @@
 AlaCarte|Carbonara pasta|Italian Cuisin|6.9|MAINCOURSE
-AlaCarte|Cheese|Entree|5.8|APPETIZER
-AlaCarte|Banana soup|Chef's recommendation|3.6|APPETIZER
-PromoPackage|Soup Spoon Set B|For an even bigger party.|19.9|Banana soup|Chef's recommendation|3.6|APPETIZER|Banana soup|Chef's recommendation|3.6|APPETIZER|Banana soup|Chef's recommendation|3.6|APPETIZER|Banana soup|Chef's recommendation|3.6|APPETIZER|Carbonara pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara pasta|Italian Cuisin|6.9|MAINCOURSE|
+AlaCarte|Cheesesteak|Authentic Phillidelphia Cheesesteak.|5.8|APPETIZER
+AlaCarte|Banana Soup|Chef's Recommendation - A beautiful blend of bananas.|3.6|APPETIZER
+PromoPackage|Soup Spoon Set B|For an even bigger party.|19.9|Banana Soup|Chef's Recommendation - A beautiful blend of bananas.|3.6|APPETIZER|Banana Soup|Chef's Recommendation - A beautiful blend of bananas.|3.6|APPETIZER|Banana Soup|Chef's Recommendation - A beautiful blend of bananas.|3.6|APPETIZER|Banana Soup|Chef's Recommendation - A beautiful blend of bananas.|3.6|APPETIZER|Carbonara pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara pasta|Italian Cuisin|6.9|MAINCOURSE|
 AlaCarte|Pi|Freshly made raspberry Pi.|3.14|MAINCOURSE
 AlaCarte|Milkshake|A lovely blend of milk and fresh cream.|5.9|DRINK
 AlaCarte|Orange Juice|Not from concentrate! Oranges sourced locally.|3.0|DRINK
 AlaCarte|Apple Pie|Freshly made to order!|15.8|DESSERTS
 AlaCarte|Lime Sherbet|Ice ice...cold lime icy. Housemade.|4.7|DESSERTS
+PromoPackage|Soup Spoon Set A|A happy meal for one pax.|12.9|Cheesesteak|Authentic Phillidelphia Cheesesteak.|5.8|APPETIZER|Cheesesteak|Authentic Phillidelphia Cheesesteak.|5.8|APPETIZER|Milkshake|A lovely blend of milk and fresh cream.|5.9|DRINK|Banana Soup|Chef's Recommendation - A beautiful blend of bananas.|3.6|APPETIZER|
+AlaCarte|Mushroom Soup|Farmstyle mushroom soup.|3.6|APPETIZER
