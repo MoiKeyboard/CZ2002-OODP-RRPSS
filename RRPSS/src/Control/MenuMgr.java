@@ -251,6 +251,8 @@ public class MenuMgr {
 				System.out.println("0) Exit");
 				choice = Integer.parseInt(sc.nextLine());
 				switch (choice) {
+				case 0:
+					break;
 				case 1:
 					System.out.println("Enter updated promotional package name");
 					curPP.setName(sc.nextLine());
@@ -528,6 +530,8 @@ public class MenuMgr {
 					break;
 				case 2:
 					al = removeMenuAL(al, foodName, qty);
+					break;
+				case 3:
 					break;
 				default:
 					System.out.println("Invalid input try again");
