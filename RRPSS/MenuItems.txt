@@ -7,3 +7,4 @@ AlaCarte|Pi|Freshly made raspberry Pi.|3.14|MAINCOURSE
 AlaCarte|Milkshake|A lovely blend of milk and fresh cream.|5.9|DRINK
 AlaCarte|Orange Juice|Not from concentrate! Oranges sourced locally.|3.0|DRINK
 AlaCarte|1|1|1.0|1
+AlaCarte|Porridge|A warm hearty meal!|2.0|MAIN COURSE
