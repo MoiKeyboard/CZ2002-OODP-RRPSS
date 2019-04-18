@@ -80,8 +80,8 @@ public class MenuMgr {
 	/**
 	 * Updates an existing {@link Alacarte} object (in menuAl) based on user inputs.
 	 * Updated {@link Alacarte} values will reflect inside
-	 * {@link PromotionalPackage} foodAl ({@code ArrayList<Alacarte>}) as well by
-	 * calling {@link updateAlafromPP(Alacarte, Alacarte)}.
+	 * {@link PromotionalPackage} as well by calling
+	 * {@link updateAlafromPP(Alacarte, Alacarte)}.
 	 * <p>
 	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
 	 * updated menuAl.
@@ -138,9 +138,8 @@ public class MenuMgr {
 
 	/**
 	 * Deletes an existing {@link Alacarte} object (in menuAl). Deleted
-	 * {@link Alacarte} object will reflect inside {@link PromotionalPackage} foodAl
-	 * ({@code ArrayList<Alacarte>}) as well by calling
-	 * {@link removeAlafromPP(currAla)}.
+	 * {@link Alacarte} object will reflect inside {@link PromotionalPackage} as
+	 * well by calling {@link removeAlafromPP(currAla)}.
 	 * <p>
 	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
 	 * updated menuAl.
@@ -163,9 +162,12 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Create new {@link PromotionalPackage} and adds it to existing ArrayList[Menu]
-	 * and saves it to text file. Calls {@link updateAlacarteAL(PromotionalPackage)}
-	 * AND {@link TextDB#saveMenu(String, List)}.
+	 * Create new {@link PromotionalPackage} and adds it to existing menuAl. Calls
+	 * {@code updateAlacarteAL(promoItems)} to include any {@link Alacarte} of
+	 * choice inside {@link PromotionalPackage}.
+	 * <p>
+	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
+	 * updated menuAl.
 	 */
 	public void createPromotionalPackage() throws IOException {
 		String promoName;
@@ -191,9 +193,12 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Update the details for an existing PromotionalPackage item based on user
-	 * inputs and saves the updated ArrayList[Menu] to text file. Calls
-	 * {@link updateAlacarteAL(ArrayList)} AND {@link TextDB#saveMenu(String, List).
+	 * Update an existing {@link PromotionalPackage} object inside menuAl. Calls
+	 * {@link updateAlacarteAL(ArrayList)} to update {@link Alacarte} within the
+	 * {@link PromotionalPackage}.
+	 * <p>
+	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
+	 * updated menuAl.
 	 */
 	public void updatePromotionalPackage() throws IOException {
 		int index, choice = 0;
@@ -241,9 +246,12 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Add/Remove items to/from PromotionalPackage.
+	 * Add or removes objects in {@code ArrayList<Alacarte>} from
+	 * {@link PromotionalPackage}. <br>
+	 * To add, calls {@code addAlacarteAL}. <br>
+	 * To remove, calls {@code removeAlacarteAL}.
 	 * 
-	 * @param al Alacarte ArrayList
+	 * @param al the {@code ArrayList<Alacarte>} that is being updated
 	 */
 	private void updateAlacarteAL(ArrayList<Alacarte> al) {
 		String foodName;
@@ -273,11 +281,14 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Returns ArrayList[Alacarte] after removing the particular food from it.
+	 * Searches through the {@code ArrayList<Alacarte>} for an exact copy of
+	 * {@link Alacarte} object. If the object exist, remove it from the list.
+	 * <p>
+	 * Returns the updated {@code ArrayList<Alacarte>} afterwards.
 	 * 
-	 * @param al       Alacarte ArrayList
-	 * @param foodName Name of Alacarte item
-	 * @param qty      Quantity of Alacarte item
+	 * @param al       ArrayList of Alacarte that is going to be updated
+	 * @param foodName Name of Alacarte item to be removed
+	 * @param qty      Quantity of Alacarte item to be removed
 	 */
 	private ArrayList<Alacarte> removeAlacarteAL(ArrayList<Alacarte> al, String foodName, int qty) {
 		int index = getAlacarteIndex(al, foodName);
@@ -294,11 +305,12 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Returns ArrayList[Alacarte] after adding the particular food to it.
+	 * Returns the updated {@code ArrayList<Alacarte>} after adding the particular
+	 * {@link Alacarte} to it.
 	 * 
-	 * @param al       Alacarte ArrayList
-	 * @param foodName Name of Alacarte item
-	 * @param qty      Quantity of Alacarte item
+	 * @param al       ArrayList of Alacarte that is going to be updated
+	 * @param foodName Name of Alacarte item to be added
+	 * @param qty      Quantity of Alacarte item to be added
 	 */
 	private ArrayList<Alacarte> addAlacarteAL(ArrayList<Alacarte> al, String foodName, int qty) {
 		int index = getMenuIndex(foodName);
@@ -318,12 +330,14 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Replaces the New Updated Alacarte Object with the Existing Alacarte Object in
-	 * the ArrayList[Menu] and saves it to text file.Calls
-	 * {@link Alacarte#equals(Object)} AND {@link TextDB#saveMenu(String, List)}.
+	 * Replaces existing {@link Alacarte} Object with the updated {@link Alacarte}
+	 * within all {@link PromotionalPackage} in menuAl.
+	 * <p>
+	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
+	 * updated menuAl.
 	 * 
 	 * @param oldA Existing Alacarte Object to be replaced
-	 * @param newA New Alacarte Object replacing oldA
+	 * @param newA Updated Alacarte Object replacing oldA
 	 */
 	private void updateAlafromPP(Alacarte oldA, Alacarte newA) throws IOException {
 		for (int i = 0; i < menuAl.size(); i++) {
@@ -345,9 +359,11 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Deletes a particular Alacarte Object from the ArrayList[Menu] and saves
-	 * updated ArrayList[Menu] to text file .Calls {@link Alacarte#equals(Object)}
-	 * AND {@link TextDB#saveMenu(String, List)}.
+	 * Deletes existing {@link Alacarte} Object within all
+	 * {@link PromotionalPackage} in menuAl.
+	 * <p>
+	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
+	 * updated menuAl.
 	 * 
 	 * @param currA Alacarte Object to be removed
 	 */
@@ -364,9 +380,10 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Deletes a particular Promotional Package based on user input and saves
-	 * updated ArrayList[Menu] to text file. Calls
-	 * {@link TextDB#saveMenu(String, List)}.
+	 * Deletes existing {@code PromotionalPackage} object based on user input.
+	 * <p>
+	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
+	 * updated menuAl.
 	 * 
 	 */
 	public void removePromotionalPackage() throws IOException {
@@ -384,7 +401,7 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Prints out every Alacarte Item in ArrayList[Menu].
+	 * Prints out every {@link PromotionalPackage} object in menuAl.
 	 */
 	public void printPromotionalPackage() {
 		for (int i = 0; i < menuAl.size(); i++) {
@@ -394,9 +411,10 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Returns the Index of Menu in ArrayList[Menu] based on Name.
+	 * Loop through the menuAl to find the {@link Menu} object based on matching
+	 * String. Returns the index of menuAl when found.
 	 * 
-	 * @param search Name of MenuItem
+	 * @param search Name of {@link Menu} item to match
 	 */
 	protected int getMenuIndex(String search) {
 		for (int i = 0; i < menuAl.size(); i++) {
@@ -407,10 +425,11 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Returns the Index of Menu in ArrayList[Menu] based on Name. This method can
-	 * only be called within this class.
+	 * Loop through the specified {@code ArrayList<Menu> al} to find the
+	 * {@link Menu} object based on matching String. Returns the index when found.
+	 * This method can only be called within this class.
 	 * 
-	 * @param search Name of MenuItem
+	 * @param search Name of {@link Menu} item to match
 	 */
 	private int getMenuIndex(ArrayList<Menu> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
@@ -420,6 +439,15 @@ public class MenuMgr {
 		return -1;
 	}
 
+	/**
+	 * Loop through the specified {@code ArrayList<Alacarte> al} to find the
+	 * {@link Alacarte} object based on matching String. Returns the index when
+	 * found. This method can only be called within this class.
+	 * 
+	 * @param al
+	 * @param search
+	 * @return
+	 */
 	// Is this even needed??????? Tot we migrated to Menu ArrayList
 	private int getAlacarteIndex(ArrayList<Alacarte> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
@@ -431,7 +459,7 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Returns the ArrayList[Menu].
+	 * Returns menuAl ({@code ArrayList<Menu>}).
 	 */
 	protected ArrayList<Menu> getMenuAl() {
 		return menuAl;
