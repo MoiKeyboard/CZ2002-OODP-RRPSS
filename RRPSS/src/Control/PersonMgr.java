@@ -3,10 +3,13 @@ package Control;
 import java.util.ArrayList;
 
 import Entity.Customer;
+import Entity.Person;
 import Entity.Staff;
 
 /**
- * (Control) Object wrapper for PersonMgr
+ * The {@code PersonMgr} is a control class used to model all control behavior
+ * specific to the {@link Person} and its subclasses {@link Staff} and
+ * {@link Customer}.
  * 
  * @author Joseph Fung King Yiu
  * @version 1.0
@@ -18,7 +21,8 @@ public class PersonMgr {
 	private ArrayList<Staff> staffAl;
 
 	/**
-	 * Constructor for PersonMgr, calls {@link TextDB#readCustomer(String)} and {@link TextDB#readStaff(String)}.
+	 * Constructor for PersonMgr, calls {@link TextDB#readCustomer(String)} and
+	 * {@link TextDB#readStaff(String)} to populate custAl and staffAl.
 	 */
 	public PersonMgr() {
 		custAl = new ArrayList<Customer>();
@@ -30,9 +34,9 @@ public class PersonMgr {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Returns ArrayList[Customer]
+	 * Returns custAl ({@code ArrayList<Customer>}).
 	 */
 	protected ArrayList<Customer> getCustAl() {
 		return custAl;
@@ -53,9 +57,9 @@ public class PersonMgr {
 		}
 		return customerResult;
 	}
-	
+
 	/**
-	 * Deletes Customer in the ArrayList[Customer] 
+	 * Deletes Customer in the ArrayList[Customer]
 	 * 
 	 * @param searchTerm Contact Number of Customer
 	 */
@@ -67,16 +71,16 @@ public class PersonMgr {
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns ArrayList[Staff]
 	 */
 	protected ArrayList<Staff> getStaffAl() {
 		return staffAl;
 	}
-	
+
 	/**
-	 * Prints out all the Staff in ArrayList[Staff]
+	 * Prints out all the Staff in staffAl {@code ArrayList<Staff>}
 	 */
 	public void printStaff() {
 		for (Staff staff : staffAl)

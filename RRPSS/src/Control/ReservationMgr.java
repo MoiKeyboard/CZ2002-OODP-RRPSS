@@ -13,7 +13,8 @@ import Entity.Reservation;
 import Entity.Table;
 
 /**
- * (Control) Object wrapper for ReservationMgr
+ * The {@code ReservationMgr} is a control class used to model all control
+ * behavior specific to the {@link Reservation}.
  * 
  * @author Joseph Fung King Yiu
  * @version 1.0
@@ -36,23 +37,22 @@ public class ReservationMgr {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Returns the ArrayList[Reservation]. 
+	 * Returns the ArrayList[Reservation].
 	 */
 	protected ArrayList<Reservation> getReservationAl() {
 		return reservationAl;
 	}
 
 	/**
-	 * Prints out all the Reservations within the ArrayList.
+	 * Prints out all the {@link Reservation} objects within the reservationAl
+	 * ({@code ArrayList<Reservation>}).
 	 * 
 	 * @param tMgr Control for TableMgr
 	 * @param pMgr Control for PersonMgr
 	 */
 	public void printReservation(TableMgr tMgr, PersonMgr pMgr) {
-		ArrayList<Table> tableAl = tMgr.getTableAL();
-		ArrayList<Customer> custAl = pMgr.getCustAl();
 		System.out.println("               *Reservations*               ");
 		System.out.println("..........................................\n");
 		for (Reservation mi : reservationAl) {
@@ -66,7 +66,11 @@ public class ReservationMgr {
 	}
 
 	/**
-	 * Creates Reservation based on User Inputs(Phone Number, Name, Reservation Date and Time, Number of pax), calls {@link reservationDateValidation(int, LocalDateTime)}, {@link Table#setTableStatus(String)} and {@link TextDB#saveReservations(String, List, List)}.
+	 * Creates Reservation based on User Inputs(Phone Number, Name, Reservation Date
+	 * and Time, Number of pax), calls {@link reservationDateValidation(int,
+	 * LocalDateTime)}, {@link Table#setTableStatus(String)} and
+	 * {@link TextDB#saveReservations(String, List, List)}.
+	 * 
 	 */
 	public void createReservation(TableMgr tMgr, PersonMgr pMgr) throws Exception {
 		String reservationDT, custName;
@@ -140,14 +144,21 @@ public class ReservationMgr {
 		}
 		if (found == false)
 			System.out.println("Reservation for " + contactNo + " is not found");
-		
+
 	}
-	
+
 	/**
-	 * Validates the date and time of the new Reservation to be within the opening hours of the Restaurant (AM/PM Session) and checks if there is an existing Reservation with the same Contact Number in the same Session and on the same Day.<br>
+	 * Validates the date and time of the new Reservation to be within the opening
+	 * hours of the Restaurant (AM/PM Session) and checks if there is an existing
+	 * Reservation with the same Contact Number in the same Session and on the same
+	 * Day.<br>
 	 * <br>
-	 * Returns false if there is Existing Reservation with the same Contact Number in the same Session and on the same Day OR Reservation is more than 30 Days in advance OR the date time entered is not within the Restaurant Operating Hours.
-	 * @param contactNum Contact Number of User Input 
+	 * Returns false if there is Existing Reservation with the same Contact Number
+	 * in the same Session and on the same Day OR Reservation is more than 30 Days
+	 * in advance OR the date time entered is not within the Restaurant Operating
+	 * Hours.
+	 * 
+	 * @param contactNum    Contact Number of User Input
 	 * @param reservationDT Reservation Date Time of User Input
 	 */
 	private boolean reservationDateValidation(int contactNum, LocalDateTime reservationDT) {
@@ -156,11 +167,11 @@ public class ReservationMgr {
 		int newReservationHour = reservationDT.getHour();
 		int newReservationMinute = reservationDT.getMinute();
 		int existingReservationHour, existingReservationMinute;
-		if(reservationDT.getDayOfYear() < today.getDayOfYear() || 
-				(reservationDT.getDayOfYear() == today.getDayOfYear() && reservationDT.getHour() < today.getHour())) {
+		if (reservationDT.getDayOfYear() < today.getDayOfYear() || (reservationDT.getDayOfYear() == today.getDayOfYear()
+				&& reservationDT.getHour() < today.getHour())) {
 			System.out.println("Cannot make reservation for the past");
 			return false;
-		}	
+		}
 		for (Reservation r : reservationAl) {
 			if (r.getContactNo() == contactNum) {
 				existingReservationDT = r.getReservationDate();
@@ -198,13 +209,15 @@ public class ReservationMgr {
 		}
 		return true;
 	}
-	
+
 	/**
-	 * Verifies if the table has a reservation for the particular Session on a particular Day based on User Input.
-	 * <br> 
+	 * Verifies if the table has a reservation for the particular Session on a
+	 * particular Day based on User Input. <br>
 	 * <br>
-	 * Returns false if the table has a reservation on the same Session and on the same Day. 
-	 * @param t Table Object
+	 * Returns false if the table has a reservation on the same Session and on the
+	 * same Day.
+	 * 
+	 * @param t             Table Object
 	 * @param reservationDT Reservation Date Time that the user inputs
 	 */
 	private boolean checkAvailability(Table t, LocalDateTime reservationDT) {
@@ -234,9 +247,14 @@ public class ReservationMgr {
 		}
 		return true;
 	}
-	
+
 	/**
-	 * Asks for user input for the Contact Number used for the Reservation and removes all Reservations with that contact number from the ArrayList{Reservation],calls {@link PersonMgr#removeCustomer(int)} to remove Customer from Customer ArrayList and {@link TextDB#saveReservations(String, List, List)} to save the Reservation ArrayList and Customer ArrayList to text file  
+	 * Asks for user input for the Contact Number used for the Reservation and
+	 * removes all Reservations with that contact number from the
+	 * ArrayList{Reservation],calls {@link PersonMgr#removeCustomer(int)} to remove
+	 * Customer from Customer ArrayList and
+	 * {@link TextDB#saveReservations(String, List, List)} to save the Reservation
+	 * ArrayList and Customer ArrayList to text file
 	 * 
 	 * @param pMgr Control for PersonMgr
 	 */
@@ -253,18 +271,22 @@ public class ReservationMgr {
 				successFlag = true;
 			}
 		}
-		if(successFlag != true) 
-			System.out.println("Reservation for contact number"  + searchTerm + " not found");
+		if (successFlag != true)
+			System.out.println("Reservation for contact number" + searchTerm + " not found");
 		else {
 			System.out.println("All Reservations for contact number " + searchTerm + " has been removed successfully!");
 			TextDB.saveReservations("Reservations.txt", reservationAl, pMgr.getCustAl());
 		}
 	}
-	
+
 	/**
-	 * Removes Current Session Reservation which has been attended from the ArrayList{Reservation],calls {@link PersonMgr#removeCustomer(int)} to remove Customer from Customer ArrayList and {@link TextDB#saveReservations(String, List, List)} to save the Reservation ArrayList and Customer ArrayList to text file  
+	 * Removes Current Session Reservation which has been attended from the
+	 * ArrayList{Reservation],calls {@link PersonMgr#removeCustomer(int)} to remove
+	 * Customer from Customer ArrayList and
+	 * {@link TextDB#saveReservations(String, List, List)} to save the Reservation
+	 * ArrayList and Customer ArrayList to text file
 	 * 
-	 * @param pMgr Control for PersonMgr
+	 * @param pMgr      Control for PersonMgr
 	 * @param contactNo Contact Number for Reservation to be removed
 	 */
 	public void removeReservation(PersonMgr pMgr, int contactNo) {
@@ -274,47 +296,46 @@ public class ReservationMgr {
 		while (it.hasNext()) {
 			Reservation r = it.next();
 			LocalDateTime reservationDT = r.getReservationDate();
-			if (r.getContactNo() == contactNo && today.getDayOfYear() == reservationDT.getDayOfYear() && today.getHour() == reservationDT.getHour()) {
+			if (r.getContactNo() == contactNo && today.getDayOfYear() == reservationDT.getDayOfYear()
+					&& today.getHour() == reservationDT.getHour()) {
 				it.remove();
 				System.out.println("Reservation for contact number " + contactNo + " has been removed successfully!");
 				pMgr.removeCustomer(contactNo);
 				successFlag = true;
 			}
 		}
-		if(successFlag == false) 
-			System.out.println("Reservation for contact number "  + contactNo + " not found");
+		if (successFlag == false)
+			System.out.println("Reservation for contact number " + contactNo + " not found");
 		else {
 			try {
 				TextDB.saveReservations("Reservations.txt", reservationAl, pMgr.getCustAl());
-			} catch (IOException e){
+			} catch (IOException e) {
 				System.out.println("IOException");
 			}
 		}
 	}
 
-
-
 	/**
-	 * Delete Expired Reservations 10 minutes after the Reservation booking time and calls {@link TextDB#saveReservations(String, List, List)} to save the updated Reservation ArrayList to text file.
+	 * Delete Expired Reservations 10 minutes after the Reservation booking time and
+	 * calls {@link TextDB#saveReservations(String, List, List)} to save the updated
+	 * Reservation ArrayList to text file.
 	 * 
 	 * @param pMgr Control for PersonMgr
 	 */
 	public void removeExpiredReservations(PersonMgr pMgr) {
 		LocalDateTime existingReservationDT, expiringDT;
-		int existingReservationDay;
 		LocalDateTime today = LocalDateTime.now();
 		Iterator<Reservation> it = reservationAl.iterator();
 		while (it.hasNext()) {
 			Reservation r = it.next();
 			existingReservationDT = r.getReservationDate();
-			existingReservationDay = existingReservationDT.getDayOfYear();
 			expiringDT = today.minus(10, ChronoUnit.MINUTES);
 			if (expiringDT.getDayOfYear() == existingReservationDT.getDayOfYear()
 					&& expiringDT.getHour() == existingReservationDT.getHour()
 					&& expiringDT.getMinute() == existingReservationDT.getMinute()) {
 				System.out.println("...Removing Expired Reservation:\n" + r.toString());
 				it.remove();
-				if(getReservationIndex(r.getContactNo()) == -1)
+				if (getReservationIndex(r.getContactNo()) == -1)
 					pMgr.removeCustomer(r.getContactNo());
 			}
 		}
@@ -324,9 +345,10 @@ public class ReservationMgr {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Returns the Index of Reservation for a particular Reservation based on the current AM/PM runtime session.
+	 * Returns the Index of Reservation for a particular Reservation based on the
+	 * current AM/PM runtime session.
 	 * 
 	 * @param contactNo Contact Number used for Reservation
 	 */

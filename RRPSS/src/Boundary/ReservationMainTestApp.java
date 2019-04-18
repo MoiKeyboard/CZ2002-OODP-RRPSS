@@ -85,11 +85,11 @@ public class ReservationMainTestApp {
 	}
 
 	/**
-	 * Prints out Menu interface. Redirects to the {@link MenuMgr} control layer
-	 * based on user Input.
+	 * Prints out Menu interface. Redirects to the various methods in control layer.
 	 * 
-	 * @param sc      scanner required for taking in input
-	 * @param menuMgr the redirected control class
+	 * @param sc      {@link Scanner} object used for capturing console input
+	 * @param menuMgr {@link MenuMgr} object for controlling for controlling all
+	 *                objects under menu.
 	 * @return the integer input from scanner
 	 */
 	public static int printAppMenu1(Scanner sc, MenuMgr menuMgr) {
@@ -148,6 +148,20 @@ public class ReservationMainTestApp {
 
 	}
 
+	/**
+	 * Prints out Order interface. Redirects to the various methods in control layer
+	 * based on user Input.
+	 * 
+	 * @param sc             {@link Scanner} object used for capturing console input
+	 * @param orderMgr       {@link OrderMgr} object for controlling all orders.
+	 * @param tableMgr       {@link TableMgr} object for controlling all tables
+	 * @param reservationMgr {@link ReservationMgr} object for controlling all
+	 *                       reservation
+	 * @param personMgr      {@link PersonMgr} object for controlling all objects
+	 * @param menuMgr        {@link MenuMgr} object for controlling for controlling
+	 *                       all objects under menu.
+	 * @return the integer input from scanner
+	 */
 	public static int printAppMenu2(Scanner sc, OrderMgr orderMgr, TableMgr tableMgr, ReservationMgr reservationMgr,
 			PersonMgr personMgr, MenuMgr menuMgr) {
 		// sub-menu 2
@@ -197,6 +211,17 @@ public class ReservationMainTestApp {
 
 	}
 
+	/**
+	 * Prints out Reservation interface. Redirects to the various methods in control
+	 * layer based on user Input.
+	 * 
+	 * @param sc             {@link Scanner} object used for capturing console input
+	 * @param tableMgr       {@link TableMgr} object for controlling all tables
+	 * @param reservationMgr {@link ReservationMgr} object for controlling all
+	 *                       reservation
+	 * @param personMgr      {@link PersonMgr} object for controlling all objects
+	 * @return the integer input from scanner
+	 */
 	public static int printAppMenu3(Scanner sc, TableMgr tableMgr, ReservationMgr reservationMgr, PersonMgr personMgr) {
 		// sub-menu 3
 		System.out.println("<<              Reservations            >>");
@@ -243,6 +268,16 @@ public class ReservationMainTestApp {
 
 	}
 
+	/**
+	 * Prints out Invoice/Reports interface. Redirects to the various methods in
+	 * control layer based on user Input.
+	 * 
+	 * @param sc         {@link Scanner} object used for capturing console input
+	 * @param orderMgr   {@link OrderMgr} object for controlling all orders.
+	 * @param invoiceMgr {@link InvoiceMgr} object for controlling all invoices.
+	 * @param tableMgr   {@link TableMgr} object for controlling all tables
+	 * @return the integer input from scanner
+	 */
 	public static int printAppMenu4(Scanner sc, OrderMgr orderMgr, InvoiceMgr invoiceMgr, TableMgr tableMgr) {
 		// sub-menu 4
 		System.out.println("<<            Invoices/Reports           >>");
@@ -279,16 +314,17 @@ public class ReservationMainTestApp {
 	}
 
 	/**
-	 * Captures input and calls related manager to perform required action
+	 * Captures input and redirect to specific sub-interfaces.
 	 * 
-	 * @param sc
-	 * @param menuMgr
-	 * @param tableMgr
-	 * @param reservationMgr
-	 * @param orderMgr
-	 * @param invoiceMgr
-	 * @param personMgr
-	 * @return
+	 * @param sc             {@link Scanner} object used for capturing console input
+	 * @param menuMgr        {@link MenuMgr} object for controlling for controlling
+	 * @param tableMgr       {@link TableMgr} object for controlling all tables
+	 * @param reservationMgr {@link ReservationMgr} object for controlling all
+	 *                       reservation
+	 * @param orderMgr       {@link OrderMgr} object for controlling all orders.
+	 * @param invoiceMgr     {@link InvoiceMgr} object for controlling all invoices.
+	 * @param personMgr      {@link PersonMgr} object for controlling all objects
+	 * @return the integer input from scanner
 	 */
 	public static int getUserInput(Scanner sc, MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr,
 			OrderMgr orderMgr, InvoiceMgr invoiceMgr, PersonMgr personMgr) {
