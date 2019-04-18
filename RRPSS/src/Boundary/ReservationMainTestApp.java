@@ -124,6 +124,8 @@ public class ReservationMainTestApp {
 		System.out.println("2)Create Reservation");
 		System.out.println("3)Remove Reservation");
 		System.out.println("0)Back");
+		
+		
 	}
 	
 	public static void printAppMenu4() {
