@@ -12,9 +12,11 @@ import java.util.Scanner;
 import Entity.Invoice;
 import Entity.Menu;
 import Entity.Order;
+import Entity.Table;
 
 /**
- * (Control) Object wrapper for InvoiceMgr
+ * The {@code InvoiceMgr} is a control class used to model all control behavior
+ * specific to the {@link Invoice}.
  * 
  * @author Tay Jaslyn
  * @version 1.0
@@ -26,9 +28,10 @@ public class InvoiceMgr {
 	private static final double GST = 0.07; // CONSTANT GST 7%
 	private static final double SC = 0.1; // CONSTANT SERVICE CHARGE 10%
 	private Scanner sc;
-	
+
 	/**
-	 * Constructor for InvoiceMgr, calls {@link TextDB#readInvoice(String)}.
+	 * Constructor for {@code InvoiceMgr}. Calls {@link TextDB#readInvoice(String)}
+	 * to read from file and populate {@code ArrayList<Invoice>} .
 	 */
 	public InvoiceMgr() {
 		sc = new Scanner(System.in);
@@ -38,15 +41,24 @@ public class InvoiceMgr {
 			for (Invoice invoice : invoiceAl) {
 				System.out.println(invoice.toString());
 			}
-		} catch(EOFException e) {
+		} catch (EOFException e) {
 			System.out.println("Reservation.txt is empty");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Creates Invoice for a particular Table , calls {@link generateInvoiceNum(),computeTotalPrice(Order)}, {@link TableMgr#updateTableStatus(int, String)} to set the Table status to Vacated, add the Invoice to ArrayList[Invoice] AND calls {@link TextDB#saveInvoice(String, ArrayList)} to save the ArrayList[Invoice] to text file.
+	 * Creates Invoice based on a currently occupied {@link Table}. Calls
+	 * {@link generateInvoiceNum()} and {@link computeTotalPrice(Order)} to obtain
+	 * invoice number and total price.
+	 * <p>
+	 * Adds to the existing {@code ArrayList<Invoice>} upon creation of
+	 * {@link Invoice}. After which it is saved to the {@code Invoice} text file by
+	 * calling {@link TextDB#saveInvoice(String, ArrayList)}.
+	 * <p>
+	 * Vacates table by calling {@link TableMgr#updateTableStatus(int, String)} upon
+	 * creation of {@code Invoice} as well.
 	 * 
 	 * @param orderMgr Control of OrderMgr
 	 * @param tableMgr Control of TableMgr
@@ -72,8 +84,7 @@ public class InvoiceMgr {
 
 	/**
 	 * Creates and returns a new Invoice Number based on the current time stamp.
-	 * <br>
-	 * <br>
+	 * <p>
 	 * Format of invoice number (YearMonthDayHourMinuteSecondRandomInt)
 	 */
 	private long generateInvoiceNum() {
@@ -88,9 +99,10 @@ public class InvoiceMgr {
 	}
 
 	/**
-	 * Returns the sum of the total price of all the Alacarte and PromotionalPackage Items in the Order object which is passed in.
+	 * Returns the total price of all the food items. The total price is caculated
+	 * from the {@link Order} {@code foodAL ArrayList<Menu>}.
 	 * 
-	 * @param order Order object
+	 * @param o {@code Order} object used for calculating total price
 	 */
 	private double computeTotalPrice(Order o) {
 		double price = 0;
@@ -101,7 +113,16 @@ public class InvoiceMgr {
 	}
 
 	/**
-	 * Prints Sale Revenue Report for a particular Day or Month based on Users Input. It will print out a list of Menu Items (Alacarte | Promotional Packages) sold during that time period, the total quantity, total GST, total Service Charge and Total Gross Revenue.
+	 * Prints Sale Revenue Report for a particular Day or Month based on Users
+	 * Input.
+	 * <p>
+	 * It will print out the following during that time period
+	 * <ul>
+	 * <li>Name of {@link Menu} item sold
+	 * <li>Count of {@link Menu} items sold
+	 * <li>Total GST charge
+	 * <li>Total service chargee
+	 * <li>Gross revenue
 	 */
 	// Option 1 - print revenue report for particular day , Option 2 - print revenue
 	// report for particular month, Option 3 - return
