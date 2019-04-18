@@ -193,7 +193,7 @@ public class ReservationMainTestApp {
 		//sub-menu 3
 		System.out.println("<<              Reservations            >>");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("1)\tView Resrvations");
+		System.out.println("1)\tView ALL Reservations");
 		System.out.println("2)\tCheck Reservation");
 		System.out.println("3)\tCreate Reservation");
 		System.out.println("4)\tRemove Reservation");
