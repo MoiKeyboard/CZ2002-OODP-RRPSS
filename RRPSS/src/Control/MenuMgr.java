@@ -102,7 +102,7 @@ public class MenuMgr {
 		Alacarte i1 = new Alacarte(foodName, foodDesc, foodPrice, foodCat);
 		menuAl.add(i1);
 		System.out.println(i1.toString());
-		System.out.println("Creation of menu item is sucessful!");
+		System.out.println("Creation of menu object is sucessful!");
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
 
@@ -119,7 +119,7 @@ public class MenuMgr {
 	public void updateAlacarte() throws IOException {
 		String searchName;
 		int choice = 0, index;
-		System.out.println("Please enter the name of the food item that you want to update");
+		System.out.println("Please enter the name of the food object that you want to update");
 		searchName = sc.nextLine();
 		index = getMenuIndex(searchName);
 		if (index == -1)
@@ -176,7 +176,7 @@ public class MenuMgr {
 	public void removeAlacarte() throws IOException { // whole method working
 		int index;
 		Alacarte currAla = new Alacarte();
-		System.out.println("Please enter the food item that you want to remove");
+		System.out.println("Please enter the food object that you want to remove");
 		String searchName = sc.nextLine();
 		index = getMenuIndex(searchName);
 		if (index == -1)
@@ -185,7 +185,7 @@ public class MenuMgr {
 			currAla = (Alacarte) menuAl.get(index);
 			menuAl.remove(index);
 			removeAlafromPP(currAla);
-			System.out.println("Removed ala carte menu item successfully!");
+			System.out.println("Removed ala carte menu object successfully!");
 		}
 		TextDB.saveMenu("MenuItems.txt", menuAl);
 	}
@@ -316,8 +316,8 @@ public class MenuMgr {
 	 * Returns the updated {@code ArrayList<Alacarte>} afterwards.
 	 * 
 	 * @param al       ArrayList of Alacarte that is going to be updated
-	 * @param foodName Name of Alacarte item to be removed
-	 * @param qty      Quantity of Alacarte item to be removed
+	 * @param foodName Name of Alacarte object to be removed
+	 * @param qty      Quantity of Alacarte object to be removed
 	 */
 	private ArrayList<Alacarte> removeAlacarteAL(ArrayList<Alacarte> al, String foodName, int qty) {
 		int index = getAlacarteIndex(al, foodName);
@@ -338,8 +338,8 @@ public class MenuMgr {
 	 * {@link Alacarte} to it.
 	 * 
 	 * @param al       ArrayList of Alacarte that is going to be updated
-	 * @param foodName Name of Alacarte item to be added
-	 * @param qty      Quantity of Alacarte item to be added
+	 * @param foodName Name of Alacarte object to be added
+	 * @param qty      Quantity of Alacarte object to be added
 	 */
 	private ArrayList<Alacarte> addAlacarteAL(ArrayList<Alacarte> al, String foodName, int qty) {
 		int index = getMenuIndex(foodName);
@@ -446,7 +446,7 @@ public class MenuMgr {
 	 * Loop through the menuAl to find the {@link Menu} object based on matching
 	 * String. Returns the index of menuAl when found.
 	 * 
-	 * @param search Name of {@link Menu} item to match
+	 * @param search Name of {@link Menu} object to match
 	 */
 	protected int getMenuIndex(String search) {
 		for (int i = 0; i < menuAl.size(); i++) {
@@ -462,7 +462,7 @@ public class MenuMgr {
 	 * This method can only be called within this class.
 	 * 
 	 * @param al     the Arraylist to be looped through
-	 * @param search Name of {@link Menu} item to match
+	 * @param search Name of {@link Menu} object to match
 	 */
 	private int getMenuIndex(ArrayList<Menu> al, String search) {
 		for (int i = 0; i < al.size(); i++) {
@@ -477,8 +477,8 @@ public class MenuMgr {
 	 * {@link Alacarte} object based on matching String. Returns the index when
 	 * found. This method can only be called within this class.
 	 * 
-	 * @param al
-	 * @param search
+	 * @param al     the Arraylist to be looped through
+	 * @param search Name of {@link Menu} object to match
 	 * @return
 	 */
 	private int getAlacarteIndex(ArrayList<Alacarte> al, String search) {
@@ -486,7 +486,7 @@ public class MenuMgr {
 			if (search.equalsIgnoreCase(al.get(i).getName()))
 				return i;
 		}
-		System.out.println("Menu item: " + search + " not found");
+		System.out.println("Menu object: " + search + " not found");
 		return -1;
 	}
 
@@ -498,8 +498,8 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Returns ArrayList[Menu] after updating the PromotionalPackage in it based on
-	 * User Input.
+	 * Returns {@code ArrayList<Menu>} after updating the PromotionalPackage in it
+	 * based on User Input.
 	 * 
 	 * @param al Menu ArrayList
 	 */
@@ -516,7 +516,7 @@ public class MenuMgr {
 			System.out.println("Enter food name");
 			foodName = sc.nextLine();
 			if (getMenuIndex(foodName) == -1)
-				System.out.println("Error! Food item does not exist.");
+				System.out.println("Error! Food object does not exist.");
 			else {
 				System.out.println("Please enter quanity of " + foodName);
 				qty = Integer.parseInt(sc.nextLine());
@@ -537,11 +537,12 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Returns ArrayList[Menu] after removing a particular Menu Item from it.
+	 * Returns {@code ArrayList<Menu>} after removing a particular Menu object from
+	 * it.
 	 * 
-	 * @param al       ArrayList[Menu]
+	 * @param al       {@code ArrayList<Menu>}
 	 * @param foodName Name of Food to be removed
-	 * @param qty      Qty of Food to be removed
+	 * @param qty      Quantity of Food to be removed
 	 */
 	private ArrayList<Menu> removeMenuAL(ArrayList<Menu> al, String foodName, int qty) {
 		int count = 0;
@@ -560,9 +561,10 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Returns ArrayList[Menu] after adding a particular Menu Item into it.
+	 * Returns {@code ArrayList<Menu>} after adding a particular Menu object into
+	 * it.
 	 * 
-	 * @param al       ArrayList[Menu]
+	 * @param al       {@code ArrayList<Menu>}
 	 * @param foodName Name of Food to be added
 	 * @param qty      Qty of Food to be added
 	 */
