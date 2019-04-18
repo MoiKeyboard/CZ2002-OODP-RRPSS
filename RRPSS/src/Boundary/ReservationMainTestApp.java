@@ -56,7 +56,7 @@ public class ReservationMainTestApp {
 		reservationMgr.printReservation(tableMgr, personMgr);
 		tableMgr.printTableList();
 		do {
-			reservationMgr.removeExpiredReservations();
+			reservationMgr.removeExpiredReservations(personMgr);
 			ReservationMainTestApp.printAppMenu();
 			userInput = ReservationMainTestApp.getUserInput(sc, menuMgr, tableMgr, reservationMgr, orderMgr, invoiceMgr,
 					personMgr);
