@@ -91,10 +91,49 @@ public class ReservationMainTestApp {
 	
 	public static void printAppMenu1() {
 		//sub-menu 1
+		System.out.println("<<                Menu                  >>");
 		System.out.println();
 		System.out.println("1)View Menu");
+		System.out.println("2)Create Alacarte item");
+		System.out.println("3)Update Alacarte item");
+		System.out.println("4)Remove Alacarte item");
+		System.out.println("5)Create Promotion item");
+		System.out.println("6)Update Promotion item");
+		System.out.println("7)Remove Promotion item");
+		System.out.println("0)Back");
 	}
 
+	public static void printAppMenu2() {
+		//sub-menu 2
+		System.out.println("<<               Orders                 >>");
+		System.out.println();
+		System.out.println("1)View Order");
+		System.out.println("2)View Tables");
+		System.out.println("3)Create Order");
+		System.out.println("4)Update Order");
+		System.out.println("5)Remove Order");
+		System.out.println("0)Back");
+		
+	}
+	
+	public static void printAppMenu3() {
+		//sub-menu 3
+		System.out.println("<<              Reservations            >>");
+		System.out.println();
+		System.out.println("1)View Reservations");
+		System.out.println("2)Create Reservation");
+		System.out.println("3)Remove Reservation");
+		System.out.println("0)Back");
+	}
+	
+	public static void printAppMenu4() {
+		//sub-menu 4
+		System.out.println("<<            Invoices/Reports           >>");
+		System.out.println();
+		System.out.println("1)Print Invoice");
+		System.out.println("2)Print Sales Revenue Report (Day/Month)");
+		System.out.println("0)Back");
+	}
 	/**
 	 * Captures input and calls related manager to perform required action
 	 * 
