@@ -82,8 +82,7 @@ public class ReservationMgr {
 		int contactNo, pax;
 		boolean successFlag = false;
 		System.out.println("Please enter phone number");
-		contactNo = sc.nextInt();
-		sc.nextLine();
+		contactNo = Integer.parseInt(sc.nextLine());
 		System.out.println("Please enter name");
 		custName = sc.nextLine();
 		System.out.println("Please enter reservation date and time in 24hour clock format (E.g 10-04-19 1200)");
@@ -93,7 +92,7 @@ public class ReservationMgr {
 		if (reservationDateValidation(contactNo, reservationDateTime) == false)
 			return;
 		System.out.println("Please enter number of pax");
-		pax = sc.nextInt();
+		pax = Integer.parseInt(sc.nextLine());
 		for (Table t : tMgr.getTableAL()) {
 			if (t.getSeatCap() == pax && (checkAvailability(t, reservationDateTime) == true)) {
 				Reservation i1 = new Reservation(contactNo, reservationDateTime, pax, t.getTableNo());
@@ -137,7 +136,7 @@ public class ReservationMgr {
 		int contactNo;
 		boolean found = false;
 		System.out.println("Please enter contact Number to search for reservation");
-		contactNo = sc.nextInt();
+		contactNo = Integer.parseInt(sc.nextLine());
 		for (Reservation r : reservationAl) {
 			if (r.getContactNo() == contactNo) {
 				Customer cust = pMgr.findCustomer(contactNo);
@@ -265,7 +264,7 @@ public class ReservationMgr {
 	public void removeReservation(PersonMgr pMgr) throws IOException {
 		boolean successFlag = false;
 		System.out.println("Please enter the contact number used for the reservation that you want to remove");
-		int searchTerm = sc.nextInt();
+		int searchTerm = Integer.parseInt(sc.nextLine());
 		Iterator<Reservation> it = reservationAl.iterator();
 		while (it.hasNext()) {
 			Reservation r = it.next();
