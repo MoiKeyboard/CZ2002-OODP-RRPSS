@@ -328,9 +328,10 @@ public class MenuMgr {
 		if (index == -1)
 			return al;
 		else {
-			while (qty > 0) {
+			int counter = qty;
+			while (counter > 0) {
 				al.remove(index);
-				qty--;
+				counter--;
 			}
 			System.out.println(qty + " " + foodName + " removed");
 		}
@@ -353,9 +354,10 @@ public class MenuMgr {
 			System.out.println("Can only add alacarte to promotional Packages... Please try again");
 			return al;
 		} else {
-			while (qty > 0) {
+			int counter = qty;
+			while (counter > 0) {
 				al.add((Alacarte) menuAl.get(index));
-				qty--;
+				counter--;
 			}
 			System.out.println(qty + " " + foodName + " added");
 		}
@@ -579,6 +581,7 @@ public class MenuMgr {
 		if (index == -1)
 			return al;
 		else {
+			int counter = qty;
 			while (qty > 0) {
 				if (menuAl.get(index) instanceof Alacarte)
 					al.add((Alacarte) menuAl.get(index));

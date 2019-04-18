@@ -338,8 +338,7 @@ public class ReservationMgr {
 					&& expiringDT.getMinute() == existingReservationDT.getMinute()) {
 				System.out.println("...Removing Expired Reservation:\n" + r.toString());
 				it.remove();
-				if (getReservationIndex(r.getContactNo()) == -1)
-					pMgr.removeCustomer(r.getContactNo());
+				pMgr.removeCustomer(r.getContactNo());
 			}
 		}
 		try {
@@ -357,6 +356,7 @@ public class ReservationMgr {
 	 */
 	protected int getReservationIndex(int contactNo) {
 		LocalDateTime today = LocalDateTime.now();
+		
 		for (int i = 0; i < reservationAl.size(); i++) {
 			LocalDateTime dt = reservationAl.get(i).getReservationDate();
 			// AM SESSION
