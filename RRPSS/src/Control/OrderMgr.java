@@ -95,10 +95,15 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Creates {@link Order} object for Reservation cases. Calls populate list of
-	 * food in {@link Order}. {@link menuMgr#updateMenuAl(ArrayList)} AND
-	 * {@link TableMgr#updateTableStatus(int, String)} AND
-	 * {@link ReservationMgr#getReservationAl()}.
+	 * Creates {@link Order} object for Reservation cases. Calls the following
+	 * methods
+	 * <ul>
+	 * <li>{@link ReservationMgr#getReservationAl()} to obtain reservation details.
+	 * <li>{@link menuMgr#updateMenuAl(ArrayList)} to populate list of food in
+	 * {@link Order}.
+	 * <li>{@link TableMgr#updateTableStatus(int, String)} to set table status to
+	 * occupied upon {@link Order} creation.
+	 * 
 	 * 
 	 * @param tableMgr  Control for TableMgr
 	 * @param menuMgr   Control for MenuMgr
@@ -137,7 +142,7 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Prints out the Order for a particular Table.
+	 * Prints out the {@link Order} for a particular Table.
 	 */
 	public void viewOrder() throws IOException {
 		int index;
@@ -174,8 +179,8 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Calls {@link MenuMgr#updateMenuAL(ArrayList)} to update the Order for a
-	 * particular table.
+	 * Calls {@link MenuMgr#updateMenuAL(ArrayList)} to update the {@link Order} for
+	 * a particular table.
 	 * 
 	 * @param menuMgr Control for MenuMgr
 	 */
@@ -191,8 +196,8 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Removes Order for a particular Table and sets the status of Table to be
-	 * vacated.
+	 * Removes {@link Order} for a particular Table and sets the status of Table to
+	 * be vacated.
 	 * 
 	 * @param tableMgr Control for TableMgr
 	 */
@@ -213,8 +218,8 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Returns Index of Order in {@code ArrayList<Order>} based on Table Number
-	 * Input.
+	 * Returns Index of {@link Order} in {@code ArrayList<Order>} based on Table
+	 * Number Input.
 	 * 
 	 * @param search Number of Table
 	 */
@@ -228,7 +233,7 @@ public class OrderMgr {
 	}
 
 	/**
-	 * Returns {@code ArrayList<Order>}
+	 * Returns current list of orders, orderAl ({@code ArrayList<Order>}
 	 */
 	protected ArrayList<Order> getOrderAL() {
 		return this.orderAl;
