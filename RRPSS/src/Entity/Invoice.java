@@ -160,9 +160,11 @@ public class Invoice implements Serializable {
 
 		invoiceDetails = "============ Oops Bar & Cafe ============\n" + "        50 Nanyang Ave, 639798\n"
 				+ "               SCSE, NTU\n" + "Table: " + getTableNo() + "\nDate/time: " + invoiceDT.toString() 
-				+"\n#"+getInvoiceNo()
+				+"\n#"+getInvoiceNo() 
+				+ "\tSTAFF: "+getStaffID()
 				+ "\n------------------------------------------\n";
 
+	
 		for (Menu menu : foodAL) {
 			if (uniqueList.contains(menu)) {
 				// if item is a repeat, add to respective count.
