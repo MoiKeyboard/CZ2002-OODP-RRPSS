@@ -305,8 +305,6 @@ public class MenuMgr {
 				qty = Integer.parseInt(sc.nextLine());
 				al = removeAlacarteAL(al, foodName, qty);
 				break;
-			default:
-				System.out.println("Invalid input try again");
 			}
 
 		} while (choice != 3);
