@@ -51,10 +51,11 @@ public class ReservationMainTestApp {
 	public void run(Scanner sc, MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr,
 			InvoiceMgr invoiceMgr, PersonMgr personMgr) {
 		int userInput;
-		menuMgr.printAlacarteItem();
-		menuMgr.printPromotionalPackage();
-		reservationMgr.printReservation(tableMgr, personMgr);
-		tableMgr.printTableList();
+		// debug messages
+//		menuMgr.printAlacarteItem();
+//		menuMgr.printPromotionalPackage();
+//		reservationMgr.printReservation(tableMgr, personMgr);
+//		tableMgr.printTableList();
 		do {
 			reservationMgr.removeExpiredReservations(personMgr);
 			ReservationMainTestApp.printAppMenu();
@@ -77,9 +78,9 @@ public class ReservationMainTestApp {
 		System.out.println("4)\tInvoices/Reports");
 		System.out.println("0)\tExit");
 	}
-	
+
 	public static int printAppMenu1(Scanner sc, MenuMgr menuMgr) {
-		//sub-menu 1
+		// sub-menu 1
 		System.out.println("<<                Menu                  >>");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("1)\tView Menu");
@@ -90,7 +91,7 @@ public class ReservationMainTestApp {
 		System.out.println("6)\tUpdate Promotion item");
 		System.out.println("7)\tRemove Promotion item");
 		System.out.println("0)\tBack");
-		
+
 		int input = 1;
 		try {
 			input = Integer.parseInt(sc.nextLine());
@@ -129,19 +130,20 @@ public class ReservationMainTestApp {
 				System.out.println("Invalid input! Please choose option 1-17");
 				break;
 			}
-			
-			}catch (InputMismatchException e) {
-				System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (1-17).");
-				sc.next();
-			} catch (Exception e) {
-				e.getStackTrace();
-			}
+
+		} catch (InputMismatchException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (1-17).");
+			sc.next();
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
 		return 0;
-		
+
 	}
 
-	public static int printAppMenu2(Scanner sc, OrderMgr orderMgr, TableMgr tableMgr, ReservationMgr reservationMgr, PersonMgr personMgr, MenuMgr menuMgr) {
-		//sub-menu 2
+	public static int printAppMenu2(Scanner sc, OrderMgr orderMgr, TableMgr tableMgr, ReservationMgr reservationMgr,
+			PersonMgr personMgr, MenuMgr menuMgr) {
+		// sub-menu 2
 		System.out.println("<<               Orders                 >>");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("1)View Order");
@@ -150,7 +152,7 @@ public class ReservationMainTestApp {
 		System.out.println("4)Update Order");
 		System.out.println("5)Remove Order");
 		System.out.println("0)Back");
-		
+
 		int input = 1;
 		try {
 			input = Integer.parseInt(sc.nextLine());
@@ -160,7 +162,7 @@ public class ReservationMainTestApp {
 				break;
 			case 2:
 				tableMgr.printTableList();
-				break;	
+				break;
 			case 3:
 				orderMgr.createOrder(tableMgr, menuMgr, personMgr, reservationMgr);
 				break;
@@ -170,27 +172,26 @@ public class ReservationMainTestApp {
 			case 5:
 				orderMgr.removeOrder(tableMgr);
 				break;
-			
+
 			case 0:
 				break;
 			default:
 				System.out.println("Invalid input! Please choose option 0-5");
 				break;
 			}
-			
-			}catch (InputMismatchException e) {
-				System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
-				sc.next();
-			} catch (Exception e) {
-				e.getStackTrace();
-			}
+
+		} catch (InputMismatchException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
+			sc.next();
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
 		return 0;
-		
+
 	}
-	
-	public static int printAppMenu3(Scanner sc, TableMgr tableMgr, ReservationMgr reservationMgr,
-			 PersonMgr personMgr) {
-		//sub-menu 3
+
+	public static int printAppMenu3(Scanner sc, TableMgr tableMgr, ReservationMgr reservationMgr, PersonMgr personMgr) {
+		// sub-menu 3
 		System.out.println("<<              Reservations            >>");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("1)\tView ALL Reservations");
@@ -212,43 +213,42 @@ public class ReservationMainTestApp {
 				reservationMgr.createReservation();
 				reservationMgr.printReservation(tableMgr, personMgr);
 				break;
-			
+
 			case 4:
 				reservationMgr.removeReservation(personMgr);
 				reservationMgr.printReservation(tableMgr, personMgr);
 				break;
-			
+
 			case 0:
 				break;
 			default:
 				System.out.println("Invalid input! Please choose option 0-5");
 				break;
 			}
-			
-			}catch (InputMismatchException e) {
-				System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
-				sc.next();
-			} catch (Exception e) {
-				e.getStackTrace();
-			}
+
+		} catch (InputMismatchException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
+			sc.next();
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
 		return 0;
-		
-		
+
 	}
-	
+
 	public static int printAppMenu4(Scanner sc, OrderMgr orderMgr, InvoiceMgr invoiceMgr, TableMgr tableMgr) {
-		//sub-menu 4
+		// sub-menu 4
 		System.out.println("<<            Invoices/Reports           >>");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("1)Print Invoice");
 		System.out.println("2)Print Sales Revenue Report (Day/Month)");
 		System.out.println("0)Back");
-		
+
 		int input = 1;
 		try {
 			input = Integer.parseInt(sc.nextLine());
 			switch (input) {
-			
+
 			case 1:
 				invoiceMgr.generateInvoice(orderMgr, tableMgr);
 				break;
@@ -261,15 +261,16 @@ public class ReservationMainTestApp {
 				System.out.println("Invalid input! Please choose option 0-5");
 				break;
 			}
-			
-			}catch (InputMismatchException e) {
-				System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
-				sc.next();
-			} catch (Exception e) {
-				e.getStackTrace();
-			}
+
+		} catch (InputMismatchException e) {
+			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
+			sc.next();
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
 		return 0;
 	}
+
 	/**
 	 * Captures input and calls related manager to perform required action
 	 * 
@@ -287,16 +288,15 @@ public class ReservationMainTestApp {
 		int input = 1;
 		try {
 			input = Integer.parseInt(sc.nextLine());
-			
-			
+
 			switch (input) {
 			case 1:
 				printAppMenu1(sc, menuMgr);
-				
+
 				break;
 			case 2:
 				printAppMenu2(sc, orderMgr, tableMgr, reservationMgr, personMgr, menuMgr);
-				
+
 				break;
 			case 3:
 				printAppMenu3(sc, tableMgr, reservationMgr, personMgr);
@@ -304,7 +304,7 @@ public class ReservationMainTestApp {
 			case 4:
 				printAppMenu4(sc, orderMgr, invoiceMgr, tableMgr);
 				break;
-			
+
 			case 0:
 				System.out.println("...Exiting RRPSS...");
 				break;
