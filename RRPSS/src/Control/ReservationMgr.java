@@ -55,12 +55,14 @@ public class ReservationMgr {
 	public void printReservation(TableMgr tMgr, PersonMgr pMgr) {
 		tableAl = tMgr.getTableAL();
 		custAl = pMgr.getCustAl();
-		System.out.println("Reservation as follows:");
+		System.out.println("               *Reservations*               ");
+		System.out.println("..........................................\n");
 		for (Reservation mi : reservationAl) {
 			Customer cust = pMgr.findCustomer(mi.getContactNo());
 			System.out.println(cust.toString());
 			System.out.println(mi.toString());
-			System.out.println("Table status: " + tMgr.getTableStatusForReservation(mi) + "\n");
+			System.out.println("Current Table status: " + tMgr.getTableStatusForReservation(mi) + "\n");
+			System.out.println("..........................................\n");
 		}
 		System.out.println();
 	}

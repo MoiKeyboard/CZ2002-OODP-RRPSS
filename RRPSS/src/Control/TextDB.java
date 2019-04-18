@@ -24,7 +24,6 @@ import Entity.Reservation;
 import Entity.Staff;
 import Entity.Table;
 
-
 /**
  * (Control) Object wrapper for TextDB
  * 
@@ -35,7 +34,7 @@ import Entity.Table;
 
 public class TextDB {
 	private static final String SEPARATOR = "|";
-	
+
 	/**
 	 * Reads in the Menu Item from text file. Returns ArrayList[Menu].
 	 * 
@@ -77,12 +76,12 @@ public class TextDB {
 		}
 		return menuAl;
 	}
-	
+
 	/**
 	 * Saves ArrayList[Menu] to text file.
 	 * 
 	 * @param filename FilePath
-	 * @param menuAl ArrayList[Menu]
+	 * @param menuAl   ArrayList[Menu]
 	 */
 	public static void saveMenu(String filename, List menuAl) throws IOException {
 		List alw = new ArrayList();// to store Orders data
@@ -142,8 +141,8 @@ public class TextDB {
 			StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
 																		// using delimiter ","
 			int staffId = Integer.parseInt(star.nextToken().trim());
-			String jobTitle = star.nextToken().trim(); 
-			String staffName = star.nextToken().trim(); 
+			String jobTitle = star.nextToken().trim();
+			String staffName = star.nextToken().trim();
 			String gender = star.nextToken().trim();
 			// create Staff object from file data
 			Staff item = new Staff(staffId, jobTitle, staffName, gender);
@@ -157,7 +156,7 @@ public class TextDB {
 	 * Saves ArrayList[Staff] to text file.
 	 * 
 	 * @param filename FilePath
-	 * @param staffAl ArrayList[Staff]
+	 * @param staffAl  ArrayList[Staff]
 	 */
 	public static void saveStaff(String filename, List staffAl) throws IOException {
 		List alw = new ArrayList();// to store Professors data
@@ -174,7 +173,7 @@ public class TextDB {
 		}
 		write(filename, alw);
 	}
-	
+
 	/**
 	 * Reads in Table from text file. Returns ArrayList[Table].
 	 * 
@@ -231,9 +230,9 @@ public class TextDB {
 	/**
 	 * Save Reservation to textfile. Calls {@link saveCustomer(String,List)}.
 	 * 
-	 * @param filename FilePath
+	 * @param filename      FilePath
 	 * @param reservationAl ArrayList[Reservation]
-	 * @param custAl ArrayList[Customer]
+	 * @param custAl        ArrayList[Customer]
 	 */
 	public static void saveReservations(String filename, List reservationAl, List custAl) throws IOException {
 		List alw = new ArrayList();
@@ -254,9 +253,9 @@ public class TextDB {
 		write(filename, alw);
 	}
 
-
 	/**
-	 * Reads in Invoice from text file (Deserialization). Returns ArrayList[Invoice].
+	 * Reads in Invoice from text file (Deserialization). Returns
+	 * ArrayList[Invoice].
 	 * 
 	 * @param filename FilePath
 	 */
@@ -275,11 +274,10 @@ public class TextDB {
 		return invoiceAl;
 	}
 
-
 	/**
 	 * Save ArrayList[Invoice] to text file (Serialization).
 	 * 
-	 * @param filename FilePath
+	 * @param filename  FilePath
 	 * @param invoiceAl ArrayList[Invoice]
 	 */
 	public static void saveInvoice(String filename, ArrayList<Invoice> invoiceAl) throws IOException {
@@ -293,7 +291,6 @@ public class TextDB {
 			ioe.printStackTrace();
 		}
 	}
-
 
 	/**
 	 * Reads in Customer from text file. Returns ArrayList[Customer].
@@ -319,12 +316,11 @@ public class TextDB {
 		return customerAl;
 	}
 
-
 	/**
 	 * Saves ArrayList[Customer] to text file.
 	 * 
 	 * @param filename FilePath
-	 * @param custAl ArrayList[Customer]
+	 * @param custAl   ArrayList[Customer]
 	 */
 	public static void saveCustomer(String filename, List custAl) throws IOException {
 		List alw = new ArrayList();// to store Professors data
@@ -339,12 +335,11 @@ public class TextDB {
 		write(filename, alw);
 	}
 
-
 	/**
 	 * Writes data to file.
 	 * 
 	 * @param filename FilePath
-	 * @param data Data
+	 * @param data     Data
 	 */
 	/** Write fixed content to the given file. */
 	private static void write(String fileName, List data) throws IOException {
@@ -358,7 +353,6 @@ public class TextDB {
 			out.close();
 		}
 	}
-	
 
 	/**
 	 * Delete everything within a file.
@@ -369,7 +363,7 @@ public class TextDB {
 		PrintWriter out = new PrintWriter(new FileWriter(fileName));
 		out.close();
 	}
-	
+
 	/**
 	 * Reads the content of the given file.
 	 * 

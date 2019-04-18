@@ -9,7 +9,9 @@ import Entity.Menu;
 import Entity.PromotionalPackage;
 
 /**
- * (Control) Object wrapper for MenuMgr
+ * The {@code MenuMgr} is a control class used to model all control behavior
+ * specific to the {@link Menu} and its subclasses {@link Alacarte} and
+ * {@link PromotionalPackage}.
  * 
  * @author Qwek Zhi Hui
  * @version 1.0
@@ -21,7 +23,8 @@ public class MenuMgr {
 	private Scanner sc;
 
 	/**
-	 * Constructor for MenuMgr, calls {@link TextDB#readMenu(String)}.
+	 * Constructor for MenuMgr. Calls {@link TextDB#readMenu(String)} to read from
+	 * file and populate menuAl ({@code ArrayList<Menu>}).
 	 */
 	public MenuMgr() {
 		sc = new Scanner(System.in);
@@ -34,22 +37,55 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Prints out every Alacarte Item in ArrayList[Menu].
+	 * Prints out every {@link Alacarte} object in menuAl.
 	 */
 	public void printAlacarteItem() {
-		System.out.println("Alacarte Item as follows:");
+		String itemCat = "";
+		ArrayList<String> catsArr = new ArrayList<String>();
+		System.out.println();
+		System.out.println("[][][][][][][][][][][][][][][][][][][][][]");
+		System.out.println("[][][]            M E N U           [][][]");
+		System.out.println("------------------------------------------");
+		for (int i = 0; i < menuAl.size(); i++) {
+			if (menuAl.get(i) instanceof Alacarte) {
+				Alacarte aItem = (Alacarte) menuAl.get(i);
+				if (!catsArr.contains(aItem.getCategory())) {
+					catsArr.add(aItem.getCategory());
+				}
+			}
+		}
+		
+		for(int j = 0; j<catsArr.size();j++) {
+			itemCat = catsArr.get(j);
+			System.out.println();
+			System.out.println("               - "+itemCat+"-                 ");
+			System.out.println();
+			for(int k = 0; k<menuAl.size();k++) {
+				
+				if(menuAl.get(k) instanceof Alacarte) {
+				//System.out.println(((Alacarte) menuAl.get(k)).getCategory());
+					Alacarte aItem = (Alacarte) menuAl.get(k);
+					if(aItem.getCategory().equals(itemCat))
+						System.out.println(aItem.toString());
+				}
+			}
+		}
+		
+		/*
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof Alacarte) {
 				Alacarte aItem = (Alacarte) menuAl.get(i);
 				System.out.println(aItem.toString());
 			}
 		}
+		*/
 		System.out.println();
 	}
 
 	/**
-	 * Creates Alacarte item based on user inputs and adds it to ArrayList[Menu].
-	 * Calls {@link TextDB#saveMenu(String, List)}.
+	 * Creates {@link Alacarte} object based on user inputs and adds it to menuAl.
+	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
+	 * updated menuAl.
 	 */
 	public void createAlacarte() throws Exception {
 		String foodCat, foodName, foodDesc;
@@ -74,10 +110,13 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Update the details for an existing Alacarte item based on user inputs and
-	 * saves the updated ArrayList[Menu] to text file. Calls
-	 * {@link updateAlafromPP(Alacarte, Alacarte)} AND
-	 * {@link TextDB#saveMenu(String, List).
+	 * Updates an existing {@link Alacarte} object (in menuAl) based on user inputs.
+	 * Updated {@link Alacarte} values will reflect inside
+	 * {@link PromotionalPackage} foodAl ({@code ArrayList<Alacarte>}) as well by
+	 * calling {@link updateAlafromPP(Alacarte, Alacarte)}.
+	 * <p>
+	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
+	 * updated menuAl.
 	 */
 	// check instance of alacarte
 	public void updateAlacarte() throws IOException {
@@ -130,9 +169,13 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Deletes Alacarte item from ArrayList[Menu], removes it from ArrayList[Menu]
-	 * and saves the updated ArrayList[Menu] to text file. Calls
-	 * {@link removeAlafromPP(Alacarte)} and {@link TextDB#saveMenu(String, List)}.
+	 * Deletes an existing {@link Alacarte} object (in menuAl). Deleted
+	 * {@link Alacarte} object will reflect inside {@link PromotionalPackage} foodAl
+	 * ({@code ArrayList<Alacarte>}) as well by calling
+	 * {@link removeAlafromPP(currAla)}.
+	 * <p>
+	 * Upon completion, Calls {@link TextDB#saveMenu(String, List)} to save the
+	 * updated menuAl.
 	 */
 	public void removeAlacarte() throws IOException { // whole method working
 		int index;
@@ -152,9 +195,9 @@ public class MenuMgr {
 	}
 
 	/**
-	 * Create new PromotionalPackage, adds it to ArrayList[Menu] and saves it to
-	 * text file. Calls {@link updateAlacarteAL(PromotionalPackage)} AND
-	 * {@link TextDB#saveMenu(String, List)}.
+	 * Create new {@link PromotionalPackage} and adds it to existing ArrayList[Menu]
+	 * and saves it to text file. Calls {@link updateAlacarteAL(PromotionalPackage)}
+	 * AND {@link TextDB#saveMenu(String, List)}.
 	 */
 	public void createPromotionalPackage() throws IOException {
 		String promoName;
@@ -376,6 +419,9 @@ public class MenuMgr {
 	 * Prints out every Alacarte Item in ArrayList[Menu].
 	 */
 	public void printPromotionalPackage() {
+		System.out.println("[][][][][][][][][][][][][][][][][][][][][]");
+		System.out.println("[][][]      P R O M O T I O N S     [][][]");
+		System.out.println("------------------------------------------");
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage)
 				System.out.println(((PromotionalPackage) menuAl.get(i)).toString());
