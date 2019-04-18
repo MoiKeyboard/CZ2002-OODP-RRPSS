@@ -38,9 +38,6 @@ public class InvoiceMgr {
 
 		try {
 			invoiceAl = TextDB.readInvoice("Invoices.txt");
-			for (Invoice invoice : invoiceAl) {
-				System.out.println(invoice.toString());
-			}
 		} catch (EOFException e) {
 			System.out.println("Reservation.txt is empty");
 		} catch (Exception e) {
