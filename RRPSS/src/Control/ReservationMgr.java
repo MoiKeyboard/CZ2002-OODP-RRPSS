@@ -241,17 +241,19 @@ public class ReservationMgr {
 		boolean successFlag = false;
 		System.out.println("Please enter the contact number used for the reservation that you want to remove");
 		int searchTerm = sc.nextInt();
-		for (Reservation mi : reservationAl) {
-			if (mi.getContactNo() == searchTerm) {
-				reservationAl.remove(mi);
-				System.out.println("All Reservations for contact number " + searchTerm + " has been removed successfully!");
+		Iterator<Reservation> it = reservationAl.iterator();
+		while (it.hasNext()) {
+			Reservation r = it.next();
+			if (r.getContactNo() == searchTerm) {
+				it.remove();
+				pMgr.removeCustomer(searchTerm);
 				successFlag = true;
 			}
 		}
 		if(successFlag != true) 
 			System.out.println("Reservation for contact number"  + searchTerm + " not found");
 		else {
-			pMgr.removeCustomer(searchTerm);
+			System.out.println("All Reservations for contact number " + searchTerm + " has been removed successfully!");
 			TextDB.saveReservations("Reservations.txt", reservationAl, pMgr.getCustAl());
 		}
 	}
@@ -265,10 +267,12 @@ public class ReservationMgr {
 	public void removeReservation(PersonMgr pMgr, int contactNo) {
 		boolean successFlag = false;
 		LocalDateTime today = LocalDateTime.now();
-		for (Reservation mi : reservationAl) {
-			LocalDateTime reservationDT = mi.getReservationDate();
-			if (mi.getContactNo() == contactNo && today.getDayOfYear() == reservationDT.getDayOfYear() && today.getHour() == reservationDT.getHour() && today.getMinute() >= reservationDT.getMinute()) {
-				reservationAl.remove(mi);
+		Iterator<Reservation> it = reservationAl.iterator();
+		while (it.hasNext()) {
+			Reservation r = it.next();
+			LocalDateTime reservationDT = r.getReservationDate();
+			if (r.getContactNo() == contactNo && today.getDayOfYear() == reservationDT.getDayOfYear() && today.getHour() == reservationDT.getHour() && today.getMinute() >= reservationDT.getMinute()) {
+				it.remove();
 				System.out.println("Reservation for contact number " + contactNo + " has been removed successfully!");
 				successFlag = true;
 			}
