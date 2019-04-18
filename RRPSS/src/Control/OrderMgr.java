@@ -207,6 +207,11 @@ public class OrderMgr {
 		removeOrder(tableMgr, tableNo);
 	}
 
+	/**
+	 * 
+	 * @param tableMgr
+	 * @param tableNo
+	 */
 	protected void removeOrder(TableMgr tableMgr, int tableNo) {
 		int tableIndex = tableMgr.getTableIndex(tableNo);
 		int orderIndex = getOrderIndex(tableNo);
