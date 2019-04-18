@@ -36,8 +36,8 @@ public class MenuMgr {
 	/**
 	 * Prints out every Alacarte Item in ArrayList[Menu].
 	 */
-	public void printMenuItem() {
-		System.out.println("Menu Item as follows:");
+	public void printAlacarteItem() {
+		System.out.println("Alacarte Item as follows:");
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof Alacarte) {
 				Alacarte aItem = (Alacarte) menuAl.get(i);
