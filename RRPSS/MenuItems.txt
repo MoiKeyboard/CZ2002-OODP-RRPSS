@@ -1,7 +1,7 @@
 AlaCarte|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE
 AlaCarte|Cheese|Entree|5.8|APPETIZER
-AlaCarte|Mushroom soup|Chef's recommendation|3.6|APPETIZER
-PromoPackage|Soup Spoon Set B|For an even bigger party.|19.9|Mushroom soup|Chef's recommendation|3.6|APPETIZER|Mushroom soup|Chef's recommendation|3.6|APPETIZER|Mushroom soup|Chef's recommendation|3.6|APPETIZER|Mushroom soup|Chef's recommendation|3.6|APPETIZER|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE|
+AlaCarte|Banana soup|Chef's recommendation|3.6|APPETIZER
+PromoPackage|Soup Spoon Set B|For an even bigger party.|19.9|Banana soup|Chef's recommendation|3.6|APPETIZER|Banana soup|Chef's recommendation|3.6|APPETIZER|Banana soup|Chef's recommendation|3.6|APPETIZER|Banana soup|Chef's recommendation|3.6|APPETIZER|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE|Carbonara Pasta|Italian Cuisin|6.9|MAINCOURSE|
 AlaCarte|Pi|Freshly made raspberry Pi.|3.14|MAINCOURSE
 AlaCarte|Milkshake|A lovely blend of milk and fresh cream.|5.9|DRINK
 AlaCarte|Orange Juice|Not from concentrate! Oranges sourced locally.|3.0|DRINK
