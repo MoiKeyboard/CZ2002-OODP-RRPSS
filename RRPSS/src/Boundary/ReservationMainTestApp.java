@@ -140,7 +140,6 @@ public class ReservationMainTestApp {
 
 		} catch (NumberFormatException e) {
 			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-7).");
-			sc.next();
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -189,7 +188,6 @@ public class ReservationMainTestApp {
 
 		} catch (NumberFormatException e) {
 			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-5).");
-			sc.next();
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -235,7 +233,6 @@ public class ReservationMainTestApp {
 
 		} catch (NumberFormatException e) {
 			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-4).");
-			sc.next();
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -271,7 +268,6 @@ public class ReservationMainTestApp {
 
 		} catch (NumberFormatException e) {
 			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-2).");
-			sc.next();
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -322,7 +318,6 @@ public class ReservationMainTestApp {
 			}
 		} catch (NumberFormatException e) {
 			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-4).");
-			sc.next();
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
