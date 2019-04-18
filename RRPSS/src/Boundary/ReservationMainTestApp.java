@@ -138,7 +138,7 @@ public class ReservationMainTestApp {
 				break;
 			}
 
-		} catch (NumerFormatException e) {
+		} catch (NumberFormatException e) {
 			System.out.println("Error! Incorrect input format! Use ONLY NUMBERS (0-7).");
 			sc.next();
 		} catch (Exception e) {
