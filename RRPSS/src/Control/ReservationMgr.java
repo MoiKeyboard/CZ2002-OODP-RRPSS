@@ -126,6 +126,7 @@ public class ReservationMgr {
 	 */
 	public void checkReservation(TableMgr tMgr, PersonMgr pMgr) {
 		int contactNo;
+		boolean found = false;
 		System.out.println("Please enter contact Number to search for reservation");
 		contactNo = sc.nextInt();
 		for (Reservation r : reservationAl) {
@@ -134,8 +135,12 @@ public class ReservationMgr {
 				System.out.println(cust.toString());
 				System.out.println(r.toString());
 				System.out.println("Table status: " + tMgr.getTableStatusForReservation(r) + "\n");
+				found = true;
 			}
 		}
+		if (found == false)
+			System.out.println("Reservation for " + contactNo + " is not found");
+		
 	}
 	
 	/**
@@ -237,6 +242,7 @@ public class ReservationMgr {
 		for (Reservation mi : reservationAl) {
 			if (mi.getContactNo() == searchTerm) {
 				reservationAl.remove(mi);
+				System.out.println("Reservation for contact number " + searchTerm + " has been removed successfully!");
 				successFlag = true;
 			}
 		}
