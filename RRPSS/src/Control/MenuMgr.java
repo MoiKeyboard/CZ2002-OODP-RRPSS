@@ -54,31 +54,28 @@ public class MenuMgr {
 				}
 			}
 		}
-		
-		for(int j = 0; j<catsArr.size();j++) {
+
+		for (int j = 0; j < catsArr.size(); j++) {
 			itemCat = catsArr.get(j);
 			System.out.println();
-			System.out.println("               - "+itemCat+"-                 ");
+			System.out.println("               - " + itemCat + "-                 ");
 			System.out.println();
-			for(int k = 0; k<menuAl.size();k++) {
-				
-				if(menuAl.get(k) instanceof Alacarte) {
-				//System.out.println(((Alacarte) menuAl.get(k)).getCategory());
+			for (int k = 0; k < menuAl.size(); k++) {
+
+				if (menuAl.get(k) instanceof Alacarte) {
+					// System.out.println(((Alacarte) menuAl.get(k)).getCategory());
 					Alacarte aItem = (Alacarte) menuAl.get(k);
-					if(aItem.getCategory().equals(itemCat))
+					if (aItem.getCategory().equals(itemCat))
 						System.out.println(aItem.toString());
 				}
 			}
 		}
-		
+
 		/*
-		for (int i = 0; i < menuAl.size(); i++) {
-			if (menuAl.get(i) instanceof Alacarte) {
-				Alacarte aItem = (Alacarte) menuAl.get(i);
-				System.out.println(aItem.toString());
-			}
-		}
-		*/
+		 * for (int i = 0; i < menuAl.size(); i++) { if (menuAl.get(i) instanceof
+		 * Alacarte) { Alacarte aItem = (Alacarte) menuAl.get(i);
+		 * System.out.println(aItem.toString()); } }
+		 */
 		System.out.println();
 	}
 
@@ -162,7 +159,7 @@ public class MenuMgr {
 					System.out.println("Invalid input try again");
 				}
 			}
-			System.out.println("old ALA =" + oldAla);
+//			System.out.println("old ALA =" + oldAla);
 			updateAlafromPP(oldAla, chosenAla); // working
 		}
 		TextDB.saveMenu("MenuItems.txt", menuAl);
@@ -375,10 +372,10 @@ public class MenuMgr {
 		for (int i = 0; i < menuAl.size(); i++) {
 			if (menuAl.get(i) instanceof PromotionalPackage) {
 				for (Alacarte a : ((PromotionalPackage) menuAl.get(i)).getMenuItemArr()) {
-					System.out.println(oldA.getName() + " ||| " + a.getName() + "<<<");
+//					System.out.println(oldA.getName() + " ||| " + a.getName() + "<<<");
 					if (oldA.equals(a)) {
-						System.out.println("oldA = " + oldA.toString());
-						System.out.println("menu = " + a.toString());
+//						System.out.println("oldA = " + oldA.toString());
+//						System.out.println("menu = " + a.toString());
 						a.setName(newA.getName());
 						a.setDescription(newA.getDescription());
 						a.setPrice(newA.getPrice());
