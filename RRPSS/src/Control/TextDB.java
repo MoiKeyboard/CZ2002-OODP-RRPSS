@@ -25,13 +25,14 @@ import Entity.Staff;
 import Entity.Table;
 
 /**
- * (Control) Object wrapper for TextDB
+ * The {@code TextDB} is a control class that manages the reading and writing of
+ * ALL {@code Entity} objects. The respective {@code Entity} managers will upon
+ * the methods when required.
  * 
  * @author Joseph Fung King Yiu
  * @version 1.0
  * @since 2019-04-17
  */
-
 public class TextDB {
 	private static final String SEPARATOR = "|";
 
