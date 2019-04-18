@@ -39,14 +39,19 @@ public class ReservationMainTestApp {
 	}
 
 	/**
+	 * Kickstarts the entire application by loading the general interface. Removes
+	 * all expired reservation upon start as well.
 	 * 
 	 * @param sc             {@link Scanner} object used for capturing console input
-	 * @param menuMgr        {@link MenuMgr} object for control
-	 * @param tableMgr
-	 * @param reservationMgr
-	 * @param orderMgr
-	 * @param invoiceMgr
-	 * @param personMgr
+	 * @param menuMgr        {@link MenuMgr} object for controlling for controlling
+	 *                       all objects under menu.
+	 * @param tableMgr       {@link TableMgr} object for controlling all tables
+	 * @param reservationMgr {@link ReservationMgr} object for controlling all
+	 *                       reservation
+	 * @param orderMgr       {@link OrderMgr} object for controlling all orders.
+	 * @param invoiceMgr     {@link InvoiceMgr} object for controlling all invoices.
+	 * @param personMgr      {@link PersonMgr} object for controlling all objects
+	 *                       under person.
 	 */
 	public void run(Scanner sc, MenuMgr menuMgr, TableMgr tableMgr, ReservationMgr reservationMgr, OrderMgr orderMgr,
 			InvoiceMgr invoiceMgr, PersonMgr personMgr) {
@@ -67,7 +72,7 @@ public class ReservationMainTestApp {
 	}
 
 	/**
-	 * Print out general interface for application
+	 * Prints out general interface for application.
 	 */
 	public static void printAppMenu() {
 		System.out.println("<<         Oops Bar & Cafe [RRPSS]       >>");
@@ -79,6 +84,14 @@ public class ReservationMainTestApp {
 		System.out.println("0)\tExit");
 	}
 
+	/**
+	 * Prints out Menu interface. Redirects to the {@link MenuMgr} control layer
+	 * based on user Input.
+	 * 
+	 * @param sc      scanner required for taking in input
+	 * @param menuMgr the redirected control class
+	 * @return the integer input from scanner
+	 */
 	public static int printAppMenu1(Scanner sc, MenuMgr menuMgr) {
 		// sub-menu 1
 		System.out.println("<<                Menu                  >>");
@@ -204,13 +217,13 @@ public class ReservationMainTestApp {
 				reservationMgr.checkReservation(tableMgr, personMgr);
 				break;
 			case 3:
-				reservationMgr.createReservation(tableMgr,personMgr);
-				reservationMgr.printReservation(tableMgr, personMgr);
+				reservationMgr.createReservation(tableMgr, personMgr);
+				// reservationMgr.printReservation(tableMgr, personMgr);
 				break;
 
 			case 4:
 				reservationMgr.removeReservation(personMgr);
-				reservationMgr.printReservation(tableMgr, personMgr);
+				// reservationMgr.printReservation(tableMgr, personMgr);
 				break;
 
 			case 0:
